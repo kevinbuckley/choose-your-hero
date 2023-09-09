@@ -1,0 +1,213 @@
+{
+    "deck": [
+      {
+        "name": "Warrior",
+        "imageurl": "warrior.jpg",
+        "description": "Basic melee unit",
+        "health": 5,
+        "attack": 3,
+        "effect": {
+          "description": "No special effect",
+          "target": "Self",
+          "attribute_to_impact": "None",
+          "amount_of_impact": 0
+        }
+      },
+      {
+        "name": "Mage",
+        "imageurl": "mage.jpg",
+        "description": "Casts spells",
+        "health": 3,
+        "attack": 2,
+        "effect": {
+          "description": "Fireball deals 5 damage",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -5
+        }
+      },
+      {
+        "name": "Healer",
+        "imageurl": "healer.jpg",
+        "description": "Heals units",
+        "health": 4,
+        "attack": 1,
+        "effect": {
+          "description": "Heals an ally for 5 health",
+          "target": "Ally",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": 5
+        }
+      },
+      {
+        "name": "Archer",
+        "imageurl": "archer.jpg",
+        "description": "Ranged attack",
+        "health": 3,
+        "attack": 4,
+        "effect": {
+          "description": "Arrow deals 4 damage",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -4
+        }
+      },
+      {
+        "name": "Knight",
+        "imageurl": "knight.jpg",
+        "description": "High health and attack",
+        "health": 7,
+        "attack": 5,
+        "effect": {
+          "description": "Shield adds 3 health",
+          "target": "Self",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": 3
+        }
+      },
+      {
+        "name": "Rogue",
+        "imageurl": "rogue.jpg",
+        "description": "Stealth and backstab",
+        "health": 3,
+        "attack": 6,
+        "effect": {
+          "description": "Gains Stealth",
+          "target": "Self",
+          "attribute_to_impact": "Stealth",
+          "amount_of_impact": 1
+        }
+      },
+      {
+        "name": "Druid",
+        "imageurl": "druid.jpg",
+        "description": "Transforms into animals",
+        "health": 4,
+        "attack": 3,
+        "effect": {
+          "description": "Transforms into an animal",
+          "target": "Self",
+          "attribute_to_impact": "Transform",
+          "amount_of_impact": 1
+        }
+      },
+      {
+        "name": "Necromancer",
+        "imageurl": "necromancer.jpg",
+        "description": "Raises the dead",
+        "health": 2,
+        "attack": 2,
+        "effect": {
+          "description": "Raises a dead ally",
+          "target": "Ally",
+          "attribute_to_impact": "Summon",
+          "amount_of_impact": 1
+        }
+      },
+      {
+        "name": "Engineer",
+        "imageurl": "engineer.jpg",
+        "description": "Builds turrets",
+        "health": 4,
+        "attack": 2,
+        "effect": {
+          "description": "Builds a turret",
+          "target": "Ally",
+          "attribute_to_impact": "Summon",
+          "amount_of_impact": 1
+        }
+      },
+      {
+        "name": "Summoner",
+        "imageurl": "summoner.jpg",
+        "description": "Summons minions",
+        "health": 3,
+        "attack": 1,
+        "effect": {
+          "description": "Summons 2 minions",
+          "target": "Ally",
+          "attribute_to_impact": "Summon",
+          "amount_of_impact": 2
+        }
+      },
+      {
+        "name": "Bard",
+        "imageurl": "bard.jpg",
+        "description": "Boosts morale",
+        "health": 2,
+        "attack": 1,
+        "effect": {
+          "description": "Boosts morale of an ally",
+          "target": "Ally",
+          "attribute_to_impact": "Morale",
+          "amount_of_impact": 1
+        }
+      },
+      {
+        "name": "Monk",
+        "imageurl": "monk.jpg",
+        "description": "Martial artist",
+        "health": 5,
+        "attack": 4,
+        "effect": {
+          "description": "Stuns an enemy",
+          "target": "Enemy",
+          "attribute_to_impact": "Stun",
+          "amount_of_impact": 1
+        }
+      },
+      {
+        "name": "Paladin",
+        "imageurl": "paladin.jpg",
+        "description": "Holy warrior",
+        "health": 6,
+        "attack": 4,
+        "effect": {
+          "description": "Smites an enemy for 6 damage",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -6
+        }
+      },
+      {
+        "name": "Sorcerer",
+        "imageurl": "sorcerer.jpg",
+        "description": "Master of arcane",
+        "health": 2,
+        "attack": 5,
+        "effect": {
+          "description": "Arcane Blast deals 7 damage",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -7
+        }
+      },
+      {
+        "name": "Assassin",
+        "imageurl": "assassin.jpg",
+        "description": "High damage, low health",
+        "health": 2,
+        "attack": 7,
+        "effect": {
+          "description": "Critical Hit deals 10 damage",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -10
+        }
+      }
+    ],
+    "boss": {
+      "name": "Dragon King",
+      "imageurl": "dragon_king.jpg",
+      "description": "Final boss",
+      "health": 100,
+      "attack": 10,
+      "effect": {
+        "description": "Fire Breath deals 10 damage to all",
+        "target": "All",
+        "attribute_to_impact": "Health",
+        "amount_of_impact": -10
+      }
+    }
+  }
+  
