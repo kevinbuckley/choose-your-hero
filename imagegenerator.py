@@ -51,7 +51,7 @@ class ImageGenerator:
 
                 # do nothing
 
-    def get_image(self, prompt, folder, image_name):
+    async def get_image(self, prompt, folder, image_name):
         payload = {
             "prompt": prompt,
             "negative_prompt": "",
