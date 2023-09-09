@@ -1,15 +1,20 @@
 from imagegenerator import ImageGenerator
 from dotenv import load_dotenv
+import asyncio
 
-load_dotenv()
 
-
-def main():
+async def main():
     gen = ImageGenerator()
-    p1 = "Magestic looking bullfrog with crimson fur.  To be used in a card game following the style of Hearthstone."
-    gen.get_image(p1, "animals", "bullfrog")
+    animals = ['praying mantis', 'lynx', 'hippo',
+               'giraffe', 'panda', 'baby goat', 'sloth']
 
+    tasks = []
+    for animal in animals:
+        p1 = f"Magestic and fantasy looking {animal}.  To be used in a card game following the style of Hearthstone."
+        tasks.append(gen.get_image(p1, "animals", animal))
+
+    results = await asyncio.gather(*tasks)
 
 if __name__ == "__main__":
     load_dotenv()
-    main()
+    asyncio.run(main())
