@@ -1,9 +1,9 @@
 {
     "deck": [
       {
-        "name": "Warrior",
-        "imageurl": "warrior.jpg",
-        "description": "Basic melee unit",
+        "name": "Griffon",
+        "imageurl": "griffon.jpg",
+        "description": "Half lion, half eagle",
         "health": 5,
         "attack": 3,
         "effect": {
@@ -14,9 +14,9 @@
         }
       },
       {
-        "name": "Mage",
-        "imageurl": "mage.jpg",
-        "description": "Casts spells",
+        "name": "Phoenix",
+        "imageurl": "phoenix.jpg",
+        "description": "Fiery bird",
         "health": 3,
         "attack": 2,
         "effect": {
@@ -27,9 +27,9 @@
         }
       },
       {
-        "name": "Healer",
-        "imageurl": "healer.jpg",
-        "description": "Heals units",
+        "name": "Unicorn",
+        "imageurl": "unicorn.jpg",
+        "description": "Healing horse",
         "health": 4,
         "attack": 1,
         "effect": {
@@ -40,35 +40,35 @@
         }
       },
       {
-        "name": "Archer",
-        "imageurl": "archer.jpg",
-        "description": "Ranged attack",
+        "name": "Basilisk",
+        "imageurl": "basilisk.jpg",
+        "description": "Petrifying reptile",
         "health": 3,
         "attack": 4,
         "effect": {
-          "description": "Arrow deals 4 damage",
+          "description": "Petrifies an enemy",
           "target": "Enemy",
-          "attribute_to_impact": "Health",
-          "amount_of_impact": -4
+          "attribute_to_impact": "Stun",
+          "amount_of_impact": 1
         }
       },
       {
-        "name": "Knight",
-        "imageurl": "knight.jpg",
-        "description": "High health and attack",
+        "name": "Manticore",
+        "imageurl": "manticore.jpg",
+        "description": "Lion with a scorpion tail",
         "health": 7,
         "attack": 5,
         "effect": {
-          "description": "Shield adds 3 health",
-          "target": "Self",
+          "description": "Poison sting",
+          "target": "Enemy",
           "attribute_to_impact": "Health",
-          "amount_of_impact": 3
+          "amount_of_impact": -3
         }
       },
       {
-        "name": "Rogue",
-        "imageurl": "rogue.jpg",
-        "description": "Stealth and backstab",
+        "name": "Kitsune",
+        "imageurl": "kitsune.jpg",
+        "description": "Nine-tailed fox",
         "health": 3,
         "attack": 6,
         "effect": {
@@ -79,134 +79,134 @@
         }
       },
       {
-        "name": "Druid",
-        "imageurl": "druid.jpg",
-        "description": "Transforms into animals",
+        "name": "Chimera",
+        "imageurl": "chimera.jpg",
+        "description": "Three-headed monster",
         "health": 4,
         "attack": 3,
         "effect": {
-          "description": "Transforms into an animal",
-          "target": "Self",
-          "attribute_to_impact": "Transform",
-          "amount_of_impact": 1
+          "description": "Breathes fire",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -4
         }
       },
       {
-        "name": "Necromancer",
-        "imageurl": "necromancer.jpg",
-        "description": "Raises the dead",
+        "name": "Kraken",
+        "imageurl": "kraken.jpg",
+        "description": "Sea monster",
         "health": 2,
         "attack": 2,
         "effect": {
-          "description": "Raises a dead ally",
-          "target": "Ally",
-          "attribute_to_impact": "Summon",
-          "amount_of_impact": 1
-        }
-      },
-      {
-        "name": "Engineer",
-        "imageurl": "engineer.jpg",
-        "description": "Builds turrets",
-        "health": 4,
-        "attack": 2,
-        "effect": {
-          "description": "Builds a turret",
-          "target": "Ally",
-          "attribute_to_impact": "Summon",
-          "amount_of_impact": 1
-        }
-      },
-      {
-        "name": "Summoner",
-        "imageurl": "summoner.jpg",
-        "description": "Summons minions",
-        "health": 3,
-        "attack": 1,
-        "effect": {
-          "description": "Summons 2 minions",
-          "target": "Ally",
-          "attribute_to_impact": "Summon",
-          "amount_of_impact": 2
-        }
-      },
-      {
-        "name": "Bard",
-        "imageurl": "bard.jpg",
-        "description": "Boosts morale",
-        "health": 2,
-        "attack": 1,
-        "effect": {
-          "description": "Boosts morale of an ally",
-          "target": "Ally",
-          "attribute_to_impact": "Morale",
-          "amount_of_impact": 1
-        }
-      },
-      {
-        "name": "Monk",
-        "imageurl": "monk.jpg",
-        "description": "Martial artist",
-        "health": 5,
-        "attack": 4,
-        "effect": {
-          "description": "Stuns an enemy",
+          "description": "Drags enemy underwater",
           "target": "Enemy",
           "attribute_to_impact": "Stun",
           "amount_of_impact": 1
         }
       },
       {
-        "name": "Paladin",
-        "imageurl": "paladin.jpg",
-        "description": "Holy warrior",
-        "health": 6,
-        "attack": 4,
+        "name": "Gorgon",
+        "imageurl": "gorgon.jpg",
+        "description": "Snake-haired woman",
+        "health": 4,
+        "attack": 2,
         "effect": {
-          "description": "Smites an enemy for 6 damage",
+          "description": "Petrifies an enemy",
           "target": "Enemy",
-          "attribute_to_impact": "Health",
-          "amount_of_impact": -6
+          "attribute_to_impact": "Stun",
+          "amount_of_impact": 1
         }
       },
       {
-        "name": "Sorcerer",
-        "imageurl": "sorcerer.jpg",
-        "description": "Master of arcane",
+        "name": "Sphinx",
+        "imageurl": "sphinx.jpg",
+        "description": "Riddle master",
+        "health": 3,
+        "attack": 1,
+        "effect": {
+          "description": "Confuses an enemy",
+          "target": "Enemy",
+          "attribute_to_impact": "Stun",
+          "amount_of_impact": 1
+        }
+      },
+      {
+        "name": "Harpy",
+        "imageurl": "harpy.jpg",
+        "description": "Bird-woman",
+        "health": 2,
+        "attack": 1,
+        "effect": {
+          "description": "Swoops to steal",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -2
+        }
+      },
+      {
+        "name": "Cerberus",
+        "imageurl": "cerberus.jpg",
+        "description": "Three-headed dog",
+        "health": 5,
+        "attack": 4,
+        "effect": {
+          "description": "Bites three times",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -3
+        }
+      },
+      {
+        "name": "Wyvern",
+        "imageurl": "wyvern.jpg",
+        "description": "Dragon-like creature",
+        "health": 6,
+        "attack": 4,
+        "effect": {
+          "description": "Poison breath",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -4
+        }
+      },
+      {
+        "name": "Salamander",
+        "imageurl": "salamander.jpg",
+        "description": "Fire lizard",
         "health": 2,
         "attack": 5,
         "effect": {
-          "description": "Arcane Blast deals 7 damage",
+          "description": "Fire breath",
+          "target": "Enemy",
+          "attribute_to_impact": "Health",
+          "amount_of_impact": -5
+        }
+      },
+      {
+        "name": "Naga",
+        "imageurl": "naga.jpg",
+        "description": "Snake-bodied woman",
+        "health": 2,
+        "attack": 7,
+        "effect": {
+          "description": "Venomous bite",
           "target": "Enemy",
           "attribute_to_impact": "Health",
           "amount_of_impact": -7
         }
-      },
-      {
-        "name": "Assassin",
-        "imageurl": "assassin.jpg",
-        "description": "High damage, low health",
-        "health": 2,
-        "attack": 7,
-        "effect": {
-          "description": "Critical Hit deals 10 damage",
-          "target": "Enemy",
-          "attribute_to_impact": "Health",
-          "amount_of_impact": -10
-        }
       }
     ],
     "boss": {
-      "name": "Dragon King",
-      "imageurl": "dragon_king.jpg",
-      "description": "Final boss",
+      "name": "Hydra",
+      "imageurl": "hydra.jpg",
+      "description": "Multi-headed dragon",
       "health": 100,
       "attack": 10,
       "effect": {
-        "description": "Fire Breath deals 10 damage to all",
-        "target": "All",
+        "description": "Regrows heads, heals 10 health",
+        "target": "Self",
         "attribute_to_impact": "Health",
-        "amount_of_impact": -10
+        "amount_of_impact": 10
       }
     }
   }
