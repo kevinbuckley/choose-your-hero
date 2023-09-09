@@ -1,1 +1,2 @@
 Leonardo-Ai-SDK
+python-dotenv
