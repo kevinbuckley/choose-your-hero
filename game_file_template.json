@@ -1,0 +1,23 @@
+{
+    "deck": [
+      {
+        "name": "",
+        "imageurl": "",
+        "description": "",
+        "health": 0,
+        "action": [
+          {
+            "amount": 1,
+            "type": "",  // options are "Damage", "Heal", "HealthBuff", "HealBuff", "DamageBuff"
+            "targetSize": "" // options are "Single", "All"
+          }
+        ],
+        "effect": [
+          {
+            "name": "" // options are "Poison", "DivineShield", "Taunt", "Invisible"
+          }
+        ]
+      }
+  ]
+}
+  

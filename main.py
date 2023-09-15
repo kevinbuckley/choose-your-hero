@@ -1,26 +1,24 @@
+from jsongenerator import JsonGenerator
+import json
+import asyncio
 from imagegenerator import ImageGenerator
 from dotenv import load_dotenv
-import asyncio
-
-import json
+load_dotenv()
 
 
 async def main():
+    jsonGen = JsonGenerator()
+    game_file = jsonGen.get_json_as_dictionary(
+        "Enemies in the star wars universe")
+
     semaphore = asyncio.Semaphore(5)
-    game_file = get_game_file()
     await generate_images(game_file, semaphore)
-
-
-def get_game_file():
-    with open('default_game_file.json', 'r') as f:
-        data = json.load(f)
-        return data
 
 
 async def generate_images(game_file, semaphore):
     gen = ImageGenerator()
     tasks = []
-    for card in game_file['deck']:
+    for card in game_file:
         name = card['name']
         p1 = f"Magestic and fantasy looking {name}.  To be used in a card game following the style of Hearthstone."
         tasks.append(gen.get_image(p1, "game", name, semaphore))
@@ -29,6 +27,4 @@ async def generate_images(game_file, semaphore):
 
 
 if __name__ == "__main__":
-    load_dotenv()
-
     asyncio.run(main())
