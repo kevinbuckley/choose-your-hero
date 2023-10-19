@@ -9,10 +9,10 @@ load_dotenv()
 async def main():
     jsonGen = JsonGenerator()
     game_file = jsonGen.get_json_as_dictionary(
-        "Enemies in the star wars universe")
+        "the star wars universe")
 
-    semaphore = asyncio.Semaphore(5)
-    await generate_images(game_file, semaphore)
+   # semaphore = asyncio.Semaphore(5)
+   # await generate_images(game_file, semaphore)
 
 
 async def generate_images(game_file, semaphore):

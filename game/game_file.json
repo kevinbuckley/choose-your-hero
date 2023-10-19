@@ -1,58 +1,76 @@
 [
 {
-    "name": "Darth Vader",
-    "imageurl": "https://starwars/darthvader.jpg",
-    "description": "The Sith Lord Darth Vader",
-    "health": 10,
+    "name": "Luke Skywalker",
+    "imageurl": "http://imageurl/luke-skywalker",
+    "deck": "Player",
+    "description": "A Jedi knight",
+    "health": 100,
     "action": [
         {
-        "amount": 3,
+        "amount": 20,
         "type": "Damage",
         "targetSize": "Single"
         }
     ],
     "effect": [
         {
-        "name": "Taunt"
+        "name": "DivineShield"
         }
     ]
 },
 {
-    "name": "Emperor Palpatine",
-    "imageurl": "https://starwars/emperor.jpg",
-    "description": "The Sith Emperor Palpatine",
-    "health": 9,
+    "name": "Princess Leia",
+    "imageurl": "http://imageurl/princess-leia",
+    "deck": "Player",
+    "description": "A force-sensitive human",
+    "health": 100,
     "action": [
         {
-        "amount": 2,
-        "type": "Damage",
-        "targetSize": "All"
-        }
-    ]
-},
-{
-    "name": "General Grievous",
-    "imageurl": "https://starwars/grievous.jpg",
-    "description": "The Droid General Grievous",
-    "health": 8,
-    "action": [
-        {
-        "amount": 2,
+        "amount": 25,
         "type": "Heal",
         "targetSize": "Single"
         }
     ]
 },
 {
-    "name": "Stormtrooper",
-    "imageurl": "https://starwars/stormtrooper.jpg",
-    "description": "A standard stormtrooper",
-    "health": 4,
+    "name": "Han Solo",
+    "imageurl": "http://imageurl/han-solo",
+    "deck": "Player",
+    "description": "A skilled pilot",
+    "health": 100,
     "action": [
         {
-        "amount": 1,
+        "amount": 30,
         "type": "Damage",
+        "targetSize": "All"
+        }
+    ]
+},
+{
+    "name": "Chewbacca",
+    "imageurl": "http://imageurl/chewbacca",
+    "deck": "Player",
+    "description": "A wookiee warrior",
+    "health": 100,
+    "action": [
+        {
+        "amount": 35,
+        "type": "HealthBuff",
         "targetSize": "Single"
+        }
+    ]
+},
+{
+    "name": "Yoda",
+    "imageurl": "http://imageurl/yoda",
+    "deck": "Player",
+    "description": "A force-sensitive being",
+    "health": 100,
+    "action": [
+        {
+        "amount": 15,
+        "type": "Heal",
+        "targetSize": "All"
         }
     ],
     "effect": [
@@ -62,27 +80,43 @@
     ]
 },
 {
-    "name": "Darth Maul",
- "imageurl": "https://starwars/darthmaul.jpg",
-    "description": "The furious Sith Darth Maul",
-    "health": 7,
+    "name": "R2-D2",
+    "imageurl": "http://imageurl/r2-d2",
+    "deck": "Player",
+    "description": "An astromech droid",
+    "health": 100,
     "action": [
         {
-        "amount": 3,
+        "amount": 10,
         "type": "DamageBuff",
+        "targetSize": "All"
+        }
+    ]
+},
+{
+    "name": "C-3PO",
+    "imageurl": "http://imageurl/c-3po",
+    "deck": "Player",
+    "description": "A protocol droid",
+    "health": 100,
+    "action": [
+        {
+        "amount": 20,
+        "type": "Damage",
         "targetSize": "Single"
         }
     ]
 },
 {
-    "name": "Boba Fett",
-    "imageurl": "https://starwars/bobafett.jpg",
-    "description": "The infamous bounty hunter Boba Fett",
-    "health": 6,
+    "name": "Obi-Wan Kenobi",
+    "imageurl": "http://imageurl/obi-wan-kenobi",
+    "deck": "Player",
+    "description": "A Jedi master",
+    "health": 100,
     "action": [
         {
-        "amount": 2,
-        "type": "Damage",
+        "amount": 25,
+        "type": "HealBuff",
         "targetSize": "Single"
         }
     ],
@@ -93,59 +127,21 @@
     ]
 },
 {
-    "name": "Jango Fett",
-    "imageurl": "https://starwars/jangofett.jpg",
-    "description": "The deadly bounty hunter Jango Fett",
-    "health": 5,
+    "name": "Darth Vader",
+    "imageurl": "http://imageurl/darth-vader",
+    "deck": "Boss",
+    "description": "A Sith lord",
+    "health": 1000,
     "action": [
         {
-        "amount": 2,
-        "type": "Heal",
-        "targetSize": "All"
-        }
-    ]
-},
-{
-    "name": "Tusken Raider",
-    "imageurl": "https://starwars/tusken.jpg",
-    "description": "A savage Tusken Raider",
-    "health": 3,
-    "action": [
-        {
-        "amount": 1,
-        "type": "HealthBuff",
-        "targetSize": "Single"
-        }
-    ]
-},
-{
-    "name": "Clone Trooper",
-    "imageurl": "https://starwars/clonetrooper.jpg",
-    "description": "A betrayed clone trooper",
-    "health": 4,
-    "action": [
-        {
-        "amount": 1,
+        "amount": 50,
         "type": "Damage",
         "targetSize": "All"
-        }
-    ]
-},
-{
-    "name": "Captain Phasma",
-    "imageurl": "https://starwars/phasma.jpg",
-    "description": "The First Order's Captain Phasma",
-    "health": 5,
-    "action": [
-        {
-        "amount": 2,
-        "type": "Damage",
-        "targetSize": "Single"
         }
     ],
     "effect": [
         {
-        "name": "DivineShield"
+        "name": "Poison"
         }
     ]
 }
