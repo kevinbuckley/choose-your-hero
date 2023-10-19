@@ -1,2 +1,4 @@
 .env
 *.png
+web/node_modules
+node_modules
