@@ -27,24 +27,24 @@ export default class MainScene extends Phaser.Scene {
   }
 
   preload() {
- //   this.load.image('bossSprite', '../assets/bossSprite.png');
- //   this.load.image('cardSprite', '../assets/cardSprite.png');
+    this.load.image('bossSprite', '../assets/bossSprite.png');
+    this.load.image('cardSprite', '../assets/cardSprite.png');
   }
 
   create() {
     // Initialize Boss
-    //this.boss = new Boss(this, (canvasWidth - cardWidth) / 2, 100);
-    //this.add.existing(this.boss);
+    this.boss = new Boss(this, (canvasWidth - cardWidth) / 2, 100);
+    this.add.existing(this.boss);
 
     // Initialize Deck
     for (let i = 0; i < 10; i++) {
-    //  const card = new Card(this);
-   //   this.add.existing(card);
-    //  this.deck.push(card);
+      const card = new Card(this);
+      this.add.existing(card);
+      this.deck.push(card);
     }
 
     // Start the game
-   // this.startGame();
+    this.startGame();
   }
 
   startGame() {

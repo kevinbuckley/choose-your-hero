@@ -1,12 +1,11 @@
-import 'phaser';
+import Phaser from 'phaser';
 import MainScene from './scenes/MainScene';
-import OtherScene from './scenes/OtherScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   width: 1392,
   height: 642,
-  scene: [OtherScene],
+  scene: [MainScene],
   physics: {
     default: 'arcade',
     arcade: {
