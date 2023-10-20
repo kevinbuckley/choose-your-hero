@@ -14,10 +14,14 @@ import {
 export default class Card extends Phaser.GameObjects.Sprite {
   attackPower: number;
   health: number;
+  name: string;
 
-  constructor(scene: Phaser.Scene) {
-    super(scene, 1, 1, 'cardSprite');
-    //dthis.setVisible(false);
+
+  constructor(scene: Phaser.Scene, cardName: string) {
+    super(scene, 1, 1, cardName);
+    
+    this.setVisible(false);
+    this.name = cardName;
 
     this.attackPower = 10;
     this.health = 20;
@@ -26,13 +30,20 @@ export default class Card extends Phaser.GameObjects.Sprite {
     const scaleX = cardWidth / this.width;
     const scaleY = cardHeight / this.height;
     this.setScale(scaleX, scaleY);
+    this.setInteractive({ useHandCursor: true });
 
     // Add a number to the top of the card
    /* this.cardNumber = scene.add.text(x, y - this.cardHeight / 2 + 10, cardIndex.toString(), {
         fontSize: '32px'
       });
     this.cardNumber.setOrigin(0.5, 0.5); // Center the text
-   */ 
+   */ // Listen for the 'pointerdown' event
+    this.on('pointerdown', this.handleClick, this);
+  }
+
+  private handleClick(pointer: Phaser.Input.Pointer): void {
+    // Handle the click event here
+    this.emit('cardClicked', this);
   }
 
   attack(boss: Boss) {
