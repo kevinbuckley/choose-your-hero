@@ -19,16 +19,30 @@ export default class MainScene extends Phaser.Scene {
   private played: Card[] = [];
   private discarded: Card[] = [];
   private turns: number = 5;
- 
+  private currentTurn: number = 0;
+
+  private cards: string[] = [
+    'Boba Fett',
+    'Captain Phasma',
+    'Clone Trooper',
+    'DarthMaul',
+    'General Grievous',
+    'Jango Fett',
+    'Stormtrooper',
+    'Tusken Raider',
+    'Vader'
+  ];
+
+
   constructor() {
     super({ key: 'MainScene' });
-    console.log('here')
-
   }
 
   preload() {
     this.load.image('bossSprite', '../assets/bossSprite.png');
-    this.load.image('cardSprite', '../assets/cardSprite.png');
+    for (const card of this.cards) {
+      this.load.image(card, `../assets/${card}.png`);
+    }
   }
 
   create() {
@@ -37,59 +51,23 @@ export default class MainScene extends Phaser.Scene {
     this.add.existing(this.boss);
 
     // Initialize Deck
-    for (let i = 0; i < 10; i++) {
-      const card = new Card(this);
+    for (let i = 0; i < this.cards.length; i++) {
+      // Pick a random card from the deck 
+      const card = new Card(this, this.cards[i]);
+
       this.add.existing(card);
       this.deck.push(card);
+      // Listen for the 'cardClicked' event on the card
+      card.on('cardClicked', this.playCard, this);
     }
+    this.deck = shuffleDeck(this.deck);
 
     // Start the game
     this.startGame();
   }
 
   startGame() {
-    let currentTurn = 0;
-
-    const gameLoop = () => {
-      if (currentTurn >= this.turns) {
-        this.endGame();
-        return;
-      }
-
-        if(this.deck.length > 0) {
-            // Draw 3 cards into hand
-            this.hand = drawCards(this.deck, this.discarded);
-
-
-            // Choose one card to play (for demonstration, choosing the first card)
-            const chosenCard = this.hand[0];
-
-            this.playCard(chosenCard);
-
-            // Discard the other cards
-            this.discarded.push(...this.hand.slice(1));
-            this.discarded.forEach(card => card.setVisible(false)); // set discarded cards to invisible
-
-
-            // Execute attacks until all played cards are dead
-            while (this.played.length > 0) {
-                // Cards attack the boss
-                this.played.forEach((card) => {
-                card.attack(this.boss!);
-                });
-
-                // Boss attacks one of the played cards (for demonstration, attacking the first card)
-                this.boss!.attack(this.played[0]);
-
-                // Remove dead cards from played array
-                this.played = this.played.filter((card) => card.health > 0);
-            }
-        }
-      currentTurn++;
-      setTimeout(gameLoop, 2000);
-    };
-
-    gameLoop();
+    this.nextTurn();
   }
 
   endGame() {
@@ -100,9 +78,45 @@ export default class MainScene extends Phaser.Scene {
       console.log('You lose!');
     }
   }
+
+  nextTurn() {
+    this.currentTurn++;
+    if (this.currentTurn >= this.turns) {
+      this.endGame();
+      return;
+    }
+    this.hand = drawCards(this.deck, this.discarded);
+  }
+
+  attack() {
+    // Execute attacks until all played cards are dead
+    //while (this.played.length > 0) {
+        // Cards attack the boss
+        this.played.forEach((card) => {
+          card.attack(this.boss!);
+        });
+
+        // Boss attacks one of the played cards (for demonstration, attacking the first card)
+        this.boss!.attack(this.played[0]);
+
+        // Remove dead cards from played array
+     //   this.played = this.played.filter((card) => card.health > 0);
+   // }
+  }
+
   playCard(card: Card) {
+    console.log(card.name + ' clicked!');
+
     card.x = startingX + this.played.length * (cardWidth + padding);
     card.y = 300;
     this.played.push(card);
+    // discard from hand  
+    this.hand = this.hand.filter((handCard) => handCard.name !== card.name);
+    // Discard the other cards
+    this.discarded.push(...this.hand);
+    this.discarded.forEach(card => card.setVisible(false)); // set discarded cards to invisible
+
+    this.attack();
+    this.nextTurn();
   }
 }

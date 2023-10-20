@@ -22,10 +22,13 @@ export function drawCards(deck: Card[], discardedCards: Card[], numCards: number
       const card = deck.pop();
       if (card) {
         drawnCards.push(card);
+        console.log(card.name);
         card.setVisible(true);
 
         card.setPosition(startingX + (i * (cardWidth + padding)), 500);
-        console.log("card position: " + card.x + ", " + card.y);
+        card.x = startingX + (i * (cardWidth + padding));
+        card.y = 500;
+       // console.log("card position: " + card.x + ", " + card.y);
       }
     }
   
