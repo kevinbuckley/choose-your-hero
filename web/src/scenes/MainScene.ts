@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import Boss from '../classes/Boss';
-import Card from '../classes/Card';
+import Card, {State} from '../classes/Card';
 import { 
     shuffleDeck, 
     drawCards,
@@ -17,9 +17,11 @@ export default class MainScene extends Phaser.Scene {
   private deck: Card[] = [];
   private hand: Card[] = [];
   private played: Card[] = [];
+  private playedoriginal: Card[] = [];
   private discarded: Card[] = [];
   private turns: number = 5;
   private currentTurn: number = 0;
+  private roundsText!: Phaser.GameObjects.Text;
 
   private cards: string[] = [
     'Boba Fett',
@@ -61,6 +63,10 @@ export default class MainScene extends Phaser.Scene {
       card.on('cardClicked', this.playCard, this);
     }
     this.deck = shuffleDeck(this.deck);
+    this.roundsText = this.add.text(680, 20, '', {
+      fontSize: '32px',
+      fill: '#fff'
+    });
 
     // Start the game
     this.startGame();
@@ -70,16 +76,19 @@ export default class MainScene extends Phaser.Scene {
     this.nextTurn();
   }
 
+  
+
   endGame() {
     // Check win/loss conditions
     if (this.boss && this.boss.health <= 0) {
-      console.log('You win!');
+      this.roundsText.setText(`You beat the boss!`);
     } else {
-      console.log('You lose!');
+      console.log(`The boss escaped with ${this.boss!.health} health!`);
     }
   }
 
   nextTurn() {
+    this.roundsText.setText(`Rounds Left: ${this.turns - this.currentTurn}`);
     this.currentTurn++;
     if (this.currentTurn >= this.turns) {
       this.endGame();
@@ -90,18 +99,23 @@ export default class MainScene extends Phaser.Scene {
 
   attack() {
     // Execute attacks until all played cards are dead
-    //while (this.played.length > 0) {
+    this.playedoriginal = this.played;
+
+    while (this.played.length > 0) {
         // Cards attack the boss
         this.played.forEach((card) => {
           card.attack(this.boss!);
+          console.log('Boss health: ' + this.boss!.health);
         });
 
         // Boss attacks one of the played cards (for demonstration, attacking the first card)
-        this.boss!.attack(this.played[0]);
+        // Boss attacks one of the cards at random
+        this.boss!.attack(this.played[Math.floor(Math.random() * this.played.length)]);
 
         // Remove dead cards from played array
-     //   this.played = this.played.filter((card) => card.health > 0);
-   // }
+        this.played = this.played.filter((card) => card.health > 0);
+    }
+    this.played = this.playedoriginal;
   }
 
   playCard(card: Card) {
@@ -110,6 +124,7 @@ export default class MainScene extends Phaser.Scene {
     card.x = startingX + this.played.length * (cardWidth + padding);
     card.y = 300;
     this.played.push(card);
+    card.cardState = State.Played;
     // discard from hand  
     this.hand = this.hand.filter((handCard) => handCard.name !== card.name);
     // Discard the other cards
