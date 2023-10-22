@@ -28,7 +28,6 @@ export function drawCards(deck: Card[], discardedCards: Card[], numCards: number
         card.setPosition(startingX + (i * (cardWidth + padding)), 500);
         card.x = startingX + (i * (cardWidth + padding));
         card.y = 500;
-       // console.log("card position: " + card.x + ", " + card.y);
       }
     }
   

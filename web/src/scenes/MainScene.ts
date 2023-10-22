@@ -83,18 +83,19 @@ export default class MainScene extends Phaser.Scene {
     if (this.boss && this.boss.health <= 0) {
       this.roundsText.setText(`You beat the boss!`);
     } else {
-      console.log(`The boss escaped with ${this.boss!.health} health!`);
+      this.roundsText.setText(`The boss escaped with ${this.boss!.health} health!`);
     }
   }
 
   nextTurn() {
     this.roundsText.setText(`Rounds Left: ${this.turns - this.currentTurn}`);
-    this.currentTurn++;
     if (this.currentTurn >= this.turns) {
       this.endGame();
       return;
     }
     this.hand = drawCards(this.deck, this.discarded);
+    this.played.forEach((card) => { card.revive(); });
+    this.currentTurn++;
   }
 
   attack() {
@@ -104,13 +105,23 @@ export default class MainScene extends Phaser.Scene {
     while (this.played.length > 0) {
         // Cards attack the boss
         this.played.forEach((card) => {
+           // Implement your attack logic here
+          this.boss!.health -= card.attackPower;
+          this.boss!.setHealth(this.boss!.health);
+          if (this.boss!.health < 0) {
+            this.boss!.health = 0;
+          }
+
           card.attack(this.boss!);
-          console.log('Boss health: ' + this.boss!.health);
         });
 
-        // Boss attacks one of the played cards (for demonstration, attacking the first card)
         // Boss attacks one of the cards at random
-        this.boss!.attack(this.played[Math.floor(Math.random() * this.played.length)]);
+        const target = this.played[Math.floor(Math.random() * this.played.length)];
+        // Implement your attack logic here
+        target.health -= this.boss!.attack;
+        if (target.health <= 0) {
+          target.die();
+        }
 
         // Remove dead cards from played array
         this.played = this.played.filter((card) => card.health > 0);
@@ -119,8 +130,6 @@ export default class MainScene extends Phaser.Scene {
   }
 
   playCard(card: Card) {
-    console.log(card.name + ' clicked!');
-
     card.x = startingX + this.played.length * (cardWidth + padding);
     card.y = 300;
     this.played.push(card);

@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import Boss from './Boss';
+import CharacterPicture from './CharacterPicture';
+
 import { 
     shuffleDeck, 
     drawCards,
@@ -16,25 +18,24 @@ export enum State {
   Deck = 'deck',
   Discarded = 'discarded'
 }
-import Phaser from 'phaser';
-import CardCharacter from './CardCharacter';
 
 export default class Card extends Phaser.GameObjects.Container {
   attackPower: number;
-  health: number;
+  _health: number = 0;
+  _healthOriginal: number = 0;
   name: string;
   cardState: State = State.Deck;
+  private healthText!: Phaser.GameObjects.Text;
 
 
   constructor(scene: Phaser.Scene, cardName: string) {
     super(scene, 1, 1);
     
     this.attackPower = Math.floor(Math.random() * (10 - 2 + 1) + 2);  // Random integer between 2 and 10
-    this.health = Math.floor(Math.random() * (20 - 10 + 1) + 10);     // Random integer between 10 and 20
     this.name = cardName;
 
     // Create character sprite
-    const characterSprite = new CardCharacter(scene, cardName);
+    const characterSprite = new CharacterPicture(scene, cardName, cardWidth, cardHeight);
     this.add(characterSprite);
 
     // Add title
@@ -52,12 +53,13 @@ export default class Card extends Phaser.GameObjects.Container {
     this.add(attackPower);
 
     // Add health
-    const health = scene.add.text(-40, 55, `Health: ${this.health}`, {
+    this.healthText = scene.add.text(-40, 55, '', {
       fontSize: '12px',
       backgroundColor: 'black'
     });
-    this.add(health);
-
+    this.add(this.healthText);
+    this.health = this._healthOriginal = Math.floor(Math.random() * (20 - 10 + 1) + 10);     // Random integer between 10 and 20
+    
     // Add description
    /* const description = scene.add.text(0, 80, `Dope character named ${cardName}`, {
       fontSize: '10px',
@@ -66,16 +68,25 @@ export default class Card extends Phaser.GameObjects.Container {
     }).setOrigin(0.5);
     this.add(description);
 */
-    this.setVisible(false);
     
     const bounds = this.getBounds();
+    console.log(bounds);
     this.setInteractive({
-      hitArea: new Phaser.Geom.Rectangle(0, 0, bounds.width, bounds.height),
+      hitArea: new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight),
       hitAreaCallback: Phaser.Geom.Rectangle.Contains,
       useHandCursor: true
     });
-    this.on('pointerdown', this.handleClick, this);
     
+    this.on('pointerdown', this.handleClick, this);
+    this.setVisible(false);
+    
+  }
+
+  get health(): number { return this._health; }
+  set health(newHealth: number) {
+    this._health = newHealth;
+    this.healthText.setText(`Health: ${newHealth}`);
+    console.log(`Health of ${this.name} is now ${newHealth}`);
   }
 
   private handleClick(pointer: Phaser.Input.Pointer): void {
@@ -85,11 +96,6 @@ export default class Card extends Phaser.GameObjects.Container {
   }
 
   attack(boss: Boss) {
-    // Implement your attack logic here
-    boss.health -= this.attackPower;
-    if (boss.health < 0) {
-      boss.health = 0;
-    }
 
     // Implement your attack animation here
     // ...
@@ -105,7 +111,7 @@ export default class Card extends Phaser.GameObjects.Container {
 
   revive() {
     // Implement your revive logic here
-    this.health = 20;
+    this.health = this._healthOriginal;
 
     // Implement your revive animation here
     // ...
