@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
-import Boss from '../classes/Boss';
-import Card, {State} from '../classes/Card';
+import BossCard from './BossCard';
+import PlayerCard, {State} from './PlayerCard';
+import GameState from '../mechanics/GameState';
+
 import { 
     shuffleDeck, 
     drawCards,
@@ -13,27 +15,17 @@ import {
 } from '../utils/DeckManagement';
 
 export default class MainScene extends Phaser.Scene {
-  private boss?: Boss;
-  private deck: Card[] = [];
-  private hand: Card[] = [];
-  private played: Card[] = [];
-  private playedoriginal: Card[] = [];
-  private discarded: Card[] = [];
+  private boss?: BossCard;
+  private deck: PlayerCard[] = [];
+  private hand: PlayerCard[] = [];
+  private played: PlayerCard[] = [];
+  private playedoriginal: PlayerCard[] = [];
+  private discarded: PlayerCard[] = [];
   private turns: number = 5;
   private currentTurn: number = 0;
   private roundsText!: Phaser.GameObjects.Text;
+  private state: GameState = new GameState();
 
-  private cards: string[] = [
-    'Boba Fett',
-    'Captain Phasma',
-    'Clone Trooper',
-    'DarthMaul',
-    'General Grievous',
-    'Jango Fett',
-    'Stormtrooper',
-    'Tusken Raider',
-    'Vader'
-  ];
 
 
   constructor() {
@@ -42,20 +34,20 @@ export default class MainScene extends Phaser.Scene {
 
   preload() {
     this.load.image('bossSprite', '../assets/bossSprite.png');
-    for (const card of this.cards) {
+    for (const card of this.state.cardNames) {
       this.load.image(card, `../assets/${card}.png`);
     }
   }
 
   create() {
-    // Initialize Boss
-    this.boss = new Boss(this, (canvasWidth - cardWidth) / 2, 100);
+    // Initialize BossCard
+    this.boss = new BossCard(this, (canvasWidth - cardWidth) / 2, 100, this.state.boss);
     this.add.existing(this.boss);
 
     // Initialize Deck
-    for (let i = 0; i < this.cards.length; i++) {
+    for (let i = 0; i < this.state.cardNames.length; i++) {
       // Pick a random card from the deck 
-      const card = new Card(this, this.cards[i]);
+      const card = new PlayerCard(this, this.state.cardNames[i]);
 
       this.add.existing(card);
       this.deck.push(card);
@@ -78,16 +70,16 @@ export default class MainScene extends Phaser.Scene {
 
   endGame() {
     // Check win/loss conditions
-    if (this.boss && this.boss.health <= 0) {
+    if (this.boss && this.boss.boss.health <= 0) {
       this.roundsText.setText(`You beat the boss!`);
     } else {
-      this.roundsText.setText(`The boss escaped with ${this.boss!.health} health!`);
+      this.roundsText.setText(`The boss escaped with ${this.boss!.boss.health} health!`);
     }
   }
 
   nextTurn() {
     this.roundsText.setText(`Rounds Left: ${this.turns - this.currentTurn}`);
-    if (this.currentTurn >= this.turns || this.boss!.health <= 0) {
+    if (this.currentTurn >= this.turns || this.boss!.boss.health <= 0) {
       this.endGame();
       return;
     }
@@ -104,15 +96,15 @@ export default class MainScene extends Phaser.Scene {
         // Cards attack the boss
         this.played.forEach((card) => {
            // Implement your attack logic here
-          this.boss!.health -= card.attackPower;
-          this.boss!.setHealth(this.boss!.health);
+          this.boss!.boss.health -= card.attackPower;
+          this.boss!.setHealth(this.boss!.boss.health);
           card.attack(this.boss!);
         });
 
-        // Boss attacks one of the cards at random
+        // BossCard attacks one of the cards at random
         const target = this.played[Math.floor(Math.random() * this.played.length)];
         // Implement your attack logic here
-        target.health -= this.boss!.attackPower;
+        target.health -= this.boss!.boss.attack;
         if (target.health <= 0) {
           target.die();
         }
@@ -122,7 +114,7 @@ export default class MainScene extends Phaser.Scene {
     this.played = this.playedoriginal;
   }
 
-  playCard(card: Card) {
+  playCard(card: PlayerCard) {
     card.x = startingX + this.played.length * (cardWidth + padding);
     card.y = 300;
     this.played.push(card);

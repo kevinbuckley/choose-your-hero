@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import Boss from './Boss';
-import CharacterPicture from './CharacterPicture';
+import BossCard from './BossCard';
+import CardPicture from './CardPicture';
 
 import { 
     shuffleDeck, 
@@ -19,7 +19,7 @@ export enum State {
   Discarded = 'discarded'
 }
 
-export default class Card extends Phaser.GameObjects.Container {
+export default class PlayerCard extends Phaser.GameObjects.Container {
   attackPower: number;
   _health: number = 0;
   _healthOriginal: number = 0;
@@ -35,7 +35,7 @@ export default class Card extends Phaser.GameObjects.Container {
     this.name = cardName;
 
     // Create character sprite
-    const characterSprite = new CharacterPicture(scene, cardName, cardWidth, cardHeight);
+    const characterSprite = new CardPicture(scene, cardName, cardWidth, cardHeight);
     this.add(characterSprite);
 
     // Add title
@@ -46,14 +46,14 @@ export default class Card extends Phaser.GameObjects.Container {
     this.add(title);
 
     // Add attack power
-    const attackPower = scene.add.text(-40, 40, `Attack: ${this.attackPower}`, {
+    const attackPower = scene.add.text(-35, 35, `Attack: ${this.attackPower}`, {
       fontSize: '12px',
       backgroundColor: 'black'
     });
     this.add(attackPower);
 
     // Add health
-    this.healthText = scene.add.text(-40, 55, '', {
+    this.healthText = scene.add.text(-35, 50, '', {
       fontSize: '12px',
       backgroundColor: 'black'
     });
@@ -91,11 +91,11 @@ export default class Card extends Phaser.GameObjects.Container {
 
   private handleClick(pointer: Phaser.Input.Pointer): void {
     // Handle the click event here
-    console.log(`Card ${this.name} was clicke with the state ${this.state}!`)
+    console.log(`PlayerCard ${this.name} was clicke with the state ${this.state}!`)
     this.emit('cardClicked', this);
   }
 
-  attack(boss: Boss) {
+  attack(boss: BossCard) {
 
     // Implement your attack animation here
     // ...

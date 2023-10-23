@@ -1,6 +1,6 @@
-import Card from '../classes/Card';
+import PlayerCard from '../classes/PlayerCard';
 
-export function shuffleDeck(deck: Card[]): Card[] {
+export function shuffleDeck(deck: PlayerCard[]): PlayerCard[] {
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
@@ -8,8 +8,8 @@ export function shuffleDeck(deck: Card[]): Card[] {
   return deck;
 }
 
-export function drawCards(deck: Card[], discardedCards: Card[], numCards: number = 3): Card[] {
-    const drawnCards: Card[] = [];
+export function drawCards(deck: PlayerCard[], discardedCards: PlayerCard[], numCards: number = 3): PlayerCard[] {
+    const drawnCards: PlayerCard[] = [];
   
     for (let i = 0; i < numCards; i++) {
       if (deck.length === 0) {
@@ -36,7 +36,7 @@ export function drawCards(deck: Card[], discardedCards: Card[], numCards: number
   
   export const canvasWidth: number = 800;
   export const canvasHeight: number = 600;
-  export const cardWidth: number = 100;
-  export const cardHeight: number = 150;
-  export const padding: number = 10;
+  export const cardWidth: number = 90;
+  export const cardHeight: number = 130;
+  export const padding: number = 30;
   export const startingX: number = (canvasWidth - (cardWidth * 3 + padding * 2)) / 2;
