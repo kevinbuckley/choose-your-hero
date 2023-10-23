@@ -72,7 +72,7 @@ export default class Card extends Phaser.GameObjects.Container {
     const bounds = this.getBounds();
     console.log(bounds);
     this.setInteractive({
-      hitArea: new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight),
+      hitArea: new Phaser.Geom.Rectangle((cardWidth/-2), (cardHeight/-2), cardWidth, cardHeight),
       hitAreaCallback: Phaser.Geom.Rectangle.Contains,
       useHandCursor: true
     });

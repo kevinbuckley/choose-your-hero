@@ -4,25 +4,35 @@ import CharacterPicture from './CharacterPicture';
 
 export default class Boss  extends Phaser.GameObjects.Container {
   health: number;
-  attack: number;
+  attackPower: number;
   private healthText!: Phaser.GameObjects.Text;
+  private attackText!: Phaser.GameObjects.Text;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
     // Resize the sprite to be 140x200 pixels
-    const newWidth = 220;
-    const newHeight = 300;
+    const newWidth = 130;
+    const newHeight = 200;
     const characterSprite = new CharacterPicture(scene, 'bossSprite', newWidth, newHeight);
     this.add(characterSprite);
     
     // Add health
-    this.healthText = scene.add.text(-40, 55, '', {
+    this.healthText = scene.add.text(-40, 80, '', {
       fontSize: '12px',
       backgroundColor: 'black'
     });
-    this.setHealth(100);
-    this.attack = 10;
+
+    // Add attack power
+    this.attackPower = 10;
+    this.attackText = scene.add.text(-40, 65, `Attack: ${this.attackPower}`, {
+      fontSize: '12px',
+      backgroundColor: 'black'
+    });
+
+
+    this.setHealth(400);
     this.add(this.healthText);
+    this.add(this.attackText);
   }
 
   setHealth(health: number) {
