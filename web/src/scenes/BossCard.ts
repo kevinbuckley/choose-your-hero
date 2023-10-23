@@ -1,30 +1,30 @@
 import Phaser from 'phaser';
-import Card from './Card';
-import CharacterPicture from './CharacterPicture';
+import PlayerCard from './PlayerCard';
+import Boss from '../mechanics/Boss';
+import CardPicture from './CardPicture';
 
-export default class Boss  extends Phaser.GameObjects.Container {
-  health: number;
-  attackPower: number;
+export default class BossCard  extends Phaser.GameObjects.Container {
   private healthText!: Phaser.GameObjects.Text;
   private attackText!: Phaser.GameObjects.Text;
+  boss: Boss;
 
-  constructor(scene: Phaser.Scene, x: number, y: number) {
+  constructor(scene: Phaser.Scene, x: number, y: number, boss: Boss) {
     super(scene, x, y);
+    this.boss = boss;
     // Resize the sprite to be 140x200 pixels
-    const newWidth = 130;
-    const newHeight = 200;
-    const characterSprite = new CharacterPicture(scene, 'bossSprite', newWidth, newHeight);
+    const newWidth = 100;
+    const newHeight = 160;
+    const characterSprite = new CardPicture(scene, 'bossSprite', newWidth, newHeight);
     this.add(characterSprite);
     
     // Add health
-    this.healthText = scene.add.text(-40, 80, '', {
+    this.healthText = scene.add.text(-40, 60, '', {
       fontSize: '12px',
       backgroundColor: 'black'
     });
 
     // Add attack power
-    this.attackPower = 10;
-    this.attackText = scene.add.text(-40, 65, `Attack: ${this.attackPower}`, {
+    this.attackText = scene.add.text(-40, 45, `Attack: ${this.boss.attack}`, {
       fontSize: '12px',
       backgroundColor: 'black'
     });
@@ -36,11 +36,11 @@ export default class Boss  extends Phaser.GameObjects.Container {
   }
 
   setHealth(health: number) {
-    this.health = health;
+    this.boss.health = health;
     this.healthText.setText(`Health: ${health}`);
   }
 
-  attack(target: Card) {
+  attack(target: PlayerCard) {
     
 
     // Implement your attack animation here
@@ -48,9 +48,9 @@ export default class Boss  extends Phaser.GameObjects.Container {
   }
 
   takeDamage(amount: number) {
-    this.health -= amount;
-    if (this.health < 0) {
-      this.health = 0;
+    this.boss.health -= amount;
+    if (this.boss.health < 0) {
+      this.boss.health = 0;
     }
 
     // Implement any damage-taking animation or logic here

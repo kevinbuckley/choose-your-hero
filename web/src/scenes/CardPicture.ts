@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 
-export default class CharacterPicture extends Phaser.GameObjects.Sprite {
+export default class CardPicture extends Phaser.GameObjects.Sprite {
   
   scaleX: number = 0;
   scaleY: number = 0;
