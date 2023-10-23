@@ -48,7 +48,6 @@ export default class MainScene extends Phaser.Scene {
     for (let i = 0; i < this.state.cardNames.length; i++) {
       // Pick a random card from the deck 
       const card = new PlayerCard(this, this.state.cardNames[i]);
-
       this.add.existing(card);
       this.deck.push(card);
       // Listen for the 'cardClicked' event on the card
@@ -95,9 +94,7 @@ export default class MainScene extends Phaser.Scene {
     while (this.played.length > 0) {
         // Cards attack the boss
         this.played.forEach((card) => {
-           // Implement your attack logic here
-          this.boss!.boss.health -= card.attackPower;
-          this.boss!.setHealth(this.boss!.boss.health);
+          this.boss!.boss.attacked(card.attackPower);
           card.attack(this.boss!);
         });
 

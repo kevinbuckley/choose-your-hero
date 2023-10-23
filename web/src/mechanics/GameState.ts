@@ -43,7 +43,7 @@ class GameState extends Events.EventEmitter {
         return;
       }
   
-      this.boss.health -= card.attack;
+      this.boss.attacked(card.attack);
       this.emit('bossAttacked', this.boss);
   
       if (this.boss.health <= 0) {
