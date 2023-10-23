@@ -76,8 +76,6 @@ export default class MainScene extends Phaser.Scene {
     this.nextTurn();
   }
 
-  
-
   endGame() {
     // Check win/loss conditions
     if (this.boss && this.boss.health <= 0) {
@@ -89,7 +87,7 @@ export default class MainScene extends Phaser.Scene {
 
   nextTurn() {
     this.roundsText.setText(`Rounds Left: ${this.turns - this.currentTurn}`);
-    if (this.currentTurn >= this.turns) {
+    if (this.currentTurn >= this.turns || this.boss!.health <= 0) {
       this.endGame();
       return;
     }
@@ -108,21 +106,16 @@ export default class MainScene extends Phaser.Scene {
            // Implement your attack logic here
           this.boss!.health -= card.attackPower;
           this.boss!.setHealth(this.boss!.health);
-          if (this.boss!.health < 0) {
-            this.boss!.health = 0;
-          }
-
           card.attack(this.boss!);
         });
 
         // Boss attacks one of the cards at random
         const target = this.played[Math.floor(Math.random() * this.played.length)];
         // Implement your attack logic here
-        target.health -= this.boss!.attack;
+        target.health -= this.boss!.attackPower;
         if (target.health <= 0) {
           target.die();
         }
-
         // Remove dead cards from played array
         this.played = this.played.filter((card) => card.health > 0);
     }
