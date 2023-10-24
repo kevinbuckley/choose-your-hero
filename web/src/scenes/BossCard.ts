@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import PlayerCard from './PlayerCard';
-import Boss, { EVENT_HEALTH_CHANGED } from '../mechanics/Boss';
+import Boss from '../mechanics/Boss';
 import CardPicture from './CardPicture';
+import { EVENT_HEALTH_CHANGED } from '../mechanics/GameState';
 
 export default class BossCard  extends Phaser.GameObjects.Container {
   private healthText!: Phaser.GameObjects.Text;

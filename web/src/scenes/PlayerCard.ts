@@ -93,6 +93,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     // Handle the click event here
     console.log(`PlayerCard ${this.name} was clicke with the state ${this.state}!`)
     this.emit('cardClicked', this);
+    this.removeInteractive();
   }
 
   attack(boss: BossCard) {

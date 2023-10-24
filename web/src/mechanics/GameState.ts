@@ -3,6 +3,8 @@ import Boss from './Boss';
 import Card, {State} from '../classes/Card';
 import { Events } from 'phaser';
 
+export const EVENT_HEALTH_CHANGED: string = 'healthChanged';
+
 class GameState extends Events.EventEmitter {
     private deck: Card[] = [];
     private boss: Boss;
