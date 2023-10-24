@@ -1,6 +1,5 @@
 import { Events } from 'phaser';
-
-export const EVENT_HEALTH_CHANGED: string = 'healthChanged';
+import { EVENT_HEALTH_CHANGED } from './GameState';
 
 export default 
 class Boss extends Events.EventEmitter {
