@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import BossCard from './BossCard';
 import CardPicture from './CardPicture';
+import Card from '../mechanics/Card'
+import { EVENT_HEALTH_CHANGED } from '../mechanics/GameState';
 
 import { 
     shuffleDeck, 
@@ -20,33 +22,28 @@ export enum State {
 }
 
 export default class PlayerCard extends Phaser.GameObjects.Container {
-  attackPower: number;
-  _health: number = 0;
-  _healthOriginal: number = 0;
-  name: string;
-  cardState: State = State.Deck;
   private healthText!: Phaser.GameObjects.Text;
-
-
-  constructor(scene: Phaser.Scene, cardName: string) {
+  private attackText!: Phaser.GameObjects.Text;
+  card: Card;
+  cardState: State = State.Deck;
+  
+  constructor(scene: Phaser.Scene, card: Card) {
     super(scene, 1, 1);
+    this.card = card;
     
-    this.attackPower = Math.floor(Math.random() * (10 - 2 + 1) + 2);  // Random integer between 2 and 10
-    this.name = cardName;
-
     // Create character sprite
-    const characterSprite = new CardPicture(scene, cardName, cardWidth, cardHeight);
+    const characterSprite = new CardPicture(scene, card.name, cardWidth, cardHeight);
     this.add(characterSprite);
 
     // Add title
-    const title = scene.add.text(0, -80, cardName, {
+    const title = scene.add.text(0, -80, card.name, {
       fontSize: '12px',
       align: 'center'
     }).setOrigin(0.5);
     this.add(title);
 
     // Add attack power
-    const attackPower = scene.add.text(-35, 35, `Attack: ${this.attackPower}`, {
+    const attackPower = scene.add.text(-35, 35, `Attack: ${card.attack}`, {
       fontSize: '12px',
       backgroundColor: 'black'
     });
@@ -58,16 +55,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
       backgroundColor: 'black'
     });
     this.add(this.healthText);
-    this.health = this._healthOriginal = Math.floor(Math.random() * (20 - 10 + 1) + 10);     // Random integer between 10 and 20
-    
-    // Add description
-   /* const description = scene.add.text(0, 80, `Dope character named ${cardName}`, {
-      fontSize: '10px',
-      align: 'center',
-      wordWrap: { width: 140 }
-    }).setOrigin(0.5);
-    this.add(description);
-*/
+    this._setHealth(card.health);
     
     const bounds = this.getBounds();
     console.log(bounds);
@@ -77,21 +65,19 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
       useHandCursor: true
     });
     
+    card.on(EVENT_HEALTH_CHANGED, this._setHealth, this);
     this.on('pointerdown', this.handleClick, this);
     this.setVisible(false);
     
   }
 
-  get health(): number { return this._health; }
-  set health(newHealth: number) {
-    this._health = newHealth;
-    this.healthText.setText(`Health: ${newHealth}`);
-    console.log(`Health of ${this.name} is now ${newHealth}`);
+  _setHealth(health: number) {
+    this.healthText.setText(`Health: ${health}`);
   }
+
 
   private handleClick(pointer: Phaser.Input.Pointer): void {
     // Handle the click event here
-    console.log(`PlayerCard ${this.name} was clicke with the state ${this.state}!`)
     this.emit('cardClicked', this);
     this.removeInteractive();
   }
@@ -100,6 +86,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
 
     // Implement your attack animation here
     // ...
+    boss.boss.attacked(this.card.attack);
   }
 
   die() {
@@ -111,9 +98,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
   }
 
   revive() {
-    // Implement your revive logic here
-    this.health = this._healthOriginal;
-
+    this.card.revive();
     // Implement your revive animation here
     // ...
   }

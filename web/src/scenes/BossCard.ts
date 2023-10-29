@@ -46,14 +46,4 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     // Implement your attack animation here
     // ...
   }
-
-  takeDamage(amount: number) {
-    this.boss.health -= amount;
-    if (this.boss.health < 0) {
-      this.boss.health = 0;
-    }
-
-    // Implement any damage-taking animation or logic here
-    // ...
-  }
 }
