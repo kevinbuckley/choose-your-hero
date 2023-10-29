@@ -1,5 +1,5 @@
 import { Events } from 'phaser';
-import { EVENT_HEALTH_CHANGED } from './GameState';
+import { EVENT_HEALTH_CHANGED, EVENT_CARD_DIED } from './GameState';
 
 export default 
 class Boss extends Events.EventEmitter {
@@ -13,6 +13,19 @@ class Boss extends Events.EventEmitter {
 
   attacked(attackPower: number) {
     this.health -= attackPower;
-    this.emit(EVENT_HEALTH_CHANGED, this.health);    
+    this.emit(EVENT_HEALTH_CHANGED, this.health);  
+    if(this.isDead()) {
+      this.died();
+    }
   }
+
+  died() {
+    this.emit(EVENT_CARD_DIED, this.health);    
+  }
+
+  isDead(): boolean {
+    return this.health <= 0;
+  }
+  
+
 }

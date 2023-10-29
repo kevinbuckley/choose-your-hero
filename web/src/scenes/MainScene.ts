@@ -19,7 +19,6 @@ export default class MainScene extends Phaser.Scene {
   private deck: PlayerCard[] = [];
   private hand: PlayerCard[] = [];
   private played: PlayerCard[] = [];
-  private playedoriginal: PlayerCard[] = [];
   private discarded: PlayerCard[] = [];
   private turns: number = 5;
   private currentTurn: number = 0;
@@ -45,9 +44,9 @@ export default class MainScene extends Phaser.Scene {
     this.add.existing(this.boss);
 
     // Initialize Deck
-    for (let i = 0; i < this.state.cardNames.length; i++) {
+    for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
-      const card = new PlayerCard(this, this.state.cardNames[i]);
+      const card = new PlayerCard(this, this.state.deck[i]);
       this.add.existing(card);
       this.deck.push(card);
       // Listen for the 'cardClicked' event on the card
@@ -69,7 +68,7 @@ export default class MainScene extends Phaser.Scene {
 
   endGame() {
     // Check win/loss conditions
-    if (this.boss && this.boss.boss.health <= 0) {
+    if (this.boss && this.boss.boss.isDead()) {
       this.roundsText.setText(`You beat the boss!`);
     } else {
       this.roundsText.setText(`The boss escaped with ${this.boss!.boss.health} health!`);
@@ -78,7 +77,7 @@ export default class MainScene extends Phaser.Scene {
 
   nextTurn() {
     this.roundsText.setText(`Rounds Left: ${this.turns - this.currentTurn}`);
-    if (this.currentTurn >= this.turns || this.boss!.boss.health <= 0) {
+    if (this.currentTurn >= this.turns || this.boss!.boss.isDead()) {
       this.endGame();
       return;
     }
@@ -89,26 +88,22 @@ export default class MainScene extends Phaser.Scene {
 
   attack() {
     // Execute attacks until all played cards are dead
-    this.playedoriginal = this.played;
+    const playedoriginal: PlayerCard[] = this.played;
 
     while (this.played.length > 0) {
         // Cards attack the boss
         this.played.forEach((card) => {
-          this.boss!.boss.attacked(card.attackPower);
           card.attack(this.boss!);
         });
 
         // BossCard attacks one of the cards at random
         const target = this.played[Math.floor(Math.random() * this.played.length)];
         // Implement your attack logic here
-        target.health -= this.boss!.boss.attack;
-        if (target.health <= 0) {
-          target.die();
-        }
+        target.card.attacked(this.boss!.boss.attack);
         // Remove dead cards from played array
-        this.played = this.played.filter((card) => card.health > 0);
+        this.played = this.played.filter((card) => card.card.health > 0);
     }
-    this.played = this.playedoriginal;
+    this.played = playedoriginal;
   }
 
   playCard(card: PlayerCard) {
