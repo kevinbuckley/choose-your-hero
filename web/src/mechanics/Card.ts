@@ -1,7 +1,11 @@
 import { Events } from 'phaser';
 import { EVENT_HEALTH_CHANGED, 
   EVENT_CARD_DIED,
-  EVENT_CARD_STATE_CHANGED } from './GameState';
+  EVENT_CARD_STATE_CHANGED 
+} from './GameState';
+
+
+
 
 export enum State {
   Deck = 'deck',
@@ -51,6 +55,11 @@ class Card extends Events.EventEmitter {
 
   play() {
     this.state = State.Played;
+    this.emit(EVENT_CARD_STATE_CHANGED, this);
+  }
+  
+  discard() {
+    this.state = State.Discarded;
     this.emit(EVENT_CARD_STATE_CHANGED, this);
   }
 
