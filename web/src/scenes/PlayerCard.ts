@@ -2,30 +2,18 @@ import Phaser from 'phaser';
 import BossCard from './BossCard';
 import CardPicture from './CardPicture';
 import Card from '../mechanics/Card'
-import { EVENT_HEALTH_CHANGED } from '../mechanics/GameState';
+import { EVENT_HEALTH_CHANGED, EVENT_CARD_STATE_CHANGED } from '../mechanics/GameState';
 
 import { 
-    shuffleDeck, 
-    drawCards,
-    canvasWidth,
-    canvasHeight,
     cardHeight,
     cardWidth,
-    padding,
-    startingX
 } from '../utils/DeckManagement';
 
-export enum State {
-  Played = 'played',
-  Deck = 'deck',
-  Discarded = 'discarded'
-}
 
 export default class PlayerCard extends Phaser.GameObjects.Container {
   private healthText!: Phaser.GameObjects.Text;
   private attackText!: Phaser.GameObjects.Text;
   card: Card;
-  cardState: State = State.Deck;
   
   constructor(scene: Phaser.Scene, card: Card) {
     super(scene, 1, 1);
@@ -58,7 +46,6 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this._setHealth(card.health);
     
     const bounds = this.getBounds();
-    console.log(bounds);
     this.setInteractive({
       hitArea: new Phaser.Geom.Rectangle((cardWidth/-2), (cardHeight/-2), cardWidth, cardHeight),
       hitAreaCallback: Phaser.Geom.Rectangle.Contains,

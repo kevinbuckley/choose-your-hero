@@ -1,5 +1,15 @@
 import { Events } from 'phaser';
-import { EVENT_HEALTH_CHANGED, EVENT_CARD_DIED } from './GameState';
+import { EVENT_HEALTH_CHANGED, 
+  EVENT_CARD_DIED,
+  EVENT_CARD_STATE_CHANGED } from './GameState';
+
+export enum State {
+  Deck = 'deck',
+  Discarded = 'discarded',
+  Hand = 'hand',
+  Played = 'played',
+  PlayedButDead = 'playedButDead'
+}
 
 export default 
 class Card extends Events.EventEmitter {
@@ -7,6 +17,7 @@ class Card extends Events.EventEmitter {
   attack: number;
   health: number;
   healthOriginal: number;
+  state: State = State.Deck;
   constructor(name: string, attack: number, health: number) {
     super();
     this.name = name;
@@ -28,12 +39,20 @@ class Card extends Events.EventEmitter {
   }
 
   die() {
+    this.state = State.PlayedButDead;
     this.emit(EVENT_CARD_DIED, this);
   }
 
   revive() {
+    console.log(`Reviving ${this.name}`);
     this.health = this.healthOriginal;
+    this.state = State.Played;
     this.emit(EVENT_HEALTH_CHANGED, this.health);
+  }
+
+  play() {
+    this.state = State.Played;
+    this.emit(EVENT_CARD_STATE_CHANGED, this);
   }
 
 }
