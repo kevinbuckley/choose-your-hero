@@ -44,7 +44,6 @@ class Card extends Events.EventEmitter {
   }
 
   revive() {
-    console.log(`Reviving ${this.name}`);
     this.health = this.healthOriginal;
     this.state = State.Played;
     this.emit(EVENT_HEALTH_CHANGED, this.health);

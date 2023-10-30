@@ -69,13 +69,6 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this.removeInteractive();
   }
 
-  attack(boss: BossCard) {
-
-    // Implement your attack animation here
-    // ...
-    boss.boss.attacked(this.card.attack);
-  }
-
   die() {
     // Implement your death logic here
     // ...
