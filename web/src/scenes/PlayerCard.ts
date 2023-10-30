@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import BossCard from './BossCard';
 import CardPicture from './CardPicture';
-import Card from '../mechanics/Card'
+import Card, { State } from '../mechanics/Card'
 import { EVENT_HEALTH_CHANGED, EVENT_CARD_STATE_CHANGED } from '../mechanics/GameState';
 
 import { 
@@ -53,6 +53,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     });
     
     card.on(EVENT_HEALTH_CHANGED, this._setHealth, this);
+    card.on(EVENT_CARD_STATE_CHANGED, this._setCardState, this);
     this.on('pointerdown', this.handleClick, this);
     this.setVisible(false);
     
@@ -60,6 +61,15 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
 
   _setHealth(health: number) {
     this.healthText.setText(`Health: ${health}`);
+  }
+
+  _setCardState() {
+    switch(this.card.state) {
+      case State.Discarded:
+        this.setVisible(false);
+        break;
+        
+    }
   }
 
 

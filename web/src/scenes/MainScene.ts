@@ -6,7 +6,8 @@ import GameState, {
   EVENT_DECK_SHUFFLE, 
   EVENT_CARD_DRAWN, 
   EVENT_GAME_OVER,
-  EVENT_NEXT_TURN
+  EVENT_NEXT_TURN,
+  EVENT_CARD_PLAYED
 } from '../mechanics/GameState';
 
 import { 
@@ -41,6 +42,7 @@ export default class MainScene extends Phaser.Scene {
     this.state.on(EVENT_CARD_DRAWN, this.handleCardDrawn, this);
     this.state.on(EVENT_GAME_OVER, this.handleEndGame, this);
     this.state.on(EVENT_NEXT_TURN, this.handleNextTurn, this);
+    this.state.on(EVENT_CARD_PLAYED, this.handleCardPlayed, this);
     // Initialize Deck
     for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
@@ -48,7 +50,7 @@ export default class MainScene extends Phaser.Scene {
       this.add.existing(card);
       this.deck.push(card);
       // Listen for the 'cardClicked' event on the card
-      card.on('cardClicked', this.playCard, this);
+      card.on('cardClicked', this.handleCardClicked, this);
     }
     this.roundsText = this.add.text(680, 20, '', {
       fontSize: '32px',
@@ -84,28 +86,15 @@ export default class MainScene extends Phaser.Scene {
     this.roundsText.setText(`Rounds Left: ${this.state.totalTurns - this.state.currentTurn+1}`);
   }
 
-  playCard(card: PlayerCard) {
-    const played = this.getCards(State.Played);
-    card.x = startingX + played.length * (cardWidth + padding);
-    card.y = 300;
-    card.card.state = State.Played;
-
-   // discard cards not selected from hand  
-    this.getCards(State.Hand)
-      .forEach(card => {
-        card.card.state = State.Discarded;
-        card.setVisible(false);
-      });
-
-    this.state.attack();
-    this.state.nextTurn();
+  handleCardClicked(card: PlayerCard) {
+    this.state.playCard(card.card);
   }
 
-
-  shuffleDeck() {
-    this.deck = this.state.deck.map(sortedCard => {
-      return this.deck.find(playerCard => playerCard.card.name === sortedCard.name)!;
-    });
+  handleCardPlayed(card: Card) {
+    const playerCard = this.getCard(card.name);
+    const played = this.getCards(State.Played);
+    playerCard.x = startingX + played.length * (cardWidth + padding);
+    playerCard.y = 300;
   }
 
   getCards(cardState: State): PlayerCard[] {
