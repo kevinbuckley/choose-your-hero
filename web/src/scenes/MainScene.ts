@@ -1,14 +1,11 @@
 import Phaser from 'phaser';
 import BossCard from './BossCard';
-import PlayerCard, {State} from './PlayerCard';
-import GameState from '../mechanics/GameState';
+import PlayerCard from './PlayerCard';
+import Card, {State} from '../mechanics/Card';
+import GameState, {EVENT_DECK_SHUFFLE, EVENT_CARD_DRAWN} from '../mechanics/GameState';
 
 import { 
-    shuffleDeck, 
-    drawCards,
     canvasWidth,
-    canvasHeight,
-    cardHeight,
     cardWidth,
     padding,
     startingX
@@ -17,15 +14,8 @@ import {
 export default class MainScene extends Phaser.Scene {
   private boss?: BossCard;
   private deck: PlayerCard[] = [];
-  private hand: PlayerCard[] = [];
-  private played: PlayerCard[] = [];
-  private discarded: PlayerCard[] = [];
-  private turns: number = 5;
-  private currentTurn: number = 0;
   private roundsText!: Phaser.GameObjects.Text;
   private state: GameState = new GameState();
-
-
 
   constructor() {
     super({ key: 'MainScene' });
@@ -42,7 +32,8 @@ export default class MainScene extends Phaser.Scene {
     // Initialize BossCard
     this.boss = new BossCard(this, (canvasWidth - cardWidth) / 2, 100, this.state.boss);
     this.add.existing(this.boss);
-
+    this.state.on(EVENT_DECK_SHUFFLE, this.shuffledDeck, this);
+    this.state.on(EVENT_CARD_DRAWN, this.handleCardDrawn, this);
     // Initialize Deck
     for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
@@ -52,7 +43,6 @@ export default class MainScene extends Phaser.Scene {
       // Listen for the 'cardClicked' event on the card
       card.on('cardClicked', this.playCard, this);
     }
-    this.deck = shuffleDeck(this.deck);
     this.roundsText = this.add.text(680, 20, '', {
       fontSize: '32px',
       fill: '#fff'
@@ -60,6 +50,13 @@ export default class MainScene extends Phaser.Scene {
 
     // Start the game
     this.startGame();
+  }
+
+  shuffledDeck(cardDeck: Card[]) { 
+    this.deck = cardDeck.map(sortedCard => {
+      return this.deck.find(playerCard => playerCard.card.name === sortedCard.name)!;
+    });
+
   }
 
   startGame() {
@@ -73,51 +70,104 @@ export default class MainScene extends Phaser.Scene {
     } else {
       this.roundsText.setText(`The boss escaped with ${this.boss!.boss.health} health!`);
     }
+    const deck = this.getCards(State.Deck);
+    deck.forEach(card => card.setVisible(false)); // set discarded cards to invisible
+
   }
 
   nextTurn() {
-    this.roundsText.setText(`Rounds Left: ${this.turns - this.currentTurn}`);
-    if (this.currentTurn >= this.turns || this.boss!.boss.isDead()) {
+    this.roundsText.setText(`Rounds Left: ${this.state.totalTurns - this.state.currentTurn}`);
+    if (this.state.currentTurn >= this.state.totalTurns || this.boss!.boss.isDead()) {
       this.endGame();
       return;
     }
-    this.hand = drawCards(this.deck, this.discarded);
-    this.played.forEach((card) => { card.revive(); });
-    this.currentTurn++;
+    const played = this.getCards(State.PlayedButDead);
+    played.forEach((card) => { card.card.revive(); });
+    this.state.drawCards();
+    this.state.currentTurn++;
   }
 
   attack() {
+    let played = this.getCards(State.Played);
+    
     // Execute attacks until all played cards are dead
-    const playedoriginal: PlayerCard[] = this.played;
-
-    while (this.played.length > 0) {
-        // Cards attack the boss
-        this.played.forEach((card) => {
-          card.attack(this.boss!);
-        });
+    while (played.length > 0) {
+        // get played cards that aren't dead, iterate through them
+        played
+          .filter((card) => !card.card.isDead())
+          .forEach((card) => card.attack(this.boss!));
 
         // BossCard attacks one of the cards at random
-        const target = this.played[Math.floor(Math.random() * this.played.length)];
-        // Implement your attack logic here
+        const target = played[Math.floor(Math.random() * played.length)];
         target.card.attacked(this.boss!.boss.attack);
-        // Remove dead cards from played array
-        this.played = this.played.filter((card) => card.card.health > 0);
+        played = this.getCards(State.Played);
     }
-    this.played = playedoriginal;
   }
 
   playCard(card: PlayerCard) {
-    card.x = startingX + this.played.length * (cardWidth + padding);
+    const played = this.getCards(State.Played);
+    card.x = startingX + played.length * (cardWidth + padding);
     card.y = 300;
-    this.played.push(card);
-    card.cardState = State.Played;
-    // discard from hand  
-    this.hand = this.hand.filter((handCard) => handCard.name !== card.name);
-    // Discard the other cards
-    this.discarded.push(...this.hand);
-    this.discarded.forEach(card => card.setVisible(false)); // set discarded cards to invisible
+    card.card.state = State.Played;
+
+    this.deck.forEach((card) => { console.log(card.card.name, card.card.state); });
+   
+    // discard cards not selected from hand  
+    this.getCards(State.Hand)
+      .forEach(card => {
+        card.card.state = State.Discarded;
+        card.setVisible(false);
+      });
 
     this.attack();
     this.nextTurn();
   }
+
+
+  shuffleDeck() {
+    this.deck = this.state.deck.map(sortedCard => {
+      return this.deck.find(playerCard => playerCard.card.name === sortedCard.name)!;
+    });
+  }
+
+  getCards(cardState: State): PlayerCard[] {
+    return this.deck.filter((card) => card.card.state === cardState);
+  }
+
+  getCard(name: string): PlayerCard {
+    return this.deck.find((card) => card.card.name === name);
+  }
+  
+  drawCards(numCards: number = 3) {
+    for (let i = 0; i < numCards; i++) {
+      let deck = this.getCards(State.Deck);
+      if (deck.length === 0) {
+        // Reshuffle the deck if it's empty
+        // update cards in deck if discarded, make them deck
+        this.getCards(State.Discarded).forEach(card => {
+          card.card.state = State.Deck;
+        });
+        this.state.shuffleDeck();
+      }
+      deck = this.getCards(State.Deck);
+      const card = deck.pop();
+      if (card) {
+        card.card.state = State.Hand;
+        card.setVisible(true);  
+        card.setPosition(startingX + (i * (cardWidth + padding)), 500);
+        card.x = startingX + (i * (cardWidth + padding));
+        card.y = 500;
+      }
+     }
+  }
+    
+  handleCardDrawn(card: Card) {
+    const playerCard = this.getCard(card.name);
+    const i = this.getCards(State.Hand).length-1; //0th based index
+    playerCard.setVisible(true);  
+    playerCard.setPosition(startingX + (i * (cardWidth + padding)), 500);
+    playerCard.x = startingX + (i * (cardWidth + padding));
+    playerCard.y = 500;
+  }
 }
+    

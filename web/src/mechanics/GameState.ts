@@ -1,16 +1,21 @@
 
 import Boss from './Boss';
-import Card from '../mechanics/Card';
+import Card, { State } from '../mechanics/Card';
 import { Events } from 'phaser';
 
 export const EVENT_HEALTH_CHANGED: string = 'healthChanged';
 export const EVENT_CARD_DIED: string = 'cardDied';
+export const EVENT_DECK_SHUFFLE: string = 'deckShuffled';
+export const EVENT_CARD_STATE_CHANGED: string = 'cardStateChanged';
+export const EVENT_END_GAME: string = 'endGame';
+export const EVENT_CARD_DRAWN: string = 'cardDrawn';
 
 class GameState extends Events.EventEmitter {
     deck: Card[] = [];
+    totalTurns: number = 5;
+    currentTurn: number = 0;
     private boss: Boss;
     private played: Card[] = [];
-    private turn: number = 0;
     cardNames: string[] = [
         'Boba Fett',
         'Captain Phasma',
@@ -29,6 +34,9 @@ class GameState extends Events.EventEmitter {
       // Initialize boss and cards if needed
     }
 
+    getCards(cardState: State): Card[] {
+      return this.deck.filter((card) => card.state === cardState);
+    }
    
     create() {
       this.boss = new Boss(400, 10);
@@ -40,6 +48,7 @@ class GameState extends Events.EventEmitter {
         const card = new Card(this.cardNames[i], attack, health);
         this.deck.push(card);
       }
+      this.shuffleDeck();
     }
 
     // Method to add a card to the game state
@@ -84,15 +93,33 @@ class GameState extends Events.EventEmitter {
         this.played = playedoriginal;
     }
 
-  
-    // Method to go to the next turn
-    nextTurn(): void {
-      this.turn++;
-      this.emit('nextTurn', this.turn);
-      // Implement other logic for progressing to the next turn
+    shuffleDeck() {
+      for (let i = this.deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
+      }
+      this.emit(EVENT_DECK_SHUFFLE, this.deck);
     }
-  
-    // Add other methods to manipulate the game state
+
+    drawCards(numCards: number = 3) {
+      for (let i = 0; i < numCards; i++) {
+        let deck = this.getCards(State.Deck);
+        if (deck.length === 0) {
+          // Reshuffle the deck if it's empty
+          // update cards in deck if discarded, make them deck
+          this.getCards(State.Discarded).forEach(card => {
+            card.state = State.Deck;
+          });
+          this.shuffleDeck();
+        }
+        deck = this.getCards(State.Deck);
+        const card = deck.pop();
+        if (card) {
+          card.state = State.Hand;
+          this.emit(EVENT_CARD_DRAWN, card);
+        }
+      }
+    }    
   }
   
   export default GameState;
