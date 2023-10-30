@@ -7,8 +7,9 @@ export const EVENT_HEALTH_CHANGED: string = 'healthChanged';
 export const EVENT_CARD_DIED: string = 'cardDied';
 export const EVENT_DECK_SHUFFLE: string = 'deckShuffled';
 export const EVENT_CARD_STATE_CHANGED: string = 'cardStateChanged';
-export const EVENT_END_GAME: string = 'endGame';
 export const EVENT_CARD_DRAWN: string = 'cardDrawn';
+export const EVENT_GAME_OVER: string = 'gameOver';
+export const EVENT_NEXT_TURN: string = 'nextTurn';
 
 class GameState extends Events.EventEmitter {
     deck: Card[] = [];
@@ -72,26 +73,42 @@ class GameState extends Events.EventEmitter {
       }
     }
 
-
-    attackRound() {
-        const playedoriginal: Card[] = this.played;
-
-        while (this.played.length > 0) {
-            // Cards attack the boss
-            this.played.forEach((card) => {
-                card.attack(this.boss!);
-                this.boss.attacked(card.attackPower);
-            });
-
-            // BossCard attacks one of the cards at random
-            const target = this.played[Math.floor(Math.random() * this.played.length)];
-            target.attacked(this.boss.attack);
-            
-            // Remove dead cards from played array
-            this.played = this.played.filter((card) => card.card.health > 0);
-        }
-        this.played = playedoriginal;
+    nextTurn() {
+      if (this.currentTurn >= this.totalTurns || this.boss.isDead()) {
+        this.endGame();
+        return;
+      }      
+      const played = this.getCards(State.PlayedButDead);
+      played.forEach((card) => { card.revive(); });
+      this.drawCards();
+      this.currentTurn++;
+      this.emit(EVENT_NEXT_TURN, this.currentTurn);
     }
+
+
+
+    endGame() {
+      this.emit(EVENT_GAME_OVER, this.boss);
+    }
+
+
+  attack() {
+    let played = this.getCards(State.Played);
+    
+    // Execute attacks until all played cards are dead
+    while (played.length > 0) {
+        // get played cards that aren't dead, iterate through them
+        played
+          .filter((card) => !card.isDead())
+          .forEach((card) =>  this.boss.attacked(card.attack));
+
+        // BossCard attacks one of the cards at random
+        const target = played[Math.floor(Math.random() * played.length)];
+        target.attacked(this.boss.attack);
+        played = this.getCards(State.Played);
+    }
+  }
+
 
     shuffleDeck() {
       for (let i = this.deck.length - 1; i > 0; i--) {
