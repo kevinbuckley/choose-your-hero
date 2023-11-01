@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import BossCard from './BossCard';
 import PlayerCard from './PlayerCard';
-import Card, {State} from '../mechanics/Card';
+import Card, {State, ICard} from '../mechanics/Card';
 import GameState, {
   EVENT_DECK_SHUFFLE, 
   EVENT_CARD_DRAWN, 
@@ -16,21 +16,34 @@ import {
     padding,
     startingX
 } from '../utils/DeckManagement';
+import Boss from '../mechanics/Boss';
 
 export default class MainScene extends Phaser.Scene {
   private boss?: BossCard;
   private deck: PlayerCard[] = [];
   private roundsText!: Phaser.GameObjects.Text;
-  private state: GameState = new GameState();
+  private state: GameState;
 
   constructor() {
     super({ key: 'MainScene' });
   }
 
   preload() {
-    this.load.image('bossSprite', '../assets/bossSprite.png');
-    for (const card of this.state.cardNames) {
-      this.load.image(card, `../assets/${card}.png`);
+
+    let request = new XMLHttpRequest();
+    request.open('GET', '/assets/game_file.json', false);  // `false` makes the request synchronous
+    request.send(null);
+
+    if (request.status === 200) {
+      const iCards = JSON.parse(request.responseText);
+      const cards = iCards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.health, c.attack));
+      const boss = iCards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.health, c.attack)).pop();
+      this.load.image(boss.name, `/assets/${boss.name}.png`);
+      this.state = new GameState();
+      for (const card of cards) {
+        this.load.image(card.name, `/assets/${card.name}.png`);
+      }
+      this.state.create(cards, boss);
     }
   }
 

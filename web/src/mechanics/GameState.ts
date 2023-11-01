@@ -32,7 +32,6 @@ class GameState extends Events.EventEmitter {
 
   constructor() {
     super();
-    this.create();
     // Initialize boss and cards if needed
   }
 
@@ -40,23 +39,10 @@ class GameState extends Events.EventEmitter {
     return this.deck.filter((card) => card.state === cardState);
   }
   
-  create() {
-    this.boss = new Boss(400, 10);
-    // Initialize Deck
-    for (let i = 0; i < this.cardNames.length; i++) {
-      // Pick a random card from the deck 
-      const attack  = Math.floor(Math.random() * (10 - 2 + 1) + 2);  // Random integer between 2 and 10
-      const health = Math.floor(Math.random() * (20 - 10 + 1) + 10); 
-      const card = new Card(this.cardNames[i], attack, health);
-      this.deck.push(card);
-    }
+  create(cards: Card[] = [], boss: Boss) {
+    this.boss = boss;
+    this.deck = cards;
     this.shuffleDeck();
-  }
-
-  // Method to add a card to the game state
-  addCard(card: Card): void {
-    this.deck.push(card);
-    this.emit('cardAdded', card);
   }
 
   // Method to perform an attack

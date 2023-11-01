@@ -2,3 +2,4 @@
 *.png
 web/node_modules
 node_modules
+game_file.json
