@@ -15,7 +15,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     // Resize the sprite to be 140x200 pixels
     const newWidth = 100;
     const newHeight = 160;
-    const characterSprite = new CardPicture(scene, 'bossSprite', newWidth, newHeight);
+    const characterSprite = new CardPicture(scene, boss.name, newWidth, newHeight);
     this.add(characterSprite);
     
     // Add health

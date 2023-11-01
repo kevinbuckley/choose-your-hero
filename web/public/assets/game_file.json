@@ -2,151 +2,71 @@
 {
     "name": "Darth Vader",
     "imageurl": "https://starwars/darthvader.jpg",
-    "description": "The Sith Lord Darth Vader",
     "health": 10,
-    "action": [
-        {
-        "amount": 3,
-        "type": "Damage",
-        "targetSize": "Single"
-        }
-    ],
-    "effect": [
-        {
-        "name": "Taunt"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 },
 {
     "name": "Emperor Palpatine",
     "imageurl": "https://starwars/emperor.jpg",
-    "description": "The Sith Emperor Palpatine",
-    "health": 9,
-    "action": [
-        {
-        "amount": 2,
-        "type": "Damage",
-        "targetSize": "All"
-        }
-    ]
+    "health": 300,
+    "attack": 9,
+    "isBoss": true
 },
 {
     "name": "General Grievous",
     "imageurl": "https://starwars/grievous.jpg",
-    "description": "The Droid General Grievous",
     "health": 8,
-    "action": [
-        {
-        "amount": 2,
-        "type": "Heal",
-        "targetSize": "Single"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 },
 {
     "name": "Stormtrooper",
-    "imageurl": "https://starwars/stormtrooper.jpg",
     "description": "A standard stormtrooper",
     "health": 4,
-    "action": [
-        {
-        "amount": 1,
-        "type": "Damage",
-        "targetSize": "Single"
-        }
-    ],
-    "effect": [
-        {
-        "name": "Invisible"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 },
 {
     "name": "Darth Maul",
- "imageurl": "https://starwars/darthmaul.jpg",
     "description": "The furious Sith Darth Maul",
     "health": 7,
-    "action": [
-        {
-        "amount": 3,
-        "type": "DamageBuff",
-        "targetSize": "Single"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 },
 {
     "name": "Boba Fett",
-    "imageurl": "https://starwars/bobafett.jpg",
     "description": "The infamous bounty hunter Boba Fett",
     "health": 6,
-    "action": [
-        {
-        "amount": 2,
-        "type": "Damage",
-        "targetSize": "Single"
-        }
-    ],
-    "effect": [
-        {
-        "name": "Taunt"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 },
 {
     "name": "Jango Fett",
-    "imageurl": "https://starwars/jangofett.jpg",
     "description": "The deadly bounty hunter Jango Fett",
     "health": 5,
-    "action": [
-        {
-        "amount": 2,
-        "type": "Heal",
-        "targetSize": "All"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 },
 {
     "name": "Tusken Raider",
-    "imageurl": "https://starwars/tusken.jpg",
     "description": "A savage Tusken Raider",
     "health": 3,
-    "action": [
-        {
-        "amount": 1,
-        "type": "HealthBuff",
-        "targetSize": "Single"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 },
 {
     "name": "Clone Trooper",
-    "imageurl": "https://starwars/clonetrooper.jpg",
     "description": "A betrayed clone trooper",
     "health": 4,
-    "action": [
-        {
-        "amount": 1,
-        "type": "Damage",
-        "targetSize": "All"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 },
 {
     "name": "Captain Phasma",
-    "imageurl": "https://starwars/phasma.jpg",
     "description": "The First Order's Captain Phasma",
     "health": 5,
-    "action": [
-        {
-        "amount": 2,
-        "type": "Damage",
-        "targetSize": "Single"
-        }
-    ],
-    "effect": [
-        {
-        "name": "DivineShield"
-        }
-    ]
+    "attack": 9,
+    "isBoss": false
 }
 ]

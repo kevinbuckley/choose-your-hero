@@ -3,10 +3,12 @@ import { EVENT_HEALTH_CHANGED, EVENT_CARD_DIED } from './GameState';
 
 export default 
 class Boss extends Events.EventEmitter {
+  name: string;
   health: number;
   attack: number;
-  constructor(health: number, attack: number) {
+  constructor(name: string, health: number, attack: number) {
     super();
+    this.name = name;
     this.health = health;
     this.attack = attack;
   }
