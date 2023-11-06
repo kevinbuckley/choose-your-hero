@@ -1,12 +1,14 @@
 {
-    "name": "your-project-name",
+    "name": "boss battles",
     "version": "1.0.0",
     "description": "Your project description here",
     "main": "dist/main.js",
     "scripts": {
         "build": "tsc",
         "start": "node dist/main.js",
-        "dev": "ts-node main.ts"
+        "devsim": "ts-node main-simulator.ts",
+        "devmechgen": "ts-node main-mechanics-generator.ts",
+        "devimggen": "ts-node main.ts"
     },
     "keywords": [],
     "author": "",
@@ -15,7 +17,8 @@
         "async-mutex": "^0.3.2",
         "axios": "^0.26.0",
         "dotenv": "^10.0.0",
-        "openai": "^4.14.2"
+        "openai": "^4.14.2",
+        "phaser": "^3.60.0"
     },
     "devDependencies": {
         "@types/node": "^17.0.8",

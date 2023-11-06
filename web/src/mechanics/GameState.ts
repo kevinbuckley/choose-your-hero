@@ -1,7 +1,7 @@
 
 import Boss from './Boss';
 import Card, { State } from '../mechanics/Card';
-import { Events } from 'phaser';
+import { EventEmitter } from 'events';
 
 export const EVENT_HEALTH_CHANGED: string = 'healthChanged';
 export const EVENT_CARD_DIED: string = 'cardDied';
@@ -12,11 +12,11 @@ export const EVENT_GAME_OVER: string = 'gameOver';
 export const EVENT_NEXT_TURN: string = 'nextTurn';
 export const EVENT_CARD_PLAYED: string = 'cardPlayed';
 
-class GameState extends Events.EventEmitter {
+class GameState extends EventEmitter {
   deck: Card[] = [];
   totalTurns: number = 5;
   currentTurn: number = 0;
-  private boss: Boss;
+  private boss: Boss = new Boss('Darth Vader', 100, 10);
   private played: Card[] = [];
   cardNames: string[] = [
       'Boba Fett',

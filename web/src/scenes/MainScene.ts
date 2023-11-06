@@ -26,6 +26,11 @@ export default class MainScene extends Phaser.Scene {
 
   constructor() {
     super({ key: 'MainScene' });
+    this.handleShuffledDeck = this.handleShuffledDeck.bind(this);
+    this.handleCardDrawn = this.handleCardDrawn.bind(this);
+    this.handleEndGame = this.handleEndGame.bind(this);
+    this.handleNextTurn = this.handleNextTurn.bind(this);
+    this.handleCardPlayed = this.handleCardPlayed.bind(this);
   }
 
   preload() {
@@ -51,11 +56,11 @@ export default class MainScene extends Phaser.Scene {
     // Initialize BossCard
     this.boss = new BossCard(this, (canvasWidth - cardWidth) / 2, 100, this.state.boss);
     this.add.existing(this.boss);
-    this.state.on(EVENT_DECK_SHUFFLE, this.handleShuffledDeck, this);
-    this.state.on(EVENT_CARD_DRAWN, this.handleCardDrawn, this);
-    this.state.on(EVENT_GAME_OVER, this.handleEndGame, this);
-    this.state.on(EVENT_NEXT_TURN, this.handleNextTurn, this);
-    this.state.on(EVENT_CARD_PLAYED, this.handleCardPlayed, this);
+    this.state.on(EVENT_DECK_SHUFFLE, (eventArgs) => this.handleShuffledDeck(eventArgs));
+    this.state.on(EVENT_CARD_DRAWN, (eventArgs) => this.handleCardDrawn(eventArgs));
+    this.state.on(EVENT_GAME_OVER, (eventArgs) => this.handleEndGame(eventArgs));
+    this.state.on(EVENT_NEXT_TURN, (eventArgs) => this.handleNextTurn(eventArgs));
+    this.state.on(EVENT_CARD_PLAYED, (eventArgs) => this.handleCardPlayed(eventArgs));
     // Initialize Deck
     for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
@@ -115,7 +120,7 @@ export default class MainScene extends Phaser.Scene {
   }
 
   getCard(name: string): PlayerCard {
-    return this.deck.find((card) => card.card.name === name);
+    return this.deck.find((card) => card.card.name === name)!;
   }
     
   handleCardDrawn(card: Card) {
