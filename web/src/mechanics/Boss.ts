@@ -1,8 +1,8 @@
-import { Events } from 'phaser';
+import { EventEmitter } from 'events';
 import { EVENT_HEALTH_CHANGED, EVENT_CARD_DIED } from './GameState';
 
 export default 
-class Boss extends Events.EventEmitter {
+class Boss extends EventEmitter {
   name: string;
   health: number;
   attack: number;

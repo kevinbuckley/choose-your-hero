@@ -2,7 +2,7 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import OpenAI from 'openai';
-import { ICard } from '../web/src/mechanics/Card';
+//import { ICard } from '../web/src/mechanics/Card';
 
 const urlBase = 'https://cloud.leonardo.ai/api/rest/v1/';
 
@@ -11,7 +11,7 @@ const urlBase = 'https://cloud.leonardo.ai/api/rest/v1/';
 class MechanicsGenerator {
   private OPEN_AI_KEY: string | undefined = process.env.OPEN_AI_KEY;
 
-  private cardTemplate: ICard = {
+  private cardTemplate = {
     name: 'MyCard',
     attack: 5,
     health: 10,

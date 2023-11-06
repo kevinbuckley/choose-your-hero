@@ -11,6 +11,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
 
   constructor(scene: Phaser.Scene, x: number, y: number, boss: Boss) {
     super(scene, x, y);
+    this._setHealth = this._setHealth.bind(this);
     this.boss = boss;
     // Resize the sprite to be 140x200 pixels
     const newWidth = 100;
@@ -30,7 +31,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
       backgroundColor: 'black'
     });
 
-    boss.on(EVENT_HEALTH_CHANGED, this._setHealth, this);
+    boss.on(EVENT_HEALTH_CHANGED, (eventArgs) => this._setHealth(eventArgs));
     this._setHealth(boss.health);
     this.add(this.healthText);
     this.add(this.attackText);

@@ -1,4 +1,4 @@
-import { Events } from 'phaser';
+import { EventEmitter } from 'events';
 import { EVENT_HEALTH_CHANGED, 
   EVENT_CARD_DIED,
   EVENT_CARD_STATE_CHANGED 
@@ -46,7 +46,7 @@ export interface ICard {
 
 
 export default 
-class Card extends Events.EventEmitter implements ICard {
+class Card extends EventEmitter implements ICard {
   name: string;
   attack: number;
   health: number;

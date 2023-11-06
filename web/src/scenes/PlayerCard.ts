@@ -17,6 +17,9 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
   
   constructor(scene: Phaser.Scene, card: Card) {
     super(scene, 1, 1);
+    this._setHealth = this._setHealth.bind(this);
+    this._setCardState = this._setCardState.bind(this);
+
     this.card = card;
     
     // Create character sprite
@@ -52,8 +55,8 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
       useHandCursor: true
     });
     
-    card.on(EVENT_HEALTH_CHANGED, this._setHealth, this);
-    card.on(EVENT_CARD_STATE_CHANGED, this._setCardState, this);
+    card.on(EVENT_HEALTH_CHANGED, (eventArgs) => this._setHealth(eventArgs));
+    card.on(EVENT_CARD_STATE_CHANGED, (eventArgs) => this._setCardState(eventArgs));
     this.on('pointerdown', this.handleClick, this);
     this.setVisible(false);
     
@@ -68,7 +71,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
       case State.Discarded:
         this.setVisible(false);
         break;
-        
+
     }
   }
 
