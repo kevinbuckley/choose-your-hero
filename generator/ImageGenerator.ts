@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import fs from 'fs';
-import path from 'path';
+import path, { resolve } from 'path';
+import { Semaphore } from 'async-mutex'; // Assuming you have installed a package for semaphore
 
 const urlBase = 'https://cloud.leonardo.ai/api/rest/v1/';
 
@@ -35,9 +36,8 @@ class ImageGenerator {
 
   private async pollDownload(
     generationId: string,
-    folder: string,
     imageName: string
-  ): Promise<void> {
+  ) {
     while (true) {
       const response: any = await this.get(`generations/${generationId}`);
       const image = response.generations_by_pk.generated_images;
@@ -45,13 +45,7 @@ class ImageGenerator {
       if (image.length > 0) {
         const imageResponse: AxiosResponse = await axios.get(image[0].url);
         if (imageResponse.status === 200) {
-          if (!fs.existsSync(folder)) {
-            fs.mkdirSync(folder);
-          }
-          fs.writeFileSync(
-            path.join(folder, `${imageName}.png`),
-            imageResponse.data
-          );
+          return imageResponse.data;
         } else {
           console.log(
             `Failed to download image. HTTP Status Code: ${imageResponse.status}`
@@ -66,9 +60,8 @@ class ImageGenerator {
 
   public async getImage(
     prompt: string,
-    folder: string,
     imageName: string,
-    semaphore: any
+    semaphore: Semaphore
   ): Promise<void> {
     const payload = {
       prompt,
@@ -89,12 +82,19 @@ class ImageGenerator {
       highContrast: true,
     };
 
-    const response: any = await this.post(payload, 'generations');
-    if ('sdGenerationJob' in response) {
-      const generationId = response.sdGenerationJob.generationId;
-      await this.pollDownload(generationId, folder, imageName);
-    } else {
-      console.log(`Failed generation for ${imageName} with error: ${response}`);
+    const release = await semaphore.acquire();
+    try {
+
+      const response: any = await this.post(payload, 'generations');
+      if ('sdGenerationJob' in response) {
+        const generationId = response.sdGenerationJob.generationId;
+        return await this.pollDownload(generationId, imageName);
+      } else {
+        console.log(`Failed generation for ${imageName} with error: ${response}`);
+      }
+    }
+    finally {
+      release();
     }
   }
 }

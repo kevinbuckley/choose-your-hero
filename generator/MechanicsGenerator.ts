@@ -1,5 +1,4 @@
 import axios from 'axios';
-import fs from 'fs';
 import path from 'path';
 import OpenAI from 'openai';
 //import { ICard } from '../web/src/mechanics/Card';
@@ -28,10 +27,11 @@ class MechanicsGenerator {
             {
               role: 'system',
               content: `You are a game developer creating a new card game. You'll be returning only the JSON required to define
-              each card in the deck.  There will be 10 player cards and 1 boss enemy card.  The health of a 
-              card should be between 9 and 21 health.  You'll be given a theme and will create cards for the player
-              and 1 boss card enemy that follow that theme.  The boss's relative power to the player cards should 
-              result in the boss losing 10% of it's life after fighting 5 player cards concurrently. 
+              each card in the deck.  There will be 10 player cards and 1 boss enemy card. 
+              You'll be given a theme and will create cards for the player and 1 boss card enemy that follow that theme. 
+              The health of a card should be between 9 and 19 health.  
+              The attack should be between 3 and 8.  
+              The boss's health should be 500. 
               Please remember to ONLY return the JSON, no other text or content, only JSON.  
               
               card template: ${JSON.stringify(this.cardTemplate)}`,
@@ -47,7 +47,6 @@ class MechanicsGenerator {
       const response: OpenAI.Chat.ChatCompletion = await openai.chat.completions.create(params);
     
     const jsonStr: string = response.choices[0].message.content!;
-    fs.writeFileSync('game_file.json', jsonStr);
     return JSON.parse(jsonStr);
   }
 }
