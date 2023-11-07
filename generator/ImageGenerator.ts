@@ -37,15 +37,17 @@ class ImageGenerator {
   private async pollDownload(
     generationId: string,
     imageName: string
-  ) {
+  ): Promise<any> {
     while (true) {
       const response: any = await this.get(`generations/${generationId}`);
       const image = response.generations_by_pk.generated_images;
       console.log(`polling for image ${imageName}`);
       if (image.length > 0) {
-        const imageResponse: AxiosResponse = await axios.get(image[0].url);
+        const imageResponse: AxiosResponse = await axios.get(image[0].url, {
+          responseType: 'arraybuffer', 
+        });
         if (imageResponse.status === 200) {
-          return imageResponse.data;
+          return [imageName, imageResponse.data];
         } else {
           console.log(
             `Failed to download image. HTTP Status Code: ${imageResponse.status}`
@@ -70,7 +72,7 @@ class ImageGenerator {
       sd_version: 'v1_5',
       num_images: 1,
       width: 512,
-      height: 512,
+      height: 768,
       num_inference_steps: null,
       guidance_scale: 7,
       scheduler: 'LEONARDO',
@@ -82,9 +84,8 @@ class ImageGenerator {
       highContrast: true,
     };
 
-    const release = await semaphore.acquire();
+    const [value, release] = await semaphore.acquire();
     try {
-
       const response: any = await this.post(payload, 'generations');
       if ('sdGenerationJob' in response) {
         const generationId = response.sdGenerationJob.generationId;

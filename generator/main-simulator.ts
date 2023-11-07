@@ -7,6 +7,7 @@ import Boss from '../web/src/mechanics/Boss';
 import GameState, { EVENT_GAME_OVER } from '../web/src/mechanics/GameState';
 import fs from 'fs';
 import { Semaphore } from 'async-mutex'; // Assuming you have installed a package for semaphore
+import path from 'path';
 
 dotenv.config();
 
@@ -52,11 +53,19 @@ async function generateImages(gameFile: any[]): Promise<void> {
   for (const card of gameFile) {
     const name = card['name'];
     const p1 = `Magestic and fantasy looking ${name}.  To be used in a card game following the style of Hearthstone.`;
-    tasks.push(gen.getImage(p1, 'game', nam, semaphore));
+    tasks.push(gen.getImage(p1, name, semaphore));
   }
 
   const results: any[] = await Promise.all(tasks);
-  console.log(results);
+
+  for( const img of results) {
+    const name = img[0];
+    const binary = img[1];
+    fs.writeFileSync(
+      path.join('../web/public/assets', `${name}.png`),
+      binary
+    );
+  }
 }
 
 async function main() {
@@ -65,7 +74,7 @@ async function main() {
   let gameFile: any = null;
   while(isFun == false) {
     // generate game file
-    gameFile = await mechanics.getJsonAsDictionary('Warcraft'); //as Card[];
+    gameFile = await mechanics.getJsonAsDictionary('dragon scale armor'); //as Card[];
     // simulate game file
     isFun = await isFunGameFile(gameFile);
   }
