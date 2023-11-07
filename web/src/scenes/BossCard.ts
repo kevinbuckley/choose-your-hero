@@ -19,6 +19,14 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     const characterSprite = new CardPicture(scene, boss.name, newWidth, newHeight);
     this.add(characterSprite);
     
+    // Add title
+    const title = scene.add.text(0, -80, boss.name, {
+      fontSize: '12px',
+      align: 'center'
+    }).setOrigin(0.5);
+    this.add(title);
+
+
     // Add health
     this.healthText = scene.add.text(-40, 60, '', {
       fontSize: '12px',

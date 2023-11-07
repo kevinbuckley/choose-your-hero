@@ -8,7 +8,7 @@
         "start": "node dist/main.js",
         "devsim": "ts-node main-simulator.ts",
         "devmechgen": "ts-node main-mechanics-generator.ts",
-        "devimggen": "ts-node main.ts"
+        "devimggen": "ts-node main-image-generator.ts"
     },
     "keywords": [],
     "author": "",
