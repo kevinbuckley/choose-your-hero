@@ -16,7 +16,7 @@ class GameState extends EventEmitter {
   deck: Card[] = [];
   totalTurns: number = 5;
   currentTurn: number = 0;
-  private boss: Boss = new Boss('Darth Vader', 100, 10);
+  boss: Boss = new Boss('Darth Vader', 100, 10);
   private played: Card[] = [];
   cardNames: string[] = [
       'Boba Fett',
