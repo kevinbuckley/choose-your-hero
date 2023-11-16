@@ -11,6 +11,8 @@ export const EVENT_CARD_DRAWN: string = 'cardDrawn';
 export const EVENT_GAME_OVER: string = 'gameOver';
 export const EVENT_NEXT_TURN: string = 'nextTurn';
 export const EVENT_CARD_PLAYED: string = 'cardPlayed';
+export const EVENT_CARD_ATTACK: string = 'cardAttack';
+export const EVENT_CARD_ATTACKED: string = 'cardAttacked';
 
 class GameState extends EventEmitter {
   deck: Card[] = [];
@@ -30,8 +32,11 @@ class GameState extends EventEmitter {
       'Vader'
     ];
 
-  constructor() {
+  event_card_attack: (card: Card) => Promise<void> ;
+
+  constructor(event_card_attack: (card: Card) => Promise<void>) {
     super();
+    this.event_card_attack = event_card_attack;
     // Initialize boss and cards if needed
   }
 
@@ -76,26 +81,30 @@ class GameState extends EventEmitter {
     this.emit(EVENT_GAME_OVER, this.boss);
   }
 
-  playCard(card: Card) {
+  async playCard(card: Card) {
     this.emit(EVENT_CARD_PLAYED, card);
     card.state = State.Played;
+    console.log("playCard: " + this.getCards(State.Played).length);
     this.getCards(State.Hand).forEach(card => card.discard());
-    this.attack();
+    await this.attack();
     this.nextTurn();
   }
 
-  attack() {
+  async attack() {
     let played = this.getCards(State.Played);
     
     // Execute attacks until all played cards are dead
     while (played.length > 0) {
         // get played cards that aren't dead, iterate through them
-        played
-          .filter((card) => !card.isDead())
-          .forEach((card) =>  this.boss.attacked(card.attack));
+        const playedCards = played.filter((card) => !card.isDead());
+        for (const card of playedCards) {
+          await this.event_card_attack(card);
+          this.boss.attacked(card.attack)
+        }
 
         // BossCard attacks one of the cards at random
         const target = played[Math.floor(Math.random() * played.length)];
+        this.emit(EVENT_CARD_ATTACKED, target);
         target.attacked(this.boss.attack);
         played = this.getCards(State.Played);
     }

@@ -4,9 +4,6 @@ import { EVENT_HEALTH_CHANGED,
   EVENT_CARD_STATE_CHANGED 
 } from './GameState';
 
-
-
-
 export enum State {
   Deck = 'deck',
   Discarded = 'discarded',
@@ -14,29 +11,7 @@ export enum State {
   Played = 'played',
   PlayedButDead = 'playedButDead'
 }
-/*
-const cardTemplate = `
-{
-    "name": "",
-    "imageurl": "",
-    "deck": "", // options are "Player" or "Boss"
-    "description": "",
-    "health": 0,
-    "action": [
-        {
-        "amount": 1,
-        "type": "",  // options are "Damage", "Heal", "HealthBuff", "HealBuff", "DamageBuff"
-        "targetSize": "" // options are "Single", "All"
-        }
-    ],
-    "effect": [
-        {
-        "name": "" // options are "Poison", "DivineShield", "Taunt", "Invisible"
-        }
-    ]
-}
-`;
-*/
+
 export interface ICard {
   name: string;
   attack: number;

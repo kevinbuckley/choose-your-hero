@@ -7,7 +7,9 @@ import GameState, {
   EVENT_CARD_DRAWN, 
   EVENT_GAME_OVER,
   EVENT_NEXT_TURN,
-  EVENT_CARD_PLAYED
+  EVENT_CARD_PLAYED,
+  EVENT_CARDS_ATTACK,
+  EVENT_CARD_ATTACKED
 } from '../mechanics/GameState';
 
 import { 
@@ -31,6 +33,8 @@ export default class MainScene extends Phaser.Scene {
     this.handleEndGame = this.handleEndGame.bind(this);
     this.handleNextTurn = this.handleNextTurn.bind(this);
     this.handleCardPlayed = this.handleCardPlayed.bind(this);
+    this.handleCardAttack = this.handleCardAttack.bind(this);
+    this.handleCardAttacked = this.handleCardAttacked.bind(this);
   }
 
   preload() {
@@ -44,7 +48,7 @@ export default class MainScene extends Phaser.Scene {
       const cards = iCards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.health, c.attack));
       const boss = iCards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.health, c.attack)).pop();
       this.load.image(boss.name, `/assets/${boss.name}.png`);
-      this.state = new GameState();
+      this.state = new GameState(this.handleCardAttack);
       for (const card of cards) {
         this.load.image(card.name, `/assets/${card.name}.png`);
       }
@@ -61,6 +65,7 @@ export default class MainScene extends Phaser.Scene {
     this.state.on(EVENT_GAME_OVER, (eventArgs) => this.handleEndGame(eventArgs));
     this.state.on(EVENT_NEXT_TURN, (eventArgs) => this.handleNextTurn(eventArgs));
     this.state.on(EVENT_CARD_PLAYED, (eventArgs) => this.handleCardPlayed(eventArgs));
+    this.state.on(EVENT_CARD_ATTACKED, (eventArgs) => this.handleCardAttacked(eventArgs));
     // Initialize Deck
     for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
@@ -89,6 +94,67 @@ export default class MainScene extends Phaser.Scene {
     this.state.nextTurn();
   }
 
+  async handleCardAttack(card: Card): Promise<void> {
+    const playerCard = this.getCard(card.name);
+    console.log(card.name);
+    await this.animateAttack(playerCard, this.boss!);
+  }
+
+  animateAttack(attackerCard: PlayerCard, targetCard: BossCard) {
+    const originalPositionX = attackerCard.x;
+    const originalPositionY = attackerCard.y;
+    const originalAngle = attackerCard.angle; // Store original angle
+  
+    return new Promise(resolve => {
+      // Rotate card before moving
+      this.tweens.add({
+        targets: attackerCard,
+        angle: 7, // Rotate by 15 degrees
+        ease: 'Power2',
+        duration: 100,
+        onComplete: () => {
+          // Forward movement
+          this.tweens.add({
+            targets: attackerCard,
+            x: targetCard.x,
+            y: targetCard.y + 70,
+            ease: 'Power2',
+            duration: 250,
+            onComplete: () => {
+              // Move card back to original position
+              this.tweens.add({
+                targets: attackerCard,
+                x: originalPositionX,
+                y: originalPositionY,
+                ease: 'Power2',
+                duration: 200,
+                onComplete: () => {
+                  // Rotate card back to original angle
+                  this.tweens.add({
+                    targets: attackerCard,
+                    angle: originalAngle, // Rotate back to original angle
+                    duration: 50,
+                    onComplete: () => {
+                      resolve(); // Resolve the promise once all animations are complete
+                    }
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+    });
+  }
+  
+  
+  handleCardAttacked(card: Card) {
+    const playerCard = this.getCard(card.name);
+
+  }
+
+  
+
   handleEndGame() {
     // Check win/loss conditions
     if (this.boss!.boss.isDead()) {
@@ -111,6 +177,7 @@ export default class MainScene extends Phaser.Scene {
   handleCardPlayed(card: Card) {
     const playerCard = this.getCard(card.name);
     const played = this.getCards(State.Played);
+    console.log(played.length);
     playerCard.x = startingX + played.length * (cardWidth + padding);
     playerCard.y = 300;
   }
