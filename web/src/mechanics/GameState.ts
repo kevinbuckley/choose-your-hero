@@ -33,10 +33,15 @@ class GameState extends EventEmitter {
     ];
 
   event_card_attack: (card: Card) => Promise<void> ;
+  event_card_played: (card: Card) => Promise<void> ;
 
-  constructor(event_card_attack: (card: Card) => Promise<void>) {
+  constructor(
+    event_card_attack: (card: Card) => Promise<void>,
+    event_card_played: (card: Card) => Promise<void>
+    ) {
     super();
     this.event_card_attack = event_card_attack;
+    this.event_card_played = event_card_played;
     // Initialize boss and cards if needed
   }
 
@@ -82,6 +87,7 @@ class GameState extends EventEmitter {
   }
 
   async playCard(card: Card) {
+    await this.event_card_played(card);
     this.emit(EVENT_CARD_PLAYED, card);
     card.state = State.Played;
     console.log("playCard: " + this.getCards(State.Played).length);

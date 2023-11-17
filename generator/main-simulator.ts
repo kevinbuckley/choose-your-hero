@@ -74,7 +74,7 @@ async function main() {
   let gameFile: any = null;
   while(isFun == false) {
     // generate game file
-    gameFile = await mechanics.getJsonAsDictionary('dragon scale armor'); //as Card[];
+    gameFile = await mechanics.getJsonAsDictionary('good habits'); //as Card[];
     // simulate game file
     isFun = await isFunGameFile(gameFile);
   }

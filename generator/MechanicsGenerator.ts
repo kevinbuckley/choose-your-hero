@@ -3,9 +3,6 @@ import path from 'path';
 import OpenAI from 'openai';
 //import { ICard } from '../web/src/mechanics/Card';
 
-const urlBase = 'https://cloud.leonardo.ai/api/rest/v1/';
-
-
 
 class MechanicsGenerator {
   private OPEN_AI_KEY: string | undefined = process.env.OPEN_AI_KEY;
