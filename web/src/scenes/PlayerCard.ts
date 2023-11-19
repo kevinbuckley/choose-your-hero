@@ -29,21 +29,25 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     // Add title
     const title = scene.add.text(0, -80, card.name, {
       fontSize: '12px',
-      align: 'center'
+      fontStyle: 'bold',
+      align: 'center',
+      resolution: 5
     }).setOrigin(0.5);
     this.add(title);
 
     // Add attack power
     const attackPower = scene.add.text(-35, 35, `Attack: ${card.attack}`, {
       fontSize: '12px',
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      resolution: 5
     });
     this.add(attackPower);
 
     // Add health
     this.healthText = scene.add.text(-35, 50, '', {
       fontSize: '12px',
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      resolution: 5
     });
     this.add(this.healthText);
     this._setHealth(card.health);
