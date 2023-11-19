@@ -22,7 +22,9 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     // Add title
     const title = scene.add.text(0, -80, boss.name, {
       fontSize: '12px',
-      align: 'center'
+      fontStyle: 'bold',
+      align: 'center',
+      resolution: 5
     }).setOrigin(0.5);
     this.add(title);
 
@@ -36,7 +38,8 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     // Add attack power
     this.attackText = scene.add.text(-40, 45, `Attack: ${this.boss.attack}`, {
       fontSize: '12px',
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      resolution: 5
     });
 
     boss.on(EVENT_HEALTH_CHANGED, (eventArgs) => this._setHealth(eventArgs));

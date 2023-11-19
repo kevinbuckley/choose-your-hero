@@ -10,9 +10,6 @@ export const EVENT_CARD_STATE_CHANGED: string = 'cardStateChanged';
 export const EVENT_CARD_DRAWN: string = 'cardDrawn';
 export const EVENT_GAME_OVER: string = 'gameOver';
 export const EVENT_NEXT_TURN: string = 'nextTurn';
-export const EVENT_CARD_PLAYED: string = 'cardPlayed';
-export const EVENT_CARD_ATTACK: string = 'cardAttack';
-export const EVENT_CARD_ATTACKED: string = 'cardAttacked';
 
 class GameState extends EventEmitter {
   deck: Card[] = [];
@@ -33,14 +30,17 @@ class GameState extends EventEmitter {
     ];
 
   event_card_attack: (card: Card) => Promise<void> ;
+  event_boss_attack: (card: Card) => Promise<void> ;
   event_card_played: (card: Card) => Promise<void> ;
 
   constructor(
     event_card_attack: (card: Card) => Promise<void>,
+    event_boss_attack: (card: Card) => Promise<void>,
     event_card_played: (card: Card) => Promise<void>
     ) {
     super();
     this.event_card_attack = event_card_attack;
+    this.event_boss_attack = event_boss_attack;
     this.event_card_played = event_card_played;
     // Initialize boss and cards if needed
   }
@@ -88,7 +88,6 @@ class GameState extends EventEmitter {
 
   async playCard(card: Card) {
     await this.event_card_played(card);
-    this.emit(EVENT_CARD_PLAYED, card);
     card.state = State.Played;
     console.log("playCard: " + this.getCards(State.Played).length);
     this.getCards(State.Hand).forEach(card => card.discard());
@@ -110,7 +109,7 @@ class GameState extends EventEmitter {
 
         // BossCard attacks one of the cards at random
         const target = played[Math.floor(Math.random() * played.length)];
-        this.emit(EVENT_CARD_ATTACKED, target);
+        await this.event_boss_attack(target);
         target.attacked(this.boss.attack);
         played = this.getCards(State.Played);
     }

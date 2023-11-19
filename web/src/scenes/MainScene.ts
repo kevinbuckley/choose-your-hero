@@ -7,15 +7,11 @@ import GameState, {
   EVENT_CARD_DRAWN, 
   EVENT_GAME_OVER,
   EVENT_NEXT_TURN,
-  EVENT_CARD_PLAYED,
-  EVENT_CARD_ATTACKED
 } from '../mechanics/GameState';
 
 import { 
-    canvasWidth,
     cardWidth,
     padding,
-    startingX
 } from '../utils/DeckManagement';
 import Boss from '../mechanics/Boss';
 
@@ -25,7 +21,8 @@ export default class MainScene extends Phaser.Scene {
   private roundsText!: Phaser.GameObjects.Text;
   private state: GameState;
   private chooseHero: Phaser.GameObjects.Container;
-
+  private widthWithPadding: number = cardWidth + 30;
+    
   constructor() {
     super({ key: 'MainScene' });
     this.handleShuffledDeck = this.handleShuffledDeck.bind(this);
@@ -38,7 +35,8 @@ export default class MainScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('background', '/background2.png');
+    this.state = new GameState(this.handleCardAttack, this.handleCardAttacked, this.handleCardPlayed);
+      
     let request = new XMLHttpRequest();
     request.open('GET', '/assets/game_file.json', false);  // `false` makes the request synchronous
     request.send(null);
@@ -48,7 +46,7 @@ export default class MainScene extends Phaser.Scene {
       const cards = iCards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.health, c.attack));
       const boss = iCards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.health, c.attack)).pop();
       this.load.image(boss.name, `/assets/${boss.name}.png`);
-      this.state = new GameState(this.handleCardAttack, this.handleCardPlayed);
+
       for (const card of cards) {
         this.load.image(card.name, `/assets/${card.name}.png`);
       }
@@ -56,17 +54,18 @@ export default class MainScene extends Phaser.Scene {
     }
   }
 
+  get centerX(): number {
+    return this.cameras.main.width / 2;
+  }
+
   create() {
     // Initialize BossCard
-    this.createBackground();
-    this.boss = new BossCard(this, (canvasWidth - cardWidth) / 2, 100, this.state.boss);
+    this.boss = new BossCard(this, this.centerX, 150, this.state.boss);
     this.add.existing(this.boss);
     this.state.on(EVENT_DECK_SHUFFLE, (eventArgs) => this.handleShuffledDeck(eventArgs));
     this.state.on(EVENT_CARD_DRAWN, (eventArgs) => this.handleCardDrawn(eventArgs));
     this.state.on(EVENT_GAME_OVER, (eventArgs) => this.handleEndGame(eventArgs));
     this.state.on(EVENT_NEXT_TURN, (eventArgs) => this.handleNextTurn(eventArgs));
-    this.state.on(EVENT_CARD_PLAYED, (eventArgs) => this.handleCardPlayed(eventArgs));
-    this.state.on(EVENT_CARD_ATTACKED, (eventArgs) => this.handleCardAttacked(eventArgs));
     // Initialize Deck
     for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
@@ -76,10 +75,12 @@ export default class MainScene extends Phaser.Scene {
       // Listen for the 'cardClicked' event on the card
       card.on('cardClicked', this.handleCardClicked, this);
     }
-    this.roundsText = this.add.text(40, 20, '', {
+    this.roundsText = this.add.text(this.centerX, 20, '', {
       fontSize: '24px',
-      fill: '#eee'
-    });
+      fontStyle: 'bold',
+      fill: '#eee',
+      resolution: 5
+    }).setOrigin(0.5);
     this.createChooseHero();
     // Start the game
     this.startGame();
@@ -95,26 +96,8 @@ export default class MainScene extends Phaser.Scene {
     this.state.nextTurn();
   }
 
-  createBackground() {
-    // Add the image as the background
-    const bg = this.add.image(0, 0, 'background');
-
-    // Position the background
-    bg.setOrigin(0, 0);
-
-    // Create a semi-transparent black rectangle
-    const darkenOverlay = this.add.graphics({ x: 0, y: 0 });
-    darkenOverlay.fillStyle(0x000000, 0.7); // Adjust the alpha value to control darkness
-    darkenOverlay.fillRect(0, 0, this.sys.game.config.width, this.sys.game.config.height);
-
-
-    // Optionally, adjust the scale of the background to fit the game canvas
-    bg.displayWidth = this.sys.game.config.width;
-    bg.displayHeight = this.sys.game.config.height;
-  }
-
   createChooseHero() {
-    this.chooseHero = this.add.container(400, 300).setVisible(false);
+    this.chooseHero = this.add.container(this.centerX, 300).setVisible(false);
 
     // Create a translucent background
     const bg = this.add.graphics();
@@ -127,9 +110,9 @@ export default class MainScene extends Phaser.Scene {
     const text = this.add.text(0, 0, 'Choose Your Hero', {
       font: '40px Arial', // Change font style as needed
       fill: '#ffffff',
-      align: 'center'
-    });
-    text.setOrigin(0.5); // Center align the text
+      align: 'center',
+      resolution: 5
+    }).setOrigin(0.5); // Center align the text
   
     // Add background and text to the container
     this.chooseHero.add(bg);
@@ -140,14 +123,18 @@ export default class MainScene extends Phaser.Scene {
   async handleCardAttack(card: Card): Promise<void> {
     const playerCard = this.getCard(card.name);
     console.log(card.name);
-    await this.animateAttack(playerCard, this.boss!);
+    await this.animateAttack(playerCard, this.boss!, true);
   }
 
-  animateAttack(attackerCard: PlayerCard, targetCard: BossCard) {
+  animateAttack(
+    attackerCard: Phaser.GameObjects.Container, 
+    targetCard: Phaser.GameObjects.Container,
+    attackFromBelow: boolean): Promise<void> {
     const originalPositionX = attackerCard.x;
     const originalPositionY = attackerCard.y;
     const originalAngle = attackerCard.angle; // Store original angle
-  
+    const yAdjustment = attackFromBelow ? 70 : -70;
+
     return new Promise(resolve => {
       // Rotate card before moving
       this.tweens.add({
@@ -160,7 +147,7 @@ export default class MainScene extends Phaser.Scene {
           this.tweens.add({
             targets: attackerCard,
             x: targetCard.x,
-            y: targetCard.y + 70,
+            y: targetCard.y + yAdjustment,
             ease: 'Power2',
             duration: 250,
             onComplete: () => {
@@ -190,9 +177,10 @@ export default class MainScene extends Phaser.Scene {
     });
   }
   
-  handleCardAttacked(card: Card) {
+  async handleCardAttacked(card: Card): Promise<void> {
     const playerCard = this.getCard(card.name);
-
+    // Animate card being attacked
+    await this.animateAttack(this.boss!, playerCard, false);
   }
 
   handleEndGame() {
@@ -216,14 +204,22 @@ export default class MainScene extends Phaser.Scene {
     this.state.playCard(card.card);
   }
 
-  handleCardPlayed(card: Card): Promise<void> {
-    const playerCard = this.getCard(card.name);
+  async updateCardPositions(card: PlayerCard): Promise<void> {
     const played = this.getCards(State.Played);
+    
+    const startX = (this.centerX) - (this.widthWithPadding * played.length) / 2 ; // Start from the leftmost position
+
+    // move the existing cards left
+    for (let i = 0; i < played.length; i++) {
+      const playedCard = played[i];
+      playedCard.x = startX + i * (this.widthWithPadding);
+      playedCard.y = 450;
+    }
     return new Promise(resolve => {
       this.tweens.add({
-        targets: playerCard,
-        x: startingX + played.length * (cardWidth + padding),
-        y: 300,
+        targets: card,
+        x: startX + played.length * (this.widthWithPadding),
+        y: 450,
         ease: 'Quart.easeOut', 
         duration: 350, // Duration of the tween (in milliseconds)
         onComplete: () => {
@@ -231,6 +227,12 @@ export default class MainScene extends Phaser.Scene {
         }
       });
     });
+  }
+
+  async handleCardPlayed(card: Card): Promise<void> {
+    const playerCard = this.getCard(card.name);
+
+    await this.updateCardPositions(playerCard);
   }
 
   getCards(cardState: State): PlayerCard[] {
@@ -242,12 +244,16 @@ export default class MainScene extends Phaser.Scene {
   }
     
   handleCardDrawn(card: Card) {
-    const playerCard = this.getCard(card.name);
-    const i = this.getCards(State.Hand).length-1; //0th based index
-    playerCard.setVisible(true);  
-    playerCard.setPosition(startingX + (i * (cardWidth + padding)), 500);
-    playerCard.x = startingX + (i * (cardWidth + padding));
-    playerCard.y = 500;
+    const hand = this.getCards(State.Hand);
+    const startX = (this.centerX) - (this.widthWithPadding * (hand.length-1)) / 2 ; // Start from the leftmost position
+
+    // move the existing cards left
+    for (let i = 0; i < hand.length; i++) {
+      const playedCard = hand[i];
+      playedCard.setVisible(true);  
+      playedCard.x = startX + i * (this.widthWithPadding);
+      playedCard.y = 650;
+    }
   }
 }
     
