@@ -18,6 +18,7 @@ export default class MainScene extends Phaser.Scene {
   private boss?: BossCard;
   private deck: PlayerCard[] = [];
   private roundsText!: Phaser.GameObjects.Text;
+  private statusText!: Phaser.GameObjects.Text;
   private state: GameState;
   private chooseHero: Phaser.GameObjects.Container;
   private roundIndicator: Phaser.GameObjects.Container;
@@ -101,17 +102,17 @@ export default class MainScene extends Phaser.Scene {
   }
 
   createChooseHero() {
-    this.chooseHero = this.add.container(this.centerX, 300).setVisible(false);
+    this.chooseHero = this.add.container(this.centerX, 400).setVisible(false);
 
     // Create a translucent background
     const bg = this.add.graphics();
     bg.fillStyle(0x000000, 0.8); // 40% translucent black
-    const bgWidth = 400; // Adjust as needed
-    const bgHeight = 100; // Adjust as needed
+    const bgWidth = 500; // Adjust as needed
+    const bgHeight = 150; // Adjust as needed
     bg.fillRect(-bgWidth / 2, -bgHeight / 2, bgWidth, bgHeight); // Position relative to container
   
     // Create fancy text
-    const text = this.add.text(0, 0, 'Choose Your Hero', {
+    this.statusText = this.add.text(0, 0, 'Choose Your Hero', {
       font: '40px Arial', // Change font style as needed
       fill: '#ffffff',
       align: 'center',
@@ -120,7 +121,7 @@ export default class MainScene extends Phaser.Scene {
   
     // Add background and text to the container
     this.chooseHero.add(bg);
-    this.chooseHero.add(text);
+    this.chooseHero.add(this.statusText);
   }
 
   createRoundIndicator() {
@@ -213,10 +214,13 @@ export default class MainScene extends Phaser.Scene {
   handleEndGame() {
     // Check win/loss conditions
     if (this.boss!.boss.isDead()) {
-      this.roundsText.setText(`You beat the boss!`);
+      this.statusText.setText(`You beat the boss!`);
     } else {
-      this.roundsText.setText(`The boss escaped with ${this.boss!.boss.health} health!`);
+      this.statusText.setText(`The boss escaped with \n${this.boss!.boss.health} health!`);
     }
+    this.roundsText.setText(`Rounds Left: 0`);
+
+    this.chooseHero.setVisible(true);
     const deck = this.getCards(State.Deck);
     deck.forEach(card => card.setVisible(false)); // set discarded cards to invisible
   }
