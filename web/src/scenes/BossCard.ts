@@ -21,27 +21,34 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     
     // Add title
     const title = scene.add.text(0, -80, boss.name, {
-      fontSize: '12px',
-      fontStyle: 'bold',
+      fontSize: '16px',
+      fontStyle: 'normal',
       align: 'center',
-      resolution: 5
+      resolution: 1,
+      stroke: '#000000',
+      strokeThickness: 5
     }).setOrigin(0.5);
     this.add(title);
 
 
     // Add health
-    this.healthText = scene.add.text(-40, 60, '', {
-      fontSize: '12px',
-      backgroundColor: 'black'
+    this.healthText = scene.add.text(-newWidth / 2 + 25, newHeight / 2 - 12, '', {
+      font: '20px Arial',
+      fill: '#ffff88',
+      stroke: '#000000',
+      strokeThickness: 5
     });
-
+    this.healthText.setOrigin(0.5);
+  
     // Add attack power
-    this.attackText = scene.add.text(-40, 45, `Attack: ${this.boss.attack}`, {
-      fontSize: '12px',
-      backgroundColor: 'black',
-      resolution: 5
+    this.attackText = scene.add.text(newWidth / 2 - 16, newHeight / 2 - 12, `${this.boss.attack}\u2694`, {
+      font: '20px Arial',
+      fill: '#ff7777',
+      stroke: '#000000',
+      strokeThickness: 5 
     });
-
+    this.attackText.setOrigin(0.5);
+  
     boss.on(EVENT_HEALTH_CHANGED, (eventArgs) => this._setHealth(eventArgs));
     this._setHealth(boss.health);
     this.add(this.healthText);
@@ -49,7 +56,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
   }
 
   _setHealth(health: number) {
-    this.healthText.setText(`Health: ${health}`);
+    this.healthText.setText(`${health}\u2665`);
   }
 
   attack(target: PlayerCard) {
