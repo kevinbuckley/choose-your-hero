@@ -11,7 +11,6 @@ import GameState, {
 
 import { 
     cardWidth,
-    padding,
 } from '../utils/DeckManagement';
 import Boss from '../mechanics/Boss';
 
@@ -21,7 +20,9 @@ export default class MainScene extends Phaser.Scene {
   private roundsText!: Phaser.GameObjects.Text;
   private state: GameState;
   private chooseHero: Phaser.GameObjects.Container;
-  private widthWithPadding: number = cardWidth + 30;
+  private roundIndicator: Phaser.GameObjects.Container;
+
+  private widthWithPadding: number = cardWidth + 10;
     
   constructor() {
     super({ key: 'MainScene' });
@@ -79,7 +80,10 @@ export default class MainScene extends Phaser.Scene {
       fontSize: '24px',
       fontStyle: 'bold',
       fill: '#eee',
-      resolution: 5
+      resolution: 5,
+      stroke: '#000000',
+      strokeThickness: 5
+
     }).setOrigin(0.5);
     this.createChooseHero();
     // Start the game
@@ -117,6 +121,29 @@ export default class MainScene extends Phaser.Scene {
     // Add background and text to the container
     this.chooseHero.add(bg);
     this.chooseHero.add(text);
+  }
+
+  createRoundIndicator() {
+    this.roundIndicator = this.add.container(this.centerX, 300).setVisible(false);
+
+    // Create a translucent background
+    const bg = this.add.graphics();
+    bg.fillStyle(0x000000, 0.8); // 40% translucent black
+    const bgWidth = 400; // Adjust as needed
+    const bgHeight = 100; // Adjust as needed
+    bg.fillRect(-bgWidth / 2, -bgHeight / 2, bgWidth, bgHeight); // Position relative to container
+  
+    // Create fancy text
+    const text = this.add.text(0, 0, 'Combat Round, Fight!', {
+      font: '40px Arial', // Change font style as needed
+      fill: '#ffffff',
+      align: 'center',
+      resolution: 5
+    }).setOrigin(0.5); // Center align the text
+  
+    // Add background and text to the container
+    this.roundIndicator.add(bg);
+    this.roundIndicator.add(text);
   }
 
 
