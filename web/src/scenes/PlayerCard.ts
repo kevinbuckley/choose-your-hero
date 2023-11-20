@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import BossCard from './BossCard';
 import CardPicture from './CardPicture';
 import Card, { State } from '../mechanics/Card'
 import { EVENT_HEALTH_CHANGED, EVENT_CARD_STATE_CHANGED } from '../mechanics/GameState';
@@ -12,13 +11,23 @@ import {
 
 export default class PlayerCard extends Phaser.GameObjects.Container {
   private healthText!: Phaser.GameObjects.Text;
-  private attackText!: Phaser.GameObjects.Text;
   card: Card;
   
   constructor(scene: Phaser.Scene, card: Card) {
     super(scene, 1, 1);
     this._setHealth = this._setHealth.bind(this);
     this._setCardState = this._setCardState.bind(this);
+    const healthStyle = { 
+      font: '20px Arial',
+      fill: '#ffff88',
+      stroke: '#000000',
+      strokeThickness: 5
+    };
+    const attackStyle = { 
+      font: '20px Arial',
+       fill: '#ff7777',
+       stroke: '#000000',
+       strokeThickness: 5 };
 
     this.card = card;
     
@@ -27,30 +36,27 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this.add(characterSprite);
 
     // Add title
-    const title = scene.add.text(0, -80, card.name, {
-      fontSize: '12px',
-      fontStyle: 'bold',
+    const title = scene.add.text(0, -80, card.name.replace(' ', '\n'), {
+      fontSize: '16px',
+      fontStyle: 'normal',
       align: 'center',
-      resolution: 5
+      resolution: 1,
+      stroke: '#000000',
+      strokeThickness: 5
     }).setOrigin(0.5);
     this.add(title);
 
-    // Add attack power
-    const attackPower = scene.add.text(-35, 35, `Attack: ${card.attack}`, {
-      fontSize: '12px',
-      backgroundColor: 'black',
-      resolution: 5
-    });
-    this.add(attackPower);
-
-    // Add health
-    this.healthText = scene.add.text(-35, 50, '', {
-      fontSize: '12px',
-      backgroundColor: 'black',
-      resolution: 5
-    });
+    // Health text on the bottom left
+    this.healthText = scene.add.text(this.x - cardWidth / 2 + 15, this.y + cardHeight / 2 - 12, `${card.health.toString()}\u2665`, healthStyle);
+    this.healthText.setOrigin(0.5);
+  
+    // Attack text on the bottom right
+    const attackText = scene.add.text(this.x + cardWidth / 2 - 16, this.y + cardHeight / 2 - 12 ,`${card.attack.toString()}\u2694`, attackStyle);
+    attackText.setOrigin(0.5);
+  
+    // Add the text on top of the circles
     this.add(this.healthText);
-    this._setHealth(card.health);
+    this.add(attackText);
     
     const bounds = this.getBounds();
     this.setInteractive({
@@ -63,11 +69,13 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     card.on(EVENT_CARD_STATE_CHANGED, (eventArgs) => this._setCardState(eventArgs));
     this.on('pointerdown', this.handleClick, this);
     this.setVisible(false);
+    this._setHealth(card.health);
+    
     
   }
 
   _setHealth(health: number) {
-    this.healthText.setText(`Health: ${health}`);
+    this.healthText.setText(`${health}\u2665`);
   }
 
   _setCardState() {
