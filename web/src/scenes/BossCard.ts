@@ -1,8 +1,7 @@
 import Phaser from 'phaser';
-import PlayerCard from './PlayerCard';
-import Boss from '../mechanics/Boss';
+import { Boss } from '../mechanics/Boss';
 import CardPicture from './CardPicture';
-import { EVENT_HEALTH_CHANGED } from '../mechanics/GameState';
+import { EVENT_HEALTH_CHANGED } from '../mechanics/GameEvents';
 
 export default class BossCard  extends Phaser.GameObjects.Container {
   private healthText!: Phaser.GameObjects.Text;
@@ -34,7 +33,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     // Add health
     this.healthText = scene.add.text(-newWidth / 2 + 25, newHeight / 2 - 12, '', {
       font: '20px Arial',
-      fill: '#ffff88',
+      color: '#ffff88',
       stroke: '#000000',
       strokeThickness: 5
     });
@@ -43,7 +42,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     // Add attack power
     this.attackText = scene.add.text(newWidth / 2 - 16, newHeight / 2 - 12, `${this.boss.attack}\u2694`, {
       font: '20px Arial',
-      fill: '#ff7777',
+      color: '#ff7777',
       stroke: '#000000',
       strokeThickness: 5 
     });
@@ -59,7 +58,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     this.healthText.setText(`${health}\u2665`);
   }
 
-  attack(target: PlayerCard) {
+  attack() {
     
 
     // Implement your attack animation here

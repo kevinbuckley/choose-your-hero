@@ -1,27 +1,28 @@
 import Phaser from 'phaser';
 import BossCard from './BossCard';
 import PlayerCard from './PlayerCard';
-import Card, {State, ICard} from '../mechanics/Card';
-import GameState, {
+import {Card, State, ICard} from '../mechanics/Card';
+import { GameState } from '../mechanics/GameState';
+import {
   EVENT_DECK_SHUFFLE, 
   EVENT_CARD_DRAWN, 
   EVENT_GAME_OVER,
   EVENT_NEXT_TURN,
-} from '../mechanics/GameState';
+} from '../mechanics/GameEvents';
 
 import { 
     cardWidth,
 } from '../utils/DeckManagement';
-import Boss from '../mechanics/Boss';
+import { Boss } from '../mechanics/Boss';
 
 export default class MainScene extends Phaser.Scene {
   private boss?: BossCard;
   private deck: PlayerCard[] = [];
   private roundsText!: Phaser.GameObjects.Text;
   private statusText!: Phaser.GameObjects.Text;
-  private state: GameState;
-  private chooseHero: Phaser.GameObjects.Container;
-  private roundIndicator: Phaser.GameObjects.Container;
+  private state!: GameState;
+  private chooseHero!: Phaser.GameObjects.Container;
+  private roundIndicator!: Phaser.GameObjects.Container;
 
   private widthWithPadding: number = cardWidth + 10;
     
@@ -65,9 +66,9 @@ export default class MainScene extends Phaser.Scene {
     this.boss = new BossCard(this, this.centerX, 150, this.state.boss);
     this.add.existing(this.boss);
     this.state.on(EVENT_DECK_SHUFFLE, (eventArgs) => this.handleShuffledDeck(eventArgs));
-    this.state.on(EVENT_CARD_DRAWN, (eventArgs) => this.handleCardDrawn(eventArgs));
-    this.state.on(EVENT_GAME_OVER, (eventArgs) => this.handleEndGame(eventArgs));
-    this.state.on(EVENT_NEXT_TURN, (eventArgs) => this.handleNextTurn(eventArgs));
+    this.state.on(EVENT_CARD_DRAWN, () => this.handleCardDrawn());
+    this.state.on(EVENT_GAME_OVER, () => this.handleEndGame());
+    this.state.on(EVENT_NEXT_TURN, () => this.handleNextTurn());
     // Initialize Deck
     for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
@@ -80,7 +81,6 @@ export default class MainScene extends Phaser.Scene {
     this.roundsText = this.add.text(this.centerX, 20, '', {
       fontSize: '24px',
       fontStyle: 'bold',
-      fill: '#eee',
       resolution: 5,
       stroke: '#000000',
       strokeThickness: 5
@@ -114,7 +114,6 @@ export default class MainScene extends Phaser.Scene {
     // Create fancy text
     this.statusText = this.add.text(0, 0, 'Choose Your Hero', {
       font: '40px Arial', // Change font style as needed
-      fill: '#ffffff',
       align: 'center',
       resolution: 5
     }).setOrigin(0.5); // Center align the text
@@ -137,7 +136,6 @@ export default class MainScene extends Phaser.Scene {
     // Create fancy text
     const text = this.add.text(0, 0, 'Combat Round, Fight!', {
       font: '40px Arial', // Change font style as needed
-      fill: '#ffffff',
       align: 'center',
       resolution: 5
     }).setOrigin(0.5); // Center align the text
@@ -274,7 +272,7 @@ export default class MainScene extends Phaser.Scene {
     return this.deck.find((card) => card.card.name === name)!;
   }
     
-  handleCardDrawn(card: Card) {
+  handleCardDrawn() {
     const hand = this.getCards(State.Hand);
     const startX = (this.centerX) - (this.widthWithPadding * (hand.length-1)) / 2 ; // Start from the leftmost position
 
