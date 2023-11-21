@@ -1,22 +1,19 @@
 
-import Boss from './Boss';
-import Card, { State } from '../mechanics/Card';
+import { Boss } from './Boss';
+import { Card, State } from '../mechanics/Card';
 import { EventEmitter } from 'events';
+import {
+  EVENT_NEXT_TURN,
+  EVENT_GAME_OVER,
+  EVENT_CARD_DRAWN,
+  EVENT_DECK_SHUFFLE,
+} from './GameEvents';
 
-export const EVENT_HEALTH_CHANGED: string = 'healthChanged';
-export const EVENT_CARD_DIED: string = 'cardDied';
-export const EVENT_DECK_SHUFFLE: string = 'deckShuffled';
-export const EVENT_CARD_STATE_CHANGED: string = 'cardStateChanged';
-export const EVENT_CARD_DRAWN: string = 'cardDrawn';
-export const EVENT_GAME_OVER: string = 'gameOver';
-export const EVENT_NEXT_TURN: string = 'nextTurn';
-
-class GameState extends EventEmitter {
+export class GameState extends EventEmitter {
   deck: Card[] = [];
   totalTurns: number = 5;
   currentTurn: number = 0;
   boss: Boss = new Boss('Darth Vader', 100, 10);
-  private played: Card[] = [];
   cardNames: string[] = [
       'Boba Fett',
       'Captain Phasma',
@@ -143,5 +140,3 @@ class GameState extends EventEmitter {
     }
   }    
 }
-  
-  export default GameState;

@@ -1,13 +1,13 @@
 import Phaser from 'phaser';
 import CardPicture from './CardPicture';
-import Card, { State } from '../mechanics/Card'
-import { EVENT_HEALTH_CHANGED, EVENT_CARD_STATE_CHANGED } from '../mechanics/GameState';
+import { EVENT_HEALTH_CHANGED, EVENT_CARD_STATE_CHANGED } from '../mechanics/GameEvents';
+import { Card } from '../mechanics/Card'
+import { CARD_STATE_DISCARDED } from '../mechanics/CardStates';
 
 import { 
     cardHeight,
     cardWidth,
 } from '../utils/DeckManagement';
-
 
 export default class PlayerCard extends Phaser.GameObjects.Container {
   private healthText!: Phaser.GameObjects.Text;
@@ -58,7 +58,6 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this.add(this.healthText);
     this.add(attackText);
     
-    const bounds = this.getBounds();
     this.setInteractive({
       hitArea: new Phaser.Geom.Rectangle((cardWidth/-2), (cardHeight/-2), cardWidth, cardHeight),
       hitAreaCallback: Phaser.Geom.Rectangle.Contains,
@@ -66,7 +65,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     });
     
     card.on(EVENT_HEALTH_CHANGED, (eventArgs) => this._setHealth(eventArgs));
-    card.on(EVENT_CARD_STATE_CHANGED, (eventArgs) => this._setCardState(eventArgs));
+    card.on(EVENT_CARD_STATE_CHANGED, () => this._setCardState());
     this.on('pointerdown', this.handleClick, this);
     this.setVisible(false);
     this._setHealth(card.health);
@@ -79,16 +78,12 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
   }
 
   _setCardState() {
-    switch(this.card.state) {
-      case State.Discarded:
-        this.setVisible(false);
-        break;
-
+    if(this.card.state.toString() == CARD_STATE_DISCARDED) {
+      this.setVisible(false);
     }
   }
 
-
-  private handleClick(pointer: Phaser.Input.Pointer): void {
+  private handleClick(): void {
     // Handle the click event here
     this.emit('cardClicked', this);
     this.removeInteractive();

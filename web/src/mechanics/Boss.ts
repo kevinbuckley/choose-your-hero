@@ -1,8 +1,7 @@
 import { EventEmitter } from 'events';
-import { EVENT_HEALTH_CHANGED, EVENT_CARD_DIED } from './GameState';
+import { EVENT_HEALTH_CHANGED, EVENT_CARD_DIED } from './GameEvents';
 
-export default 
-class Boss extends EventEmitter {
+export class Boss extends EventEmitter {
   name: string;
   health: number;
   attack: number;
@@ -14,7 +13,8 @@ class Boss extends EventEmitter {
   }
 
   attacked(attackPower: number) {
-    this.health -= attackPower;
+    this.health = Math.max(0, this.health - attackPower);
+    
     this.emit(EVENT_HEALTH_CHANGED, this.health);  
     if(this.isDead()) {
       this.died();

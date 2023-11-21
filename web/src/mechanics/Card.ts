@@ -1,10 +1,11 @@
 import { EventEmitter } from 'events';
-import { EVENT_HEALTH_CHANGED, 
+import { 
+  EVENT_HEALTH_CHANGED, 
   EVENT_CARD_DIED,
   EVENT_CARD_STATE_CHANGED 
-} from './GameState';
+} from './GameEvents';
 
-export enum State {
+export const enum State {
   Deck = 'deck',
   Discarded = 'discarded',
   Hand = 'hand',
@@ -19,9 +20,7 @@ export interface ICard {
   isBoss: boolean;
 }
 
-
-export default 
-class Card extends EventEmitter implements ICard {
+export class Card extends EventEmitter implements ICard {
   name: string;
   attack: number;
   health: number;
@@ -38,7 +37,7 @@ class Card extends EventEmitter implements ICard {
   }
 
   attacked(attackPower: number) {
-      this.health -= attackPower;
+      this.health = Math.max(0, this.health - attackPower);
       this.emit(EVENT_HEALTH_CHANGED, this.health);  
 
       if (this.isDead()) {
