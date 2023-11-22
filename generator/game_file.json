@@ -1,0 +1,13 @@
+[
+  {"name":"Thrall","attack":7,"health":15,"isBoss":false},
+  {"name":"Arthas","attack":9,"health":19,"isBoss":false},
+  {"name":"Jaina","attack":6,"health":12,"isBoss":false},
+  {"name":"Sylvanas","attack":8,"health":14,"isBoss":false},
+  {"name":"Varian","attack":7,"health":17,"isBoss":false},
+  {"name":"Illidan","attack":9,"health":13,"isBoss":false},
+  {"name":"Malfurion","attack":5,"health":18,"isBoss":false},
+  {"name":"Tyrande","attack":6,"health":16,"isBoss":false},
+  {"name":"Anduin","attack":4,"health":14,"isBoss":false},
+  {"name":"Gul'dan","attack":8,"health":11,"isBoss":false},
+  {"name":"Deathwing","attack":9,"health":500,"isBoss":true}
+]
