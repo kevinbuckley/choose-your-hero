@@ -48,10 +48,10 @@ export default class MainScene extends Phaser.Scene {
       const iCards = JSON.parse(request.responseText);
       const cards = iCards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.attack, c.health));
       const boss = iCards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.attack, c.health )).pop();
-      this.load.image(boss.name, `/assets/${boss.name}.png`);
+      this.load.image(boss.name, `assets/${boss.name}.png`);
 
       for (const card of cards) {
-        this.load.image(card.name, `/assets/${card.name}.png`);
+        this.load.image(card.name, `assets/${card.name}.png`);
       }
       this.state.create(cards, boss);
     }
