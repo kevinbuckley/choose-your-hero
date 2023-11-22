@@ -41,7 +41,7 @@ export default class MainScene extends Phaser.Scene {
     this.state = new GameState(this.handleCardAttack, this.handleCardAttacked, this.handleCardPlayed);
       
     let request = new XMLHttpRequest();
-    request.open('GET', '/assets/game_file.json', false);  // `false` makes the request synchronous
+    request.open('GET', 'assets/game_file.json', false);  // `false` makes the request synchronous
     request.send(null);
 
     if (request.status === 200) {
