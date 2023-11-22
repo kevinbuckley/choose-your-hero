@@ -1,5 +1,5 @@
 .env
-*.png
 web/node_modules
 node_modules
-game_file.json
+web/public/assets/*.png
+web/public/assets/game_file.json
