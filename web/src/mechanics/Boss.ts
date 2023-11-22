@@ -5,7 +5,7 @@ export class Boss extends EventEmitter {
   name: string;
   health: number;
   attack: number;
-  constructor(name: string, health: number, attack: number) {
+  constructor(name: string, attack: number, health: number) {
     super();
     this.name = name;
     this.health = health;
@@ -14,6 +14,7 @@ export class Boss extends EventEmitter {
 
   attacked(attackPower: number) {
     this.health = Math.max(0, this.health - attackPower);
+    console.log(`Boss attacked with ${attackPower} damage. Health left: ${this.health}`);
     
     this.emit(EVENT_HEALTH_CHANGED, this.health);  
     if(this.isDead()) {

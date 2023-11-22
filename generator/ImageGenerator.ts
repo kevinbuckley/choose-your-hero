@@ -71,8 +71,8 @@ class ImageGenerator {
       modelId: 'ac614f96-1082-45bf-be9d-757f2d31c174', // dream shaper
       sd_version: 'v1_5',
       num_images: 1,
-      width: 512,
-      height: 768,
+      width: 768,
+      height: 1024,
       num_inference_steps: null,
       guidance_scale: 7,
       scheduler: 'LEONARDO',

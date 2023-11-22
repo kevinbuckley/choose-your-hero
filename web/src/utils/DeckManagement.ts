@@ -1,2 +1,2 @@
-export const cardWidth: number = 90;
+export const cardWidth: number = 97;
 export const cardHeight: number = 130;
