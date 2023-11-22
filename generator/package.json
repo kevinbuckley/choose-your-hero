@@ -4,11 +4,7 @@
     "description": "Your project description here",
     "main": "dist/main.js",
     "scripts": {
-        "build": "tsc",
-        "start": "node dist/main.js",
-        "devsim": "ts-node main-simulator.ts",
-        "devmechgen": "ts-node main-mechanics-generator.ts",
-        "devimggen": "ts-node main-image-generator.ts"
+        "start": "ts-node main-simulator.ts"
     },
     "keywords": [],
     "author": "",

@@ -13,7 +13,7 @@ export class GameState extends EventEmitter {
   deck: Card[] = [];
   totalTurns: number = 5;
   currentTurn: number = 0;
-  boss: Boss = new Boss('Darth Vader', 100, 10);
+  boss: Boss = new Boss('Darth Vader', 10, 100);
   cardNames: string[] = [
       'Boba Fett',
       'Captain Phasma',
@@ -86,7 +86,6 @@ export class GameState extends EventEmitter {
   async playCard(card: Card) {
     await this.event_card_played(card);
     card.state = State.Played;
-    console.log("playCard: " + this.getCards(State.Played).length);
     this.getCards(State.Hand).forEach(card => card.discard());
     await this.attack();
     this.nextTurn();

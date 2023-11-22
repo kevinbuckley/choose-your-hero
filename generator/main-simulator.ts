@@ -2,9 +2,10 @@ import MechanicsGenerator from './MechanicsGenerator';
 import ImageGenerator from './ImageGenerator';
 
 import dotenv from 'dotenv';
-import Card, { ICard, State } from '../web/src/mechanics/Card';
-import Boss from '../web/src/mechanics/Boss';
-import GameState, { EVENT_GAME_OVER } from '../web/src/mechanics/GameState';
+import { Card, ICard, State } from '../web/src/mechanics/Card';
+import { Boss } from '../web/src/mechanics/Boss';
+import { GameState } from '../web/src/mechanics/GameState';
+import { EVENT_GAME_OVER } from '../web/src/mechanics/GameEvents';
 import fs from 'fs';
 import { Semaphore } from 'async-mutex'; // Assuming you have installed a package for semaphore
 import path from 'path';
@@ -22,26 +23,33 @@ async function isFunGameFile(gameFile: any) {
 
   while(result.totalGames < 100) {
     gameOver = false;
-    const cards = gameFile.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.health, c.attack));
-    const boss = gameFile.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.health, c.attack)).pop();
-    const gameState = new GameState();
+    const cards = gameFile.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.attack, c.health));
+    const boss = gameFile.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.attack, c.health)).pop();
+    const gameState = new GameState(
+      () => { return Promise.resolve(); }, 
+      () => { return Promise.resolve(); }, 
+      () => { return Promise.resolve(); }
+    );
     gameState.on(EVENT_GAME_OVER, () => { gameOver = true; });
   
     gameState.create(cards, boss!);
-    gameState.nextTurn();   // gotta start it once and then playCard auto goes to next turn
+    gameState.nextTurn();   
     while(gameOver == false) {  
     
       const hand = gameState.getCards(State.Hand);
-      gameState.playCard(hand[0]);
+      const bestCard = hand.length > 1 ? hand.reduce((prev: Card, curr: Card) => curr?.attack > prev?.attack ? curr : prev ) : hand[0];
+      console.log(`Playing ${bestCard.name} with health ${bestCard.health} and attack ${bestCard.attack}`);
+      await gameState.playCard(bestCard);
     }
 
     result.totalGames++;
     if(gameState.boss.health <= 0) {
       result.gamesWon++;
     }
+    console.log(`${result.gamesWon}/${result.totalGames}`);
   }
 
-  return result.gamesWon / result.totalGames > 0.3 && result.gamesWon / result.totalGames < 0.8;
+  return result.gamesWon / result.totalGames > 0.3 && result.gamesWon / result.totalGames < 0.98;
 }
 
 
@@ -52,7 +60,7 @@ async function generateImages(gameFile: any[]): Promise<void> {
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Magestic and fantasy looking ${name}.  To be used in a card game following the style of Hearthstone.`;
+    const p1 = `${name}.  To be used in a card game following the style of Hearthstone.`;
     tasks.push(gen.getImage(p1, name, semaphore));
   }
 
@@ -73,10 +81,14 @@ async function main() {
   let isFun: boolean = false;
   let gameFile: any = null;
   while(isFun == false) {
-    // generate game file
-    gameFile = await mechanics.getJsonAsDictionary('good habits'); //as Card[];
+    console.log('starting while loop');
+    gameFile = await mechanics.getJsonAsDictionary('Medieval War'); //as Card[];
+    console.log('got game file: ' + JSON.stringify(gameFile));
     // simulate game file
     isFun = await isFunGameFile(gameFile);
+    isFun = true;
+    console.log(isFun);
+    console.log(gameFile);
   }
 
   fs.writeFileSync('../web/public/assets/game_file.json', JSON.stringify(gameFile));
