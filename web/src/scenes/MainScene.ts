@@ -113,7 +113,7 @@ export default class MainScene extends Phaser.Scene {
     const bgHeight = 230; // Adjust as needed
     bg.fillRect(-bgWidth / 2, -bgHeight / 2-45, bgWidth, bgHeight); // Position relative to container
     const sprite = this.add.sprite(0, -50, 'chooseyourhero').setOrigin(0.5);
-    sprite.setScale(.3, .3);
+    sprite.setScale(.4, .4);
 
     // Add background and text to the container
     this.chooseHero.add(bg);
