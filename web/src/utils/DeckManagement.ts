@@ -1,5 +1,5 @@
-export const cardWidth: number = 97;
-export const cardHeight: number = 130;
+export const cardWidth: number = 90;
+export const cardHeight: number = 125;
 
 
 export function getBaseURL(): string {

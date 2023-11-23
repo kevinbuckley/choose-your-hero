@@ -20,12 +20,10 @@ export default class MainScene extends Phaser.Scene {
   private boss?: BossCard;
   private deck: PlayerCard[] = [];
   private roundsText!: Phaser.GameObjects.Text;
-  private statusText!: Phaser.GameObjects.Text;
   private state!: GameState;
   private chooseHero!: Phaser.GameObjects.Container;
-  private roundIndicator!: Phaser.GameObjects.Container;
 
-  private widthWithPadding: number = cardWidth + 10;
+  private widthWithPadding: number = cardWidth + 5;
     
   constructor() {
     super({ key: 'MainScene' });
@@ -41,6 +39,8 @@ export default class MainScene extends Phaser.Scene {
   preload() {
     this.state = new GameState(this.handleCardAttack, this.handleCardAttacked, this.handleCardPlayed);
     const baseURL = getBaseURL();
+
+    this.load.image('chooseyourhero', `${baseURL}chooseyourhero.png`);
 
     let request = new XMLHttpRequest();
     request.open('GET', `${baseURL}assets/game_file.json`, false);  // `false` makes the request synchronous
@@ -65,7 +65,7 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     // Initialize BossCard
-    this.boss = new BossCard(this, this.centerX, 150, this.state.boss);
+    this.boss = new BossCard(this, this.centerX, 130, this.state.boss);
     this.add.existing(this.boss);
     this.state.on(EVENT_DECK_SHUFFLE, (eventArgs) => this.handleShuffledDeck(eventArgs));
     this.state.on(EVENT_CARD_DRAWN, () => this.handleCardDrawn());
@@ -80,8 +80,8 @@ export default class MainScene extends Phaser.Scene {
       // Listen for the 'cardClicked' event on the card
       card.on('cardClicked', this.handleCardClicked, this);
     }
-    this.roundsText = this.add.text(this.centerX, 20, '', {
-      fontSize: '24px',
+    this.roundsText = this.add.text(this.centerX, 15, '', {
+      fontSize: '16px',
       fontStyle: 'bold',
       resolution: 5,
       stroke: '#000000',
@@ -110,43 +110,15 @@ export default class MainScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x000000, 0.8); // 40% translucent black
     const bgWidth = 500; // Adjust as needed
-    const bgHeight = 150; // Adjust as needed
-    bg.fillRect(-bgWidth / 2, -bgHeight / 2, bgWidth, bgHeight); // Position relative to container
-  
-    // Create fancy text
-    this.statusText = this.add.text(0, 0, 'Choose Your Hero', {
-      font: '40px Arial', // Change font style as needed
-      align: 'center',
-      resolution: 5
-    }).setOrigin(0.5); // Center align the text
-  
+    const bgHeight = 230; // Adjust as needed
+    bg.fillRect(-bgWidth / 2, -bgHeight / 2-45, bgWidth, bgHeight); // Position relative to container
+    const sprite = this.add.sprite(0, -50, 'chooseyourhero').setOrigin(0.5);
+    sprite.setScale(.3, .3);
+
     // Add background and text to the container
     this.chooseHero.add(bg);
-    this.chooseHero.add(this.statusText);
+    this.chooseHero.add(sprite);
   }
-
-  createRoundIndicator() {
-    this.roundIndicator = this.add.container(this.centerX, 300).setVisible(false);
-
-    // Create a translucent background
-    const bg = this.add.graphics();
-    bg.fillStyle(0x000000, 0.8); // 40% translucent black
-    const bgWidth = 400; // Adjust as needed
-    const bgHeight = 100; // Adjust as needed
-    bg.fillRect(-bgWidth / 2, -bgHeight / 2, bgWidth, bgHeight); // Position relative to container
-  
-    // Create fancy text
-    const text = this.add.text(0, 0, 'Combat Round, Fight!', {
-      font: '40px Arial', // Change font style as needed
-      align: 'center',
-      resolution: 5
-    }).setOrigin(0.5); // Center align the text
-  
-    // Add background and text to the container
-    this.roundIndicator.add(bg);
-    this.roundIndicator.add(text);
-  }
-
 
   async handleCardAttack(card: Card): Promise<void> {
     const playerCard = this.getCard(card.name);
@@ -214,9 +186,9 @@ export default class MainScene extends Phaser.Scene {
   handleEndGame() {
     // Check win/loss conditions
     if (this.boss!.boss.isDead()) {
-      this.statusText.setText(`You beat the boss!`);
+      this.roundsText.setText(`You beat the boss!`);
     } else {
-      this.statusText.setText(`The boss escaped with \n${this.boss!.boss.health} health!`);
+      this.roundsText.setText(`The boss escaped with \n${this.boss!.boss.health} health!`);
     }
     this.roundsText.setText(`Rounds Left: 0`);
 
@@ -237,20 +209,20 @@ export default class MainScene extends Phaser.Scene {
 
   async updateCardPositions(card: PlayerCard): Promise<void> {
     const played = this.getCards(State.Played);
-    
+    const cardY = 400;
     const startX = (this.centerX) - (this.widthWithPadding * played.length) / 2 ; // Start from the leftmost position
 
     // move the existing cards left
     for (let i = 0; i < played.length; i++) {
       const playedCard = played[i];
       playedCard.x = startX + i * (this.widthWithPadding);
-      playedCard.y = 450;
+      playedCard.y = cardY;
     }
     return new Promise(resolve => {
       this.tweens.add({
         targets: card,
         x: startX + played.length * (this.widthWithPadding),
-        y: 450,
+        y: cardY,
         ease: 'Quart.easeOut', 
         duration: 350, // Duration of the tween (in milliseconds)
         onComplete: () => {
@@ -283,7 +255,7 @@ export default class MainScene extends Phaser.Scene {
       const playedCard = hand[i];
       playedCard.setVisible(true);  
       playedCard.x = startX + i * (this.widthWithPadding);
-      playedCard.y = 650;
+      playedCard.y = 600;
     }
   }
 }
