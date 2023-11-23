@@ -80,7 +80,7 @@ export default class MainScene extends Phaser.Scene {
       // Listen for the 'cardClicked' event on the card
       card.on('cardClicked', this.handleCardClicked, this);
     }
-    this.roundsText = this.add.text(this.centerX + 190, 30, '', {
+    this.roundsText = this.add.text(this.centerX + 150, 30, '', {
       fontSize: '16px',
       fontStyle: 'bold',
       resolution: 5,
