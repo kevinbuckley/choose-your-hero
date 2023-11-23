@@ -65,7 +65,7 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     // Initialize BossCard
-    this.boss = new BossCard(this, this.centerX, 130, this.state.boss);
+    this.boss = new BossCard(this, this.centerX, 100, this.state.boss);
     this.add.existing(this.boss);
     this.state.on(EVENT_DECK_SHUFFLE, (eventArgs) => this.handleShuffledDeck(eventArgs));
     this.state.on(EVENT_CARD_DRAWN, () => this.handleCardDrawn());
@@ -80,13 +80,14 @@ export default class MainScene extends Phaser.Scene {
       // Listen for the 'cardClicked' event on the card
       card.on('cardClicked', this.handleCardClicked, this);
     }
-    this.roundsText = this.add.text(this.centerX, 15, '', {
+    this.roundsText = this.add.text(this.centerX + 190, 30, '', {
       fontSize: '16px',
       fontStyle: 'bold',
       resolution: 5,
       stroke: '#000000',
-      strokeThickness: 5
-
+      strokeThickness: 5,
+      align: 'center',
+      color: 'yellow'
     }).setOrigin(0.5);
     this.createChooseHero();
     // Start the game
@@ -190,15 +191,14 @@ export default class MainScene extends Phaser.Scene {
     } else {
       this.roundsText.setText(`The boss escaped with \n${this.boss!.boss.health} health!`);
     }
-    this.roundsText.setText(`Rounds Left: 0`);
-
+   
     this.chooseHero.setVisible(true);
     const deck = this.getCards(State.Deck);
     deck.forEach(card => card.setVisible(false)); // set discarded cards to invisible
   }
 
   handleNextTurn() {
-    this.roundsText.setText(`Rounds Left: ${this.state.totalTurns - this.state.currentTurn+1}`);
+    this.roundsText.setText(`Rounds Left \n${this.state.totalTurns - this.state.currentTurn+1}`);
     this.chooseHero.setVisible(true);
   }
 
