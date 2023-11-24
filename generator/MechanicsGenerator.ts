@@ -27,7 +27,7 @@ class MechanicsGenerator {
           each card in the deck.  There will be 10 player cards and 1 boss enemy card. 
           You'll be given a theme and will create cards for the player and 1 boss card enemy that follow that theme. 
           The health of a card should be between 9 and 19 health.  
-          The attack should be between 4 and 18 attack.  
+          The attack should be between 4 and 16 attack.  
           The boss's health should be 500. 
           Please remember to ONLY return the JSON, no other text or content, only JSON.  
           

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { cardMultiplier } from '../utils/DeckManagement';
 
 
 export default class CardPicture extends Phaser.GameObjects.Sprite {
@@ -19,5 +20,9 @@ export default class CardPicture extends Phaser.GameObjects.Sprite {
     this.scaleY = cardHeight / this.height;
     this.setScale(this.scaleX, this.scaleY);
 
+  }
+
+  playCard() {
+    this.setScale(this.scaleX * cardMultiplier, this.scaleY * cardMultiplier);
   }
 }

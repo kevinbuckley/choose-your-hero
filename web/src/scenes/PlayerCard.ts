@@ -11,8 +11,11 @@ import {
 
 export default class PlayerCard extends Phaser.GameObjects.Container {
   private healthText!: Phaser.GameObjects.Text;
+  private attackText!: Phaser.GameObjects.Text;
+  private title!: Phaser.GameObjects.Text;
   card: Card;
-  
+  characterSprite: CardPicture;
+
   constructor(scene: Phaser.Scene, card: Card) {
     super(scene, 1, 1);
     this._setHealth = this._setHealth.bind(this);
@@ -32,11 +35,11 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this.card = card;
     
     // Create character sprite
-    const characterSprite = new CardPicture(scene, card.name, cardWidth, cardHeight);
-    this.add(characterSprite);
+    this.characterSprite = new CardPicture(scene, card.name, cardWidth, cardHeight);
+    this.add(this.characterSprite);
 
     // Add title
-    const title = scene.add.text(0, -80, card.name.replace(' ', '\n'), {
+    this.title = scene.add.text(0, -80, card.name.replace(' ', '\n'), {
       fontSize: '16px',
       fontStyle: 'normal',
       align: 'center',
@@ -44,19 +47,19 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
       stroke: '#000000',
       strokeThickness: 5
     }).setOrigin(0.5);
-    this.add(title);
+    this.add(this.title);
 
     // Health text on the bottom left
     this.healthText = scene.add.text(this.x - cardWidth / 2 + 15, this.y + cardHeight / 2 - 12, `${card.health.toString()}\u2665`, healthStyle);
     this.healthText.setOrigin(0.5);
   
     // Attack text on the bottom right
-    const attackText = scene.add.text(this.x + cardWidth / 2 - 16, this.y + cardHeight / 2 - 12 ,`${card.attack.toString()}\u2694`, attackStyle);
-    attackText.setOrigin(0.5);
+    this.attackText = scene.add.text(this.x + cardWidth / 2 - 16, this.y + cardHeight / 2 - 12 ,`${card.attack.toString()}\u2694`, attackStyle);
+    this.attackText.setOrigin(0.5);
   
     // Add the text on top of the circles
     this.add(this.healthText);
-    this.add(attackText);
+    this.add(this.attackText);
     
     this.setInteractive({
       hitArea: new Phaser.Geom.Rectangle((cardWidth/-2), (cardHeight/-2), cardWidth, cardHeight),
@@ -69,8 +72,6 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this.on('pointerdown', this.handleClick, this);
     this.setVisible(false);
     this._setHealth(card.health);
-    
-    
   }
 
   _setHealth(health: number) {
@@ -87,6 +88,15 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     // Handle the click event here
     this.emit('cardClicked', this);
     this.removeInteractive();
+    this.characterSprite.playCard();
+    this.healthText.setScale(.9, .9);
+    this.healthText.x += 9;
+    this.healthText.y -= 9;
+    this.attackText.setScale(.9, .9);
+    this.attackText.x -= 9;
+    this.attackText.y -= 9;
+    this.title.setScale(.7, .7);
+    this.title.y += 15;
   }
 
   die() {
