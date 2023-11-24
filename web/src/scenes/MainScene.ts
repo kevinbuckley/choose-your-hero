@@ -12,6 +12,7 @@ import {
 
 import { 
     cardWidth,
+    cardMultiplier,
     getBaseURL
 } from '../utils/DeckManagement';
 import { Boss } from '../mechanics/Boss';
@@ -24,6 +25,7 @@ export default class MainScene extends Phaser.Scene {
   private chooseHero!: Phaser.GameObjects.Container;
 
   private widthWithPadding: number = cardWidth + 5;
+  private widthWithPaddingPlayed: number = (cardWidth * cardMultiplier) + 5;
     
   constructor() {
     super({ key: 'MainScene' });
@@ -210,18 +212,18 @@ export default class MainScene extends Phaser.Scene {
   async updateCardPositions(card: PlayerCard): Promise<void> {
     const played = this.getCards(State.Played);
     const cardY = 400;
-    const startX = (this.centerX) - (this.widthWithPadding * played.length) / 2 ; // Start from the leftmost position
+    const startX = (this.centerX) - (this.widthWithPaddingPlayed * played.length) / 2 ; // Start from the leftmost position
 
     // move the existing cards left
     for (let i = 0; i < played.length; i++) {
       const playedCard = played[i];
-      playedCard.x = startX + i * (this.widthWithPadding);
+      playedCard.x = startX + i * (this.widthWithPaddingPlayed);
       playedCard.y = cardY;
     }
     return new Promise(resolve => {
       this.tweens.add({
         targets: card,
-        x: startX + played.length * (this.widthWithPadding),
+        x: startX + played.length * (this.widthWithPaddingPlayed),
         y: cardY,
         ease: 'Quart.easeOut', 
         duration: 350, // Duration of the tween (in milliseconds)
