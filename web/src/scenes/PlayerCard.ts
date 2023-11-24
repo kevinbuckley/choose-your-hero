@@ -89,10 +89,10 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this.emit('cardClicked', this);
     this.removeInteractive();
     this.characterSprite.playCard();
-    this.healthText.setScale(.9, .9);
+    this.healthText.setScale(.8, .8);
     this.healthText.x += 9;
     this.healthText.y -= 9;
-    this.attackText.setScale(.9, .9);
+    this.attackText.setScale(.8, .8);
     this.attackText.x -= 9;
     this.attackText.y -= 9;
     this.title.setScale(.7, .7);
