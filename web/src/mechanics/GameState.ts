@@ -53,6 +53,7 @@ export class GameState extends EventEmitter {
   }
 
   reset() {
+    this.currentTurn = 0;
     this.boss.reset();
     this.deck.forEach((card) => card.reset());
     this.shuffleDeck();

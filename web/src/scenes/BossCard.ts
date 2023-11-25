@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { Boss } from '../mechanics/Boss';
 import CardPicture from './CardPicture';
-import { EVENT_HEALTH_CHANGED } from '../mechanics/GameEvents';
+import { EVENT_HEALTH_CHANGED, EVENT_CARD_RESET } from '../mechanics/GameEvents';
 
 export default class BossCard  extends Phaser.GameObjects.Container {
   private healthText!: Phaser.GameObjects.Text;
@@ -49,6 +49,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     this.attackText.setOrigin(0.5);
   
     boss.on(EVENT_HEALTH_CHANGED, (eventArgs) => this._setHealth(eventArgs));
+    boss.on(EVENT_CARD_RESET, () => this._resetCard());
     this._setHealth(boss.health);
     this.add(this.healthText);
     this.add(this.attackText);
@@ -56,6 +57,11 @@ export default class BossCard  extends Phaser.GameObjects.Container {
 
   _setHealth(health: number) {
     this.healthText.setText(`${health}\u2665`);
+  }
+
+  _resetCard() {    
+    this.setVisible(true);
+
   }
 
   attack() {
