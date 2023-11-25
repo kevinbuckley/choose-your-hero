@@ -74,6 +74,13 @@ export default class MainScene extends Phaser.Scene {
     this.state.on(EVENT_CARD_DRAWN, () => this.handleCardDrawn());
     this.state.on(EVENT_GAME_OVER, () => this.handleEndGame());
     this.state.on(EVENT_NEXT_TURN, () => this.handleNextTurn());
+   
+    this.createTitleScreen();
+    this.createChooseHero();
+    this.createDeck();
+  }
+
+  createDeck() {
     // Initialize Deck
     for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
@@ -83,9 +90,6 @@ export default class MainScene extends Phaser.Scene {
       // Listen for the 'cardClicked' event on the card
       card.on('cardClicked', this.handleCardClicked, this);
     }
-    
-    this.createTitleScreen();
-    this.createChooseHero();
   }
 
   handleShuffledDeck(cardDeck: Card[]) { 
@@ -95,6 +99,9 @@ export default class MainScene extends Phaser.Scene {
   }
 
   startGame() {
+     if (this.state.currentTurn === this.state.totalTurns) {
+        this.state.reset();
+     }
     this.boss!.setVisible(true);
     this.state.nextTurn();
   }
@@ -120,6 +127,8 @@ export default class MainScene extends Phaser.Scene {
     // Add background and text to the container
     this.chooseHero.add(bg);
     this.chooseHero.add(this.roundsText);
+    this.chooseHero.setDepth(10);
+
   }
   createTitleScreen() {
     this.titleScreen = this.add.container(this.centerX, 400).setVisible(true);
@@ -241,8 +250,8 @@ export default class MainScene extends Phaser.Scene {
     this.endGameStatusText.setText(`${txt}\n\nClick Play Game to play again`);
 
     this.titleScreen.setVisible(true);
-    const deck = this.getCards(State.Deck);
-    deck.forEach(card => card.setVisible(false)); // set discarded cards to invisible
+    this.boss?.setVisible(false);
+    this.deck.forEach(card => card.setVisible(false)); // set discarded cards to invisible
   }
 
   handleNextTurn() {

@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import CardPicture from './CardPicture';
-import { EVENT_HEALTH_CHANGED, EVENT_CARD_STATE_CHANGED } from '../mechanics/GameEvents';
-import { Card } from '../mechanics/Card'
+import { EVENT_HEALTH_CHANGED, EVENT_CARD_STATE_CHANGED, EVENT_CARD_RESET } from '../mechanics/GameEvents';
+import { Card, State } from '../mechanics/Card'
 import { CARD_STATE_DISCARDED } from '../mechanics/CardStates';
 
 import { 
@@ -69,6 +69,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     
     card.on(EVENT_HEALTH_CHANGED, (eventArgs) => this._setHealth(eventArgs));
     card.on(EVENT_CARD_STATE_CHANGED, () => this._setCardState());
+    card.on(EVENT_CARD_RESET, () => this.reset());
     this.on('pointerdown', this.handleClick, this);
     this.setVisible(false);
     this._setHealth(card.health);
@@ -85,18 +86,15 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
   }
 
   private handleClick(): void {
-    // Handle the click event here
-    this.emit('cardClicked', this);
-    this.removeInteractive();
-    this.characterSprite.playCard();
-    this.healthText.setScale(.8, .8);
-    this.healthText.x += 9;
-    this.healthText.y -= 9;
-    this.attackText.setScale(.8, .8);
-    this.attackText.x -= 9;
-    this.attackText.y -= 9;
-    this.title.setScale(.7, .7);
-    this.title.y += 15;
+    console.log(`${this.card.state.toString()})`);
+    if(this.card.state.toString() != State.Hand) {
+      return;
+    }
+      // Handle the click event here
+      this.emit('cardClicked', this);
+      //this.removeInteractive();
+      this.characterSprite.playCard();
+      this.setScale(.8);
   }
 
   die() {
@@ -111,5 +109,10 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this.card.revive();
     // Implement your revive animation here
     // ...
+  }
+  reset() {
+    this.characterSprite.reset();
+    this.setScale(1);
+    this.setVisible(false);
   }
 }

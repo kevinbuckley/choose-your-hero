@@ -2,7 +2,8 @@ import { EventEmitter } from 'events';
 import { 
   EVENT_HEALTH_CHANGED, 
   EVENT_CARD_DIED,
-  EVENT_CARD_STATE_CHANGED 
+  EVENT_CARD_STATE_CHANGED,
+  EVENT_CARD_RESET
 } from './GameEvents';
 
 export const enum State {
@@ -56,6 +57,7 @@ export class Card extends EventEmitter implements ICard {
   reset() {
     this.health = this.healthOriginal;
     this.state = State.Deck;
+    this.emit(EVENT_CARD_RESET);
   }
 
   revive() {
