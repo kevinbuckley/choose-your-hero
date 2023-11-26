@@ -312,7 +312,7 @@ export default class MainScene extends Phaser.Scene {
       const playedCard = hand[i];
       playedCard.setVisible(true);  
       playedCard.x = startX + i * (this.widthWithPadding);
-      playedCard.y = 600;
+      playedCard.y = 570;
     }
   }
 }
