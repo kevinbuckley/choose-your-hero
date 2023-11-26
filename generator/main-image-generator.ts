@@ -6,6 +6,7 @@ import { readFile } from 'fs/promises';
 import fs from 'fs';
 import path from 'path';
 import OpenAI from 'openai';
+import sharp from 'sharp';
 
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -19,19 +20,30 @@ async function generateImages(gameFile: any[]): Promise<void> {
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Magestic, fantasy, zoomed in picture of a ${name}.  Make it easy to understand and in portrait mode suitable for a vertical mobile wallpaper.`;
+    const p1 = `Magestic, fantasy, zoomed in picture of a ${name}.  Make it easy to understand.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
       prompt: p1,
       n: 1,
-      size: "1024x1792",
+      size: "1024x1024",
       response_format: 'b64_json'
     });
     console.log(response.data[0].revised_prompt);
-    base64ToPng(response.data[0].b64_json!, path.join('../web/public/assets', `${name}.png`));
+    const imageSavePath = path.join('./temp', `${name}.png`);
+    base64ToPng(response.data[0].b64_json!, imageSavePath);
     await sleep(9000);
+    cropAndCopy(imageSavePath, name);
   }
+}
+
+function cropAndCopy(inputPath: string, name: string) {
+  
+  const outputPath = path.join('../web/public/assets', `${name}.png`);
+  sharp(inputPath)
+    .extract({ width: 708, height: 1024, left: 157, top: 0 }) // Crop dimensions
+    .toFile(outputPath)
+    .then(() => console.log(`${name} cropped`));
 }
 
 function base64ToPng(b64Json: string, outputPath: string) {

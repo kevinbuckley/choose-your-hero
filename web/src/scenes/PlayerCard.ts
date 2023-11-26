@@ -7,6 +7,7 @@ import { CARD_STATE_DISCARDED } from '../mechanics/CardStates';
 import { 
     cardHeight,
     cardWidth,
+    cardMultiplier
 } from '../utils/DeckManagement';
 
 export default class PlayerCard extends Phaser.GameObjects.Container {
@@ -94,7 +95,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
       this.emit('cardClicked', this);
       //this.removeInteractive();
       this.characterSprite.playCard();
-      this.setScale(.8);
+      this.setScale(cardMultiplier);
   }
 
   die() {
