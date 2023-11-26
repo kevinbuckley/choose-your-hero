@@ -42,8 +42,28 @@ function cropAndCopy(inputPath: string, name: string) {
   const outputPath = path.join('../web/public/assets', `${name}.png`);
   sharp(inputPath)
     .extract({ width: 708, height: 1024, left: 157, top: 0 }) // Crop dimensions
+    .resize(180, 260) // Resize
     .toFile(outputPath)
     .then(() => console.log(`${name} cropped`));
+}
+
+
+function justShrinkAndCopy() {
+
+  const directoryPath = path.join(__dirname, './temp');
+  fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+        console.error('Error reading directory', err);
+        return;
+    }
+
+    files.forEach(file => {
+      // Check if the file is a PNG
+      if (path.extname(file).toLowerCase() === '.png') {
+          cropAndCopy(path.join(directoryPath, file), path.basename(file, '.png'));
+      }
+    });
+  });
 }
 
 function base64ToPng(b64Json: string, outputPath: string) {
@@ -53,10 +73,11 @@ function base64ToPng(b64Json: string, outputPath: string) {
 
 async function main() {
 
-  const readJsonFile = async (filePath: string) => JSON.parse(await readFile(filePath, 'utf8'));
-  const gamefile = await readJsonFile('../web/public/assets/game_file.json');
+  //const readJsonFile = async (filePath: string) => JSON.parse(await readFile(filePath, 'utf8'));
+  //const gamefile = await readJsonFile('../web/public/assets/game_file.json');
 
-  await generateImages(gamefile);
+//  await generateImages(gamefile);
+justShrinkAndCopy();
 }
 
 
