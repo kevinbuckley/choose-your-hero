@@ -1,5 +1,5 @@
 export const cardWidth: number = 90;
-export const cardHeight: number = 157;
+export const cardHeight: number = 130;
 export const cardMultiplier: number = .8;
 
 export function getBaseURL(): string {
