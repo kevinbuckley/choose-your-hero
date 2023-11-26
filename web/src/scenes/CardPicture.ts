@@ -1,6 +1,4 @@
 import Phaser from 'phaser';
-import { cardMultiplier } from '../utils/DeckManagement';
-
 
 export default class CardPicture extends Phaser.GameObjects.Sprite {
   
