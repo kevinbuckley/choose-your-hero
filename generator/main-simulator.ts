@@ -1,6 +1,4 @@
 import MechanicsGenerator from './MechanicsGenerator';
-import ImageGenerator from './ImageGenerator';
-
 import dotenv from 'dotenv';
 import { Card, ICard, State } from '../web/src/mechanics/Card';
 import { Boss } from '../web/src/mechanics/Boss';
@@ -9,6 +7,7 @@ import { EVENT_GAME_OVER } from '../web/src/mechanics/GameEvents';
 import fs from 'fs';
 import { Semaphore } from 'async-mutex'; // Assuming you have installed a package for semaphore
 import path from 'path';
+import sharp from 'sharp';
 
 dotenv.config();
 
@@ -49,7 +48,7 @@ async function isFunGameFile(gameFile: any) {
     console.log(`${result.gamesWon}/${result.totalGames}`);
   }
 
-  return result.gamesWon / result.totalGames > 0.3 && result.gamesWon / result.totalGames < 0.98;
+  return result.gamesWon / result.totalGames > 0.1 && result.gamesWon / result.totalGames < 0.98;
 }
 
 function sleep(ms: number): Promise<void> {
@@ -57,33 +56,42 @@ function sleep(ms: number): Promise<void> {
 }
 async function generateImages(gameFile: any[]): Promise<void> {
   const semaphore = new Semaphore(5);
-  const gen = new ImageGenerator();
   const tasks: Promise<void>[] = [];
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Magestic, fantasy, zoomed in picture of a ${name}.`;
+    const p1 = `Magestic, fantasy, zoomed in picture of a ${name}.  Make it easy to understand.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
       prompt: p1,
       n: 1,
-      size: "1024x1792",
+      size: "1024x1024",
+      response_format: 'b64_json'
     });
-    console.log(response);
-  }
-
-  const results: any[] = await Promise.all(tasks);
-
-  for( const img of results) {
-    const name = img[0];
-    const binary = img[1];
-    fs.writeFileSync(
-      path.join('../web/public/assets', `${name}.png`),
-      binary
-    );
+    console.log(response.data[0].revised_prompt);
+    const imageSavePath = path.join('./temp', `${name}.png`);
+    base64ToPng(response.data[0].b64_json!, imageSavePath);
+    await sleep(9000);
+    cropAndCopy(imageSavePath, name);
   }
 }
+function cropAndCopy(inputPath: string, name: string) {
+  
+  const outputPath = path.join('../web/public/assets', `${name}.png`);
+  sharp(inputPath)
+    .extract({ width: 708, height: 1024, left: 157, top: 0 }) // Crop dimensions
+    .resize(180, 260) // Resize
+    .toFile(outputPath)
+    .then(() => console.log(`${name} cropped`));
+}
+
+function base64ToPng(b64Json: string, outputPath: string) {
+  const imageBuffer = Buffer.from(b64Json, 'base64');
+  fs.writeFileSync(outputPath, imageBuffer);
+}
+
+
 
 async function main() {
   const mechanics = new MechanicsGenerator();

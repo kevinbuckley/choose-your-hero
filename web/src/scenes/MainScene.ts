@@ -113,7 +113,7 @@ export default class MainScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x000000, 0.5); 
     const bgWidth = 500; // Adjust as needed
-    const bgHeight = 230; // Adjust as needed
+    const bgHeight = 200; // Adjust as needed
     bg.fillRect(-bgWidth / 2, -bgHeight / 2-45, bgWidth, bgHeight); // Position relative to container
     
     this.roundsText = this.add.text(0, -50, '', {
@@ -266,7 +266,7 @@ export default class MainScene extends Phaser.Scene {
 
   async updateCardPositions(card: PlayerCard): Promise<void> {
     const played = this.getCards(State.Played);
-    const cardY = 400;
+    const cardY = 365;
     const startX = (this.centerX) - (this.widthWithPaddingPlayed * played.length) / 2 ; // Start from the leftmost position
 
     // move the existing cards left
@@ -312,7 +312,7 @@ export default class MainScene extends Phaser.Scene {
       const playedCard = hand[i];
       playedCard.setVisible(true);  
       playedCard.x = startX + i * (this.widthWithPadding);
-      playedCard.y = 570;
+      playedCard.y = 575;
     }
   }
 }

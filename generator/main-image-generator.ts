@@ -1,4 +1,3 @@
-import ImageGenerator from './ImageGenerator';
 import dotenv from 'dotenv';
 import { Semaphore } from 'async-mutex'; // Assuming you have installed a package for semaphore
 dotenv.config();
