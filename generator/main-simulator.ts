@@ -52,7 +52,9 @@ async function isFunGameFile(gameFile: any) {
   return result.gamesWon / result.totalGames > 0.3 && result.gamesWon / result.totalGames < 0.98;
 }
 
-
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 async function generateImages(gameFile: any[]): Promise<void> {
   const semaphore = new Semaphore(5);
   const gen = new ImageGenerator();
@@ -60,8 +62,15 @@ async function generateImages(gameFile: any[]): Promise<void> {
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `${name}.  To be used in a card game following the style of Hearthstone.`;
-    tasks.push(gen.getImage(p1, name, semaphore));
+    const p1 = `Magestic, fantasy, zoomed in picture of a ${name}.`;
+    // @ts-ignore
+    const response = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: p1,
+      n: 1,
+      size: "1024x1792",
+    });
+    console.log(response);
   }
 
   const results: any[] = await Promise.all(tasks);
