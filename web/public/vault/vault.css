@@ -1,6 +1,6 @@
 img {
     display: inline;
-    margin:5px;
+    margin:15px;
     border:2px solid #222222;
 }
 .back {
@@ -14,49 +14,23 @@ img {
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, box-shadow 0.3s;
+    background-color: #f04e23; /* A noticeable color */
 }
 /* Smaller screens, like mobile devices */
-@media (max-width: 600px) {
+@media (max-width: 1100px) {
     .back {
-        font-size: 32px; /* Smaller font size */
+        font-size: 28px; /* Smaller font size */
         padding: 8px 12px; /* Smaller padding */
-        background-color: #310ef4; /* A noticeable color */
-
     }
-}
-/* Smaller screens, like mobile devices */
-@media (min-width: 601px) and (max-width: 700px) {
-    .back {
-        font-size: 32px; /* Smaller font size */
-        padding: 8px 12px; /* Smaller padding */
-        background-color: #077326; /* A noticeable color */
-
-    }
-}
-/* Smaller screens, like mobile devices */
-@media (min-width: 701px) and (max-width: 800px) {
-    .back {
-        font-size: 32px; /* Smaller font size */
-        padding: 8px 12px; /* Smaller padding */
-        background-color: #50050b; /* A noticeable color */
-
-    }
-}
-/* Smaller screens, like mobile devices */
-@media (min-width: 801px) and (max-width: 900px) {
-    .back {
-        font-size: 32px; /* Smaller font size */
-        padding: 8px 12px; /* Smaller padding */
-        background-color: #6d6603; /* A noticeable color */
-
+    h2 {
+        font-size:44px;
     }
 }
 /* Larger screens, like desktops */
-@media (min-width: 901px) {
+@media (min-width: 1101px) {
     .back {
         font-size: 16px; /* Larger font size */
         padding: 12px 18px; /* Larger padding */
-        background-color: #f04e23; /* A noticeable color */
     }
 }
 h2 {
