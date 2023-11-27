@@ -58,6 +58,7 @@ export class Card extends EventEmitter implements ICard {
     this.health = this.healthOriginal;
     this.state = State.Deck;
     this.emit(EVENT_CARD_RESET);
+    this.emit(EVENT_HEALTH_CHANGED, this.health);
   }
 
   revive() {

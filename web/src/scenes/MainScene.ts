@@ -27,6 +27,7 @@ export default class MainScene extends Phaser.Scene {
   private endGameStatusText!: Phaser.GameObjects.Text;
   private widthWithPadding: number = cardWidth + 5;
   private widthWithPaddingPlayed: number = (cardWidth * cardMultiplier) + 5;
+  private turboMultipler: number = .6; // 1 in prod
     
   constructor() {
     super({ key: 'MainScene' });
@@ -211,7 +212,7 @@ export default class MainScene extends Phaser.Scene {
         targets: attackerCard,
         angle: 7, // Rotate by 15 degrees
         ease: 'Power2',
-        duration: 100,
+        duration: 100*this.turboMultipler,
         onComplete: () => {
           // Forward movement
           this.tweens.add({
@@ -219,7 +220,7 @@ export default class MainScene extends Phaser.Scene {
             x: targetCard.x,
             y: targetCard.y + yAdjustment,
             ease: 'Power2',
-            duration: 250,
+            duration: 250*this.turboMultipler,
             onComplete: () => {
               // Move card back to original position
               this.tweens.add({
@@ -227,13 +228,13 @@ export default class MainScene extends Phaser.Scene {
                 x: originalPositionX,
                 y: originalPositionY,
                 ease: 'Power2',
-                duration: 200,
+                duration: 200*this.turboMultipler,
                 onComplete: () => {
                   // Rotate card back to original angle
                   this.tweens.add({
                     targets: attackerCard,
                     angle: originalAngle, // Rotate back to original angle
-                    duration: 50,
+                    duration: 50*this.turboMultipler,
                     onComplete: () => {
                       resolve(); // Resolve the promise once all animations are complete
                     }
@@ -297,7 +298,7 @@ export default class MainScene extends Phaser.Scene {
         x: startX + played.length * (this.widthWithPaddingPlayed),
         y: cardY,
         ease: 'Quart.easeOut', 
-        duration: 350, // Duration of the tween (in milliseconds)
+        duration: 350*this.turboMultipler, // Duration of the tween (in milliseconds)
         onComplete: () => {
           resolve();
         }
