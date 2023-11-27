@@ -152,6 +152,20 @@ export default class MainScene extends Phaser.Scene {
     }).setOrigin(0.5)
     .setInteractive({ useHandCursor: true });
 
+    const openVault = this.add.text(0, 100, 'Open Vault', {
+      fontSize: '20px',
+      resolution: 2,
+      stroke: '#000000',
+      strokeThickness: 5,
+      align: 'center',
+      color: 'yellow'
+    }).setOrigin(0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        window.location.href = './vault.html';
+      });
+
+
     this.endGameStatusText = this.add.text(0, 150, '', {
       fontSize: '16px',
       resolution: 2,
@@ -160,6 +174,7 @@ export default class MainScene extends Phaser.Scene {
       align: 'center',
       color: 'white'
     }).setOrigin(0.5)
+
 
     // Add a click event listener
     playGameText.on('pointerdown', () => {
@@ -172,6 +187,7 @@ export default class MainScene extends Phaser.Scene {
     this.titleScreen.add(playGameText);
     this.titleScreen.add(sprite);
     this.titleScreen.add(this.endGameStatusText);
+    this.titleScreen.add(openVault);
   }
 
   async handleCardAttack(card: Card): Promise<void> {
