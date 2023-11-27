@@ -19,7 +19,7 @@ img {
 /* Smaller screens, like mobile devices */
 @media (max-width: 600px) {
     .back {
-        font-size: 14px; /* Smaller font size */
+        font-size: 32px; /* Smaller font size */
         padding: 8px 12px; /* Smaller padding */
     }
 }
