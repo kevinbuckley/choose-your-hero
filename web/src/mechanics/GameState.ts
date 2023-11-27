@@ -108,6 +108,9 @@ export class GameState extends EventEmitter {
         for (const card of playedCards) {
           await this.event_card_attack(card);
           this.boss.attacked(card.attack)
+          if(this.boss.isDead()) {
+            return;
+          }
         }
 
         // BossCard attacks one of the cards at random
