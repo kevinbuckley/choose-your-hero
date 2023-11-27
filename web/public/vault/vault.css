@@ -1,0 +1,39 @@
+img {
+    display: inline;
+    margin:15px;
+    border:2px solid #222222;
+}
+.back {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    background-color: #f04e23; /* A noticeable color */
+}
+/* Smaller screens, like mobile devices */
+@media (max-width: 1100px) {
+    .back {
+        font-size: 28px; /* Smaller font size */
+        padding: 8px 12px; /* Smaller padding */
+    }
+    h2 {
+        font-size:44px;
+    }
+}
+/* Larger screens, like desktops */
+@media (min-width: 1101px) {
+    .back {
+        font-size: 16px; /* Larger font size */
+        padding: 12px 18px; /* Larger padding */
+    }
+}
+h2 {
+    color: white;
+    text-align: center;
+}

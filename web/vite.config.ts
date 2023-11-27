@@ -4,6 +4,7 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [react()],
   resolve: {
     alias: {
@@ -12,7 +13,7 @@ export default defineConfig({
     },
   },
   build: {
-    // Additional build options if needed
-  },
+    outDir: '../docs/' // Set your desired output directory
+  }
   // You can include additional Vite specific configurations here
 });

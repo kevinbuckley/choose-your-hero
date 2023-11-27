@@ -6,3 +6,4 @@ export const EVENT_CARD_STATE_CHANGED: string = 'cardStateChanged';
 export const EVENT_CARD_DRAWN: string = 'cardDrawn';
 export const EVENT_GAME_OVER: string = 'gameOver';
 export const EVENT_NEXT_TURN: string = 'nextTurn';
+export const EVENT_CARD_RESET: string = 'cardReset';
