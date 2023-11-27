@@ -1,0 +1,25 @@
+img {
+    display: inline;
+    margin:5px;
+    border:2px solid #222222;
+}
+.back {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    background-color: #f04e23; /* A noticeable color */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+h2 {
+    color: white;
+    text-align: center;
+}
+html {
+    background-image: url('/background4.png');
+}
