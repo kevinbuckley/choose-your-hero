@@ -16,10 +16,25 @@ img {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, box-shadow 0.3s;
 }
+/* Smaller screens, like mobile devices */
+@media (max-width: 600px) {
+    .back {
+        font-size: 14px; /* Smaller font size */
+        padding: 8px 12px; /* Smaller padding */
+    }
+}
+
+/* Larger screens, like desktops */
+@media (min-width: 601px) {
+    .back {
+        font-size: 16px; /* Larger font size */
+        padding: 12px 18px; /* Larger padding */
+    }
+}
 h2 {
     color: white;
     text-align: center;
 }
 html {
-    background-image: url('/background4.png');
+    background-image: url('../background4.png');
 }
