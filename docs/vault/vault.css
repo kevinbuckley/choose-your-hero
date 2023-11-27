@@ -24,9 +24,35 @@ img {
 
     }
 }
+/* Smaller screens, like mobile devices */
+@media (min-width: 601px) and (max-width: 700px) {
+    .back {
+        font-size: 32px; /* Smaller font size */
+        padding: 8px 12px; /* Smaller padding */
+        background-color: #077326; /* A noticeable color */
 
+    }
+}
+/* Smaller screens, like mobile devices */
+@media (min-width: 701px) and (max-width: 800px) {
+    .back {
+        font-size: 32px; /* Smaller font size */
+        padding: 8px 12px; /* Smaller padding */
+        background-color: #50050b; /* A noticeable color */
+
+    }
+}
+/* Smaller screens, like mobile devices */
+@media (min-width: 801px) and (max-width: 900px) {
+    .back {
+        font-size: 32px; /* Smaller font size */
+        padding: 8px 12px; /* Smaller padding */
+        background-color: #6d6603; /* A noticeable color */
+
+    }
+}
 /* Larger screens, like desktops */
-@media (min-width: 601px) {
+@media (min-width: 901px) {
     .back {
         font-size: 16px; /* Larger font size */
         padding: 12px 18px; /* Larger padding */
