@@ -1,0 +1,73 @@
+[
+    {
+        "prompt": "Medieval War",
+        "game_file": [
+            {
+                "name": "Knight of Valor",
+                "attack": 14,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Spear Maiden",
+                "attack": 12,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Wise Wizard",
+                "attack": 10,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Elven Archer",
+                "attack": 15,
+                "health": 11,
+                "isBoss": false
+            },
+            {
+                "name": "Dwarven Defender",
+                "attack": 8,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Rogue Assassin",
+                "attack": 17,
+                "health": 9,
+                "isBoss": false
+            },
+            {
+                "name": "Battle Cleric",
+                "attack": 9,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Dragon Knight",
+                "attack": 16,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Necromancer",
+                "attack": 11,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Griffin Rider",
+                "attack": 13,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Dark Overlord",
+                "attack": 18,
+                "health": 500,
+                "isBoss": true
+            }
+        ]
+    }
+]

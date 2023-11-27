@@ -12,6 +12,8 @@ import {
 
 import { 
     cardWidth,
+    cardMultiplier,
+    getBaseURL
 } from '../utils/DeckManagement';
 import { Boss } from '../mechanics/Boss';
 
@@ -19,12 +21,12 @@ export default class MainScene extends Phaser.Scene {
   private boss?: BossCard;
   private deck: PlayerCard[] = [];
   private roundsText!: Phaser.GameObjects.Text;
-  private statusText!: Phaser.GameObjects.Text;
   private state!: GameState;
   private chooseHero!: Phaser.GameObjects.Container;
-  private roundIndicator!: Phaser.GameObjects.Container;
-
-  private widthWithPadding: number = cardWidth + 10;
+  private titleScreen!: Phaser.GameObjects.Container;
+  private endGameStatusText!: Phaser.GameObjects.Text;
+  private widthWithPadding: number = cardWidth + 5;
+  private widthWithPaddingPlayed: number = (cardWidth * cardMultiplier) + 5;
     
   constructor() {
     super({ key: 'MainScene' });
@@ -39,19 +41,22 @@ export default class MainScene extends Phaser.Scene {
 
   preload() {
     this.state = new GameState(this.handleCardAttack, this.handleCardAttacked, this.handleCardPlayed);
-      
+    const baseURL = getBaseURL();
+
+    this.load.image('chooseyourhero', `${baseURL}chooseyourhero.png`);
+
     let request = new XMLHttpRequest();
-    request.open('GET', '/assets/game_file.json', false);  // `false` makes the request synchronous
+    request.open('GET', `${baseURL}assets/game_file.json`, false);  // `false` makes the request synchronous
     request.send(null);
 
     if (request.status === 200) {
       const iCards = JSON.parse(request.responseText);
       const cards = iCards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.attack, c.health));
       const boss = iCards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.attack, c.health )).pop();
-      this.load.image(boss.name, `/assets/${boss.name}.png`);
+      this.load.image(boss.name, `${baseURL}assets/${boss.name}.png`);
 
       for (const card of cards) {
-        this.load.image(card.name, `/assets/${card.name}.png`);
+        this.load.image(card.name, `${baseURL}assets/${card.name}.png`);
       }
       this.state.create(cards, boss);
     }
@@ -63,12 +68,19 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     // Initialize BossCard
-    this.boss = new BossCard(this, this.centerX, 150, this.state.boss);
+    this.boss = new BossCard(this, this.centerX, 100, this.state.boss).setVisible(false);
     this.add.existing(this.boss);
     this.state.on(EVENT_DECK_SHUFFLE, (eventArgs) => this.handleShuffledDeck(eventArgs));
     this.state.on(EVENT_CARD_DRAWN, () => this.handleCardDrawn());
     this.state.on(EVENT_GAME_OVER, () => this.handleEndGame());
     this.state.on(EVENT_NEXT_TURN, () => this.handleNextTurn());
+   
+    this.createTitleScreen();
+    this.createChooseHero();
+    this.createDeck();
+  }
+
+  createDeck() {
     // Initialize Deck
     for (let i = 0; i < this.state.deck.length; i++) {
       // Pick a random card from the deck 
@@ -78,17 +90,6 @@ export default class MainScene extends Phaser.Scene {
       // Listen for the 'cardClicked' event on the card
       card.on('cardClicked', this.handleCardClicked, this);
     }
-    this.roundsText = this.add.text(this.centerX, 20, '', {
-      fontSize: '24px',
-      fontStyle: 'bold',
-      resolution: 5,
-      stroke: '#000000',
-      strokeThickness: 5
-
-    }).setOrigin(0.5);
-    this.createChooseHero();
-    // Start the game
-    this.startGame();
   }
 
   handleShuffledDeck(cardDeck: Card[]) { 
@@ -98,6 +99,10 @@ export default class MainScene extends Phaser.Scene {
   }
 
   startGame() {
+     if (this.state.currentTurn === this.state.totalTurns) {
+        this.state.reset();
+     }
+    this.boss!.setVisible(true);
     this.state.nextTurn();
   }
 
@@ -106,45 +111,84 @@ export default class MainScene extends Phaser.Scene {
 
     // Create a translucent background
     const bg = this.add.graphics();
-    bg.fillStyle(0x000000, 0.8); // 40% translucent black
+    bg.fillStyle(0x000000, 0.5); 
     const bgWidth = 500; // Adjust as needed
-    const bgHeight = 150; // Adjust as needed
-    bg.fillRect(-bgWidth / 2, -bgHeight / 2, bgWidth, bgHeight); // Position relative to container
-  
-    // Create fancy text
-    this.statusText = this.add.text(0, 0, 'Choose Your Hero', {
-      font: '40px Arial', // Change font style as needed
+    const bgHeight = 200; // Adjust as needed
+    bg.fillRect(-bgWidth / 2, -bgHeight / 2-45, bgWidth, bgHeight); // Position relative to container
+    
+    this.roundsText = this.add.text(0, -50, '', {
+      fontSize: '24px',
+      resolution: 5,
+      stroke: '#000000',
+      strokeThickness: 5,
       align: 'center',
-      resolution: 5
-    }).setOrigin(0.5); // Center align the text
-  
+      color: '#ffffff'
+    }).setOrigin(0.5);
     // Add background and text to the container
     this.chooseHero.add(bg);
-    this.chooseHero.add(this.statusText);
-  }
+    this.chooseHero.add(this.roundsText);
+    this.chooseHero.setDepth(10);
 
-  createRoundIndicator() {
-    this.roundIndicator = this.add.container(this.centerX, 300).setVisible(false);
+  }
+  createTitleScreen() {
+    this.titleScreen = this.add.container(this.centerX, 400).setVisible(true);
 
     // Create a translucent background
     const bg = this.add.graphics();
     bg.fillStyle(0x000000, 0.8); // 40% translucent black
-    const bgWidth = 400; // Adjust as needed
-    const bgHeight = 100; // Adjust as needed
-    bg.fillRect(-bgWidth / 2, -bgHeight / 2, bgWidth, bgHeight); // Position relative to container
-  
-    // Create fancy text
-    const text = this.add.text(0, 0, 'Combat Round, Fight!', {
-      font: '40px Arial', // Change font style as needed
-      align: 'center',
-      resolution: 5
-    }).setOrigin(0.5); // Center align the text
-  
-    // Add background and text to the container
-    this.roundIndicator.add(bg);
-    this.roundIndicator.add(text);
-  }
+    const bgWidth = 350; // Adjust as needed
+    const bgHeight = 500; // Adjust as needed
+    bg.fillRect(-bgWidth / 2, -bgHeight / 2-45, bgWidth, bgHeight); // Position relative to container
+    const sprite = this.add.sprite(0, -150, 'chooseyourhero').setOrigin(0.5);
+    sprite.setScale(.4, .4);
 
+    const playGameText = this.add.text(0, 50, 'Play Game', {
+      fontSize: '20px',
+      resolution: 2,
+      stroke: '#000000',
+      strokeThickness: 5,
+      align: 'center',
+      color: 'yellow'
+    }).setOrigin(0.5)
+    .setInteractive({ useHandCursor: true });
+
+    const openVault = this.add.text(0, 100, 'Open Vault', {
+      fontSize: '20px',
+      resolution: 2,
+      stroke: '#000000',
+      strokeThickness: 5,
+      align: 'center',
+      color: 'yellow'
+    }).setOrigin(0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        window.location.href = './vault.html';
+      });
+
+
+    this.endGameStatusText = this.add.text(0, 150, '', {
+      fontSize: '16px',
+      resolution: 2,
+      stroke: '#000000',
+      strokeThickness: 5,
+      align: 'center',
+      color: 'white'
+    }).setOrigin(0.5)
+
+
+    // Add a click event listener
+    playGameText.on('pointerdown', () => {
+      this.titleScreen.setVisible(false);
+      this.startGame();
+    });
+
+    // Add background and text to the container
+    this.titleScreen.add(bg);
+    this.titleScreen.add(playGameText);
+    this.titleScreen.add(sprite);
+    this.titleScreen.add(this.endGameStatusText);
+    this.titleScreen.add(openVault);
+  }
 
   async handleCardAttack(card: Card): Promise<void> {
     const playerCard = this.getCard(card.name);
@@ -211,20 +255,23 @@ export default class MainScene extends Phaser.Scene {
 
   handleEndGame() {
     // Check win/loss conditions
+    
+    let txt = '';
     if (this.boss!.boss.isDead()) {
-      this.statusText.setText(`You beat the boss!`);
+      txt =`You beat the boss!`;
     } else {
-      this.statusText.setText(`The boss escaped with \n${this.boss!.boss.health} health!`);
+      txt = `The boss escaped with ${this.boss!.boss.health} health!`;
     }
-    this.roundsText.setText(`Rounds Left: 0`);
+   
+    this.endGameStatusText.setText(`${txt}\n\nClick Play Game to play again`);
 
-    this.chooseHero.setVisible(true);
-    const deck = this.getCards(State.Deck);
-    deck.forEach(card => card.setVisible(false)); // set discarded cards to invisible
+    this.titleScreen.setVisible(true);
+    this.boss?.setVisible(false);
+    this.deck.forEach(card => card.setVisible(false)); // set discarded cards to invisible
   }
 
   handleNextTurn() {
-    this.roundsText.setText(`Rounds Left: ${this.state.totalTurns - this.state.currentTurn+1}`);
+    this.roundsText.setText(`Rounds Left:${this.state.totalTurns - this.state.currentTurn+1} \n\nChoose your Hero`);
     this.chooseHero.setVisible(true);
   }
 
@@ -235,20 +282,20 @@ export default class MainScene extends Phaser.Scene {
 
   async updateCardPositions(card: PlayerCard): Promise<void> {
     const played = this.getCards(State.Played);
-    
-    const startX = (this.centerX) - (this.widthWithPadding * played.length) / 2 ; // Start from the leftmost position
+    const cardY = 365;
+    const startX = (this.centerX) - (this.widthWithPaddingPlayed * played.length) / 2 ; // Start from the leftmost position
 
     // move the existing cards left
     for (let i = 0; i < played.length; i++) {
       const playedCard = played[i];
-      playedCard.x = startX + i * (this.widthWithPadding);
-      playedCard.y = 450;
+      playedCard.x = startX + i * (this.widthWithPaddingPlayed);
+      playedCard.y = cardY;
     }
     return new Promise(resolve => {
       this.tweens.add({
         targets: card,
-        x: startX + played.length * (this.widthWithPadding),
-        y: 450,
+        x: startX + played.length * (this.widthWithPaddingPlayed),
+        y: cardY,
         ease: 'Quart.easeOut', 
         duration: 350, // Duration of the tween (in milliseconds)
         onComplete: () => {
@@ -281,7 +328,7 @@ export default class MainScene extends Phaser.Scene {
       const playedCard = hand[i];
       playedCard.setVisible(true);  
       playedCard.x = startX + i * (this.widthWithPadding);
-      playedCard.y = 650;
+      playedCard.y = 575;
     }
   }
 }

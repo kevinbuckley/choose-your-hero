@@ -52,6 +52,13 @@ export class GameState extends EventEmitter {
     this.shuffleDeck();
   }
 
+  reset() {
+    this.currentTurn = 0;
+    this.boss.reset();
+    this.deck.forEach((card) => card.reset());
+    this.shuffleDeck();
+  }
+
   // Method to perform an attack
   attackBoss(card: Card): void {
     if (this.boss.health <= 0) {
