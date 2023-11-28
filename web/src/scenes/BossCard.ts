@@ -31,7 +31,7 @@ export default class BossCard  extends Phaser.GameObjects.Container {
 
 
     // Add health
-    this.healthText = scene.add.text(-newWidth / 2 + 25, newHeight / 2 - 12, '', {
+    this.healthText = scene.add.text(newWidth / 2 - 25, newHeight / 2 - 12, '', {
       font: '20px Arial',
       color: '#ffff88',
       stroke: '#000000',
@@ -39,8 +39,8 @@ export default class BossCard  extends Phaser.GameObjects.Container {
     });
     this.healthText.setOrigin(0.5);
   
-    // Add attack power
-    this.attackText = scene.add.text(newWidth / 2 - 16, newHeight / 2 - 12, `${this.boss.attack}\u2694`, {
+    // Add attack power  
+    this.attackText = scene.add.text(-newWidth / 2 + 18, newHeight / 2 - 12, `${this.boss.attack}\u2694`, {
       font: '20px Arial',
       color: '#ff7777',
       stroke: '#000000',
