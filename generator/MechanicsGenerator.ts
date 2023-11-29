@@ -11,7 +11,11 @@ class MechanicsGenerator {
     isBoss: false,
   };
 
-  public async getJsonAsDictionary(prompt: string): Promise<any> {
+  public async getJsonAsDictionary(prompt: string,
+    attackLower: number,
+    attackUpper: number,
+    healthLower: number,
+    healthUpper: number): Promise<any> {
     console.log('getJsonAsDictionary 1');
     const openai = new OpenAI({
         apiKey: this.OPEN_AI_KEY,
@@ -26,9 +30,10 @@ class MechanicsGenerator {
           content: `You are a game developer creating a new card game. You'll be returning only the JSON required to define
           each card in the deck.  There will be 10 player cards and 1 boss enemy card. 
           You'll be given a theme and will create cards for the player and 1 boss card enemy that follow that theme. 
-          The health of a card should be between 12 and 19 health.  
-          The attack should be between 7 and 16 attack.  
-          The boss's health should be 500. 
+          The health of a card should be between ${healthLower} and ${healthUpper} health.  
+          The attack should be between ${attackLower} and ${attackUpper} attack.  
+          If a card has high health, then they should have relatively low attack and visa versa.
+          The boss's health should be 500. The boss's attack should be ${healthUpper-3}.
           Please remember to ONLY return the JSON, no other text or content, only JSON.  
           
           card template: ${JSON.stringify(this.cardTemplate)}`,
