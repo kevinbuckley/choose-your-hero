@@ -130,7 +130,7 @@ function mergeIntoVaultConfig(newPrompt: string, newGameFile: any) {
       let jsonVaultObj = JSON.parse(data);
       jsonVaultObj.unshift({
         "prompt": newPrompt,
-        "game_file": newGameFile
+        "cards": newGameFile
       });
       fs.writeFile(jsonVaultLocation, JSON.stringify(jsonVaultObj, null, 4), 'utf8', err => {
           if (err) {
@@ -167,7 +167,7 @@ async function regenSomeImages(theme: string, cards: string[])  {
 
 
 async function main() {
-  const theme = "Beauty and the Beast characters, but as ninjas";
+  const theme = "Beauty and the Beast as ninjas";
   regenSomeImages(theme, ['Beautiful Belle']);
   return;
   const mechanics = new MechanicsGenerator();

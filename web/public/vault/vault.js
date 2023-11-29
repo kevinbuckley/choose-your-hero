@@ -8,11 +8,21 @@ window.onload = () => {
                 const prompt = game_file["prompt"];
                 header.innerText = game_file["prompt"];
                 galleryContainer.appendChild(header);
-                game_file["game_file"].forEach(card => {
+                game_file["cards"].forEach(card => {
+                    const divContainer = document.createElement('div');
+                    divContainer.classList.add('image-container');
+                    
                     const imgElement = document.createElement('img');
                     imgElement.src = "vault/" + prompt + "/" + card.name + ".png";
                     imgElement.classList.add('gallery-image'); // Optional: for styling
-                    galleryContainer.appendChild(imgElement);
+                    divContainer.appendChild(imgElement);
+
+                    const divCaption = document.createElement('div');
+                    divCaption.classList.add('image-caption');
+                    divCaption.innerText = card.name;
+                    divContainer.appendChild(divCaption);
+
+                    galleryContainer.appendChild(divContainer);
                 });
             });
         })

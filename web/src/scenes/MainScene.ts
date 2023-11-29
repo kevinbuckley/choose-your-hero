@@ -16,8 +16,10 @@ import {
     getBaseURL
 } from '../utils/DeckManagement';
 import { Boss } from '../mechanics/Boss';
+import { Theme } from '../mechanics/Theme';
 
 export default class MainScene extends Phaser.Scene {
+  private theme!: Theme;
   private boss?: BossCard;
   private deck: PlayerCard[] = [];
   private roundsText!: Phaser.GameObjects.Text;
@@ -51,15 +53,15 @@ export default class MainScene extends Phaser.Scene {
     request.send(null);
 
     if (request.status === 200) {
-      const iCards = JSON.parse(request.responseText);
-      const cards = iCards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.attack, c.health));
-      const boss = iCards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.attack, c.health )).pop();
-      this.load.image(boss.name, `${baseURL}assets/${boss.name}.png`);
+      this.theme = JSON.parse(request.responseText) as Theme;
+      const cards = this.theme.cards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.attack, c.health));
+      const boss = this.theme.cards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.attack, c.health )).pop();
+      this.load.image(boss!.name, `${baseURL}assets/${boss!.name}.png`);
 
       for (const card of cards) {
         this.load.image(card.name, `${baseURL}assets/${card.name}.png`);
       }
-      this.state.create(cards, boss);
+      this.state.create(cards, boss!);
     }
   }
 
@@ -125,9 +127,20 @@ export default class MainScene extends Phaser.Scene {
       align: 'center',
       color: '#ffffff'
     }).setOrigin(0.5);
+
+    const themeText = this.add.text(0, -130, `Today's Theme: ${this.theme.prompt}`, {
+      fontSize: '14px',
+      resolution: 2,
+      stroke: '#000000',
+      strokeThickness: 5,
+      align: 'center',
+      color: '#ffffff'
+    }).setOrigin(0.5);
+
     // Add background and text to the container
     this.chooseHero.add(bg);
     this.chooseHero.add(this.roundsText);
+    this.chooseHero.add(themeText);
     this.chooseHero.setDepth(10);
 
   }
