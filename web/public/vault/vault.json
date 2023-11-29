@@ -1,7 +1,7 @@
 [
     {
-        "prompt": "Beauty and the Beast characters, but as ninjas",
-        "game_file": [
+        "prompt": "Beauty and the Beast as ninjas",
+        "cards": [
             {
                 "name": "Ninja Belle",
                 "attack": 6,
@@ -72,7 +72,7 @@
     },
     {
         "prompt": "Cyberpunk",
-        "game_file": [
+        "cards": [
             {
                 "name": "Netrunner Nova",
                 "attack": 12,
@@ -143,7 +143,7 @@
     },
     {
         "prompt": "Medieval War",
-        "game_file": [
+        "cards": [
             {
                 "name": "Knight of Valor",
                 "attack": 14,

@@ -1,68 +1,71 @@
-[
-    {
-        "name": "Ninja Belle",
-        "attack": 6,
-        "health": 20,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Beast",
-        "attack": 16,
-        "health": 12,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Lumiere",
-        "attack": 6,
-        "health": 18,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Cogsworth",
-        "attack": 15,
-        "health": 13,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Mrs. Potts",
-        "attack": 9,
-        "health": 17,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Chip",
-        "attack": 14,
-        "health": 14,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Maurice",
-        "attack": 10,
-        "health": 16,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Fifi",
-        "attack": 13,
-        "health": 15,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Wardrobe",
-        "attack": 11,
-        "health": 15,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Gaston",
-        "attack": 17,
-        "health": 12,
-        "isBoss": false
-    },
-    {
-        "name": "Ninja Enchantress",
-        "attack": 17,
-        "health": 500,
-        "isBoss": true
-    }
-]
+{
+    "prompt": "Beauty and the Beast as ninjas",
+    "cards": [
+        {
+            "name": "Ninja Belle",
+            "attack": 6,
+            "health": 20,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Beast",
+            "attack": 16,
+            "health": 12,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Lumiere",
+            "attack": 6,
+            "health": 18,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Cogsworth",
+            "attack": 15,
+            "health": 13,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Mrs. Potts",
+            "attack": 9,
+            "health": 17,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Chip",
+            "attack": 14,
+            "health": 14,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Maurice",
+            "attack": 10,
+            "health": 16,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Fifi",
+            "attack": 13,
+            "health": 15,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Wardrobe",
+            "attack": 11,
+            "health": 15,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Gaston",
+            "attack": 17,
+            "health": 12,
+            "isBoss": false
+        },
+        {
+            "name": "Ninja Enchantress",
+            "attack": 17,
+            "health": 500,
+            "isBoss": true
+        }
+    ]
+}

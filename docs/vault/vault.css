@@ -2,6 +2,7 @@ img {
     display: inline;
     margin:15px;
     border:2px solid #222222;
+    z-index: 1;
 }
 .back {
     position: fixed;
@@ -15,6 +16,7 @@ img {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, box-shadow 0.3s;
     background-color: #f04e23; /* A noticeable color */
+    z-index: 2;
 }
 /* Smaller screens, like mobile devices */
 @media (max-width: 1100px) {
@@ -36,4 +38,29 @@ img {
 h2 {
     color: white;
     text-align: center;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block; /* Or flex, grid, etc., depending on your layout */
+    margin: 10px; /* Optional: for spacing */
+}
+
+.image-container img {
+    display: block; /* Remove default spacing below images */
+    width: 100%; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 1.2em;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }

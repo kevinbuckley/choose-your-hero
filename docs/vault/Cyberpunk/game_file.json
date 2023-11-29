@@ -1,68 +1,71 @@
-[
-    {
-        "name": "Netrunner Nova",
-        "attack": 8,
-        "health": 17,
-        "isBoss": false
-    },
-    {
-        "name": "Chrome Samurai",
-        "attack": 13,
-        "health": 15,
-        "isBoss": false
-    },
-    {
-        "name": "Techie Tinker",
-        "attack": 7,
-        "health": 18,
-        "isBoss": false
-    },
-    {
-        "name": "Cyber Street Ninja",
-        "attack": 12,
-        "health": 14,
-        "isBoss": false
-    },
-    {
-        "name": "Rogue A.I. Agent",
-        "attack": 9,
-        "health": 17,
-        "isBoss": false
-    },
-    {
-        "name": "Mercenary Hacker",
-        "attack": 10,
-        "health": 16,
-        "isBoss": false
-    },
-    {
-        "name": "Synthwave Rider",
-        "attack": 9,
-        "health": 16,
-        "isBoss": false
-    },
-    {
-        "name": "Corporate Spy",
-        "attack": 15,
-        "health": 12,
-        "isBoss": false
-    },
-    {
-        "name": "Bionic Enforcer",
-        "attack": 16,
-        "health": 13,
-        "isBoss": false
-    },
-    {
-        "name": "Neon Street Mage",
-        "attack": 10,
-        "health": 15,
-        "isBoss": false
-    },
-    {
-        "name": "MegaCorp Overlord",
-        "attack": 16,
-        "health": 500,
-        "isBoss": true
-    }
-]
+{
+    "prompt": "Cyberpunk",
+    "cards": [
+        {
+            "name": "Netrunner Nova",
+            "attack": 12,
+            "health": 16,
+            "isBoss": false
+        },
+        {
+            "name": "Chrome Samurai",
+            "attack": 14,
+            "health": 15,
+            "isBoss": false
+        },
+        {
+            "name": "Techie Tinker",
+            "attack": 8,
+            "health": 18,
+            "isBoss": false
+        },
+        {
+            "name": "Cyber Street Ninja",
+            "attack": 13,
+            "health": 14,
+            "isBoss": false
+        },
+        {
+            "name": "Rogue A.I. Agent",
+            "attack": 11,
+            "health": 17,
+            "isBoss": false
+        },
+        {
+            "name": "Mercenary Hacker",
+            "attack": 10,
+            "health": 16,
+            "isBoss": false
+        },
+        {
+            "name": "Synthwave Rider",
+            "attack": 9,
+            "health": 16,
+            "isBoss": false
+        },
+        {
+            "name": "Corporate Spy",
+            "attack": 15,
+            "health": 12,
+            "isBoss": false
+        },
+        {
+            "name": "Bionic Enforcer",
+            "attack": 16,
+            "health": 13,
+            "isBoss": false
+        },
+        {
+            "name": "Neon Street Mage",
+            "attack": 7,
+            "health": 15,
+            "isBoss": false
+        },
+        {
+            "name": "MegaCorp Overlord",
+            "attack": 16,
+            "health": 500,
+            "isBoss": true
+        }
+    ]
+}
