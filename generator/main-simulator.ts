@@ -9,6 +9,7 @@ import path from 'path';
 import OpenAI from 'openai';
 import sharp from 'sharp';
 import { ThreadMessagesPage } from 'openai/resources/beta/threads/messages/messages';
+import { Theme } from '../web/src/mechanics/Theme';
 
 dotenv.config();
 
@@ -119,7 +120,7 @@ function copyToVault(theme: string) {
   }
 }
 
-function mergeIntoVaultConfig(newPrompt: string, newGameFile: any) {
+function mergeIntoVaultConfig(newGameFile: Theme) {
   const jsonVaultLocation = '../web/public/vault/vault.json';
   
   fs.readFile(jsonVaultLocation, 'utf8', (err, data) => {
@@ -128,10 +129,8 @@ function mergeIntoVaultConfig(newPrompt: string, newGameFile: any) {
           return;
       }
       let jsonVaultObj = JSON.parse(data);
-      jsonVaultObj.unshift({
-        "prompt": newPrompt,
-        "cards": newGameFile
-      });
+      jsonVaultObj.unshift(newGameFile);
+
       fs.writeFile(jsonVaultLocation, JSON.stringify(jsonVaultObj, null, 4), 'utf8', err => {
           if (err) {
               console.error("An error occurred writing the file:", err);
@@ -167,16 +166,20 @@ async function regenSomeImages(theme: string, cards: string[])  {
 
 
 async function main() {
-  const theme = "Beauty and the Beast as ninjas";
-  regenSomeImages(theme, ['Beautiful Belle']);
+  const theme = "Physicists and Mathematicians as Pro Wrestlers";
+
+  cropAndCopy(path.join('./temp', `Stephen Hawking.png`), 'Stephen Hawking');
+  copyToVault(theme);
   return;
+  //regenSomeImages(theme, ["Stephen Hawking"]);
+  //return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
-  let attackLower: number = 7;
-  let attackUpper: number = 16;
-  let healthLower: number = 12;
-  let healthUpper: number = 20;  
+  let attackLower: number = 5;
+  let attackUpper: number = 19;
+  let healthLower: number = 10;
+  let healthUpper: number = 28;  
 
   while(isFun == false) {
     console.log('starting while loop');
@@ -197,12 +200,16 @@ async function main() {
       }
     }
   }
+  const fullFile: Theme = {
+    prompt: theme,
+    cards: gameFile
+  };
 
   deleteExistingCards();
-  fs.writeFileSync('../web/public/assets/game_file.json', JSON.stringify(gameFile));
+  fs.writeFileSync('../web/public/assets/game_file.json', JSON.stringify(fullFile));
   await generateImages(theme, gameFile);
   copyToVault(theme);
-  mergeIntoVaultConfig(theme, gameFile);
+  mergeIntoVaultConfig(fullFile);
 }
 
 main().catch(err => {
