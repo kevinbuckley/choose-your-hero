@@ -1,5 +1,76 @@
 [
     {
+        "prompt": "Physicists and Mathematicians as Pro Wrestlers",
+        "cards": [
+            {
+                "name": "Isaac Newton",
+                "attack": 7,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "Albert Einstein",
+                "attack": 8,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Marie Curie",
+                "attack": 9,
+                "health": 22,
+                "isBoss": false
+            },
+            {
+                "name": "Richard Feynman",
+                "attack": 10,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Ada Lovelace",
+                "attack": 11,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Carl Sagan",
+                "attack": 12,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Niels Bohr",
+                "attack": 13,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Pythagoras",
+                "attack": 14,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Leonhard Euler",
+                "attack": 15,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Archimedes of Syracuse",
+                "attack": 17,
+                "health": 9,
+                "isBoss": false
+            },
+            {
+                "name": "Stephen Hawking",
+                "attack": 21,
+                "health": 500,
+                "isBoss": true
+            }
+        ]
+    },
+    {
         "prompt": "Beauty and the Beast as ninjas",
         "cards": [
             {
