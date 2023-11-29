@@ -15,9 +15,18 @@ dotenv.config();
 class SimResult {
   totalGames: number = 0;
   gamesWon: number = 0;
+  isFun(): boolean {
+    return this.tooHard() == false && this.tooEasy() == false;
+  }
+  tooHard(): boolean {
+    return this.gamesWon / this.totalGames < 0.33;
+  }
+  tooEasy(): boolean {
+    return this.gamesWon / this.totalGames > 0.9;
+  }
 }
 
-async function isFunGameFile(gameFile: any) {
+async function isFunGameFile(gameFile: any): Promise<SimResult> {
   let gameOver: boolean = false;
   let result = new SimResult()
 
@@ -48,8 +57,7 @@ async function isFunGameFile(gameFile: any) {
     }
     console.log(`${result.gamesWon}/${result.totalGames}`);
   }
-
-  return result.gamesWon / result.totalGames > 0.1 && result.gamesWon / result.totalGames < 0.98;
+  return result;
 }
 
 function sleep(ms: number): Promise<void> {
@@ -60,7 +68,7 @@ async function generateImages(theme: string, gameFile: any[]): Promise<void> {
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Magestic, fantasy, zoomed in picture of a ${name} in the theme of ${theme}.  Make it easy to understand.`;
+    const p1 = `Magestic, fantasy, zoomed in picture of a ${name} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
@@ -99,8 +107,6 @@ function deleteExistingCards() {
   }
 }
 
-
-
 function copyToVault(theme: string) {
   // create folder ../web/public/vault/${theme}
   if (!fs.existsSync(path.join('../web/public/vault', theme))) {
@@ -136,13 +142,12 @@ function mergeIntoVaultConfig(newPrompt: string, newGameFile: any) {
   });
 }
 
-async function regenSomeImages()  {
+async function regenSomeImages(theme: string, cards: string[])  {
   const openai = new OpenAI();
-  const theme = "Cyberpunk";
 
-  for (const card of ["MegaCorp Overlord"]) {
+  for (const card of cards) {
     const name = card;
-    const p1 = `Magestic, fantasy, zoomed in picture of a ${name} in the theme of ${theme}.  Make it easy to understand.`;
+    const p1 = `Magestic, fantasy, zoomed in picture of a ${name} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
@@ -162,20 +167,35 @@ async function regenSomeImages()  {
 
 
 async function main() {
-  await regenSomeImages();
+  const theme = "Beauty and the Beast characters, but as ninjas";
+  regenSomeImages(theme, ['Beautiful Belle']);
   return;
-  const theme = "Cyberpunk";
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
+  let attackLower: number = 7;
+  let attackUpper: number = 16;
+  let healthLower: number = 12;
+  let healthUpper: number = 20;  
+
   while(isFun == false) {
     console.log('starting while loop');
-    gameFile = await mechanics.getJsonAsDictionary(theme); 
+    gameFile = await mechanics.getJsonAsDictionary(theme, attackLower, attackUpper, healthLower, healthUpper); 
     console.log('got game file: ' + JSON.stringify(gameFile));
     // simulate game file
-    isFun = await isFunGameFile(gameFile);
+    let simResult = await isFunGameFile(gameFile);
+    isFun = simResult.isFun();
     console.log(isFun);
     console.log(gameFile);
+    if (isFun == false) {
+      const adjuster = simResult.tooEasy() ? -1 : 1;
+      switch(Math.floor(Math.random()*4)) {
+        case 0: attackLower += 1*adjuster; break;
+        case 1: attackUpper += 1*adjuster; break;
+        case 2: healthLower += 1*adjuster; break;
+        case 3: healthUpper += 1*adjuster; break;
+      }
+    }
   }
 
   deleteExistingCards();
