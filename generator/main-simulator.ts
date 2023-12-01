@@ -64,12 +64,12 @@ async function isFunGameFile(gameFile: any): Promise<SimResult> {
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function generateImages(theme: string, gameFile: any[]): Promise<void> {
+async function generateImages(theme: string, themeModifier: string, gameFile: any[]): Promise<void> {
   const openai = new OpenAI();
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Magestic, fantasy, zoomed in picture of a ${name} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
+    const p1 = `Fun, magestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
@@ -141,12 +141,12 @@ function mergeIntoVaultConfig(newGameFile: Theme) {
   });
 }
 
-async function regenSomeImages(theme: string, cards: string[])  {
+async function regenSomeImages(theme: string, themeModifier: string, cards: string[])  {
   const openai = new OpenAI();
 
   for (const card of cards) {
     const name = card;
-    const p1 = `Magestic, fantasy, zoomed in picture of a ${name} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
+    const p1 = `Fun, magestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
@@ -166,18 +166,16 @@ async function regenSomeImages(theme: string, cards: string[])  {
 
 
 async function main() {
-  const theme = "Physicists and Mathematicians as Pro Wrestlers";
+  const theme = "Muppets";
+  const themeModifier = "brown muppet cartoon punk rocker"
 
-  cropAndCopy(path.join('./temp', `Stephen Hawking.png`), 'Stephen Hawking');
-  copyToVault(theme);
+  regenSomeImages(theme, themeModifier, ["Fozzie Bear"]);
   return;
-  //regenSomeImages(theme, ["Stephen Hawking"]);
-  //return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
   let attackLower: number = 5;
-  let attackUpper: number = 19;
+  let attackUpper: number = 18;
   let healthLower: number = 10;
   let healthUpper: number = 28;  
 
@@ -207,7 +205,7 @@ async function main() {
 
   deleteExistingCards();
   fs.writeFileSync('../web/public/assets/game_file.json', JSON.stringify(fullFile));
-  await generateImages(theme, gameFile);
+  await generateImages(theme, themeModifier, gameFile);
   copyToVault(theme);
   mergeIntoVaultConfig(fullFile);
 }
