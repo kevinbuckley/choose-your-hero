@@ -1,6 +1,6 @@
-export const cardWidth: number = 93;
-export const cardHeight: number = 140;
-export const cardMultiplier: number = .75;
+export const cardWidth: number = 96;
+export const cardHeight: number = 150;
+export const cardMultiplier: number = .72;
 
 export function getBaseURL(): string {
     // Check if the URL contains the '/boss-battles/' subdirectory
