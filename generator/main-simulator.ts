@@ -8,7 +8,6 @@ import fs from 'fs';
 import path from 'path';
 import OpenAI from 'openai';
 import sharp from 'sharp';
-import { ThreadMessagesPage } from 'openai/resources/beta/threads/messages/messages';
 import { Theme } from '../web/src/mechanics/Theme';
 
 dotenv.config();
@@ -82,12 +81,12 @@ async function generateImages(theme: string, themeModifier: string, gameFile: an
     const imageSavePath = path.join('./temp', `${name}.png`);
     base64ToPng(response.data[0].b64_json!, imageSavePath);
     await sleep(9000);
-    await cropAndCopy(imageSavePath, name);
+    await cropAndCopy(imageSavePath, name, theme);
   }
 }
-async function cropAndCopy(inputPath: string, name: string) {
+async function cropAndCopy(inputPath: string, name: string, theme: string) {
   
-  const outputPath = path.join('../web/public/assets', `${name}.png`);
+  const outputPath = path.join('../web/public/assets',  theme, `${name}.png`);
   await sharp(inputPath)
     .extract({ width: 708, height: 1024, left: 157, top: 0 }) // Crop dimensions
     .resize(180, 260) // Resize
@@ -100,28 +99,8 @@ function base64ToPng(b64Json: string, outputPath: string) {
   fs.writeFileSync(outputPath, imageBuffer);
 }
 
-function deleteExistingCards() {
-  // delete all the contents under ../web/public/assets
-  const files = fs.readdirSync('../web/public/assets');
-  for (const file of files) {
-    fs.unlinkSync(path.join('../web/public/assets', file));
-  }
-}
-
-function copyToVault(theme: string) {
-  // create folder ../web/public/vault/${theme}
-  if (!fs.existsSync(path.join('../web/public/vault', theme))) {
-    fs.mkdirSync(path.join('../web/public/vault', theme));
-  }
-  // copy all files under ../web/public/assets to ../web/public/vault/${theme}
-  const files = fs.readdirSync('../web/public/assets');
-  for (const file of files) {
-    fs.copyFileSync(path.join('../web/public/assets', file), path.join('../web/public/vault', theme, file));
-  }
-}
-
 function mergeIntoVaultConfig(newGameFile: Theme) {
-  const jsonVaultLocation = '../web/public/vault/vault.json';
+  const jsonVaultLocation = '../web/public/assets/vault.json';
   
   fs.readFile(jsonVaultLocation, 'utf8', (err, data) => {
       if (err) {
@@ -159,17 +138,16 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
     const imageSavePath = path.join('./temp', `${name}.png`);
     base64ToPng(response.data[0].b64_json!, imageSavePath);
     await sleep(9000);
-    await cropAndCopy(imageSavePath, name);
+    await cropAndCopy(imageSavePath, name, theme);
   }
-  copyToVault(theme);
 }
 
 
 async function main() {
-  const theme = "Muppets";
-  const themeModifier = "brown muppet cartoon punk rocker"
+  const theme = "My Little Ponies";
+  const themeModifier = "Heavy Power Lifters"
 
-  regenSomeImages(theme, themeModifier, ["Fozzie Bear"]);
+  regenSomeImages(theme, themeModifier, ["Nightmare Moon", "Pinkie Pie"]);
   return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
@@ -203,10 +181,11 @@ async function main() {
     cards: gameFile
   };
 
-  deleteExistingCards();
-  fs.writeFileSync('../web/public/assets/game_file.json', JSON.stringify(fullFile));
+  if (!fs.existsSync(path.join('../web/public/assets', theme))) {
+    fs.mkdirSync(path.join('../web/public/assets', theme));
+  }
+  fs.writeFileSync(`../web/public/assets/${theme}/game_file.json`, JSON.stringify(fullFile));
   await generateImages(theme, themeModifier, gameFile);
-  copyToVault(theme);
   mergeIntoVaultConfig(fullFile);
 }
 
