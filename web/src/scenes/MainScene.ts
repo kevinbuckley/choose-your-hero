@@ -27,7 +27,7 @@ export default class MainScene extends Phaser.Scene {
   private chooseHero!: Phaser.GameObjects.Container;
   private titleScreen!: Phaser.GameObjects.Container;
   private endGameStatusText!: Phaser.GameObjects.Text;
-  private widthWithPadding: number = cardWidth + 5;
+  private widthWithPadding: number = cardWidth + 15;
   private widthWithPaddingPlayed: number = (cardWidth * cardMultiplier) + 5;
   private turboMultipler: number = 1; // 1 in prod
     
