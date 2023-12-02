@@ -1,6 +1,0 @@
-Leonardo-Ai-SDK
-python-dotenv
-asyncio
-openai
-matplotlib 
-Pillow
