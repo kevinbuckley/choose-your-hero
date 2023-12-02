@@ -55,7 +55,7 @@ export default class PlayerCard extends Phaser.GameObjects.Container {
     this.healthText.setOrigin(0.5);
   
     // Attack text on the bottom right
-    this.attackText = scene.add.text(this.x - cardWidth / 2  + 15, this.y + cardHeight / 2 - 12 ,`${card.attack.toString()}\u2694`, attackStyle);
+    this.attackText = scene.add.text(this.x - cardWidth / 2  + 13, this.y + cardHeight / 2 - 12 ,`${card.attack.toString()}\u2694`, attackStyle);
     this.attackText.setOrigin(0.5);
   
     // Add the text on top of the circles
