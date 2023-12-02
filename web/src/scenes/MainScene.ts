@@ -49,17 +49,18 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('chooseyourhero', `${baseURL}chooseyourhero.png`);
 
     let request = new XMLHttpRequest();
-    request.open('GET', `${baseURL}assets/game_file.json`, false);  // `false` makes the request synchronous
+    request.open('GET', `${baseURL}assets/vault.json`, false);  // `false` makes the request synchronous
     request.send(null);
 
     if (request.status === 200) {
-      this.theme = JSON.parse(request.responseText) as Theme;
+      const themes = JSON.parse(request.responseText) as Theme[];
+      this.theme = themes[0];
       const cards = this.theme.cards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.attack, c.health));
       const boss = this.theme.cards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.attack, c.health )).pop();
-      this.load.image(boss!.name, `${baseURL}assets/${boss!.name}.png`);
+      this.load.image(boss!.name, `${baseURL}assets/${this.theme.prompt}/${boss!.name}.png`);
 
       for (const card of cards) {
-        this.load.image(card.name, `${baseURL}assets/${card.name}.png`);
+        this.load.image(card.name, `${baseURL}assets/${this.theme.prompt}/${card.name}.png`);
       }
       this.state.create(cards, boss!);
     }
