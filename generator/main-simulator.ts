@@ -144,10 +144,10 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
 
 
 async function main() {
-  const theme = "My Little Ponies";
-  const themeModifier = "Heavy Power Lifters"
+  const theme = "Fairtale Villains";
+  const themeModifier = "Pop Stars"
 
-  regenSomeImages(theme, themeModifier, ["Nightmare Moon", "Pinkie Pie"]);
+  regenSomeImages(theme, themeModifier, ["Ursula"]);
   return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
