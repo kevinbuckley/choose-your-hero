@@ -1,5 +1,76 @@
 [
     {
+        "prompt": "Pop Star Fairtale Villains",
+        "cards": [
+            {
+                "name": "Wicked Witch",
+                "attack": 6,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Evil Queen",
+                "attack": 7,
+                "health": 22,
+                "isBoss": false
+            },
+            {
+                "name": "Big Bad Wolf",
+                "attack": 16,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Maleficent",
+                "attack": 5,
+                "health": 28,
+                "isBoss": false
+            },
+            {
+                "name": "Captain Hook",
+                "attack": 14,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Ursula",
+                "attack": 8,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Jafar",
+                "attack": 17,
+                "health": 11,
+                "isBoss": false
+            },
+            {
+                "name": "Gaston",
+                "attack": 15,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Scar",
+                "attack": 18,
+                "health": 9,
+                "isBoss": false
+            },
+            {
+                "name": "Hades",
+                "attack": 9,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Dragon Queen",
+                "attack": 22,
+                "health": 500,
+                "isBoss": true
+            }
+        ]
+    },
+    {
         "prompt": "Swol My Little Ponies",
         "cards": [
             {
