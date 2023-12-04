@@ -2,8 +2,7 @@
 <h1 align="center">
 <img src="https://raw.githubusercontent.com/kevinbuckley/choose-your-hero/main/web/public/chooseyourhero.png" width="300" />
 <br>CHOOSE-YOUR-HERO</h1>
-<h3>◦ Choose-Your-Hero: Code, Collaborate, Conquer!</h3>
-<h3>◦ Developed with the software and tools below.</h3>
+<h3>Developed with the software and tools below.</h3>
 
 <p align="center">
 <img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=flat-square&logo=HTML5&logoColor=white" alt="HTML5" />
