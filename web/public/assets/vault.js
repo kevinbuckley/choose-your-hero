@@ -1,8 +1,21 @@
+function getActiveThemes(themes) {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return themes.filter(function(theme) {
+        if (theme.activeDate === null || theme.activeDate === undefined) {
+            return true;
+        }
+        return new Date(theme.activeDate).getTime() >= today.getTime();
+    });
+}
+
 window.onload = () => {
     const galleryContainer = document.getElementById('imageGallery');
     fetch('assets/vault.json')
         .then(response => response.json())
         .then(game_files => {
+            game_files = getActiveThemes(game_files);
             game_files.forEach(game_file => {
                 const header = document.createElement('h2');
                 const prompt = game_file["prompt"];

@@ -42,6 +42,19 @@ export default class MainScene extends Phaser.Scene {
     this.handleCardAttacked = this.handleCardAttacked.bind(this);
   }
 
+  getActiveTheme(themes: Theme[]): Theme {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const activeThemes = themes.filter(theme => {
+        if (theme.activeDate === null || theme.activeDate === undefined) {
+            return true;
+        }
+        return theme.activeDate!.getTime() >= today.getTime();
+    });
+    return activeThemes[0];
+}
+
   preload() {
     this.state = new GameState(this.handleCardAttack, this.handleCardAttacked, this.handleCardPlayed);
     const baseURL = getBaseURL();
@@ -54,7 +67,7 @@ export default class MainScene extends Phaser.Scene {
 
     if (request.status === 200) {
       const themes = JSON.parse(request.responseText) as Theme[];
-      this.theme = themes[0];
+      this.theme = this.getActiveTheme(themes);
       const cards = this.theme.cards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.attack, c.health));
       const boss = this.theme.cards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.attack, c.health )).pop();
       this.load.image(boss!.name, `${baseURL}assets/${this.theme.prompt}/${boss!.name}.png`);

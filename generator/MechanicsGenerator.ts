@@ -12,6 +12,7 @@ class MechanicsGenerator {
   };
 
   public async getJsonAsDictionary(prompt: string,
+    bossHealth: number,
     attackLower: number,
     attackUpper: number,
     healthLower: number,
@@ -33,7 +34,7 @@ class MechanicsGenerator {
           The health of a card should be between ${healthLower} and ${healthUpper} health.  
           The attack should be between ${attackLower} and ${attackUpper} attack.  
           If a card has high health, then they should have relatively low attack and visa versa.
-          The boss's health should be 500. The boss's attack should be ${Math.floor(healthUpper*.8)}.
+          The boss's health should be ${bossHealth}. The boss's attack should be ${Math.floor(healthUpper*.8)}.
           Please remember to ONLY return the JSON, no other text or content, only JSON.  
           
           card template: ${JSON.stringify(this.cardTemplate)}`,

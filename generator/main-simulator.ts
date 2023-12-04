@@ -5,6 +5,7 @@ import { Boss } from '../web/src/mechanics/Boss';
 import { GameState } from '../web/src/mechanics/GameState';
 import { EVENT_GAME_OVER } from '../web/src/mechanics/GameEvents';
 import fs from 'fs';
+import { readFile } from 'fs/promises';
 import path from 'path';
 import OpenAI from 'openai';
 import sharp from 'sharp';
@@ -77,7 +78,7 @@ async function generateImages(theme: string, themeModifier: string, gameFile: an
       size: "1024x1024",
       response_format: 'b64_json'
     });
-    console.log(response.data[0].revised_prompt);
+    console.log(`response data: ${response.data[0]}`);
     const imageSavePath = path.join('./temp', `${name}.png`);
     base64ToPng(response.data[0].b64_json!, imageSavePath);
     await sleep(9000);
@@ -134,7 +135,7 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
       size: "1024x1024",
       response_format: 'b64_json'
     });
-    console.log(response.data[0].revised_prompt);
+    console.log(response.data[0]);
     const imageSavePath = path.join('./temp', `${name}.png`);
     base64ToPng(response.data[0].b64_json!, imageSavePath);
     await sleep(9000);
@@ -142,24 +143,46 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
   }
 }
 
+function getBossHealth() {
+  var min = 200;
+  var max = 900;
+  var random = Math.floor(Math.random() * ((max - min) / 50 + 1) + min / 50) * 50;
+  return random;
+}
+
+async function getVaultFile(): Promise<Theme[]> {
+  const jsonVaultLocation = '../web/public/assets/vault.json';
+  // read file  and assign to a variable named data
+
+  const data = await readFile(jsonVaultLocation, 'utf8' );
+  let jsonVaultObj = JSON.parse(data) as Theme[];
+  return jsonVaultObj;
+}
+
+function getMinimumDate(vault: Theme[]) {
+    
+  return vault[0].activeDate!;
+}
+
 
 async function main() {
-  const theme = "Fairtale Villains";
-  const themeModifier = "Pop Stars"
+  const theme = "Large Birds";
+  const themeModifier = "Drunkards"
 
-  regenSomeImages(theme, themeModifier, ["Ursula"]);
-  return;
+  //regenSomeImages(theme, themeModifier, ["Maleficent"]);
+  //return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
-  let attackLower: number = 5;
-  let attackUpper: number = 18;
-  let healthLower: number = 10;
-  let healthUpper: number = 28;  
+  const bossHealth = getBossHealth();
+  let attackLower: number = Math.floor(5/500*bossHealth);      // was 5 at 500 boss health
+  let attackUpper: number = Math.floor(18/500*bossHealth);     // was 18 at 500 boss health
+  let healthLower: number = Math.floor(10/500*bossHealth);     // was 10 at 500 boss health
+  let healthUpper: number = Math.floor(28/500*bossHealth);     // was 28 at 500 boss health
 
   while(isFun == false) {
     console.log('starting while loop');
-    gameFile = await mechanics.getJsonAsDictionary(theme, attackLower, attackUpper, healthLower, healthUpper); 
+    gameFile = await mechanics.getJsonAsDictionary(theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper); 
     console.log('got game file: ' + JSON.stringify(gameFile));
     // simulate game file
     let simResult = await isFunGameFile(gameFile);
@@ -176,9 +199,11 @@ async function main() {
       }
     }
   }
+  const vaultFile: Theme[] = await getVaultFile();
   const fullFile: Theme = {
     prompt: theme,
-    cards: gameFile
+    cards: gameFile,
+    activeDate: undefined
   };
 
   if (!fs.existsSync(path.join('../web/public/assets', theme))) {
@@ -192,3 +217,15 @@ async function main() {
 main().catch(err => {
   console.error(err);
 });
+
+
+/*
+
+A detailed and captivating close-up portrait of an enchanting and mysterious 
+pop star adorned in a dark fairytale villain theme. The figure should be female, 
+with distinct, horn-shaped headgear, along with a dramatic, high-collared cloak, 
+both signature elements of fantasy villains. Ensure the entire focus is on this 
+character, and omit any textual elements from the image. The scene should be delightful yet majestic, 
+creating an intriguing contrast that is simple to comprehend.
+
+*/

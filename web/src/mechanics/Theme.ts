@@ -1,6 +1,7 @@
 import { ICard } from "./Card";
 
 export interface Theme {
-  prompt: string
+  prompt: string;
   cards: ICard[];
+  activeDate: Date | undefined;
 }
