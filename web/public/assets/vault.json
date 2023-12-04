@@ -1,5 +1,76 @@
 [
     {
+        "prompt": "1980s Rock Stars",
+        "cards": [
+            {
+                "name": "Slash",
+                "attack": 7,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Mercury",
+                "attack": 18,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Bonham",
+                "attack": 6,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "Flea",
+                "attack": 5,
+                "health": 28,
+                "isBoss": false
+            },
+            {
+                "name": "Numan",
+                "attack": 16,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Bowie",
+                "attack": 15,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Hetfield",
+                "attack": 8,
+                "health": 22,
+                "isBoss": false
+            },
+            {
+                "name": "Joey",
+                "attack": 17,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Smith",
+                "attack": 9,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Prince",
+                "attack": 14,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Ozzy",
+                "attack": 22,
+                "health": 500,
+                "isBoss": true
+            }
+        ]
+    },
+    {
         "prompt": "Large Birds Football Players",
         "cards": [
             {

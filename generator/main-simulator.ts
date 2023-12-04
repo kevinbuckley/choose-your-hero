@@ -144,11 +144,11 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
 
 
 async function main() {
-  const theme = "Large Birds";
-  const themeModifier = "Football Players"
+  const theme = "1980s Rock Stars";
+  const themeModifier = "Aquatic Mammals"
 
-  //regenSomeImages(theme, themeModifier, ["Ursula"]);
-  //return;
+  regenSomeImages(theme, themeModifier, ["Boss of Rock Ozzy"]);
+  return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
