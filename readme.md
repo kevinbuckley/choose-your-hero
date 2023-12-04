@@ -19,24 +19,26 @@
 
 ## 📖 Table of Contents
 
-- [📖 Table of Contents](#-table-of-contents)
-- [📍 Overview](#-overview)
-- [📂 Repository Structure](#-repository-structure)
-- [🚀 Getting Started](#-getting-started)
-  - [🔧 Installation](#-installation)
-  - [🤖 Running choose-your-hero](#-running-choose-your-hero)
+- 📖 [Table of Contents](#-table-of-contents)
+- 📍 [Overview](#-overview)
+- 📂 [Repository Structure](#-repository-structure)
+- 🚀 [Getting Started](#-getting-started)
+  - 🔧 [Installation](#-installation)
+  - 🤖 [Running choose-your-hero](#-running-choose-your-hero)
 
 ---
 
 ## 📍 Overview
 
-Daily, simple card game for everyone. The game changes daily, but in health, attack power, and the entire Theme!
+Daily, simple card game for everyone. The entire game changes daily! Not only the heroes, but their mechanics (health and attack power).
 
-Check back every day to choose your hero!
+Check back every day to choose your hero!   Please add an [Issue](https://github.com/kevinbuckley/choose-your-hero/issues) with new theme ideas!
 
 ---
 
-## 📂 Repository Structure
+## Generator
+
+### 📂 Repository Structure
 
 ```sh
 └── choose-your-hero/
@@ -44,16 +46,19 @@ Check back every day to choose your hero!
     │   ├── main-simulator.ts
 ```
 
-Generator: Used to generate the new game file and assets daily. Here's the process:
+Used to generate the new game file and assets daily. Here's the process:
 
 Step 1: Given a theme, use OpenAI to generate the game_file.json, including all heroes, health, and attack power
 
-Step 2: Then run a simulation of the game 100 times to determine if it's a fair and fun game for people to play. If not, go back to step 1.
+Step 2: Run a simulation of the game 100 times to determine if it's a fair and fun game for people to play. If not, go back to step 1.
 
 Step 3: Use OpenAI to generate the card images for each hero.
 
 ---
 
+## Web
+
+### 📂 Repository Structure
 ```sh
 └── choose-your-hero/
     └── web/
