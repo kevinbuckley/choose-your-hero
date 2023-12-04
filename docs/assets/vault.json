@@ -1,5 +1,76 @@
 [
     {
+        "prompt": "Large Birds Football Players",
+        "cards": [
+            {
+                "name": "Majestic Eagle",
+                "attack": 6,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "Thunderous Condor",
+                "attack": 7,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Stealthy Owl",
+                "attack": 18,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Fierce Falcon",
+                "attack": 16,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Regal Albatross",
+                "attack": 8,
+                "health": 22,
+                "isBoss": false
+            },
+            {
+                "name": "Swift Harrier",
+                "attack": 15,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Imposing Cassowary",
+                "attack": 9,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Elegant Crane",
+                "attack": 10,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Powerful Emu",
+                "attack": 12,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Dominant Ostrich",
+                "attack": 14,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Terrifying Roc",
+                "attack": 22,
+                "health": 500,
+                "isBoss": true
+            }
+        ]
+    },
+    {
         "prompt": "Pop Star Fairtale Villains",
         "cards": [
             {
