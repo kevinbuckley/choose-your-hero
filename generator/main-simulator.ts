@@ -144,11 +144,11 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
 
 
 async function main() {
-  const theme = "Fairtale Villains";
-  const themeModifier = "Pop Stars"
+  const theme = "Large Birds";
+  const themeModifier = "Football Players"
 
-  regenSomeImages(theme, themeModifier, ["Ursula"]);
-  return;
+  //regenSomeImages(theme, themeModifier, ["Ursula"]);
+  //return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
