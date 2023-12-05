@@ -42,6 +42,19 @@ export default class MainScene extends Phaser.Scene {
     this.handleCardAttacked = this.handleCardAttacked.bind(this);
   }
 
+  chooseTheme(themes: Theme[]): Theme {
+    // get url query string theme value
+    const searchParams = new URLSearchParams(window.location.search);
+    if(searchParams.has('theme')) {
+      const requestedTheme = searchParams.get('theme');
+      const foundTheme = themes.find((t: Theme) => t.prompt === requestedTheme);
+      if(foundTheme != null) {
+        return foundTheme;
+      }    
+    }
+    return themes[0];
+  }
+
   preload() {
     this.state = new GameState(this.handleCardAttack, this.handleCardAttacked, this.handleCardPlayed);
     const baseURL = getBaseURL();
@@ -54,7 +67,7 @@ export default class MainScene extends Phaser.Scene {
 
     if (request.status === 200) {
       const themes = JSON.parse(request.responseText) as Theme[];
-      this.theme = themes[0];
+      this.theme = this.chooseTheme(themes);
       const cards = this.theme.cards.filter((c:ICard) => !c.isBoss).map((c: ICard) => new Card(c.name, c.attack, c.health));
       const boss = this.theme.cards.filter((c:ICard) => c.isBoss).map((c: ICard) => new Boss(c.name, c.attack, c.health )).pop();
       this.load.image(boss!.name, `${baseURL}assets/${this.theme.prompt}/${boss!.name}.png`);
@@ -82,6 +95,12 @@ export default class MainScene extends Phaser.Scene {
     this.createTitleScreen();
     this.createChooseHero();
     this.createDeck();
+
+    const searchParams = new URLSearchParams(window.location.search);
+    if(searchParams.has('theme')) {
+      this.titleScreen.setVisible(false);
+      this.startGame();
+    }
   }
 
   createDeck() {

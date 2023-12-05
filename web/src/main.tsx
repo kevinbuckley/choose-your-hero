@@ -19,6 +19,7 @@ const config: Phaser.Types.Core.GameConfig = {
     width: '100%', // Take up 100% of the parent container's width
     height: '100%' // Take up 100% of the parent container's height
   },
+  url: window.location.href,
 };
 
 new Phaser.Game(config);
