@@ -18,6 +18,19 @@ img {
     background-color: #f04e23; /* A noticeable color */
     z-index: 2;
 }
+
+.play {
+    padding: 3px 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    background-color: #f04e23;
+    margin-left: 10px;
+    font-size: .75em;
+}
 /* Smaller screens, like mobile devices */
 @media (max-width: 1100px) {
     .back {

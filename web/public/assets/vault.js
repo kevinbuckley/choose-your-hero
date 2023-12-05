@@ -8,6 +8,12 @@ window.onload = () => {
                 const prompt = game_file["prompt"];
                 header.innerText = game_file["prompt"];
                 galleryContainer.appendChild(header);
+                const playLink = document.createElement('a');
+                playLink.setAttribute('href', "/?theme=" + prompt);
+                playLink.classList.add("play");
+                playLink.innerText ="play this theme";
+                header.appendChild(playLink);
+
                 game_file["cards"].forEach(card => {
                     const divContainer = document.createElement('div');
                     divContainer.classList.add('image-container');
