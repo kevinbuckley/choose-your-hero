@@ -142,24 +142,32 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
   }
 }
 
+function getBossHealth() {
+  var min = 200;
+  var max = 900;
+  var random = Math.floor(Math.random() * ((max - min) / 50 + 1) + min / 50) * 50;
+  console.log(`boss health: ${random}`)
+  return random;
+}
 
 async function main() {
-  const theme = "1980s Rock Stars";
-  const themeModifier = "Aquatic Mammals"
+  const theme = "Famous Classical Composer";
+  const themeModifier = "Cartoon Thundercat"
 
-  regenSomeImages(theme, themeModifier, ["Boss of Rock Ozzy"]);
+  regenSomeImages(theme, themeModifier, ["Pyotr Ilyich Tchaikovsky"]);
   return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
-  let attackLower: number = 5;
-  let attackUpper: number = 18;
-  let healthLower: number = 10;
-  let healthUpper: number = 28;  
+  const bossHealth: number = getBossHealth();
+  let attackLower: number = Math.floor(5 * (bossHealth/500));
+  let attackUpper: number = Math.floor(18 * (bossHealth/500));
+  let healthLower: number = Math.floor(10 * (bossHealth/500));
+  let healthUpper: number = Math.floor(28 * (bossHealth/500));
 
   while(isFun == false) {
     console.log('starting while loop');
-    gameFile = await mechanics.getJsonAsDictionary(theme, attackLower, attackUpper, healthLower, healthUpper); 
+    gameFile = await mechanics.getJsonAsDictionary(theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper); 
     console.log('got game file: ' + JSON.stringify(gameFile));
     // simulate game file
     let simResult = await isFunGameFile(gameFile);
