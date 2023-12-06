@@ -2,7 +2,8 @@
 <h1 align="center">
 <img src="https://raw.githubusercontent.com/kevinbuckley/choose-your-hero/main/web/public/chooseyourhero.png" width="300" />
 <br>CHOOSE-YOUR-HERO</h1>
-<h3>Developed with the software and tools below.</h3>
+<h3>All heroes, the boss, attack powers, and heatlh recreated daily using AI!</h3>
+<h3>Check back every day to choose your hero!</h3>
 
 <p align="center">
 <img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=flat-square&logo=HTML5&logoColor=white" alt="HTML5" />
@@ -31,7 +32,7 @@
 
 Daily, simple card game for everyone. The entire game changes daily! Not only the heroes, but their mechanics (health and attack power).
 
-Check back every day to choose your hero!   Please add an [Issue](https://github.com/kevinbuckley/choose-your-hero/issues) with new theme ideas!
+Check back every day to choose your hero! Please add an [Issue](https://github.com/kevinbuckley/choose-your-hero/issues) with new theme ideas!
 
 ---
 
@@ -58,6 +59,7 @@ Step 3: Use OpenAI to generate the card images for each hero.
 ## Web
 
 ### 📂 Repository Structure
+
 ```sh
 └── choose-your-hero/
     └── web/

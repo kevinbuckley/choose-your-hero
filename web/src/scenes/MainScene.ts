@@ -171,12 +171,12 @@ export default class MainScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x000000, 0.8); // 40% translucent black
     const bgWidth = 350; // Adjust as needed
-    const bgHeight = 500; // Adjust as needed
+    const bgHeight = 600; // Adjust as needed
     bg.fillRect(-bgWidth / 2, -bgHeight / 2-45, bgWidth, bgHeight); // Position relative to container
-    const sprite = this.add.sprite(0, -150, 'chooseyourhero').setOrigin(0.5);
+    const sprite = this.add.sprite(0, -190, 'chooseyourhero').setOrigin(0.5);
     sprite.setScale(.4, .4);
 
-    const playGameText = this.add.text(0, 50, 'Play Game', {
+    const playGameText = this.add.text(0, 15, 'Play Game', {
       fontSize: '20px',
       resolution: 2,
       stroke: '#000000',
@@ -186,7 +186,7 @@ export default class MainScene extends Phaser.Scene {
     }).setOrigin(0.5)
     .setInteractive({ useHandCursor: true });
 
-    const openVault = this.add.text(0, 100, 'Open Vault', {
+    const openVault = this.add.text(0, 65, 'Open Vault', {
       fontSize: '20px',
       resolution: 2,
       stroke: '#000000',
@@ -200,7 +200,21 @@ export default class MainScene extends Phaser.Scene {
       });
 
 
-    this.endGameStatusText = this.add.text(0, 150, '', {
+    const learnMore = this.add.text(0, 115, 'Learn More', {
+      fontSize: '20px',
+      resolution: 2,
+      stroke: '#000000',
+      strokeThickness: 5,
+      align: 'center',
+      color: 'yellow'
+    }).setOrigin(0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        window.location.href = 'https://github.com/kevinbuckley/choose-your-hero';
+      });
+
+
+    this.endGameStatusText = this.add.text(0, 165, '', {
       fontSize: '16px',
       resolution: 2,
       stroke: '#000000',
@@ -222,6 +236,7 @@ export default class MainScene extends Phaser.Scene {
     this.titleScreen.add(sprite);
     this.titleScreen.add(this.endGameStatusText);
     this.titleScreen.add(openVault);
+    this.titleScreen.add(learnMore);
   }
 
   async handleCardAttack(card: Card): Promise<void> {
@@ -297,7 +312,7 @@ export default class MainScene extends Phaser.Scene {
       txt = `The boss escaped with ${this.boss!.boss.health} health!`;
     }
    
-    this.endGameStatusText.setText(`${txt}\n\nClick Play Game to play again`);
+    this.endGameStatusText.setText(`${txt}\nClick Play Game to play again`);
 
     this.titleScreen.setVisible(true);
     this.boss?.setVisible(false);
