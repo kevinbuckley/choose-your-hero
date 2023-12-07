@@ -151,11 +151,10 @@ function getBossHealth() {
 }
 
 async function main() {
-  const theme = "Famous Classical Composer";
-  const themeModifier = "Cartoon Thundercat"
+  const theme = "Chrismas Ziggy Stardust";
+  const themeModifier = "Ziggy Stardust"
 
-  regenSomeImages(theme, themeModifier, ["Pyotr Ilyich Tchaikovsky"]);
-  return;
+  regenSomeImages(theme, themeModifier, ["Santa"]); return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
