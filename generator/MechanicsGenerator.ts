@@ -1,16 +1,15 @@
 import OpenAI from 'openai';
 
-
+class CardTemplate {
+    name: string = "";
+    attack: number = 0;
+    health: number = 0;
+    bio: string = "";
+    isBoss: boolean = false;
+}
 class MechanicsGenerator {
   private OPEN_AI_KEY: string | undefined = process.env.OPEN_AI_KEY;
-
-  private cardTemplate = {
-    name: 'MyCard',
-    attack: 5,
-    health: 10,
-    isBoss: false,
-  };
-
+ 
   public async getJsonAsDictionary(prompt: string,
     bossHealth: number,
     attackLower: number,
@@ -37,7 +36,7 @@ class MechanicsGenerator {
           The boss's health should be ${bossHealth}. The boss's attack should be ${Math.floor(healthUpper*.8)}.
           Please remember to ONLY return the JSON, no other text or content, only JSON.  
           
-          card template: ${JSON.stringify(this.cardTemplate)}`,
+          card template: ${JSON.stringify(new CardTemplate())}`,
         },
         {
           role: 'user',
@@ -60,6 +59,19 @@ class MechanicsGenerator {
     return JSON.parse(parsedJson);
     
   }
+  
+  public async getNewCards(cards: CardTemplate[], attackLower: number, attackUpper: number, healthLower: number, healthUpper: number, bossAttackMultiplier: number): Promise<any> {
+    for(let i = 0; i < cards.length; i++) {
+      if(cards[i].isBoss) {
+        cards[i].attack = Math.floor((Math.random() * (attackUpper - attackLower) + attackLower) * bossAttackMultiplier);
+      }else{
+        cards[i].attack = Math.floor(Math.random() * (attackUpper - attackLower) + attackLower);
+        cards[i].health = Math.floor(Math.random() * (healthUpper - healthLower) + healthLower);
+      }
+    }
+    return cards;
+  }
 }
+
 
 export default MechanicsGenerator;
