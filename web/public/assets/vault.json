@@ -40,7 +40,7 @@
             },
             {
                 "name": "Christmas Angel",
-                "attack": 9,
+                "attack": 10,
                 "health": 9,
                 "isBoss": false
             },
@@ -53,12 +53,12 @@
             {
                 "name": "Santa",
                 "attack": 11,
-                "health": 7,
+                "health": 16,
                 "isBoss": false
             },
             {
                 "name": "Krampus",
-                "attack": 12,
+                "attack": 13,
                 "health": 7,
                 "isBoss": false
             },
