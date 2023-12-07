@@ -2,7 +2,7 @@
 <h1 align="center">
 <img src="https://raw.githubusercontent.com/kevinbuckley/choose-your-hero/main/web/public/chooseyourhero.png" width="300" />
 <br>CHOOSE-YOUR-HERO</h1>
-<h3>All heroes, the boss, attack powers, and heatlh recreated daily using AI!</h3>
+<h3>All heroes, the boss, attack powers, and health recreated daily using AI!</h3>
 <h3>Check back every day to choose your hero!</h3>
 
 <p align="center">
