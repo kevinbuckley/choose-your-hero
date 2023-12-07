@@ -136,8 +136,8 @@ export default class MainScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x000000, 0.5); 
     const bgWidth = 500; // Adjust as needed
-    const bgHeight = 200; // Adjust as needed
-    bg.fillRect(-bgWidth / 2, -bgHeight / 2-45, bgWidth, bgHeight); // Position relative to container
+    const bgHeight = 180; // Adjust as needed
+    bg.fillRect(-bgWidth / 2, -bgHeight / 2-65, bgWidth, bgHeight); // Position relative to container
     
     this.roundsText = this.add.text(0, -50, '', {
       fontSize: '24px',
@@ -148,7 +148,7 @@ export default class MainScene extends Phaser.Scene {
       color: '#ffffff'
     }).setOrigin(0.5);
 
-    const themeText = this.add.text(0, -130, `Josh's Theme: ${this.theme.prompt}`, {
+    const themeText = this.add.text(0, -125, `Josh's Theme: ${this.theme.prompt}`, {
       fontSize: '14px',
       resolution: 2,
       stroke: '#000000',
@@ -377,7 +377,7 @@ export default class MainScene extends Phaser.Scene {
       const playedCard = hand[i];
       playedCard.setVisible(true);  
       playedCard.x = startX + i * (this.widthWithPadding);
-      playedCard.y = 575;
+      playedCard.y = 550;
     }
   }
 }
