@@ -1,1 +1,71 @@
-{"prompt":"Chrismas Ziggy Stardust","cards":[{"name":"Santa's Helper","attack":3,"health":18,"isBoss":false},{"name":"Frosty the Snowman","attack":4,"health":17,"isBoss":false},{"name":"Rudolph the Reindeer","attack":5,"health":15,"isBoss":false},{"name":"Gingerbread Warrior","attack":6,"health":14,"isBoss":false},{"name":"Mrs. Claus","attack":7,"health":12,"isBoss":false},{"name":"Jolly Elf Archer","attack":8,"health":11,"isBoss":false},{"name":"Christmas Angel","attack":9,"health":9,"isBoss":false},{"name":"Nutcracker Soldier","attack":10,"health":8,"isBoss":false},{"name":"Santa","attack":11,"health":7,"isBoss":false},{"name":"Krampus","attack":12,"health":7,"isBoss":false},{"name":"Grinch the Christmas Boss","attack":15,"health":350,"isBoss":true}]}
+{
+    "prompt": "Chrismas Ziggy Stardust",
+    "cards": [
+        {
+            "name": "Santa's Helper",
+            "attack": 3,
+            "health": 18,
+            "isBoss": false
+        },
+        {
+            "name": "Frosty the Snowman",
+            "attack": 4,
+            "health": 17,
+            "isBoss": false
+        },
+        {
+            "name": "Rudolph the Reindeer",
+            "attack": 5,
+            "health": 15,
+            "isBoss": false
+        },
+        {
+            "name": "Gingerbread Warrior",
+            "attack": 6,
+            "health": 14,
+            "isBoss": false
+        },
+        {
+            "name": "Mrs. Claus",
+            "attack": 7,
+            "health": 12,
+            "isBoss": false
+        },
+        {
+            "name": "Jolly Elf Archer",
+            "attack": 8,
+            "health": 11,
+            "isBoss": false
+        },
+        {
+            "name": "Christmas Angel",
+            "attack": 10,
+            "health": 9,
+            "isBoss": false
+        },
+        {
+            "name": "Nutcracker Soldier",
+            "attack": 10,
+            "health": 8,
+            "isBoss": false
+        },
+        {
+            "name": "Santa",
+            "attack": 11,
+            "health": 16,
+            "isBoss": false
+        },
+        {
+            "name": "Krampus",
+            "attack": 13,
+            "health": 7,
+            "isBoss": false
+        },
+        {
+            "name": "Grinch the Christmas Boss",
+            "attack": 15,
+            "health": 350,
+            "isBoss": true
+        }
+    ]
+}
