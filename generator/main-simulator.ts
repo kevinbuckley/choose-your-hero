@@ -5,12 +5,14 @@ import { Boss } from '../web/src/mechanics/Boss';
 import { GameState } from '../web/src/mechanics/GameState';
 import { EVENT_GAME_OVER } from '../web/src/mechanics/GameEvents';
 import fs from 'fs';
+import { readFile } from 'fs/promises';
 import path from 'path';
 import OpenAI from 'openai';
 import sharp from 'sharp';
 import { Theme } from '../web/src/mechanics/Theme';
 
 dotenv.config();
+const jsonVaultLocation = '../web/public/assets/vault.json';
 
 class SimResult {
   totalGames: number = 0;
@@ -25,6 +27,8 @@ class SimResult {
     return this.gamesWon / this.totalGames > 0.9;
   }
 }
+
+  
 
 async function isFunGameFile(gameFile: any): Promise<SimResult> {
   let gameOver: boolean = false;
@@ -99,25 +103,38 @@ function base64ToPng(b64Json: string, outputPath: string) {
   fs.writeFileSync(outputPath, imageBuffer);
 }
 
-function mergeIntoVaultConfig(newGameFile: Theme) {
-  const jsonVaultLocation = '../web/public/assets/vault.json';
+async function getNextActiveDate(): Promise<Date> {
+  const data = await readFile(jsonVaultLocation, 'utf8');
+  let themes  = JSON.parse(data) as Theme[];
+  // Get today's date
+  let latestTheme = new Date();
+
+  for(let theme of themes) {
+    if(theme.activeDate! > latestTheme)
+    {
+      latestTheme = theme.activeDate!;
+    }
+  }
+  latestTheme.setDate(latestTheme.getDate() + 1);
+  latestTheme.setHours(0, 0, 0, 0);
+  return latestTheme;
+}
+
+async function mergeIntoVaultConfig(newGameFile: Theme) {
   
-  fs.readFile(jsonVaultLocation, 'utf8', (err, data) => {
+  const data = await readFile(jsonVaultLocation, 'utf8');
+    
+  let jsonVaultObj = JSON.parse(data);
+  jsonVaultObj.unshift(newGameFile);
+
+  fs.writeFile(jsonVaultLocation, JSON.stringify(jsonVaultObj, null, 4), 'utf8', err => {
       if (err) {
-          console.error("An error occurred reading the file:", err);
+          console.error("An error occurred writing the file:", err);
           return;
       }
-      let jsonVaultObj = JSON.parse(data);
-      jsonVaultObj.unshift(newGameFile);
-
-      fs.writeFile(jsonVaultLocation, JSON.stringify(jsonVaultObj, null, 4), 'utf8', err => {
-          if (err) {
-              console.error("An error occurred writing the file:", err);
-              return;
-          }
-          console.log("JSON file has been updated");
-      });
+      console.log("JSON file has been updated");
   });
+ 
 }
 
 async function regenSomeImages(theme: string, themeModifier: string, cards: string[])  {
@@ -151,10 +168,10 @@ function getBossHealth() {
 }
 
 async function main() {
-  const theme = "Chrismas Ziggy Stardust";
-  const themeModifier = "Ziggy Stardust"
+  const theme = "Famous Viking";
+  const themeModifier = "Simpsons Characters"
 
-  regenSomeImages(theme, themeModifier, ["Santa"]); return;
+  //regenSomeImages(theme, themeModifier, ["Darth Vader"]); return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
@@ -185,8 +202,10 @@ async function main() {
   }
   const fullFile: Theme = {
     prompt: theme,
-    cards: gameFile
+    cards: gameFile,
+    activeDate: await getNextActiveDate()
   };
+
 
   if (!fs.existsSync(path.join('../web/public/assets', theme))) {
     fs.mkdirSync(path.join('../web/public/assets', theme));
