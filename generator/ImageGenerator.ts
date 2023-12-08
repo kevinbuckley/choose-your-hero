@@ -10,25 +10,18 @@ import path from 'path';
 import OpenAI from 'openai';
 import sharp from 'sharp';
 import { Theme } from '../web/src/mechanics/Theme';
-import ThemeGenerator from './ThemeGenerator';
 
 dotenv.config();
 const jsonVaultLocation = '../web/public/assets/vault.json';
 
-class SimResult {
-  totalGames: number = 0;
-  gamesWon: number = 0;
-  isFun(): boolean {
-    return this.tooHard() == false && this.tooEasy() == false;
-  }
-  tooHard(): boolean {
-    return this.gamesWon / this.totalGames < 0.33;
-  }
-  tooEasy(): boolean {
-    return this.gamesWon / this.totalGames > 0.9;
+
+class ImageGenerator {
+
+
+  validate(): {
+    const openai = new OpenAI();
   }
 }
-
 async function isFunGameFile(gameFile: any): Promise<SimResult> {
   let gameOver: boolean = false;
   let result = new SimResult()
@@ -133,9 +126,7 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
 
   for (const card of cards) {
     const name = card;
-    const p1 = `Fun, majestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}. 
-     Make it easy to understand and only show the picture of ${name} without any words.
-     Ensure that ${name} is centered on the image.`;
+    const p1 = `Fun, majestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
@@ -160,13 +151,11 @@ function getBossHealth() {
   return random;
 }
 
-
 async function main() {
-  const themes = JSON.parse(await readFile(jsonVaultLocation, 'utf8')) as Theme[];
-  const themeGenerator = new ThemeGenerator();
-  const theme = await themeGenerator.getGeneratedTheme(themes);
-  console.log(theme);
-  //await regenSomeImages(theme, themeModifier, ["The Immortal Emperor"]); return;
+
+  const theme = "Julius Sneezer, the Sneezing Roman Emperor ";
+  const themeModifier = "Roman Statues";
+  //await regenSomeImages(theme, themeModifier, ["Santa"]);
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
@@ -176,7 +165,7 @@ async function main() {
   let healthLower: number = Math.floor(10 * (bossHealth/500));
   let healthUpper: number = Math.floor(28 * (bossHealth/500));
 
-  gameFile = await mechanics.getJsonAsDictionary(theme.theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper);
+  gameFile = await mechanics.getJsonAsDictionary(theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper);
   
   let i = 0;
   while(isFun == false) {
@@ -196,17 +185,18 @@ async function main() {
   console.log(`Took ${i} tries to get a fun game file`);
   
   const fullFile: Theme = {
-    prompt: theme.theme,
-    modifier: theme.modifier,
+    prompt: theme,
+
+    modifier: themeModifier,
     cards: gameFile,
     activeDate: await getNextActiveDate()
   };
 
-  if (!fs.existsSync(path.join('../web/public/assets', theme.theme))) {
-    fs.mkdirSync(path.join('../web/public/assets', theme.theme));
+  if (!fs.existsSync(path.join('../web/public/assets', theme))) {
+    fs.mkdirSync(path.join('../web/public/assets', theme));
   }
-  fs.writeFileSync(`../web/public/assets/${theme.theme}/game_file.json`, JSON.stringify(fullFile));
-  await generateImages(theme.theme, theme.modifier, gameFile);
+  fs.writeFileSync(`../web/public/assets/${theme}/game_file.json`, JSON.stringify(fullFile));
+  await generateImages(theme, themeModifier, gameFile);
   mergeIntoVaultConfig(fullFile);
 }
 
