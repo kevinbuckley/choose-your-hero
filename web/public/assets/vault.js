@@ -3,6 +3,15 @@ window.onload = () => {
     fetch('assets/vault.json')
         .then(response => response.json())
         .then(game_files => {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            game_files = game_files.filter((t) => {
+            if (t.activeDate === undefined || t.activeDate === null) {
+                return true;
+            }
+            const activeDate = new Date(t.activeDate);
+            return activeDate.getTime() <= today.getTime();
+            });
             game_files.forEach(game_file => {
                 const header = document.createElement('h2');
                 const prompt = game_file["prompt"];

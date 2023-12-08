@@ -52,7 +52,17 @@ export default class MainScene extends Phaser.Scene {
         return foundTheme;
       }    
     }
-    return themes[0];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const filteredThemes = themes.filter((t: Theme) => {
+      if (t.activeDate === undefined || t.activeDate === null) {
+          return true;
+      }
+      const activeDate = new Date(t.activeDate);
+      return activeDate.getTime() <= today.getTime();
+    });
+
+    return filteredThemes[0];
   }
 
   preload() {
