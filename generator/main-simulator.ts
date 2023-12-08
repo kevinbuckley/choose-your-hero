@@ -72,7 +72,7 @@ async function generateImages(theme: string, themeModifier: string, gameFile: an
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Fun, magestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
+    const p1 = `Fun, majestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
@@ -142,7 +142,7 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
 
   for (const card of cards) {
     const name = card;
-    const p1 = `Fun, magestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
+    const p1 = `Fun, majestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
@@ -152,7 +152,7 @@ async function regenSomeImages(theme: string, themeModifier: string, cards: stri
       response_format: 'b64_json'
     });
     console.log(response.data[0].revised_prompt);
-    const imageSavePath = path.join('./temp', `${name}.png`);
+    const imageSavePath = path.join('temp', `${name}.png`);
     base64ToPng(response.data[0].b64_json!, imageSavePath);
     await sleep(9000);
     await cropAndCopy(imageSavePath, name, theme);
@@ -168,10 +168,10 @@ function getBossHealth() {
 }
 
 async function main() {
-  const theme = "Famous Viking";
-  const themeModifier = "Simpsons Characters"
 
-  //regenSomeImages(theme, themeModifier, ["Darth Vader"]); return;
+  const theme = "Julius Sneezer, the Sneezing Roman Emperor ";
+  const themeModifier = "Roman Statues";
+  //await regenSomeImages(theme, themeModifier, ["Santa"]);
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
@@ -181,9 +181,12 @@ async function main() {
   let healthLower: number = Math.floor(10 * (bossHealth/500));
   let healthUpper: number = Math.floor(28 * (bossHealth/500));
 
+  gameFile = await mechanics.getJsonAsDictionary(theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper);
+  
+  let i = 0;
   while(isFun == false) {
+    i++;
     console.log('starting while loop');
-    gameFile = await mechanics.getJsonAsDictionary(theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper); 
     console.log('got game file: ' + JSON.stringify(gameFile));
     // simulate game file
     let simResult = await isFunGameFile(gameFile);
@@ -198,10 +201,15 @@ async function main() {
         case 2: healthLower += 1*adjuster; break;
         case 3: healthUpper += 1*adjuster; break;
       }
+      gameFile = await mechanics.getNewCards(gameFile, attackLower > 0 ? attackLower : 1, attackUpper, healthLower > 0 ? healthLower : 1, healthUpper, 0.8);
     }
   }
+  console.log(`Took ${i} tries to get a fun game file`);
+  
   const fullFile: Theme = {
     prompt: theme,
+
+    modifier: themeModifier,
     cards: gameFile,
     activeDate: await getNextActiveDate()
   };
