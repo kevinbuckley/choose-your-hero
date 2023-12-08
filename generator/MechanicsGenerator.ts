@@ -16,13 +16,10 @@ class MechanicsGenerator {
     attackUpper: number,
     healthLower: number,
     healthUpper: number): Promise<any> {
-    console.log('getJsonAsDictionary 1');
     const openai = new OpenAI({
         apiKey: this.OPEN_AI_KEY,
     });
-    
-    console.log('getJsonAsDictionary 2');
-    
+        
     const params: OpenAI.Chat.ChatCompletionCreateParams = {
       messages: [
         {
@@ -60,13 +57,14 @@ class MechanicsGenerator {
     
   }
   
-  public async getNewCards(cards: CardTemplate[], attackLower: number, attackUpper: number, healthLower: number, healthUpper: number, bossAttackMultiplier: number): Promise<any> {
-    for(let i = 0; i < cards.length; i++) {
-      if(cards[i].isBoss) {
-        cards[i].attack = Math.floor((Math.random() * (attackUpper - attackLower) + attackLower) * bossAttackMultiplier);
-      }else{
-        cards[i].attack = Math.floor(Math.random() * (attackUpper - attackLower) + attackLower);
-        cards[i].health = Math.floor(Math.random() * (healthUpper - healthLower) + healthLower);
+  chanceToChange: number = .3;
+  public async getNewCards(cards: CardTemplate[], adjustment: number): Promise<any> {
+    for(let i = 0; i < cards.length-1; i++) { // -1 to exclude boss
+      if(Math.random() > this.chanceToChange) {
+        switch(Math.floor(Math.random()*2)) {
+          case 0: cards[i].attack += adjustment; break;
+          case 1: cards[i].health += adjustment; break;
+        }
       }
     }
     return cards;

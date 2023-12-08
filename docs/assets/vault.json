@@ -1,5 +1,173 @@
 [
     {
+        "prompt": "Dinosaur Chefs",
+        "modifier": "Time-Traveling",
+        "cards": [
+            {
+                "name": "Chef Rex",
+                "attack": 13,
+                "health": 47,
+                "bio": "A master of the grill, this T-Rex might have short arms, but his flavors are huge.",
+                "isBoss": false
+            },
+            {
+                "name": "Sous-chef Stego",
+                "attack": 13,
+                "health": 42,
+                "bio": "With plates as steady as his back plates, Stego slices and dices with prehistoric precision.",
+                "isBoss": false
+            },
+            {
+                "name": "Pâtissier Ptero",
+                "attack": 17,
+                "health": 37,
+                "bio": "This flying dessert expert whips up sweet treats that soar above the competition.",
+                "isBoss": false
+            },
+            {
+                "name": "Sommelier Saur",
+                "attack": 11,
+                "health": 56,
+                "bio": "With a refined palate, this dino knows how to pair any dish with the perfect ferment.",
+                "isBoss": false
+            },
+            {
+                "name": "Grillmaster Galli",
+                "attack": 23,
+                "health": 33,
+                "bio": "Speedy and skilled, Galli grills with a rapid flair, charring to perfection.",
+                "isBoss": false
+            },
+            {
+                "name": "Saucier Spino",
+                "attack": 17,
+                "health": 41,
+                "bio": "A specialist in sauces, Spino's culinary creations are as bold as his sail.",
+                "isBoss": false
+            },
+            {
+                "name": "Mise-en-place Mosasaur",
+                "attack": 21,
+                "health": 31,
+                "bio": "In the kitchen sea, this chef preps with a splash, keeping everything in shipshape.",
+                "isBoss": false
+            },
+            {
+                "name": "Baker Bronto",
+                "attack": 15,
+                "health": 44,
+                "bio": "Towering over dough and batter, Bronto's baked goods are a staple at any dino feast.",
+                "isBoss": false
+            },
+            {
+                "name": "Fry Cook Tricera",
+                "attack": 22,
+                "health": 35,
+                "bio": "With three horns, this chef flips, fries, and skewers with a triple threat technique.",
+                "isBoss": false
+            },
+            {
+                "name": "Salad Chef Diplod",
+                "attack": 17,
+                "health": 42,
+                "bio": "Crafting the freshest salads, Diplod tosses greens with a gentle giant's touch.",
+                "isBoss": false
+            },
+            {
+                "name": "Executive Chef Megalosaurus",
+                "attack": 40,
+                "health": 900,
+                "bio": "The boss of the kitchen, this culinary giant commands the flames and flavors like no other.",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-09T05:00:00.000Z"
+    },
+    {
+        "prompt": "Animal Monarchss",
+        "modifier": "anthropomorphic Animals",
+        "cards": [
+            {
+                "name": "King Arthur",
+                "attack": 10,
+                "health": 38,
+                "bio": "The legendary British leader who, according to medieval histories and romances, led the defense of Britain against Saxon invaders.",
+                "isBoss": false
+            },
+            {
+                "name": "Queen Elizabeth I",
+                "attack": 9,
+                "health": 39,
+                "bio": "The Virgin Queen, Elizabeth was a ruler who oversaw the English Renaissance and the defeat of the Spanish Armada.",
+                "isBoss": false
+            },
+            {
+                "name": "Emperor Nero",
+                "attack": 25,
+                "health": 16,
+                "bio": "The last Roman emperor of the Julio-Claudian dynasty, known for his artistic endeavors and infamous for his tyranny.",
+                "isBoss": false
+            },
+            {
+                "name": "Pharaoh Cleopatra",
+                "attack": 9,
+                "health": 36,
+                "bio": "The last active ruler of the Ptolemaic Kingdom of Egypt, known for her relationships with Roman rulers Julius Caesar and Mark Antony.",
+                "isBoss": false
+            },
+            {
+                "name": "Tsar Ivan the Terrible",
+                "attack": 23,
+                "health": 18,
+                "bio": "The first Tsar of All Russia, Ivan IV was known for his ruthless tactics and transformation of Russia into a multiethnic and multicontinental state.",
+                "isBoss": false
+            },
+            {
+                "name": "Empress Wu Zetian",
+                "attack": 11,
+                "health": 32,
+                "bio": "The only female emperor in the history of China, Wu Zetian founded the Zhou dynasty and was known for her effective and controversial rule.",
+                "isBoss": false
+            },
+            {
+                "name": "King Louis XIV",
+                "attack": 13,
+                "health": 32,
+                "bio": "Louis the Great or the Sun King, he was the Animal Monarchs of the House of Bourbon who reigned as King of France and is known for his long and powerful reign.",
+                "isBoss": false
+            },
+            {
+                "name": "Sultan Suleiman the Magnificent",
+                "attack": 13,
+                "health": 31,
+                "bio": "The tenth and longest-reigning Sultan of the Ottoman Empire, Suleiman was known for his military conquests and cultural achievements.",
+                "isBoss": false
+            },
+            {
+                "name": "Shah Jahan",
+                "attack": 15,
+                "health": 27,
+                "bio": "The fifth Mughal emperor, who reigned from 1628 to 1658, Shah Jahan is best known for commissioning the Taj Mahal, a mausoleum for his favorite wife.",
+                "isBoss": false
+            },
+            {
+                "name": "Queen Victoria",
+                "attack": 16,
+                "health": 26,
+                "bio": "The Queen of the United Kingdom of Great Britain and Ireland, Victoria presided over a time of industrial expansion, cultural changes, and the British Empire.",
+                "isBoss": false
+            },
+            {
+                "name": "The Immortal Emperor",
+                "attack": 31,
+                "health": 700,
+                "bio": "A timeless ruler whose reign spans eons, commanding vast armies and wielding ancient, mystical powers.",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-08T05:00:00.000Z"
+    },
+    {
         "prompt": "Famous Viking",
         "cards": [
             {
