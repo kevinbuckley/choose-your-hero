@@ -17,7 +17,8 @@ class ThemeGenerator {
       messages: [
         {
           role: 'user',
-          content: `Generate a theme and modifier for a fun and silly card game.
+          content: `Generate a theme and modifier for a fun, silly, and slighty edgy card game.
+          You should approach pop culture references but only use themes without copywrite protections.
           The theme and modifier should be singlur items on their own but when combined form a funny and engaging theme for the game.
           Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.
           In this JSON, the "theme" should be in the same vein as previous themes including ${themes.map(t => t.prompt)}.
