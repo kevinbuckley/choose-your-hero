@@ -70,7 +70,9 @@ async function generateImages(theme: string, themeModifier: string, gameFile: an
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Fun, majestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
+    const p1 = `Fun, majestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}. 
+     Make it easy to understand and only show the picture of ${name} without any words.
+     Ensure that ${name} is centered on the image.`;
     // @ts-ignore
     const response = await openai.images.generate({
       model: "dall-e-3",
@@ -208,6 +210,11 @@ async function main() {
   fs.writeFileSync(`../web/public/assets/${theme.theme}/game_file.json`, JSON.stringify(fullFile));
   await generateImages(theme.theme, theme.modifier, gameFile);
   mergeIntoVaultConfig(fullFile);
+  // clean temp
+  const files = await fs.promises.readdir('temp');
+  await Promise.all(files.map(file => 
+      fs.promises.unlink(path.join('temp', file))
+  ));
 }
 
 main().catch(err => {
