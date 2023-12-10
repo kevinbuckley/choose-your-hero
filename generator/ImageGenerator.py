@@ -6,11 +6,11 @@ import os
 import time
 
 class ImageGenerator:
-    def __init__(self, name, theme, theme_modifier, file_save_location):
+    def __init__(self, name, theme, theme_modifier, file_save_name):
         self.name = name
         self.theme = theme
         self.theme_modifier = theme_modifier
-        self.file_save_location = file_save_location
+        self.file_save_name = file_save_name
         self.device = torch.device("mps")  # Metal device
         self.pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", torch_dtype=torch.float32 , variant="fp16")
         self.pipe.to(self.device)
@@ -33,7 +33,7 @@ class ImageGenerator:
             variant="fp16",
             local_files_only=True
         )
-        image.save(os.path.join(self.file_save_location, f'{self.name}.png'))
+        image.save(self.file_save_name)
 
 
 if __name__ == "__main__":
@@ -41,13 +41,13 @@ if __name__ == "__main__":
     parser.add_argument('--name', type=str, required=True)
     parser.add_argument('--theme', type=str, required=True)
     parser.add_argument('--theme_modifier', type=str, required=True)
-    parser.add_argument('--file_save_location', type=str, required=True)
+    parser.add_argument('--file_save_name', type=str, required=True)
 
     args = parser.parse_args()
 
     start_time = time.time()
 
-    generator = ImageGenerator(args.name, args.theme, args.theme_modifier, args.file_save_location)
+    generator = ImageGenerator(args.name, args.theme, args.theme_modifier, args.file_save_name)
     generator.generate_image()
     end_time = time.time()
     print(f"Time taken: {end_time - start_time} seconds")

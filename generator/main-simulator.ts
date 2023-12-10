@@ -11,6 +11,7 @@ import OpenAI from 'openai';
 import sharp from 'sharp';
 import { Theme } from '../web/src/mechanics/Theme';
 import ThemeGenerator from './ThemeGenerator';
+import ImageGenerator from './ImageGenerator';
 
 dotenv.config();
 const jsonVaultLocation = '../web/public/assets/vault.json';
@@ -62,27 +63,13 @@ async function isFunGameFile(gameFile: any): Promise<SimResult> {
   return result;
 }
 
-function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 async function generateImages(theme: string, gameFile: any[]): Promise<void> {
   const openai = new OpenAI();
-
+  const imageGenerator = new ImageGenerator();
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Fun, majestic, Zoomed in picture of a (${name}) in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
-    // @ts-ignore
-    const response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: p1,
-      n: 1,
-      size: "1024x1024",
-      response_format: 'b64_json'
-    });
-    console.log(response.data[0].revised_prompt);
     const imageSavePath = path.join('./temp', `${name}.png`);
-    base64ToPng(response.data[0].b64_json!, imageSavePath);
-    await sleep(9000);
+    await imageGenerator.generateLocalImage(name, theme, imageSavePath);    
     await cropAndCopy(imageSavePath, name, theme);
   }
 }
@@ -94,11 +81,6 @@ async function cropAndCopy(inputPath: string, name: string, theme: string) {
     .resize(180, 260) // Resize
     .toFile(outputPath)
     .then(() => console.log(`${name} cropped`));
-}
-
-function base64ToPng(b64Json: string, outputPath: string) {
-  const imageBuffer = Buffer.from(b64Json, 'base64');
-  fs.writeFileSync(outputPath, imageBuffer);
 }
 
 async function getNextActiveDate(): Promise<Date> {
@@ -128,30 +110,6 @@ async function mergeIntoVaultConfig(newGameFile: Theme) {
   await writeFile(jsonVaultLocation, JSON.stringify(jsonVaultObj, null, 4), 'utf8');
 }
 
-async function regenSomeImages(theme: string, cards: string[])  {
-  const openai = new OpenAI();
-
-  for (const card of cards) {
-    const name = card;
-    const p1 = `Fun, majestic, Zoomed in picture of a ${name} in the theme of ${theme}. 
-     Make it easy to understand and only show the picture of ${name} without any words.
-     Ensure that ${name} is centered on the image.`;
-    // @ts-ignore
-    const response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: p1,
-      n: 1,
-      size: "1024x1024",
-      response_format: 'b64_json'
-    });
-    console.log(response.data[0].revised_prompt);
-    const imageSavePath = path.join('temp', `${name}.png`);
-    base64ToPng(response.data[0].b64_json!, imageSavePath);
-    await sleep(9000);
-    await cropAndCopy(imageSavePath, name, theme);
-  }
-}
-
 function getBossHealth() {
   var min = 200;
   var max = 900;
@@ -159,7 +117,6 @@ function getBossHealth() {
   console.log(`boss health: ${random}`)
   return random;
 }
-
 
 async function main() {
   const themes = JSON.parse(await readFile(jsonVaultLocation, 'utf8')) as Theme[];
@@ -177,7 +134,8 @@ async function main() {
   let healthUpper: number = Math.floor(28 * (bossHealth/500));
 
   gameFile = await mechanics.getJsonAsDictionary(theme.theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper);
-  
+  console.log(gameFile);
+  return;
   let i = 0;
   while(isFun == false) {
     i++;
@@ -207,6 +165,11 @@ async function main() {
   fs.writeFileSync(`../web/public/assets/${theme.theme}/game_file.json`, JSON.stringify(fullFile));
   await generateImages(theme.theme, gameFile);
   mergeIntoVaultConfig(fullFile);
+  // clean temp
+  const files = await fs.promises.readdir('temp');
+  await Promise.all(files.map(file => 
+      fs.promises.unlink(path.join('temp', file))
+  ));
 }
 
 main().catch(err => {

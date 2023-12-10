@@ -16,16 +16,18 @@ class ThemeGenerator {
       messages: [
         {
           role: 'user',
-          content: `Generate a theme for a fun and silly card game.
-          The theme should be singlur items on their own but when combined form a funny and engaging theme for the game.
+          content: `Create a theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references. 
+          Please provide specific combinations where one part is a direct reference to a popular franchise such as Harry Potter, Star Wars, or Marvel superheroes (excluding zombies). 
+          Each part should be a singular item or concept on its own. 
+          However, when paired together, they should form a humorous and engaging theme for the game. 
+          For example, combine a distinct element from Harry Potter with another unrelated, amusing concept to create a unique and funny theme.
           Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.
           In this JSON, the "theme" should be in the same vein as previous themes including ${themes.map(t => t.prompt)}.
-          Please remember to only return JSON.`,
+          Please remember to only return JSON.`
         },
       ],
       model: 'gpt-4-1106-preview',
-      temperature:0.1,
-
+      temperature:0.5,
     };
         
     const response: OpenAI.Chat.ChatCompletion = await openai.chat.completions.create(params);
