@@ -3,7 +3,6 @@ import { Theme } from '../web/src/mechanics/Theme';
 
 class GeneratedTheme {
     theme: string = "";
-    modifier: string = "";
 }
 class ThemeGenerator {
   private OPEN_AI_KEY: string | undefined = process.env.OPEN_AI_KEY;
@@ -17,8 +16,8 @@ class ThemeGenerator {
       messages: [
         {
           role: 'user',
-          content: `Generate a theme and modifier for a fun and silly card game.
-          The theme and modifier should be singlur items on their own but when combined form a funny and engaging theme for the game.
+          content: `Generate a theme for a fun and silly card game.
+          The theme should be singlur items on their own but when combined form a funny and engaging theme for the game.
           Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.
           In this JSON, the "theme" should be in the same vein as previous themes including ${themes.map(t => t.prompt)}.
           Please remember to only return JSON.`,
