@@ -3,7 +3,6 @@ import { Theme } from '../web/src/mechanics/Theme';
 
 class GeneratedTheme {
     theme: string = "";
-    modifier: string = "";
 }
 class ThemeGenerator {
   private OPEN_AI_KEY: string | undefined = process.env.OPEN_AI_KEY;
@@ -17,9 +16,11 @@ class ThemeGenerator {
       messages: [
         {
           role: 'user',
-          content: `Generate a theme and modifier for a fun, silly, and slighty edgy card game.
-          You should approach pop culture references but only use themes without copywrite protections.
-          The theme and modifier should be singlur items on their own but when combined form a funny and engaging theme for the game.
+          content: `Create a theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references. 
+          Please provide specific combinations where one part is a direct reference to a popular franchise such as Harry Potter, Star Wars, or Marvel superheroes (excluding zombies). 
+          Each part should be a singular item or concept on its own. 
+          However, when paired together, they should form a humorous and engaging theme for the game. 
+          For example, combine a distinct element from Harry Potter with another unrelated, amusing concept to create a unique and funny theme.
           Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.
           In this JSON, the "theme" should be in the same vein as previous themes including ${themes.map(t => t.prompt)}.
           Please remember to only return JSON.`,

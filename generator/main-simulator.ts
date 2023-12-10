@@ -65,12 +65,12 @@ async function isFunGameFile(gameFile: any): Promise<SimResult> {
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function generateImages(theme: string, themeModifier: string, gameFile: any[]): Promise<void> {
+async function generateImages(theme: string, gameFile: any[]): Promise<void> {
   const openai = new OpenAI();
 
   for (const card of gameFile) {
     const name = card['name'];
-    const p1 = `Fun, majestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}. 
+    const p1 = `Fun, majestic, Zoomed in picture of a ${name} in the theme of ${theme}. 
      Make it easy to understand and only show the picture of ${name} without any words.
      Ensure that ${name} is centered on the image.`;
     // @ts-ignore
@@ -130,12 +130,12 @@ async function mergeIntoVaultConfig(newGameFile: Theme) {
   await writeFile(jsonVaultLocation, JSON.stringify(jsonVaultObj, null, 4), 'utf8');
 }
 
-async function regenSomeImages(theme: string, themeModifier: string, cards: string[])  {
+async function regenSomeImages(theme: string, cards: string[])  {
   const openai = new OpenAI();
 
   for (const card of cards) {
     const name = card;
-    const p1 = `Fun, majestic, Zoomed in picture of a ${name} as a ${themeModifier} in the theme of ${theme}. 
+    const p1 = `Fun, majestic, Zoomed in picture of a ${name} in the theme of ${theme}. 
      Make it easy to understand and only show the picture of ${name} without any words.
      Ensure that ${name} is centered on the image.`;
     // @ts-ignore
@@ -168,7 +168,8 @@ async function main() {
   const themeGenerator = new ThemeGenerator();
   const theme = await themeGenerator.getGeneratedTheme(themes);
   console.log(theme);
-  //await regenSomeImages(theme, themeModifier, ["The Immortal Emperor"]); return;
+  //await regenSomeImages(theme, ["The Immortal Emperor"]); return;
+
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
   let gameFile: any = null;
@@ -179,7 +180,7 @@ async function main() {
   let healthUpper: number = Math.floor(28 * (bossHealth/500));
 
   gameFile = await mechanics.getJsonAsDictionary(theme.theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper);
-  
+  return;
   let i = 0;
   while(isFun == false) {
     i++;
@@ -199,7 +200,6 @@ async function main() {
   
   const fullFile: Theme = {
     prompt: theme.theme,
-    modifier: theme.modifier,
     cards: gameFile,
     activeDate: await getNextActiveDate()
   };
@@ -208,7 +208,7 @@ async function main() {
     fs.mkdirSync(path.join('../web/public/assets', theme.theme));
   }
   fs.writeFileSync(`../web/public/assets/${theme.theme}/game_file.json`, JSON.stringify(fullFile));
-  await generateImages(theme.theme, theme.modifier, gameFile);
+  await generateImages(theme.theme, gameFile);
   mergeIntoVaultConfig(fullFile);
   // clean temp
   const files = await fs.promises.readdir('temp');
