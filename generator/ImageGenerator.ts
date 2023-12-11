@@ -10,11 +10,12 @@ class ImageGenerator {
         imageSavePath: string
     ): Promise<void> {
         let command: string = `python3 ImageGenerator.py`;
-        command += ` --name ${name}`;
-        command += ` --theme ${name}`;
-        command += ` --theme_modifier ${name}`;
-        command += ` --file_save_location ${imageSavePath} `;
+        command += ` --name "${name}"`;
+        command += ` --theme "${theme}"`;
+        command += ` --file_save_name "${imageSavePath}"`;
+        console.log(`running command ${command}`);
         await this.runCommand(command);
+        console.log(`command complete`);
     }
 
     async runCommand(command: string): Promise<string> {

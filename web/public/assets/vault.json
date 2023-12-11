@@ -1,5 +1,254 @@
 [
     {
+        "prompt": "Spy Animals in a High-Stakes Heist Movie",
+        "cards": [
+            {
+                "name": "Agent Furrytail",
+                "attack": 9,
+                "health": 35,
+                "bio": "A stealthy squirrel with a knack for acrobatics and infiltration.",
+                "isBoss": false
+            },
+            {
+                "name": "Commander Claw",
+                "attack": 25,
+                "health": 14,
+                "bio": "A fierce feline with sharp reflexes and sharper claws, leading the heist.",
+                "isBoss": false
+            },
+            {
+                "name": "Sneak Beak",
+                "attack": 7,
+                "health": 39,
+                "bio": "A cunning crow, unmatched in surveillance and aerial recon.",
+                "isBoss": false
+            },
+            {
+                "name": "Mole Hacker",
+                "attack": 10,
+                "health": 34,
+                "bio": "A tech-savvy mole who can dig through data as well as he digs through the earth.",
+                "isBoss": false
+            },
+            {
+                "name": "Bark Knight",
+                "attack": 23,
+                "health": 16,
+                "bio": "A loyal dog with a dark past, now using his strength for the greater good.",
+                "isBoss": false
+            },
+            {
+                "name": "Whisker Sniper",
+                "attack": 20,
+                "health": 20,
+                "bio": "A sharpshooting mouse with an eye for detail and a paw steady under pressure.",
+                "isBoss": false
+            },
+            {
+                "name": "Paws McSteal",
+                "attack": 15,
+                "health": 28,
+                "bio": "A raccoon with a talent for thievery and getting into tight spaces.",
+                "isBoss": false
+            },
+            {
+                "name": "Dive Bomber Duck",
+                "attack": 8,
+                "health": 37,
+                "bio": "An expert in aerial assaults, this duck dives into danger without hesitation.",
+                "isBoss": false
+            },
+            {
+                "name": "Espionage Elephant",
+                "attack": 22,
+                "health": 18,
+                "bio": "A massive presence in the field, his memory and strength are unparalleled.",
+                "isBoss": false
+            },
+            {
+                "name": "Infiltrator Iguana",
+                "attack": 12,
+                "health": 31,
+                "bio": "A master of disguise, this iguana blends into any environment seamlessly.",
+                "isBoss": false
+            },
+            {
+                "name": "The Big Bad Wolf",
+                "attack": 31,
+                "health": 700,
+                "bio": "The ultimate adversary, a cunning predator turned criminal mastermind.",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-11T05:00:00.000Z"
+    },
+    {
+        "prompt": "Alien Gladiators Hosting a Galactic Game Show",
+        "cards": [
+            {
+                "name": "Zorblax the Quizmaster",
+                "attack": 2,
+                "health": 10,
+                "bio": "This cerebral showman stumps contestants with intergalactic trivia.",
+                "isBoss": false
+            },
+            {
+                "name": "Grax the Puzzler",
+                "attack": 3,
+                "health": 9,
+                "bio": "Grax challenges competitors with mind-bending puzzles from across the cosmos.",
+                "isBoss": false
+            },
+            {
+                "name": "Viznak the Charmer",
+                "attack": 4,
+                "health": 8,
+                "bio": "With a silver tongue, Viznak convinces other players to make moves in his favor.",
+                "isBoss": false
+            },
+            {
+                "name": "Klyptok the Riddler",
+                "attack": 5,
+                "health": 7,
+                "bio": "Klyptok confounds foes with enigmatic riddles from ancient alien civilizations.",
+                "isBoss": false
+            },
+            {
+                "name": "Fleeborp the Trickster",
+                "attack": 6,
+                "health": 6,
+                "bio": "Fleeborp uses sleight of hand and misdirection to outplay the opposition.",
+                "isBoss": false
+            },
+            {
+                "name": "Zyglon the Gambler",
+                "attack": 7,
+                "health": 5,
+                "bio": "Zyglon risks it all, betting on high stakes and playing the odds.",
+                "isBoss": false
+            },
+            {
+                "name": "Quixar the Strategist",
+                "attack": 3,
+                "health": 9,
+                "bio": "Quixar outmaneuvers opponents with superior tactics and game theory.",
+                "isBoss": false
+            },
+            {
+                "name": "Lumax the Illusionist",
+                "attack": 4,
+                "health": 8,
+                "bio": "Lumax's illusions keep players guessing what his next move will be.",
+                "isBoss": false
+            },
+            {
+                "name": "Nebulon the Unpredictable",
+                "attack": 5,
+                "health": 7,
+                "bio": "You can never guess Nebulon's next play, as his actions are as random as the quantum foam.",
+                "isBoss": false
+            },
+            {
+                "name": "Xentor the Time-Bender",
+                "attack": 6,
+                "health": 6,
+                "bio": "Xentor manipulates temporal streams to redo unfavorable outcomes.",
+                "isBoss": false
+            },
+            {
+                "name": "Emperor Glitzkrieg the Showstopper",
+                "attack": 8,
+                "health": 200,
+                "bio": "The ultimate boss of the game show, his presence is a spectacle that captivates and terrifies.",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-11T05:00:00.000Z"
+    },
+    {
+        "prompt": "Superhero Baristas Brewing Cosmic Coffee",
+        "cards": [
+            {
+                "name": "Espresso Enforcer",
+                "attack": 7,
+                "health": 39,
+                "bio": "With the power to control the flow of time, Espresso Enforcer ensures no customer waits too long for their cosmic brew.",
+                "isBoss": false
+            },
+            {
+                "name": "Latte Lifter",
+                "attack": 24,
+                "health": 16,
+                "bio": "Latte Lifter can steam milk with her mind and lift spirits with her frothy creations.",
+                "isBoss": false
+            },
+            {
+                "name": "Cappuccino Cloaker",
+                "attack": 7,
+                "health": 37,
+                "bio": "Master of stealth and foam art, Cappuccino Cloaker blends into the background, always ready to surprise with a perfect cup.",
+                "isBoss": false
+            },
+            {
+                "name": "Mocha Morph",
+                "attack": 21,
+                "health": 19,
+                "bio": "Able to shape-shift into any coffee form, Mocha Morph confuses adversaries with delicious, chocolaty distractions.",
+                "isBoss": false
+            },
+            {
+                "name": "Americano Avenger",
+                "attack": 12,
+                "health": 33,
+                "bio": "Fighting the bitterness of injustice, Americano Avenger serves up a smooth justice with every shot.",
+                "isBoss": false
+            },
+            {
+                "name": "Ristretto Rescuer",
+                "attack": 26,
+                "health": 13,
+                "bio": "Ristretto Rescuer's concentrated shots of energy can revive even the most exhausted allies.",
+                "isBoss": false
+            },
+            {
+                "name": "Flat White Warden",
+                "attack": 9,
+                "health": 36,
+                "bio": "Guardian of the perfect milk-to-coffee ratio, Flat White Warden's balance brings harmony to the team.",
+                "isBoss": false
+            },
+            {
+                "name": "Macchiato Maven",
+                "attack": 24,
+                "health": 17,
+                "bio": "With a touch of sweetness and a lot of flair, Macchiato Maven's layered approach disarms foes.",
+                "isBoss": false
+            },
+            {
+                "name": "Frappe Fighter",
+                "attack": 14,
+                "health": 29,
+                "bio": "Cool under pressure, Frappe Fighter blends icy tactics to freeze villains in their tracks.",
+                "isBoss": false
+            },
+            {
+                "name": "Brewmaster Bolt",
+                "attack": 25,
+                "health": 14,
+                "bio": "Faster than a speeding espresso shot, Brewmaster Bolt energizes allies with lightning-fast brews.",
+                "isBoss": false
+            },
+            {
+                "name": "Dark Roast Overlord",
+                "attack": 33,
+                "health": 750,
+                "bio": "The ultimate boss of the coffee cosmos, Dark Roast Overlord's overwhelming presence steams away the competition.",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-11T05:00:00.000Z"
+    },
+    {
         "prompt": "Pirate Penguins Running a Space Station",
         "cards": [
             {

@@ -41,7 +41,7 @@ class MechanicsGenerator {
         },
       ],
       model: 'gpt-4-1106-preview',
-      temperature:0.1,
+      temperature:0.4,
 
     };
     

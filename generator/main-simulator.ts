@@ -16,6 +16,8 @@ import ImageGenerator from './ImageGenerator';
 dotenv.config();
 const jsonVaultLocation = '../web/public/assets/vault.json';
 
+const localImageCreation: boolean = false; // change this to use stable diffusion
+
 class SimResult {
   totalGames: number = 0;
   gamesWon: number = 0;
@@ -69,15 +71,24 @@ async function generateImages(theme: string, gameFile: any[]): Promise<void> {
   for (const card of gameFile) {
     const name = card['name'];
     const imageSavePath = path.join('./temp', `${name}.png`);
-    await imageGenerator.generateLocalImage(name, theme, imageSavePath);    
-    await cropAndCopy(imageSavePath, name, theme);
+    if(localImageCreation) {
+      await imageGenerator.generateLocalImage(name, theme, imageSavePath);    
+    }
+    else {
+      await imageGenerator.generateOpenAiImage(name, theme, imageSavePath);    
+    }
+   await cropAndCopy(imageSavePath, name, theme);
   }
 }
 async function cropAndCopy(inputPath: string, name: string, theme: string) {
   
   const outputPath = path.join('../web/public/assets',  theme, `${name}.png`);
+  const dimensions: sharp.Region = localImageCreation ? 
+   { width: 354, height: 512, left: 79, top: 0 } :
+   { width: 708, height: 1024, left: 157, top: 0 };
+
   await sharp(inputPath)
-    .extract({ width: 708, height: 1024, left: 157, top: 0 }) // Crop dimensions
+    .extract(dimensions) // Crop dimensions
     .resize(180, 260) // Resize
     .toFile(outputPath)
     .then(() => console.log(`${name} cropped`));
@@ -135,7 +146,6 @@ async function main() {
 
   gameFile = await mechanics.getJsonAsDictionary(theme.theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper);
   console.log(gameFile);
-  return;
   let i = 0;
   while(isFun == false) {
     i++;
