@@ -5,6 +5,7 @@ class CardTemplate {
     attack: number = 0;
     health: number = 0;
     bio: string = "";
+    stable_diffusion_prompt: string = "";
     isBoss: boolean = false;
 }
 class MechanicsGenerator {

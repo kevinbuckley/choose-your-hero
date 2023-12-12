@@ -16,9 +16,12 @@ class ThemeGenerator {
       messages: [
         {
           role: 'user',
-          content: `Create a theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references (excluding zombies). 
+          content: `Create a theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references. 
+          Please provide specific combinations where one part is a direct reference to a popular sci-fi or fantasy franchises (excluding zombies). 
+          Each part should be a singular item or concept on its own. 
+          However, when paired together, they should form a humorous and engaging theme for the game. 
           Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.
-          In this JSON, the "theme" should have pop culture references but no similarities to previous themes including ${themes.map(t => t.prompt)}.
+          In this JSON, the "theme" should be similar but not the same reference as ${themes.map(t => t.prompt)}.
           Please remember to only return JSON.`
         },
       ],
