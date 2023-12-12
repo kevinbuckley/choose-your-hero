@@ -96,16 +96,16 @@ async function cropAndCopy(inputPath: string, name: string, theme: string) {
 
 async function getNextActiveDate(): Promise<Date> {
   const data = await readFile(jsonVaultLocation, 'utf8');
-  let themes  = JSON.parse(data) as Theme[];
+  let themes = JSON.parse(data) as Theme[];
   // Get today's date
   let latestTheme = new Date();
 
-  for(let theme of themes) {
-    if(theme.activeDate! > latestTheme)
-    {
-      latestTheme = theme.activeDate!;
+  for (let theme of themes) {
+    if (theme.activeDate && new Date(theme.activeDate) > latestTheme) {
+      latestTheme = new Date(theme.activeDate);
     }
   }
+
   latestTheme.setDate(latestTheme.getDate() + 1);
   latestTheme.setHours(0, 0, 0, 0);
   return latestTheme;
@@ -130,6 +130,8 @@ function getBossHealth() {
 }
 
 async function main() {
+  const a = await getNextActiveDate();
+  console.log(a);
   const themes = JSON.parse(await readFile(jsonVaultLocation, 'utf8')) as Theme[];
   const themeGenerator = new ThemeGenerator();
   const theme = await themeGenerator.getGeneratedTheme(themes);

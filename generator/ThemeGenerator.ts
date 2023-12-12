@@ -18,7 +18,7 @@ class ThemeGenerator {
           role: 'user',
           content: `Create a theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references (excluding zombies). 
           Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.
-          In this JSON, the "theme" should have no duplicates but be somewhat similar to previous themes: ${themes.map(t => t.prompt)}.
+          In this JSON, the "theme" should have pop culture references but no similarities to previous themes including ${themes.map(t => t.prompt)}.
           Please remember to only return JSON.`
         },
       ],

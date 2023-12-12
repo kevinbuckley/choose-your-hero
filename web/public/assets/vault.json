@@ -1,5 +1,171 @@
 [
     {
+        "prompt": "Mutant Celebrity Chefs in an Underground Cooking Tournament",
+        "cards": [
+            {
+                "name": "Gordon Ramskull",
+                "attack": 3,
+                "health": 15,
+                "bio": "A once-renowned chef, now a mutant with a skull for a face. His cooking is as sharp as his temper.",
+                "isBoss": false
+            },
+            {
+                "name": "Jamie Olivenomicon",
+                "attack": 10,
+                "health": 6,
+                "bio": "Using his book of forbidden recipes, Jamie conjures culinary horrors that are deliciously evil.",
+                "isBoss": false
+            },
+            {
+                "name": "Bobby Flambé",
+                "attack": 9,
+                "health": 7,
+                "bio": "With a fiery personality and even fierier pans, Bobby burns away the competition.",
+                "isBoss": false
+            },
+            {
+                "name": "Nigella Bitesback",
+                "attack": 4,
+                "health": 14,
+                "bio": "Her charm is now a weapon, ensnaring her foes with a taste and a smile before the final bite.",
+                "isBoss": false
+            },
+            {
+                "name": "Guy Fury",
+                "attack": 8,
+                "health": 8,
+                "bio": "He's on a road trip to Flavortown, where the food fights back and only the strongest taste buds survive.",
+                "isBoss": false
+            },
+            {
+                "name": "Wolfgang Puckish",
+                "attack": 5,
+                "health": 13,
+                "bio": "A puckish spirit with a taste for chaos, Wolfgang's dishes create a culinary pandemonium.",
+                "isBoss": false
+            },
+            {
+                "name": "Rachel Slay",
+                "attack": 7,
+                "health": 9,
+                "bio": "Don't let her daytime TV persona fool you; in the underground, Rachel slays with her killer dishes.",
+                "isBoss": false
+            },
+            {
+                "name": "Mario Battagliatore",
+                "attack": 6,
+                "health": 10,
+                "bio": "His hearty meals pack a punch, and so do his fists. Mario is a contender you don't want to underestimate.",
+                "isBoss": false
+            },
+            {
+                "name": "Paula Deenlightened",
+                "attack": 4,
+                "health": 14,
+                "bio": "After a transformative experience, Paula's cooking now enlightens the palate and the soul, with a side of butter.",
+                "isBoss": false
+            },
+            {
+                "name": "Emeril Laghost",
+                "attack": 7,
+                "health": 11,
+                "bio": "'Bam!' is the sound of his spectral seasonings hitting your senses, as Emeril's ghostly presence haunts the tournament.",
+                "isBoss": false
+            },
+            {
+                "name": "Chef Ramses the Great",
+                "attack": 12,
+                "health": 300,
+                "bio": "The ultimate boss of the underground kitchen, his millennia of experience make him a timeless terror in the culinary combat.",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-13T05:00:00.000Z"
+    },
+    {
+        "prompt": "Time-Traveling Wizards in a Battle of the Bands",
+        "cards": [
+            {
+                "name": "Chrono Caster",
+                "attack": 10,
+                "health": 45,
+                "bio": "A wizard who weaves spells with the strings of time, always hitting the right note at the crucial moment.",
+                "isBoss": false
+            },
+            {
+                "name": "Riff Sorcerer",
+                "attack": 32,
+                "health": 18,
+                "bio": "With a guitar that shreds through the fabric of reality, this sorcerer's riffs are as deadly as they are loud.",
+                "isBoss": false
+            },
+            {
+                "name": "Bass Conjurer",
+                "attack": 12,
+                "health": 40,
+                "bio": "Summoning deep bass vibrations, this wizard's grooves can resonate through bone and spell alike.",
+                "isBoss": false
+            },
+            {
+                "name": "Melody Mage",
+                "attack": 28,
+                "health": 22,
+                "bio": "A spellcaster who can manipulate emotions and thoughts with her enchanting melodies.",
+                "isBoss": false
+            },
+            {
+                "name": "Tempo Enchanter",
+                "attack": 15,
+                "health": 38,
+                "bio": "Controls the pace of battle with a beat that can hasten allies or slow down foes.",
+                "isBoss": false
+            },
+            {
+                "name": "Harmony Warlock",
+                "attack": 30,
+                "health": 20,
+                "bio": "Striking chords that bring discord to enemies, this warlock's harmonies can heal or harm.",
+                "isBoss": false
+            },
+            {
+                "name": "Percussion Prophet",
+                "attack": 11,
+                "health": 42,
+                "bio": "Foreseeing the future in rhythmic patterns, this wizard's drums can predict and disrupt enemy tactics.",
+                "isBoss": false
+            },
+            {
+                "name": "Lyric Illusionist",
+                "attack": 26,
+                "health": 24,
+                "bio": "A master of misdirection with words that weave illusions as complex as any song.",
+                "isBoss": false
+            },
+            {
+                "name": "Vocal Alchemist",
+                "attack": 9,
+                "health": 48,
+                "bio": "Transforming matter with the power of voice, this alchemist's high notes can shatter more than glass.",
+                "isBoss": false
+            },
+            {
+                "name": "Synth Spellbinder",
+                "attack": 31,
+                "health": 19,
+                "bio": "An electronic wizard whose synthesizer can program reality itself, crafting beats that bend time.",
+                "isBoss": false
+            },
+            {
+                "name": "Eternal Maestro",
+                "attack": 40,
+                "health": 900,
+                "bio": "The ultimate boss of the Battle of the Bands, wielding a baton that commands the forces of time and music.",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-12T05:00:00.000Z"
+    },
+    {
         "prompt": "Spy Animals in a High-Stakes Heist Movie",
         "cards": [
             {
