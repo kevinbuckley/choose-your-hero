@@ -16,7 +16,7 @@ class ImageGenerator:
         self.pipe.to(self.device)
     def generate_image(self):
         prompt = f'''
-        Golden hour, instagram ready, impressive picture of ({self.name}), {self.theme}.
+        Instagram ready, impressive picture of the character ({self.name}) from the movie [{self.theme}].
         Extremely detailed eyes and face but whole body is visible and very realistic.
         '''
         
