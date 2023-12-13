@@ -1,0 +1,1 @@
+python3 ImageGenerator.py --name "Overlord of the Cosmic Ramp" --theme "Cyborg Wizards Competing in an Intergalactic Skateboarding Contest" --file_save_name "temp/Overlord of the Cosmic Ramp.png"

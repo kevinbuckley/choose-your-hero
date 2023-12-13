@@ -12,15 +12,19 @@ class ImageGenerator:
         self.file_save_name = file_save_name
         self.device = torch.device("mps")  # Metal device
         self.pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", torch_dtype=torch.float32 , variant="fp16")
+        #self.pipe = AutoPipelineForText2Image.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float32 , variant="fp16")
         self.pipe.to(self.device)
-
     def generate_image(self):
         prompt = f'''
-        Portrait of ({self.name}) in a {self.theme} theme. High Quality, zoomed in (perfect face: 1. 1).
-        Extremely detailed eyes and face.
+        Golden hour, instagram ready, impressive picture of ({self.name}), {self.theme}.
+        Extremely detailed eyes and face but whole body is visible and very realistic.
         '''
-
-        image = self.pipe(prompt=prompt, num_inference_steps=50, strength=0.5, guidance_scale=10.0).images[0]
+        
+        image = self.pipe(prompt=prompt, 
+                         # negative_prompt="ugly, deformed, disfigured, poor details, bad anatomy, blurry eyes",
+                          num_inference_steps=2, 
+                          strength=0.5, 
+                          guidance_scale=0.0).images[0]
 
         #refiner = DiffusionPipeline.from_pretrained(
         #    "stabilityai/stable-diffusion-xl-refiner-1.0",

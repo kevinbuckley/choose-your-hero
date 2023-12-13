@@ -16,7 +16,7 @@ import ImageGenerator from './ImageGenerator';
 dotenv.config();
 const jsonVaultLocation = '../web/public/assets/vault.json';
 
-const localImageCreation: boolean = false; // change this to use stable diffusion
+const localImageCreation: boolean = true; // change this to use stable diffusion
 
 class SimResult {
   totalGames: number = 0;
@@ -130,11 +130,10 @@ function getBossHealth() {
 }
 
 async function main() {
-  const a = await getNextActiveDate();
-  console.log(a);
+  console.log(`Use Local: ${localImageCreation}`)
   const themes = JSON.parse(await readFile(jsonVaultLocation, 'utf8')) as Theme[];
   const themeGenerator = new ThemeGenerator();
-  const theme = await themeGenerator.getGeneratedTheme(themes);
+  const theme = await themeGenerator.getGeneratedTheme(themes, localImageCreation);
   console.log(theme);
   //await regenSomeImages(theme, ["The Immortal Emperor"]); return;
   const mechanics = new MechanicsGenerator();
@@ -146,7 +145,7 @@ async function main() {
   let healthLower: number = Math.floor(10 * (bossHealth/500));
   let healthUpper: number = Math.floor(28 * (bossHealth/500));
 
-  gameFile = await mechanics.getJsonAsDictionary(theme.theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper);
+  gameFile = await mechanics.getJsonAsDictionary(theme.theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper, localImageCreation);
   console.log(gameFile);
   let i = 0;
   while(isFun == false) {
