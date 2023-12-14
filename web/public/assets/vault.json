@@ -1,5 +1,99 @@
 [
     {
+        "prompt": "Avengers: Endgame",
+        "cards": [
+            {
+                "name": "Iron Man",
+                "attack": 13,
+                "health": 12,
+                "bio": "Genius inventor Tony Stark in his iconic suit, ready to make the ultimate sacrifice for the universe.",
+                "stable_diffusion_prompt": "Iron Man from Avengers: Endgame in a heroic pose, high-tech suit gleaming",
+                "isBoss": false
+            },
+            {
+                "name": "Captain America",
+                "attack": 10,
+                "health": 16,
+                "bio": "Steve Rogers, the super soldier with his unbreakable shield and unwavering courage.",
+                "stable_diffusion_prompt": "Captain America from Avengers: Endgame holding his shield, determination in his eyes",
+                "isBoss": false
+            },
+            {
+                "name": "Thor",
+                "attack": 16,
+                "health": 10,
+                "bio": "The God of Thunder, wielding Stormbreaker and Mjolnir, ready to bring the thunder.",
+                "stable_diffusion_prompt": "Thor from Avengers: Endgame with Stormbreaker and Mjolnir, lightning crackling around him",
+                "isBoss": false
+            },
+            {
+                "name": "Hulk",
+                "attack": 9,
+                "health": 19,
+                "bio": "Bruce Banner in his Hulk form, combining brawn with brains as the smart Hulk.",
+                "stable_diffusion_prompt": "Hulk from Avengers: Endgame, looking intelligent and strong",
+                "isBoss": false
+            },
+            {
+                "name": "Black Widow",
+                "attack": 11,
+                "health": 12,
+                "bio": "Natasha Romanoff, the master spy and martial artist, prepared to fight for her family.",
+                "stable_diffusion_prompt": "Black Widow from Avengers: Endgame in a combat stance, ready for stealth and action",
+                "isBoss": false
+            },
+            {
+                "name": "Hawkeye",
+                "attack": 13,
+                "health": 10,
+                "bio": "Clint Barton, the sharpshooting archer, seeking redemption and justice.",
+                "stable_diffusion_prompt": "Hawkeye from Avengers: Endgame with his bow drawn, focused and precise",
+                "isBoss": false
+            },
+            {
+                "name": "Captain Marvel",
+                "attack": 15,
+                "health": 12,
+                "bio": "Carol Danvers, the powerful hero from another world, ready to defend the universe.",
+                "stable_diffusion_prompt": "Captain Marvel from Avengers: Endgame, energy pulsing from her hands",
+                "isBoss": false
+            },
+            {
+                "name": "Ant-Man",
+                "attack": 7,
+                "health": 16,
+                "bio": "Scott Lang, the size-shifting hero who can pack a punch or sneak up unnoticed.",
+                "stable_diffusion_prompt": "Ant-Man from Avengers: Endgame in his suit, ready to change size at a moment's notice",
+                "isBoss": false
+            },
+            {
+                "name": "Scarlet Witch",
+                "attack": 16,
+                "health": 8,
+                "bio": "Wanda Maximoff, with her reality-altering powers, seeking vengeance and justice.",
+                "stable_diffusion_prompt": "Scarlet Witch from Avengers: Endgame, chaos magic swirling around her hands",
+                "isBoss": false
+            },
+            {
+                "name": "Doctor Strange",
+                "attack": 12,
+                "health": 12,
+                "bio": "The Sorcerer Supreme, bending reality and time to protect the universe from threats.",
+                "stable_diffusion_prompt": "Doctor Strange from Avengers: Endgame with the Cloak of Levitation, casting a spell",
+                "isBoss": false
+            },
+            {
+                "name": "Thanos",
+                "attack": 22,
+                "health": 500,
+                "bio": "The Mad Titan, seeking to balance the universe by wiping out half of all life, with the Infinity Gauntlet at his disposal.",
+                "stable_diffusion_prompt": "Thanos from Avengers: Endgame in full armor, Infinity Gauntlet on his hand, looking menacing",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-16T05:00:00.000Z"
+    },
+    {
         "prompt": "Star Wars: The Empire Strikes Back",
         "cards": [
             {
