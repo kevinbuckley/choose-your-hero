@@ -1,11 +1,18 @@
 import argparse
 from diffusers import AutoPipelineForText2Image, DiffusionPipeline
 import torch
-import datetime
-import os
+from typing import List
+import random
 import time
 
 class ImageGenerator:
+
+    image_type: List[str] = [
+        "Doodle", "Cinema Portrait", "Realism", "Impressionism", "Expressionism", 
+        "Surrealism", "Pop Art", "Anime/Manga", "Pixel Art", "Watercolor", 
+        "Ink Wash", "Art Nouveau", "Art Deco", "Futurism", "Abstract" ]
+
+
     def __init__(self, name, theme, file_save_name):
         self.name = name
         self.theme = theme
@@ -15,9 +22,11 @@ class ImageGenerator:
         #self.pipe = AutoPipelineForText2Image.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float32 , variant="fp16")
         self.pipe.to(self.device)
     def generate_image(self):
+        selected_type =  random.choice(self.image_type)
         prompt = f'''
-        Instagram ready, impressive picture of the character ({self.name}) from the movie [{self.theme}].
+        A centered single {random.choice(self.image_type)} picture of the character ({self.name}) from the movie [{self.theme}].
         Extremely detailed eyes and face but whole body is visible and very realistic.
+        Only {self.name}, nothing else in the picture.
         '''
         
         image = self.pipe(prompt=prompt, 

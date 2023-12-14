@@ -1,5 +1,99 @@
 [
     {
+        "prompt": "Star Wars: The Empire Strikes Back",
+        "cards": [
+            {
+                "name": "Luke Skywalker",
+                "attack": 6,
+                "health": 18,
+                "bio": "A Jedi in training, strong with the Force.",
+                "stable_diffusion_prompt": "Luke Skywalker with a lightsaber in a battle stance, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "Han Solo",
+                "attack": 10,
+                "health": 14,
+                "bio": "A charming rogue with a quick blaster at his side.",
+                "stable_diffusion_prompt": "Han Solo aiming his blaster, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "Princess Leia",
+                "attack": 8,
+                "health": 16,
+                "bio": "A leader of the Rebel Alliance, brave and determined.",
+                "stable_diffusion_prompt": "Princess Leia giving orders, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "Chewbacca",
+                "attack": 12,
+                "health": 12,
+                "bio": "A loyal Wookiee warrior and co-pilot of the Millennium Falcon.",
+                "stable_diffusion_prompt": "Chewbacca roaring with a bowcaster, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "Yoda",
+                "attack": 4,
+                "health": 20,
+                "bio": "A wise and powerful Jedi Master living in exile.",
+                "stable_diffusion_prompt": "Yoda lifting objects with the Force, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "Lando Calrissian",
+                "attack": 9,
+                "health": 15,
+                "bio": "The smooth-talking administrator of Cloud City.",
+                "stable_diffusion_prompt": "Lando Calrissian with a charming smile, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "C-3PO",
+                "attack": 5,
+                "health": 19,
+                "bio": "A protocol droid fluent in over six million forms of communication.",
+                "stable_diffusion_prompt": "C-3PO gesturing while speaking, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "R2-D2",
+                "attack": 7,
+                "health": 17,
+                "bio": "An astromech droid with many hidden tools at its disposal.",
+                "stable_diffusion_prompt": "R2-D2 projecting a hologram, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "Boba Fett",
+                "attack": 13,
+                "health": 11,
+                "bio": "A notorious bounty hunter with a reputation for efficiency.",
+                "stable_diffusion_prompt": "Boba Fett with his jetpack and blaster, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "Darth Vader",
+                "attack": 14,
+                "health": 10,
+                "bio": "A powerful Sith Lord, relentless in his pursuit of the Rebels.",
+                "stable_diffusion_prompt": "Darth Vader with his lightsaber, Star Wars: The Empire Strikes Back",
+                "isBoss": false
+            },
+            {
+                "name": "Emperor Palpatine",
+                "attack": 17,
+                "health": 400,
+                "bio": "The malevolent ruler of the Galactic Empire and master of the dark side of the Force.",
+                "stable_diffusion_prompt": "Emperor Palpatine with dark side lightning, Star Wars: The Empire Strikes Back",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-15T05:00:00.000Z"
+    },
+    {
         "prompt": "Guardians of the Galaxy",
         "cards": [
             {
