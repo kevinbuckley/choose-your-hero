@@ -17,10 +17,10 @@ class ThemeGenerator {
         {
           role: 'user',
           content: useLocal ? 
-          `Pick return in the "theme' json property the name of Star Wars, Marvel, or DC Comics movie.  Things like Harry Potter, Iron Man, Avengers, Batman.
+          `Pick return in the "theme' json property the name of Star Wars, Marvel, DC Comics, or Fantasy Movies like Harry Potter.  Things like Harry Potter, Iron Man, Avengers, Batman.
           Even though it's called "theme", don't describe it, return the name of the movie in the theme property.
           Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.  Make sure it doesn't already exist
-          in  this list: ${themes.map(t => t.prompt)}
+          in  this list: Wonder Woman, Iron Man, Batman Begins, ${themes.map(t => t.prompt)}
           Please remember to only return JSON.`
           :
            `Create a theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references. 

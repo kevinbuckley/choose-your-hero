@@ -150,8 +150,6 @@ async function main() {
   let i = 0;
   while(isFun == false) {
     i++;
-    console.log('starting while loop');
-    console.log('got game file: ' + JSON.stringify(gameFile));
     // simulate game file
     let simResult = await isFunGameFile(gameFile);
     isFun = simResult.isFun();

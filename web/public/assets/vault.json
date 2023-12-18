@@ -1,5 +1,1791 @@
 [
     {
+        "prompt": "Harry Potter and the Prisoner of Azkaban",
+        "cards": [
+            {
+                "name": "Harry Potter",
+                "attack": 10,
+                "health": 15,
+                "bio": "The Boy Who Lived, now facing the mysteries of his past and the threat of Sirius Black.",
+                "stable_diffusion_prompt": "Harry Potter with a wand ready for battle, lightning-shaped scar on forehead, Hogwarts uniform",
+                "isBoss": false
+            },
+            {
+                "name": "Hermione Granger",
+                "attack": 10,
+                "health": 16,
+                "bio": "Brilliant and brave, Hermione is ready to use her knowledge and Time-Turner to change fate.",
+                "stable_diffusion_prompt": "Hermione Granger casting a spell, Time-Turner necklace visible, determined expression",
+                "isBoss": false
+            },
+            {
+                "name": "Ron Weasley",
+                "attack": 13,
+                "health": 12,
+                "bio": "Ron is always ready to face danger, especially with his friends by his side and his trusty rat Scabbers.",
+                "stable_diffusion_prompt": "Ron Weasley holding a wand, pet rat on shoulder, Gryffindor scarf",
+                "isBoss": false
+            },
+            {
+                "name": "Sirius Black",
+                "attack": 14,
+                "health": 11,
+                "bio": "Wrongly accused and on the run, Sirius is a complex figure seeking to clear his name.",
+                "stable_diffusion_prompt": "Sirius Black with Animagus dog form shadow, tattered clothes, Azkaban prisoner number",
+                "isBoss": false
+            },
+            {
+                "name": "Remus Lupin",
+                "attack": 12,
+                "health": 13,
+                "bio": "A kind-hearted professor with a dark secret, Lupin is a skilled wizard with a werewolf curse.",
+                "stable_diffusion_prompt": "Remus Lupin with a wand, half-moon glasses, hint of werewolf features",
+                "isBoss": false
+            },
+            {
+                "name": "Albus Dumbledore",
+                "attack": 9,
+                "health": 18,
+                "bio": "The wise headmaster of Hogwarts, Dumbledore holds powerful magic and deep knowledge.",
+                "stable_diffusion_prompt": "Albus Dumbledore with half-moon glasses, long beard, holding the Elder Wand",
+                "isBoss": false
+            },
+            {
+                "name": "Severus Snape",
+                "attack": 13,
+                "health": 12,
+                "bio": "The enigmatic Potions Master with a talent for the Dark Arts and a complex allegiance.",
+                "stable_diffusion_prompt": "Severus Snape with a wand at the ready, black robes, sneering expression",
+                "isBoss": false
+            },
+            {
+                "name": "Peter Pettigrew",
+                "attack": 16,
+                "health": 9,
+                "bio": "A man with a treacherous past, Pettigrew's true nature is as deceptive as his Animagus form.",
+                "stable_diffusion_prompt": "Peter Pettigrew transforming into a rat, shifty eyes, silver hand",
+                "isBoss": false
+            },
+            {
+                "name": "Professor Trelawney",
+                "attack": 10,
+                "health": 14,
+                "bio": "The Divination teacher with a penchant for the dramatic and the occasional true prophecy.",
+                "stable_diffusion_prompt": "Professor Trelawney with large glasses, crystal ball, surrounded by tea leaves",
+                "isBoss": false
+            },
+            {
+                "name": "Buckbeak",
+                "attack": 16,
+                "health": 11,
+                "bio": "A proud and noble Hippogriff who forms a special bond with Harry, facing execution unjustly.",
+                "stable_diffusion_prompt": "Buckbeak the Hippogriff, proud stance, feathers ruffled, ready to soar",
+                "isBoss": false
+            },
+            {
+                "name": "Dementor",
+                "attack": 16,
+                "health": 500,
+                "bio": "A chilling embodiment of fear and despair, the Dementors guard Azkaban and threaten the souls of all who cross their path.",
+                "stable_diffusion_prompt": "Dementor floating, face obscured by hood, hands outstretched to drain happiness",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2024-01-04T05:00:00.000Z"
+    },
+    {
+        "prompt": "Star Wars: The Force Awakens",
+        "cards": [
+            {
+                "name": "Rey",
+                "attack": 7,
+                "health": 20,
+                "bio": "A resilient survivor, scavenger, and emerging Jedi with a mysterious past.",
+                "stable_diffusion_prompt": "Rey with her staff on the deserts of Jakku, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "Finn",
+                "attack": 11,
+                "health": 16,
+                "bio": "A defected stormtrooper with a conscience, seeking to escape his past.",
+                "stable_diffusion_prompt": "Finn holding a blaster, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "Poe Dameron",
+                "attack": 14,
+                "health": 14,
+                "bio": "The best pilot in the Resistance, charismatic and daring.",
+                "stable_diffusion_prompt": "Poe Dameron in his pilot gear, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "Han Solo",
+                "attack": 12,
+                "health": 16,
+                "bio": "The legendary smuggler, back in action against the First Order.",
+                "stable_diffusion_prompt": "Han Solo with his blaster, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "Chewbacca",
+                "attack": 10,
+                "health": 18,
+                "bio": "The loyal Wookiee warrior and co-pilot of the Millennium Falcon.",
+                "stable_diffusion_prompt": "Chewbacca roaring with his bowcaster, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "Leia Organa",
+                "attack": 9,
+                "health": 18,
+                "bio": "The General of the Resistance and a symbol of hope.",
+                "stable_diffusion_prompt": "Leia Organa in her Resistance uniform, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "BB-8",
+                "attack": 9,
+                "health": 19,
+                "bio": "A spherical astromech droid, brave and full of heart.",
+                "stable_diffusion_prompt": "BB-8 rolling in the desert, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "C-3PO",
+                "attack": 8,
+                "health": 18,
+                "bio": "The protocol droid fluent in over six million forms of communication.",
+                "stable_diffusion_prompt": "C-3PO with his red arm, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "R2-D2",
+                "attack": 10,
+                "health": 18,
+                "bio": "The astromech droid, a hero of the Rebellion and the Resistance.",
+                "stable_diffusion_prompt": "R2-D2 projecting a hologram, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "Maz Kanata",
+                "attack": 11,
+                "health": 17,
+                "bio": "An ancient and wise alien with a knack for sensing the Force.",
+                "stable_diffusion_prompt": "Maz Kanata with her goggles, Star Wars: The Force Awakens style",
+                "isBoss": false
+            },
+            {
+                "name": "Kylo Ren",
+                "attack": 16,
+                "health": 500,
+                "bio": "The dark warrior, leader of the Knights of Ren and servant of Supreme Leader Snoke.",
+                "stable_diffusion_prompt": "Kylo Ren with his crossguard lightsaber, Star Wars: The Force Awakens style",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2024-01-03T05:00:00.000Z"
+    },
+    {
+        "prompt": "Thor: The Dark World",
+        "cards": [
+            {
+                "name": "Thor",
+                "attack": 15,
+                "health": 10,
+                "bio": "The God of Thunder, wielding Mjolnir to protect the Nine Realms.",
+                "stable_diffusion_prompt": "Thor with Mjolnir in a battle stance, thunder and lightning in the background, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Jane Foster",
+                "attack": 10,
+                "health": 15,
+                "bio": "An astrophysicist and Thor's love interest, who becomes host to the Aether.",
+                "stable_diffusion_prompt": "Jane Foster looking at ancient texts with the Aether swirling around her, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Loki",
+                "attack": 15,
+                "health": 12,
+                "bio": "The God of Mischief, Thor's adoptive brother, known for his cunning and deception.",
+                "stable_diffusion_prompt": "Loki with a mischievous grin holding his scepter, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Heimdall",
+                "attack": 12,
+                "health": 15,
+                "bio": "The all-seeing and all-hearing Asgardian sentry of the Bifrost Bridge.",
+                "stable_diffusion_prompt": "Heimdall standing guard at the Bifrost Bridge, gazing into the cosmos, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Sif",
+                "attack": 13,
+                "health": 14,
+                "bio": "A fearsome Asgardian warrior and a good friend of Thor.",
+                "stable_diffusion_prompt": "Sif in battle armor wielding a sword, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Volstagg",
+                "attack": 10,
+                "health": 15,
+                "bio": "One of the Warriors Three, known for his great appetite and bulky frame.",
+                "stable_diffusion_prompt": "Volstagg laughing heartily with a large axe in hand, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Fandral",
+                "attack": 11,
+                "health": 15,
+                "bio": "One of the Warriors Three, known for his dashing looks and swashbuckling skills.",
+                "stable_diffusion_prompt": "Fandral with a rapier, ready to duel, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Hogun",
+                "attack": 12,
+                "health": 14,
+                "bio": "One of the Warriors Three, known for his grim demeanor and mastery of weaponry.",
+                "stable_diffusion_prompt": "Hogun with a stern face holding a mace, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Frigga",
+                "attack": 10,
+                "health": 14,
+                "bio": "The Queen of Asgard and Thor's mother, skilled in magic and wisdom.",
+                "stable_diffusion_prompt": "Frigga casting a spell, protective and regal, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Odin",
+                "attack": 15,
+                "health": 12,
+                "bio": "The Allfather and King of Asgard, wielding Gungnir and possessing vast knowledge.",
+                "stable_diffusion_prompt": "Odin sitting on his throne with Gungnir, looking powerful, from Thor: The Dark World",
+                "isBoss": false
+            },
+            {
+                "name": "Malekith",
+                "attack": 16,
+                "health": 500,
+                "bio": "The leader of the Dark Elves, seeking to plunge the universe into darkness with the Aether.",
+                "stable_diffusion_prompt": "Malekith with the Aether, menacing and dark, from Thor: The Dark World",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2024-01-02T05:00:00.000Z"
+    },
+    {
+        "prompt": "The Dark Knight Rises",
+        "cards": [
+            {
+                "name": "Batman",
+                "attack": 10,
+                "health": 18,
+                "bio": "The Dark Knight himself, using his combat skills and gadgets to protect Gotham.",
+                "stable_diffusion_prompt": "Batman in a dark and brooding pose, with the city of Gotham in the background, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Catwoman",
+                "attack": 14,
+                "health": 12,
+                "bio": "Selina Kyle, a skilled thief with a taste for high-stakes burglary.",
+                "stable_diffusion_prompt": "Catwoman with her iconic whip and goggles, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "John Blake",
+                "attack": 12,
+                "health": 14,
+                "bio": "A determined young police officer, inspired by Batman's legacy.",
+                "stable_diffusion_prompt": "John Blake holding a badge, with a look of determination, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Commissioner Gordon",
+                "attack": 9,
+                "health": 16,
+                "bio": "The resilient police commissioner of Gotham, ally to Batman.",
+                "stable_diffusion_prompt": "Commissioner Gordon with his signature coat and glasses, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Alfred Pennyworth",
+                "attack": 9,
+                "health": 15,
+                "bio": "Bruce Wayne's loyal butler and confidant, always there to offer sage advice.",
+                "stable_diffusion_prompt": "Alfred Pennyworth with a wise and caring expression, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Lucius Fox",
+                "attack": 11,
+                "health": 13,
+                "bio": "The ingenious mind behind Wayne Enterprises' R&D, supplying Batman with tech.",
+                "stable_diffusion_prompt": "Lucius Fox in a lab with high-tech gadgets, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Miranda Tate",
+                "attack": 13,
+                "health": 11,
+                "bio": "A philanthropist and member of Wayne Enterprises' executive board with a secret.",
+                "stable_diffusion_prompt": "Miranda Tate with an enigmatic smile, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Deputy Commissioner Foley",
+                "attack": 10,
+                "health": 14,
+                "bio": "A high-ranking officer in the Gotham City Police Department, with ambitions.",
+                "stable_diffusion_prompt": "Deputy Commissioner Foley in uniform, looking ambitious, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Scarecrow",
+                "attack": 15,
+                "health": 9,
+                "bio": "Dr. Jonathan Crane, a former psychiatrist turned fear-inducing villain.",
+                "stable_diffusion_prompt": "Scarecrow with his frightening mask, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Bane's Mercenary",
+                "attack": 16,
+                "health": 9,
+                "bio": "One of Bane's loyal followers, trained and ready for combat.",
+                "stable_diffusion_prompt": "A menacing mercenary in combat gear, art style of The Dark Knight Rises",
+                "isBoss": false
+            },
+            {
+                "name": "Bane",
+                "attack": 16,
+                "health": 500,
+                "bio": "The main antagonist, a formidable foe with a plan to destroy Gotham.",
+                "stable_diffusion_prompt": "Bane standing powerfully, with his iconic mask, art style of The Dark Knight Rises",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2024-01-01T05:00:00.000Z"
+    },
+    {
+        "prompt": "Star Wars: Revenge of the Sith",
+        "cards": [
+            {
+                "name": "Anakin Skywalker",
+                "attack": 14,
+                "health": 11,
+                "bio": "A powerful Jedi Knight with unmatched combat skills, torn between his loyalty to the Jedi Order and the dark temptations of the Sith.",
+                "stable_diffusion_prompt": "Anakin Skywalker in Jedi robes wielding a blue lightsaber, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Obi-Wan Kenobi",
+                "attack": 13,
+                "health": 13,
+                "bio": "A wise and skilled Jedi Master, fighting to maintain peace and order in the galaxy.",
+                "stable_diffusion_prompt": "Obi-Wan Kenobi in Jedi armor holding a blue lightsaber, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Padme Amidala",
+                "attack": 9,
+                "health": 15,
+                "bio": "A courageous and determined former Queen and current Senator of Naboo, fighting for the Republic's democracy.",
+                "stable_diffusion_prompt": "Padme Amidala in her white outfit, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Yoda",
+                "attack": 16,
+                "health": 10,
+                "bio": "The wise and powerful Grand Master of the Jedi Order, small in size but mighty in the Force.",
+                "stable_diffusion_prompt": "Yoda using the Force, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Mace Windu",
+                "attack": 17,
+                "health": 9,
+                "bio": "A senior member of the Jedi Council known for his combat prowess and the rare ability to wield a purple lightsaber.",
+                "stable_diffusion_prompt": "Mace Windu with a purple lightsaber, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Chancellor Palpatine",
+                "attack": 10,
+                "health": 15,
+                "bio": "The Supreme Chancellor of the Republic, secretly a Sith Lord plotting to overthrow the Jedi.",
+                "stable_diffusion_prompt": "Chancellor Palpatine in his red and black robes, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Count Dooku",
+                "attack": 13,
+                "health": 13,
+                "bio": "A fallen Jedi and the enigmatic leader of the Separatists, known as Darth Tyranus.",
+                "stable_diffusion_prompt": "Count Dooku with a red lightsaber, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "General Grievous",
+                "attack": 12,
+                "health": 14,
+                "bio": "A fearsome cyborg general of the Separatist army, known for his ability to wield multiple lightsabers.",
+                "stable_diffusion_prompt": "General Grievous with four lightsabers, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Clone Commander Cody",
+                "attack": 9,
+                "health": 17,
+                "bio": "A loyal commander of the Grand Army of the Republic, leading the clone troopers into battle.",
+                "stable_diffusion_prompt": "Clone Commander Cody with a blaster rifle, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Bail Organa",
+                "attack": 10,
+                "health": 16,
+                "bio": "A senator of Alderaan, ally to the Jedi, and a voice of reason in the tumultuous times of the Republic.",
+                "stable_diffusion_prompt": "Bail Organa in senatorial robes, Star Wars: Revenge of the Sith",
+                "isBoss": false
+            },
+            {
+                "name": "Darth Sidious",
+                "attack": 16,
+                "health": 500,
+                "bio": "The dark mastermind behind the fall of the Jedi and the rise of the Galactic Empire, true identity of Chancellor Palpatine.",
+                "stable_diffusion_prompt": "Darth Sidious in a dark hooded robe unleashing Force lightning, Star Wars: Revenge of the Sith",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-31T05:00:00.000Z"
+    },
+    {
+        "prompt": "Harry Potter and the Goblet of Fire",
+        "cards": [
+            {
+                "name": "Harry Potter",
+                "attack": 10,
+                "health": 18,
+                "bio": "The protagonist and Triwizard Tournament contender, known for his bravery and the lightning bolt scar on his forehead.",
+                "stable_diffusion_prompt": "Harry Potter with a wand and a lightning bolt scar on his forehead",
+                "isBoss": false
+            },
+            {
+                "name": "Ron Weasley",
+                "attack": 9,
+                "health": 17,
+                "bio": "Harry's loyal friend with a knack for chess and a fear of spiders, known for his red hair.",
+                "stable_diffusion_prompt": "Ron Weasley with red hair and a chess piece",
+                "isBoss": false
+            },
+            {
+                "name": "Hermione Granger",
+                "attack": 11,
+                "health": 15,
+                "bio": "Brilliant and book-smart, Hermione is an indispensable ally with a talent for spells and potions.",
+                "stable_diffusion_prompt": "Hermione Granger reading a book with a wand in her hand",
+                "isBoss": false
+            },
+            {
+                "name": "Viktor Krum",
+                "attack": 14,
+                "health": 12,
+                "bio": "The Bulgarian Quidditch seeker and Durmstrang's Triwizard champion, known for his athleticism and brooding appearance.",
+                "stable_diffusion_prompt": "Viktor Krum in Quidditch robes holding a snitch",
+                "isBoss": false
+            },
+            {
+                "name": "Fleur Delacour",
+                "attack": 13,
+                "health": 13,
+                "bio": "The Beauxbatons Academy's Triwizard champion, known for her beauty and Veela charm.",
+                "stable_diffusion_prompt": "Fleur Delacour with silver hair and a Beauxbatons uniform",
+                "isBoss": false
+            },
+            {
+                "name": "Cedric Diggory",
+                "attack": 12,
+                "health": 14,
+                "bio": "The noble and fair Hufflepuff student, chosen as Hogwarts' second Triwizard champion.",
+                "stable_diffusion_prompt": "Cedric Diggory with a Hufflepuff scarf holding a Triwizard Cup",
+                "isBoss": false
+            },
+            {
+                "name": "Albus Dumbledore",
+                "attack": 9,
+                "health": 19,
+                "bio": "The wise and powerful Headmaster of Hogwarts, with a long silver beard and half-moon spectacles.",
+                "stable_diffusion_prompt": "Albus Dumbledore with a phoenix and the Elder Wand",
+                "isBoss": false
+            },
+            {
+                "name": "Mad-Eye Moody",
+                "attack": 15,
+                "health": 11,
+                "bio": "The grizzled ex-Auror with a magical eye, known for his paranoia and unconventional teaching methods.",
+                "stable_diffusion_prompt": "Mad-Eye Moody with a magical eye and a staff",
+                "isBoss": false
+            },
+            {
+                "name": "Severus Snape",
+                "attack": 10,
+                "health": 16,
+                "bio": "The enigmatic Potions Master with a talent for occlumency and a mysterious past.",
+                "stable_diffusion_prompt": "Severus Snape in black robes with a potion vial",
+                "isBoss": false
+            },
+            {
+                "name": "Sirius Black",
+                "attack": 16,
+                "health": 9,
+                "bio": "Harry's godfather and an Animagus, falsely accused and imprisoned, known for his loyalty to his friends.",
+                "stable_diffusion_prompt": "Sirius Black transforming into a large black dog",
+                "isBoss": false
+            },
+            {
+                "name": "Lord Voldemort",
+                "attack": 16,
+                "health": 500,
+                "bio": "The main villain, also known as Tom Riddle, with a serpentine appearance and a quest for immortality.",
+                "stable_diffusion_prompt": "Lord Voldemort with a wand casting the Avada Kedavra curse",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-30T05:00:00.000Z"
+    },
+    {
+        "prompt": "Avengers: Infinity War",
+        "cards": [
+            {
+                "name": "Iron Man",
+                "attack": 13,
+                "health": 15,
+                "bio": "Genius inventor Tony Stark fights in his advanced suit of armor.",
+                "stable_diffusion_prompt": "Iron Man in advanced suit of armor, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Thor",
+                "attack": 15,
+                "health": 13,
+                "bio": "The God of Thunder wields Stormbreaker to battle his foes.",
+                "stable_diffusion_prompt": "Thor with Stormbreaker, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Captain America",
+                "attack": 12,
+                "health": 17,
+                "bio": "Steve Rogers stands against evil with his unbreakable shield.",
+                "stable_diffusion_prompt": "Captain America with shield, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Hulk",
+                "attack": 17,
+                "health": 12,
+                "bio": "Bruce Banner transforms into the Hulk to smash his enemies.",
+                "stable_diffusion_prompt": "Hulk in battle, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Black Widow",
+                "attack": 10,
+                "health": 16,
+                "bio": "Natasha Romanoff is a master spy and martial artist.",
+                "stable_diffusion_prompt": "Black Widow in combat pose, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Scarlet Witch",
+                "attack": 13,
+                "health": 12,
+                "bio": "Wanda Maximoff manipulates chaos magic to protect reality.",
+                "stable_diffusion_prompt": "Scarlet Witch using chaos magic, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Doctor Strange",
+                "attack": 12,
+                "health": 16,
+                "bio": "The Sorcerer Supreme uses mystical arts to bend reality.",
+                "stable_diffusion_prompt": "Doctor Strange casting spells, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Spider-Man",
+                "attack": 11,
+                "health": 17,
+                "bio": "Peter Parker swings into action with his spider-like abilities.",
+                "stable_diffusion_prompt": "Spider-Man in action, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Star-Lord",
+                "attack": 11,
+                "health": 17,
+                "bio": "Peter Quill leads the Guardians with his quick wit and blasters.",
+                "stable_diffusion_prompt": "Star-Lord with blasters, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Vision",
+                "attack": 14,
+                "health": 15,
+                "bio": "The android Avenger possesses the Mind Stone and phasing powers.",
+                "stable_diffusion_prompt": "Vision with the Mind Stone, Avengers Infinity War",
+                "isBoss": false
+            },
+            {
+                "name": "Thanos",
+                "attack": 16,
+                "health": 500,
+                "bio": "The Mad Titan seeks the Infinity Stones to impose his will on all of reality.",
+                "stable_diffusion_prompt": "Thanos with Infinity Gauntlet, Avengers Infinity War",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-29T05:00:00.000Z"
+    },
+    {
+        "prompt": "Harry Potter and the Chamber of Secrets",
+        "cards": [
+            {
+                "name": "Harry Potter",
+                "attack": 10,
+                "health": 18,
+                "bio": "The Boy Who Lived, known for his bravery and his powerful Patronus charm.",
+                "stable_diffusion_prompt": "Harry Potter with a wand and a lightning bolt shaped scar on his forehead.",
+                "isBoss": false
+            },
+            {
+                "name": "Ron Weasley",
+                "attack": 9,
+                "health": 17,
+                "bio": "Harry's loyal friend, known for his strategic mind and driving the flying Ford Anglia.",
+                "stable_diffusion_prompt": "Ron Weasley with red hair playing wizard's chess.",
+                "isBoss": false
+            },
+            {
+                "name": "Hermione Granger",
+                "attack": 12,
+                "health": 15,
+                "bio": "One of Harry's best friends, brilliant and resourceful, with a knack for spells and potions.",
+                "stable_diffusion_prompt": "Hermione Granger with bushy hair and a pile of books, casting a spell.",
+                "isBoss": false
+            },
+            {
+                "name": "Ginny Weasley",
+                "attack": 11,
+                "health": 16,
+                "bio": "Youngest of the Weasley siblings, brave and strong-willed, with a talent for hexes.",
+                "stable_diffusion_prompt": "Ginny Weasley with bright red hair and a determined look, holding a wand.",
+                "isBoss": false
+            },
+            {
+                "name": "Dobby",
+                "attack": 9,
+                "health": 19,
+                "bio": "The free-spirited house elf with a big heart and a willingness to help Harry Potter at any cost.",
+                "stable_diffusion_prompt": "Dobby the house elf with large ears and wearing a patchwork pillowcase.",
+                "isBoss": false
+            },
+            {
+                "name": "Professor Lockhart",
+                "attack": 14,
+                "health": 12,
+                "bio": "The Defense Against the Dark Arts teacher, famous for his books and his narcissistic personality.",
+                "stable_diffusion_prompt": "Professor Lockhart with wavy blond hair, smiling and holding his book.",
+                "isBoss": false
+            },
+            {
+                "name": "Moaning Myrtle",
+                "attack": 9,
+                "health": 20,
+                "bio": "The ghost of a former Hogwarts student who haunts the girls' bathroom and enjoys wailing melodramatically.",
+                "stable_diffusion_prompt": "Moaning Myrtle floating above a toilet, wearing glasses and looking forlorn.",
+                "isBoss": false
+            },
+            {
+                "name": "Tom Riddle",
+                "attack": 15,
+                "health": 11,
+                "bio": "The memory of Lord Voldemort as a young Hogwarts student, cunning and manipulative.",
+                "stable_diffusion_prompt": "Tom Riddle with dark hair and a mysterious diary, looking sinister.",
+                "isBoss": false
+            },
+            {
+                "name": "Fawkes",
+                "attack": 16,
+                "health": 9,
+                "bio": "Dumbledore's loyal phoenix, known for its healing tears and ability to be reborn from its ashes.",
+                "stable_diffusion_prompt": "Fawkes the phoenix in flames, regenerating from ashes.",
+                "isBoss": false
+            },
+            {
+                "name": "Professor McGonagall",
+                "attack": 13,
+                "health": 14,
+                "bio": "Deputy Headmistress of Hogwarts, strict but fair, with a mastery of Transfiguration.",
+                "stable_diffusion_prompt": "Professor McGonagall with square spectacles, holding a wand, ready to transform an object.",
+                "isBoss": false
+            },
+            {
+                "name": "Basilisk",
+                "attack": 16,
+                "health": 500,
+                "bio": "The monstrous serpent dwelling within the Chamber of Secrets, controlled by the Heir of Slytherin.",
+                "stable_diffusion_prompt": "The Basilisk with giant yellow eyes and fangs dripping with venom, slithering in the Chamber of Secrets.",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-28T05:00:00.000Z"
+    },
+    {
+        "prompt": "Captain America: The First Avenger",
+        "cards": [
+            {
+                "name": "Captain America",
+                "attack": 11,
+                "health": 21,
+                "bio": "The Super Soldier and leader with a shield of vibranium.",
+                "stable_diffusion_prompt": "Captain America with shield, Captain America: The First Avenger, superhero",
+                "isBoss": false
+            },
+            {
+                "name": "Bucky Barnes",
+                "attack": 14,
+                "health": 14,
+                "bio": "Steve Rogers' best friend and a brave soldier.",
+                "stable_diffusion_prompt": "Bucky Barnes in WWII uniform, Captain America: The First Avenger, sidekick",
+                "isBoss": false
+            },
+            {
+                "name": "Peggy Carter",
+                "attack": 13,
+                "health": 18,
+                "bio": "A tough and skilled agent of the SSR.",
+                "stable_diffusion_prompt": "Peggy Carter in military uniform, Captain America: The First Avenger, agent",
+                "isBoss": false
+            },
+            {
+                "name": "Red Skull",
+                "attack": 20,
+                "health": 501,
+                "bio": "The menacing leader of HYDRA and the main antagonist.",
+                "stable_diffusion_prompt": "Red Skull with Tesseract, Captain America: The First Avenger, villain",
+                "isBoss": true
+            },
+            {
+                "name": "Colonel Phillips",
+                "attack": 9,
+                "health": 18,
+                "bio": "The commanding officer who is tough but fair.",
+                "stable_diffusion_prompt": "Colonel Phillips in military attire, Captain America: The First Avenger, officer",
+                "isBoss": false
+            },
+            {
+                "name": "Howard Stark",
+                "attack": 12,
+                "health": 18,
+                "bio": "Inventor and industrialist, father of Tony Stark.",
+                "stable_diffusion_prompt": "Howard Stark with gadgets, Captain America: The First Avenger, inventor",
+                "isBoss": false
+            },
+            {
+                "name": "Dr. Abraham Erskine",
+                "attack": 11,
+                "health": 16,
+                "bio": "The scientist behind the Super Soldier Serum.",
+                "stable_diffusion_prompt": "Dr. Abraham Erskine with serum, Captain America: The First Avenger, scientist",
+                "isBoss": false
+            },
+            {
+                "name": "Dum Dum Dugan",
+                "attack": 16,
+                "health": 14,
+                "bio": "A member of the Howling Commandos with a distinctive bowler hat.",
+                "stable_diffusion_prompt": "Dum Dum Dugan with bowler hat, Captain America: The First Avenger, commando",
+                "isBoss": false
+            },
+            {
+                "name": "Gabe Jones",
+                "attack": 14,
+                "health": 12,
+                "bio": "A multilingual member of the Howling Commandos.",
+                "stable_diffusion_prompt": "Gabe Jones with radio equipment, Captain America: The First Avenger, commando",
+                "isBoss": false
+            },
+            {
+                "name": "Jim Morita",
+                "attack": 14,
+                "health": 15,
+                "bio": "A Japanese-American commando in the fight against HYDRA.",
+                "stable_diffusion_prompt": "Jim Morita in military gear, Captain America: The First Avenger, commando",
+                "isBoss": false
+            },
+            {
+                "name": "Jacques Dernier",
+                "attack": 14,
+                "health": 10,
+                "bio": "A French member of the Howling Commandos, skilled in explosives.",
+                "stable_diffusion_prompt": "Jacques Dernier with explosives, Captain America: The First Avenger, commando",
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2023-12-27T05:00:00.000Z"
+    },
+    {
+        "prompt": "Star Wars: The Last Jedi",
+        "cards": [
+            {
+                "name": "Rey",
+                "attack": 9,
+                "health": 20,
+                "bio": "A powerful force-sensitive woman, skilled in lightsaber combat and the ways of the Force.",
+                "stable_diffusion_prompt": "Rey with a lightsaber in a combat stance from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "Kylo Ren",
+                "attack": 16,
+                "health": 9,
+                "bio": "The conflicted Supreme Leader of the First Order, torn between the dark side and the light.",
+                "stable_diffusion_prompt": "Kylo Ren with his crossguard lightsaber from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "Luke Skywalker",
+                "attack": 10,
+                "health": 18,
+                "bio": "The legendary Jedi Master who confronts his past and guides the new generation.",
+                "stable_diffusion_prompt": "Luke Skywalker projecting himself on Crait from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "General Leia Organa",
+                "attack": 9,
+                "health": 17,
+                "bio": "The wise and courageous leader of the Resistance, fighting against the First Order.",
+                "stable_diffusion_prompt": "General Leia Organa commanding the Resistance from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "Poe Dameron",
+                "attack": 14,
+                "health": 12,
+                "bio": "An ace pilot and key figure in the Resistance's fight against the First Order.",
+                "stable_diffusion_prompt": "Poe Dameron piloting his X-wing from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "Finn",
+                "attack": 13,
+                "health": 13,
+                "bio": "A former stormtrooper who bravely stands against the First Order.",
+                "stable_diffusion_prompt": "Finn in battle on Crait from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "Rose Tico",
+                "attack": 11,
+                "health": 15,
+                "bio": "A Resistance maintenance worker who becomes a hero through her bravery and ingenuity.",
+                "stable_diffusion_prompt": "Rose Tico with her taser from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "Vice Admiral Holdo",
+                "attack": 10,
+                "health": 16,
+                "bio": "A strategic leader of the Resistance, known for her decisive and bold actions.",
+                "stable_diffusion_prompt": "Vice Admiral Holdo at the helm of the Resistance cruiser from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "BB-8",
+                "attack": 12,
+                "health": 14,
+                "bio": "A resourceful astromech droid with a knack for getting out of tight situations.",
+                "stable_diffusion_prompt": "BB-8 on a secret mission from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "Chewbacca",
+                "attack": 15,
+                "health": 11,
+                "bio": "The loyal Wookiee warrior and co-pilot of the Millennium Falcon.",
+                "stable_diffusion_prompt": "Chewbacca roaring in the Millennium Falcon from Star Wars: The Last Jedi",
+                "isBoss": false
+            },
+            {
+                "name": "Supreme Leader Snoke",
+                "attack": 16,
+                "health": 500,
+                "bio": "The enigmatic ruler of the First Order, wielding vast dark side powers.",
+                "stable_diffusion_prompt": "Supreme Leader Snoke using the Force from Star Wars: The Last Jedi",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-26T05:00:00.000Z"
+    },
+    {
+        "prompt": "The Hobbit: An Unexpected Journey",
+        "cards": [
+            {
+                "name": "Bilbo Baggins",
+                "attack": 9,
+                "health": 19,
+                "bio": "A reluctant hobbit setting out on an unexpected journey.",
+                "stable_diffusion_prompt": "Bilbo Baggins from The Hobbit holding Sting",
+                "isBoss": false
+            },
+            {
+                "name": "Gandalf",
+                "attack": 15,
+                "health": 13,
+                "bio": "A wise wizard guiding the group with his powerful magic.",
+                "stable_diffusion_prompt": "Gandalf the Grey with his staff in The Hobbit",
+                "isBoss": false
+            },
+            {
+                "name": "Thorin Oakenshield",
+                "attack": 15,
+                "health": 13,
+                "bio": "The brave Dwarf prince seeking to reclaim his homeland.",
+                "stable_diffusion_prompt": "Thorin Oakenshield with Orcrist sword from The Hobbit",
+                "isBoss": false
+            },
+            {
+                "name": "Kili",
+                "attack": 14,
+                "health": 14,
+                "bio": "A young dwarf warrior, nephew to Thorin and skilled archer.",
+                "stable_diffusion_prompt": "Kili the Dwarf readying his bow in The Hobbit",
+                "isBoss": false
+            },
+            {
+                "name": "Fili",
+                "attack": 12,
+                "health": 16,
+                "bio": "Brother of Kili, known for his fighting prowess and loyalty.",
+                "stable_diffusion_prompt": "Fili the Dwarf with his swords from The Hobbit",
+                "isBoss": false
+            },
+            {
+                "name": "Balin",
+                "attack": 10,
+                "health": 17,
+                "bio": "The eldest of the dwarves, wise and counsellor to Thorin.",
+                "stable_diffusion_prompt": "Balin the Dwarf from The Hobbit with his walking stick",
+                "isBoss": false
+            },
+            {
+                "name": "Dwalin",
+                "attack": 16,
+                "health": 11,
+                "bio": "A fierce warrior and loyal to Thorin, brother to Balin.",
+                "stable_diffusion_prompt": "Dwalin the Dwarf in battle gear from The Hobbit",
+                "isBoss": false
+            },
+            {
+                "name": "Oin",
+                "attack": 11,
+                "health": 16,
+                "bio": "A dwarf with healing skills and part of Thorin's company.",
+                "stable_diffusion_prompt": "Oin the Dwarf with his ear trumpet in The Hobbit",
+                "isBoss": false
+            },
+            {
+                "name": "Gloin",
+                "attack": 11,
+                "health": 16,
+                "bio": "Father of Gimli and member of Thorin's company, skilled with an axe.",
+                "stable_diffusion_prompt": "Gloin the Dwarf ready for battle in The Hobbit",
+                "isBoss": false
+            },
+            {
+                "name": "Bofur",
+                "attack": 10,
+                "health": 17,
+                "bio": "A cheerful dwarf who wears a distinctive hat and plays the flute.",
+                "stable_diffusion_prompt": "Bofur the Dwarf smiling with his hat in The Hobbit",
+                "isBoss": false
+            },
+            {
+                "name": "Azog the Defiler",
+                "attack": 16,
+                "health": 500,
+                "bio": "The fearsome orc chieftain and the main antagonist, seeking vengeance against Thorin.",
+                "stable_diffusion_prompt": "Azog the Defiler, the pale orc with his arm blade from The Hobbit",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-25T05:00:00.000Z"
+    },
+    {
+        "prompt": "The Matrix",
+        "cards": [
+            {
+                "name": "Neo",
+                "attack": 12,
+                "health": 15,
+                "bio": "The prophesied One, capable of manipulating the Matrix.",
+                "stable_diffusion_prompt": "Neo in a black trench coat with sunglasses performing martial arts in a digital world",
+                "isBoss": false
+            },
+            {
+                "name": "Trinity",
+                "attack": 12,
+                "health": 13,
+                "bio": "A skilled hacker and fighter, deeply loyal to Neo.",
+                "stable_diffusion_prompt": "Trinity in black leather attire performing a high kick with a futuristic cityscape in the background",
+                "isBoss": false
+            },
+            {
+                "name": "Morpheus",
+                "attack": 11,
+                "health": 16,
+                "bio": "The captain of the Nebuchadnezzar, a mentor to Neo.",
+                "stable_diffusion_prompt": "Morpheus with reflective sunglasses and a long coat, holding a gun in a dystopian world",
+                "isBoss": false
+            },
+            {
+                "name": "Agent Smith",
+                "attack": 17,
+                "health": 10,
+                "bio": "A powerful agent of the system, seeking to capture Neo.",
+                "stable_diffusion_prompt": "Agent Smith in a suit and sunglasses, with a menacing expression in a green code rain background",
+                "isBoss": false
+            },
+            {
+                "name": "Cypher",
+                "attack": 13,
+                "health": 12,
+                "bio": "A disillusioned member of the crew, with his own agenda.",
+                "stable_diffusion_prompt": "Cypher with a cunning smile, holding a plug of the Matrix in a dimly lit spaceship",
+                "isBoss": false
+            },
+            {
+                "name": "Oracle",
+                "attack": 10,
+                "health": 17,
+                "bio": "A mysterious and wise figure who can predict the future.",
+                "stable_diffusion_prompt": "The Oracle, an elderly woman, baking cookies in a cozy, oracle-like kitchen environment",
+                "isBoss": false
+            },
+            {
+                "name": "Seraph",
+                "attack": 15,
+                "health": 11,
+                "bio": "The guardian of the Oracle, a master martial artist.",
+                "stable_diffusion_prompt": "Seraph in a golden suit, fighting with fluid martial arts moves in a temple",
+                "isBoss": false
+            },
+            {
+                "name": "Niobe",
+                "attack": 10,
+                "health": 15,
+                "bio": "A skilled pilot and fighter, Morpheus's former lover.",
+                "stable_diffusion_prompt": "Niobe in a pilot suit, maneuvering a hovercraft through a tunnel system",
+                "isBoss": false
+            },
+            {
+                "name": "The Merovingian",
+                "attack": 13,
+                "health": 11,
+                "bio": "A powerful and cunning information broker.",
+                "stable_diffusion_prompt": "The Merovingian in a lavish suit, sipping wine in an opulent French restaurant",
+                "isBoss": false
+            },
+            {
+                "name": "Persephone",
+                "attack": 13,
+                "health": 12,
+                "bio": "The Merovingian's wife, with her own secrets.",
+                "stable_diffusion_prompt": "Persephone in an elegant dress, holding a silver handgun with a mysterious smile",
+                "isBoss": false
+            },
+            {
+                "name": "Agent Smith (Final Form)",
+                "attack": 16,
+                "health": 500,
+                "bio": "The ultimate form of Agent Smith, now a virus threatening both the Matrix and the real world.",
+                "stable_diffusion_prompt": "Agent Smith in multiplied forms, taking over the Matrix with a dark and ominous presence",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-24T05:00:00.000Z"
+    },
+    {
+        "prompt": "Man of Steel",
+        "cards": [
+            {
+                "name": "Superman",
+                "attack": 12,
+                "health": 18,
+                "bio": "The last son of Krypton with incredible strength and the power of flight.",
+                "stable_diffusion_prompt": "Superman flying with a red cape, heroic pose, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "Lois Lane",
+                "attack": 9,
+                "health": 15,
+                "bio": "An intrepid reporter with a knack for finding trouble and a close ally to Superman.",
+                "stable_diffusion_prompt": "Lois Lane holding a notepad, determined look, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "Jor-El",
+                "attack": 10,
+                "health": 14,
+                "bio": "Superman's biological father and a brilliant Kryptonian scientist.",
+                "stable_diffusion_prompt": "Jor-El in Kryptonian armor, holographic appearance, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "Perry White",
+                "attack": 9,
+                "health": 13,
+                "bio": "The tough but fair editor-in-chief of the Daily Planet.",
+                "stable_diffusion_prompt": "Perry White shouting orders, wearing glasses, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "Jonathan Kent",
+                "attack": 9,
+                "health": 16,
+                "bio": "Clark Kent's adoptive father, who instills in him human values and humility.",
+                "stable_diffusion_prompt": "Jonathan Kent on a farm, wearing a hat, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "Martha Kent",
+                "attack": 9,
+                "health": 17,
+                "bio": "Clark Kent's caring adoptive mother, who protects his secret at all costs.",
+                "stable_diffusion_prompt": "Martha Kent with a kind smile, farmhouse background, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "Faora-Ul",
+                "attack": 14,
+                "health": 12,
+                "bio": "A Kryptonian warrior, loyal to General Zod and a formidable fighter.",
+                "stable_diffusion_prompt": "Faora-Ul in combat armor, menacing stance, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "Colonel Hardy",
+                "attack": 10,
+                "health": 15,
+                "bio": "A military officer who initially distrusts Superman but later allies with him.",
+                "stable_diffusion_prompt": "Colonel Hardy in military uniform, holding a gun, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "Dr. Emil Hamilton",
+                "attack": 9,
+                "health": 14,
+                "bio": "A scientist working for the government who studies the technology of Krypton.",
+                "stable_diffusion_prompt": "Dr. Emil Hamilton with scientific instruments, curious expression, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "General Swanwick",
+                "attack": 10,
+                "health": 14,
+                "bio": "A high-ranking military official who comes to respect Superman's intentions.",
+                "stable_diffusion_prompt": "General Swanwick in military attire, serious expression, Man of Steel movie style",
+                "isBoss": false
+            },
+            {
+                "name": "General Zod",
+                "attack": 16,
+                "health": 500,
+                "bio": "The main antagonist, a Kryptonian general determined to rebuild Krypton at any cost.",
+                "stable_diffusion_prompt": "General Zod in full armor, fierce expression, Man of Steel movie style",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-23T05:00:00.000Z"
+    },
+    {
+        "prompt": "The Lord of the Rings: The Fellowship of the Ring",
+        "cards": [
+            {
+                "name": "Frodo Baggins",
+                "attack": 9,
+                "health": 14,
+                "bio": "The brave hobbit bearing the One Ring.",
+                "stable_diffusion_prompt": "Frodo Baggins holding the One Ring, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Aragorn",
+                "attack": 16,
+                "health": 12,
+                "bio": "The ranger destined to become king.",
+                "stable_diffusion_prompt": "Aragorn with his sword, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Gandalf the Grey",
+                "attack": 15,
+                "health": 13,
+                "bio": "The wise wizard guiding the Fellowship.",
+                "stable_diffusion_prompt": "Gandalf casting a spell, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Legolas",
+                "attack": 13,
+                "health": 15,
+                "bio": "The elven archer with peerless aim.",
+                "stable_diffusion_prompt": "Legolas with a bow and arrow, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Gimli",
+                "attack": 12,
+                "health": 16,
+                "bio": "The stout-hearted dwarf warrior.",
+                "stable_diffusion_prompt": "Gimli with his axe, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Boromir",
+                "attack": 14,
+                "health": 13,
+                "bio": "The noble man of Gondor tempted by the Ring.",
+                "stable_diffusion_prompt": "Boromir holding the Horn of Gondor, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Samwise Gamgee",
+                "attack": 10,
+                "health": 16,
+                "bio": "The loyal friend and protector of Frodo.",
+                "stable_diffusion_prompt": "Samwise Gamgee with cooking gear, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Merry",
+                "attack": 10,
+                "health": 15,
+                "bio": "The mischievous yet courageous hobbit.",
+                "stable_diffusion_prompt": "Merry with fireworks, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Pippin",
+                "attack": 10,
+                "health": 15,
+                "bio": "The curious hobbit always ready for adventure.",
+                "stable_diffusion_prompt": "Pippin looking at the Palantir, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Saruman",
+                "attack": 11,
+                "health": 17,
+                "bio": "The traitorous wizard allied with Sauron.",
+                "stable_diffusion_prompt": "Saruman casting a dark spell, The Lord of the Rings",
+                "isBoss": false
+            },
+            {
+                "name": "Sauron",
+                "attack": 16,
+                "health": 500,
+                "bio": "The dark lord and creator of the One Ring.",
+                "stable_diffusion_prompt": "Sauron with the Eye of Sauron, The Lord of the Rings",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-22T05:00:00.000Z"
+    },
+    {
+        "prompt": "Star Wars: A New Hope",
+        "cards": [
+            {
+                "name": "Luke Skywalker",
+                "attack": 10,
+                "health": 18,
+                "bio": "A young and hopeful hero destined for greatness.",
+                "stable_diffusion_prompt": "Luke Skywalker with a lightsaber on Tatooine",
+                "isBoss": false
+            },
+            {
+                "name": "Princess Leia",
+                "attack": 12,
+                "health": 16,
+                "bio": "A brave and resourceful leader in the Rebel Alliance.",
+                "stable_diffusion_prompt": "Princess Leia in her white gown holding secret Death Star plans",
+                "isBoss": false
+            },
+            {
+                "name": "Han Solo",
+                "attack": 14,
+                "health": 12,
+                "bio": "A charming rogue with a quick wit and a quicker blaster.",
+                "stable_diffusion_prompt": "Han Solo with his blaster in the Millennium Falcon",
+                "isBoss": false
+            },
+            {
+                "name": "Chewbacca",
+                "attack": 13,
+                "health": 15,
+                "bio": "A loyal Wookiee warrior and co-pilot of the Millennium Falcon.",
+                "stable_diffusion_prompt": "Chewbacca roaring, with a bowcaster on the Millennium Falcon",
+                "isBoss": false
+            },
+            {
+                "name": "Obi-Wan Kenobi",
+                "attack": 11,
+                "health": 16,
+                "bio": "A wise and powerful Jedi Master in hiding.",
+                "stable_diffusion_prompt": "Obi-Wan Kenobi with a blue lightsaber, wearing Jedi robes",
+                "isBoss": false
+            },
+            {
+                "name": "R2-D2",
+                "attack": 10,
+                "health": 19,
+                "bio": "A brave astromech droid carrying the Death Star plans.",
+                "stable_diffusion_prompt": "R2-D2 on the Death Star avoiding stormtroopers",
+                "isBoss": false
+            },
+            {
+                "name": "C-3PO",
+                "attack": 9,
+                "health": 17,
+                "bio": "A protocol droid fluent in over six million forms of communication.",
+                "stable_diffusion_prompt": "C-3PO in the desert of Tatooine",
+                "isBoss": false
+            },
+            {
+                "name": "Darth Vader",
+                "attack": 16,
+                "health": 9,
+                "bio": "A fearsome Sith Lord and enforcer of the Emperor's will.",
+                "stable_diffusion_prompt": "Darth Vader with a red lightsaber aboard the Death Star",
+                "isBoss": false
+            },
+            {
+                "name": "Grand Moff Tarkin",
+                "attack": 12,
+                "health": 14,
+                "bio": "A high-ranking officer in the Galactic Empire and commander of the Death Star.",
+                "stable_diffusion_prompt": "Grand Moff Tarkin overseeing the Death Star operations",
+                "isBoss": false
+            },
+            {
+                "name": "Rebel Pilot",
+                "attack": 15,
+                "health": 11,
+                "bio": "A courageous pilot of the Rebel Alliance, fighting against the Empire.",
+                "stable_diffusion_prompt": "Rebel Pilot in an X-wing cockpit during the Battle of Yavin",
+                "isBoss": false
+            },
+            {
+                "name": "Darth Sidious",
+                "attack": 16,
+                "health": 500,
+                "bio": "The dark Emperor of the Galactic Empire and mastermind behind its tyranny.",
+                "stable_diffusion_prompt": "Emperor Palpatine with dark force lightning",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-21T05:00:00.000Z"
+    },
+    {
+        "prompt": "Doctor Strange",
+        "cards": [
+            {
+                "name": "Doctor Strange",
+                "attack": 10,
+                "health": 16,
+                "bio": "Master of the Mystic Arts and protector of the Time Stone.",
+                "stable_diffusion_prompt": "Doctor Strange casting a spell, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Iron Man",
+                "attack": 15,
+                "health": 11,
+                "bio": "Genius inventor Tony Stark in his advanced Iron Man suit.",
+                "stable_diffusion_prompt": "Iron Man flying with repulsors, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Spider-Man",
+                "attack": 14,
+                "health": 12,
+                "bio": "Young hero Peter Parker with his spider-like abilities and advanced suit.",
+                "stable_diffusion_prompt": "Spider-Man swinging on webs, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Thor",
+                "attack": 16,
+                "health": 10,
+                "bio": "The God of Thunder wielding his new weapon Stormbreaker.",
+                "stable_diffusion_prompt": "Thor with Stormbreaker, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Hulk",
+                "attack": 12,
+                "health": 15,
+                "bio": "Bruce Banner's alter ego, the incredible green-skinned Hulk.",
+                "stable_diffusion_prompt": "Hulk roaring in battle, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Black Widow",
+                "attack": 13,
+                "health": 13,
+                "bio": "Natasha Romanoff, a highly skilled spy and combatant.",
+                "stable_diffusion_prompt": "Black Widow in a fighting stance, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Captain America",
+                "attack": 11,
+                "health": 14,
+                "bio": "Steve Rogers, the first Avenger with his iconic shield.",
+                "stable_diffusion_prompt": "Captain America with his shield, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Scarlet Witch",
+                "attack": 9,
+                "health": 17,
+                "bio": "Wanda Maximoff with powerful telekinetic and energy-manipulating abilities.",
+                "stable_diffusion_prompt": "Scarlet Witch using her powers, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Vision",
+                "attack": 10,
+                "health": 15,
+                "bio": "An android with the Mind Stone embedded in his forehead.",
+                "stable_diffusion_prompt": "Vision with the Mind Stone, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Black Panther",
+                "attack": 13,
+                "health": 14,
+                "bio": "T'Challa, the king of Wakanda with a vibranium suit.",
+                "stable_diffusion_prompt": "Black Panther in a heroic pose, Avengers Infinity War, artwork",
+                "isBoss": false
+            },
+            {
+                "name": "Thanos",
+                "attack": 16,
+                "health": 500,
+                "bio": "The Mad Titan seeking the Infinity Stones to impose his will on reality.",
+                "stable_diffusion_prompt": "Thanos with the Infinity Gauntlet, Avengers Infinity War, artwork",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-20T05:00:00.000Z"
+    },
+    {
+        "prompt": "Spider-Man: Into the Spider-Verse",
+        "cards": [
+            {
+                "name": "Miles Morales",
+                "attack": 12,
+                "health": 14,
+                "bio": "A teenager with spider-like abilities trying to live up to the heroic legacy.",
+                "stable_diffusion_prompt": "Miles Morales swinging through a vibrant cityscape, Spider-Man: Into the Spider-Verse style",
+                "isBoss": false
+            },
+            {
+                "name": "Peter B. Parker",
+                "attack": 14,
+                "health": 11,
+                "bio": "A more experienced, yet jaded, Spider-Man from another dimension.",
+                "stable_diffusion_prompt": "Peter B. Parker in a casual Spider-Man suit, looking disheveled",
+                "isBoss": false
+            },
+            {
+                "name": "Spider-Gwen",
+                "attack": 13,
+                "health": 12,
+                "bio": "Gwen Stacy of an alternate universe, a skilled spider-powered heroine.",
+                "stable_diffusion_prompt": "Spider-Gwen in action, with her iconic white and pink costume",
+                "isBoss": false
+            },
+            {
+                "name": "Spider-Man Noir",
+                "attack": 10,
+                "health": 16,
+                "bio": "A dark and gritty version of Spider-Man from a 1930s universe.",
+                "stable_diffusion_prompt": "Spider-Man Noir in a black and white setting, with a trench coat and fedora",
+                "isBoss": false
+            },
+            {
+                "name": "Peni Parker",
+                "attack": 11,
+                "health": 15,
+                "bio": "A young pilot who controls a bio-mechanical suit with a psychic link to a radioactive spider.",
+                "stable_diffusion_prompt": "Peni Parker with her robot SP//dr in a manga-inspired style",
+                "isBoss": false
+            },
+            {
+                "name": "Spider-Ham",
+                "attack": 9,
+                "health": 17,
+                "bio": "A cartoonish pig with spider powers and a knack for humor.",
+                "stable_diffusion_prompt": "Spider-Ham striking a comedic pose, with an exaggerated cartoon style",
+                "isBoss": false
+            },
+            {
+                "name": "Prowler",
+                "attack": 15,
+                "health": 10,
+                "bio": "A formidable adversary with high-tech gear and a personal connection to Miles.",
+                "stable_diffusion_prompt": "Prowler in a dynamic chase scene, with his iconic purple and green costume",
+                "isBoss": false
+            },
+            {
+                "name": "Kingpin",
+                "attack": 16,
+                "health": 9,
+                "bio": "The crime lord with immense strength and a vendetta against Spider-Men from all dimensions.",
+                "stable_diffusion_prompt": "Kingpin towering over the city, with a menacing look",
+                "isBoss": false
+            },
+            {
+                "name": "Doctor Octopus",
+                "attack": 13,
+                "health": 13,
+                "bio": "A brilliant scientist with mechanical tentacles and a devious mind.",
+                "stable_diffusion_prompt": "Doctor Octopus with her innovative tentacle technology, in a lab setting",
+                "isBoss": false
+            },
+            {
+                "name": "Green Goblin",
+                "attack": 14,
+                "health": 12,
+                "bio": "A monstrous version of the classic villain, with an arsenal of pumpkin bombs.",
+                "stable_diffusion_prompt": "Green Goblin in a fierce battle, with his glider and explosive gadgets",
+                "isBoss": false
+            },
+            {
+                "name": "Kingpin (Boss)",
+                "attack": 16,
+                "health": 500,
+                "bio": "The ultimate villain of the movie, determined to use the Super Collider for his own gain.",
+                "stable_diffusion_prompt": "Kingpin as the imposing boss enemy, with the Super Collider in the background",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-19T05:00:00.000Z"
+    },
+    {
+        "prompt": "Thor: Ragnarok",
+        "cards": [
+            {
+                "name": "Thor",
+                "attack": 15,
+                "health": 12,
+                "bio": "The God of Thunder, armed with his mighty hammer Mjolnir.",
+                "stable_diffusion_prompt": "Thor wielding Mjolnir, dynamic, lightning, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Loki",
+                "attack": 13,
+                "health": 13,
+                "bio": "The mischievous and cunning God of Mischief.",
+                "stable_diffusion_prompt": "Loki with a sly smile, holding daggers, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Hulk",
+                "attack": 16,
+                "health": 10,
+                "bio": "The incredible green giant, strongest Avenger, ready to smash.",
+                "stable_diffusion_prompt": "Hulk in gladiator armor, roaring, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Valkyrie",
+                "attack": 14,
+                "health": 12,
+                "bio": "A tough Asgardian warrior with a haunted past.",
+                "stable_diffusion_prompt": "Valkyrie with sword and armor, determined, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Heimdall",
+                "attack": 11,
+                "health": 15,
+                "bio": "The all-seeing and all-hearing Asgardian sentry of the Bifrost Bridge.",
+                "stable_diffusion_prompt": "Heimdall with his sword Hofund, vigilant, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Korg",
+                "attack": 9,
+                "health": 17,
+                "bio": "A Kronan gladiator with a rocky appearance and a gentle soul.",
+                "stable_diffusion_prompt": "Korg with a friendly gesture, made of rocks, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Miek",
+                "attack": 9,
+                "health": 17,
+                "bio": "An insectoid alien and a friend of Korg, skilled in combat.",
+                "stable_diffusion_prompt": "Miek with blades for hands, alien insectoid, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Grandmaster",
+                "attack": 11,
+                "health": 15,
+                "bio": "The eccentric and flamboyant ruler of the Contest of Champions.",
+                "stable_diffusion_prompt": "Grandmaster with a confident smirk, colorful robes, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Skurge",
+                "attack": 10,
+                "health": 16,
+                "bio": "The Asgardian warrior who briefly served Hela, seeking redemption.",
+                "stable_diffusion_prompt": "Skurge with his axe, conflicted, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Surtur",
+                "attack": 16,
+                "health": 11,
+                "bio": "A fiery giant destined to bring about Ragnarok.",
+                "stable_diffusion_prompt": "Surtur in flames, colossal, Thor: Ragnarok style",
+                "isBoss": false
+            },
+            {
+                "name": "Hela",
+                "attack": 22,
+                "health": 500,
+                "bio": "The Goddess of Death and Thor's older sister, determined to rule Asgard.",
+                "stable_diffusion_prompt": "Hela with her antler-like headdress, menacing, Thor: Ragnarok style",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-18T05:00:00.000Z"
+    },
+    {
+        "prompt": "Harry Potter and the Sorcerer's Stone",
+        "cards": [
+            {
+                "name": "Harry Potter",
+                "attack": 4,
+                "health": 12,
+                "bio": "The Boy Who Lived, known for his bravery and his connection to Voldemort.",
+                "stable_diffusion_prompt": "young wizard with a lightning scar on his forehead, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Hermione Granger",
+                "attack": 5,
+                "health": 11,
+                "bio": "Brilliant and bookish, Hermione is the brains of the trio and always has a spell ready.",
+                "stable_diffusion_prompt": "young witch with bushy brown hair, holding a book, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Ron Weasley",
+                "attack": 7,
+                "health": 8,
+                "bio": "Harry's loyal friend, known for his humor and chess skills.",
+                "stable_diffusion_prompt": "young wizard with red hair, holding a chess piece, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Neville Longbottom",
+                "attack": 5,
+                "health": 12,
+                "bio": "Clumsy but courageous, Neville grows into a hero over time.",
+                "stable_diffusion_prompt": "young wizard with a round face, holding a toad, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Draco Malfoy",
+                "attack": 8,
+                "health": 7,
+                "bio": "Slytherin student and Harry's rival, known for his cunning and ambition.",
+                "stable_diffusion_prompt": "young wizard with blonde hair, sneering, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Rubeus Hagrid",
+                "attack": 3,
+                "health": 15,
+                "bio": "The half-giant gamekeeper with a love for magical creatures.",
+                "stable_diffusion_prompt": "large bearded man with a lantern, standing next to a giant dog, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Albus Dumbledore",
+                "attack": 5,
+                "health": 13,
+                "bio": "Wise and powerful, the headmaster of Hogwarts School of Witchcraft and Wizardry.",
+                "stable_diffusion_prompt": "old wizard with long beard and half-moon spectacles, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Severus Snape",
+                "attack": 6,
+                "health": 10,
+                "bio": "The mysterious potions master with a hidden agenda.",
+                "stable_diffusion_prompt": "wizard with black hair and a hooked nose, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Minerva McGonagall",
+                "attack": 6,
+                "health": 11,
+                "bio": "Deputy headmistress and head of Gryffindor, known for her strict but fair demeanor.",
+                "stable_diffusion_prompt": "witch with square spectacles and a green robe, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Fred and George Weasley",
+                "attack": 8,
+                "health": 7,
+                "bio": "The mischievous twin brothers known for their pranks and jokes.",
+                "stable_diffusion_prompt": "twin wizards with red hair, holding joke items, Harry Potter theme",
+                "isBoss": false
+            },
+            {
+                "name": "Lord Voldemort",
+                "attack": 11,
+                "health": 250,
+                "bio": "The Dark Lord, the main villain of the story, seeking immortality and power.",
+                "stable_diffusion_prompt": "dark wizard with pale skin and snake-like features, Harry Potter theme",
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2023-12-17T05:00:00.000Z"
+    },
+    {
         "prompt": "Avengers: Endgame",
         "cards": [
             {

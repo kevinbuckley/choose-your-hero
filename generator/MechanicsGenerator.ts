@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+import { ICard } from '../web/src/mechanics/Card';
 
 class CardTemplate {
     name: string = "";
@@ -17,7 +18,7 @@ class MechanicsGenerator {
     attackUpper: number,
     healthLower: number,
     healthUpper: number,
-    localGeneration: boolean): Promise<any> {
+    localGeneration: boolean): Promise<ICard[]> {
     const openai = new OpenAI({
         apiKey: this.OPEN_AI_KEY,
     });
@@ -27,12 +28,14 @@ class MechanicsGenerator {
     each card in the deck.  There will be 10 player cards and 1 boss enemy card. 
     You'll be given a name of a movie and will create cards for the player and 1 boss card enemy that follow that theme. 
     Each card should represent a unique and visually memorable character in the movie with the Boss being the main villain.
-    The health of a card should be between ${healthLower} and ${healthUpper} health.  
-    The attack should be between ${attackLower} and ${attackUpper} attack.  
+    The health of a card should be between 9and 20 health.  
+    The attack should be between 9 and 16 attack.  
     If a card has high health, then they should have relatively low attack and visa versa.
-    The boss's health should be ${bossHealth}. The boss's attack should be ${Math.floor(healthUpper*.8)}.
+    The boss's health should be 500. The boss's attack should be 16.
     Please remember to ONLY return the JSON, no other text or content, only JSON.  
-    
+    Theme: Avengers Infinity War
+
+
     card template: ${JSON.stringify(new CardTemplate())}` : 
     `You are a game developer creating a new card game. You'll be returning only the JSON required to define
           each card in the deck.  There will be 10 player cards and 1 boss enemy card. 
@@ -69,8 +72,15 @@ class MechanicsGenerator {
     const jsonStr: string = response.choices[0].message.content!;
     const parsedJson = jsonStr.replace("```json", "").replace("```", "");
     console.log(parsedJson);
-    return JSON.parse(parsedJson);
-    
+    const cards: ICard[] = JSON.parse(parsedJson) as ICard[];
+    this.cleanTheme(cards);
+    return cards;
+  }
+
+  public cleanTheme(cards: ICard[]) {
+    cards.forEach(c => {
+      c.name = c.name.replace('\\', '');
+    });
   }
   
   chanceToChange: number = .3;
