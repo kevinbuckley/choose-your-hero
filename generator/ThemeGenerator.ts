@@ -1,57 +1,101 @@
-import OpenAI from 'openai';
-import { Theme } from '../web/src/mechanics/Theme';
+import axios from 'axios';
+import runmModel from './LocalLLM'
 
-class GeneratedTheme {
-    theme: string = "";
-}
 class ThemeGenerator {
-  private OPEN_AI_KEY: string | undefined = process.env.OPEN_AI_KEY;
- 
-  public async getGeneratedTheme(themes: Theme[], useLocal: boolean): Promise<GeneratedTheme> {
-    const openai = new OpenAI({
-        apiKey: this.OPEN_AI_KEY,
-    });
-        
-    const params: OpenAI.Chat.ChatCompletionCreateParams = {
-      messages: [
-        {
-          role: 'user',
-          content: useLocal ? 
-          `Pick return in the "theme' json property the name of Star Wars, Marvel, DC Comics, or Fantasy Movies like Harry Potter.  Things like Harry Potter, Iron Man, Avengers, Batman.
-          Even though it's called "theme", don't describe it, return the name of the movie in the theme property.
-          Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.  Make sure it doesn't already exist
-          in  this list: Wonder Woman, Iron Man, Batman Begins, ${themes.map(t => t.prompt)}
-          Please remember to only return JSON.`
-          :
-           `Create a theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references. 
-          Please provide specific combinations where one part is a direct reference to a popular sci-fi or fantasy franchises (excluding zombies). 
-          Each part should be a singular item or concept on its own. 
-          However, when paired together, they should form a humorous and engaging theme for the game. 
-          Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.
-          In this JSON, the "theme" should be similar but not the same reference as ${themes.map(t => t.prompt)}.
-          Please remember to only return JSON.`
-        },
-      ],
-      model: 'gpt-4-1106-preview',
-      temperature:0.9,
-    };
-    const response: OpenAI.Chat.ChatCompletion = await openai.chat.completions.create(params);
-    const jsonStr: string = response.choices[0].message.content!;
-    const parsedJson = jsonStr.replace("```json", "").replace("```", "");
-    console.log(parsedJson);
-    return JSON.parse(parsedJson);
+
+  async generateTheme(themes: string[]): Promise<string> {
+    
+    let theme = themes[0];
+      while(themes.includes(theme)) {
+
+      const prompt =  `###Instructions### 
+            Create a single theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references (excluding zombies).
+            You must be creative and original and not copy an example theme.
+            You MUST only return a theme name with under 5 words in it. 
+            You MUST only return the name of the theme with no explanation. 
+            You will be penalized if you include wizards or pirates. 
+            You will be penalized if you return anything but the theme name.
+            You will be penalized if you return a theme name that is more than 5 words.
+
+            ### Response:\nOkay, here is a theme for a fun and slightly edgy card game:\n\n
+
+            ###EXAMPLE###
+            Alien Gladiators Hosting a Galactic Game Show
+            Chrismas Ziggy Stardust
+            Beauty and the Beast as ninjas
+            Weightlifting My Little Ponies`;
+
+      theme = await runmModel(prompt);
+      theme = theme?.split('\n').pop() ?? '';
+      theme = theme.replace(/[^a-zA-Z ]/g, '');
+    }
+    return theme.replace(/"/g, '');
+  }
+
+  validTheme(theme: string, themes: string[]): boolean {
+    if (theme.length == 0 || 
+      theme.length > 100 ||
+      themes.includes(theme)) {
+      return false;
+    }
+    return true;
   }
 }
-
-/* SAVE
- content: `Create a theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references. 
-          Please provide specific combinations where one part is a direct reference to a popular sci-fi or fantasy franchises (excluding zombies). 
-          Each part should be a singular item or concept on its own. 
-          However, when paired together, they should form a humorous and engaging theme for the game. 
-          Please only return JSON.  The format should be ${JSON.stringify(new GeneratedTheme())}.
-          In this JSON, the "theme" should be similar but not the same reference as ${themes.map(t => t.prompt)}.
-          Please remember to only return JSON.`
-*/
-
-
 export default ThemeGenerator;
+
+if (require.main === module) {
+  (async () => {
+    const movieTitles = [
+      '1980s Rock Stars',
+      'Alien Gladiators Hosting a Galactic Game Show',
+      'Animal Monarchs',
+      'Avengers: Endgame',
+      'Avengers: Infinity War',
+      'Beauty and the Beast as ninjas',
+      'Captain America: The First Avenger',
+      'Chrismas Ziggy Stardust',
+      'Cyberpunk',
+      'Cyborg Wizards Competing in an Intergalactic Skateboarding Contest',
+      'Dinosaur Chefs',
+      'Doctor Strange',
+      'Famous Classical Composer Cats',
+      'Famous Viking',
+      'Guardians of the Galaxy',
+      'Harry Potter and the Chamber of Secrets',
+      'Harry Potter and the Goblet of Fire',
+      'Harry Potter and the Prisoner of Azkaban',
+      "Harry Potter and the Sorcerer's Stone",
+      'Large Birds Football Players',
+      'Man of Steel',
+      'Medieval War',
+      'Mutant Celebrity Chefs in an Underground Cooking Tournament',
+      'Physicists and Mathematicians as Pro Wrestlers',
+      'Pirate Penguins Running a Space Station',
+      'Pop Star Fairtale Villains',
+      'Punk Rock Muppets',
+      'Spider-Man: Into the Spider-Verse',
+      'Spy Animals in a High-Stakes Heist Movie',
+      'Star Wars: A New Hope',
+      'Star Wars: Revenge of the Sith',
+      'Star Wars: The Empire Strikes Back',
+      'Star Wars: The Force Awakens',
+      'Star Wars: The Last Jedi',
+      'Superhero Baristas Brewing Cosmic Coffee',
+      'Swol My Little Ponies',
+      'The Dark Knight',
+      'The Dark Knight Rises',
+      'The Hobbit: An Unexpected Journey',
+      'The Lord of the Rings: The Fellowship of the Ring',
+      'The Matrix',
+      'Thor: Ragnarok',
+      'Thor: The Dark World',
+      'Time-Traveling Wizards in a Battle of the Bands',
+      'Woodland Creatures',
+      'Sci-Fi Witches'
+    ];
+    
+    const themeGenerator = new ThemeGenerator();
+    const output = await themeGenerator.generateTheme(movieTitles);
+    console.log(output);
+  })();
+}

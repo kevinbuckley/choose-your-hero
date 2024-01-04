@@ -7,7 +7,6 @@ import { EVENT_GAME_OVER } from '../web/src/mechanics/GameEvents';
 import fs from 'fs';
 import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
-import OpenAI from 'openai';
 import sharp from 'sharp';
 import { Theme } from '../web/src/mechanics/Theme';
 import ThemeGenerator from './ThemeGenerator';
@@ -15,8 +14,6 @@ import ImageGenerator from './ImageGenerator';
 
 dotenv.config();
 const jsonVaultLocation = '../web/public/assets/vault.json';
-
-const localImageCreation: boolean = true; // change this to use stable diffusion
 
 class SimResult {
   totalGames: number = 0;
@@ -52,7 +49,6 @@ async function isFunGameFile(gameFile: any): Promise<SimResult> {
     while(gameOver == false) {  
       const hand = gameState.getCards(State.Hand);
       const bestCard = hand.length > 1 ? hand.reduce((prev: Card, curr: Card) => curr?.attack > prev?.attack ? curr : prev ) : hand[0];
-      console.log(`Playing ${bestCard.name} with health ${bestCard.health} and attack ${bestCard.attack}`);
       await gameState.playCard(bestCard);
     }
 
@@ -66,26 +62,19 @@ async function isFunGameFile(gameFile: any): Promise<SimResult> {
 }
 
 async function generateImages(theme: string, gameFile: any[]): Promise<void> {
-  const openai = new OpenAI();
   const imageGenerator = new ImageGenerator();
+  const style = imageGenerator.randomStyle();
   for (const card of gameFile) {
     const name = card['name'];
     const imageSavePath = path.join('./temp', `${name}.png`);
-    if(localImageCreation) {
-      await imageGenerator.generateLocalImage(name, theme, imageSavePath);    
-    }
-    else {
-      await imageGenerator.generateOpenAiImage(name, theme, imageSavePath);    
-    }
-   await cropAndCopy(imageSavePath, name, theme);
+    await imageGenerator.generateLocalImage(name, theme, style, imageSavePath);    
+    await cropAndCopy(imageSavePath, name, theme);
   }
 }
 async function cropAndCopy(inputPath: string, name: string, theme: string) {
   
   const outputPath = path.join('../web/public/assets',  theme, `${name}.png`);
-  const dimensions: sharp.Region = localImageCreation ? 
-   { width: 354, height: 512, left: 79, top: 0 } :
-   { width: 708, height: 1024, left: 157, top: 0 };
+  const dimensions: sharp.Region = { width: 354, height: 512, left: 79, top: 0 };
 
   await sharp(inputPath)
     .extract(dimensions) // Crop dimensions
@@ -130,11 +119,12 @@ function getBossHealth() {
 }
 
 async function main() {
-  console.log(`Use Local: ${localImageCreation}`)
   const themes = JSON.parse(await readFile(jsonVaultLocation, 'utf8')) as Theme[];
+  const themesStr = themes.map(t => t.prompt);
   const themeGenerator = new ThemeGenerator();
-  const theme = await themeGenerator.getGeneratedTheme(themes, localImageCreation);
-  console.log(theme);
+  const theme = await themeGenerator.generateTheme(themesStr)
+
+  console.log(`THEME: [${theme}]`);
   //await regenSomeImages(theme, ["The Immortal Emperor"]); return;
   const mechanics = new MechanicsGenerator();
   let isFun: boolean = false;
@@ -145,10 +135,10 @@ async function main() {
   let healthLower: number = Math.floor(10 * (bossHealth/500));
   let healthUpper: number = Math.floor(28 * (bossHealth/500));
 
-  gameFile = await mechanics.getJsonAsDictionary(theme.theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper, localImageCreation);
-  console.log(gameFile);
+  gameFile = await mechanics.getJsonAsDictionary(theme, bossHealth, attackLower, attackUpper, healthLower, healthUpper);
+  console.log(`gameFile: ${gameFile}`);
   let i = 0;
-  while(isFun == false) {
+  while(isFun == false && i < 250) {
     i++;
     // simulate game file
     let simResult = await isFunGameFile(gameFile);
@@ -157,22 +147,28 @@ async function main() {
     console.log(gameFile);
     if (isFun == false) {
       const adjuster = simResult.tooEasy() ? -1 : 1;
-      gameFile = await mechanics.getNewCards(gameFile, adjuster);
+      gameFile = await mechanics.getNewCards(gameFile, adjuster, attackLower, attackUpper, healthLower, healthUpper);
     }
   }
-  console.log(`Took ${i} tries to get a fun game file`);
   
+  console.log(`Took ${i} tries to get a fun game file`);
+  if(isFun == false) {
+    console.log(`Failed to generate a fun game file`);
+    return;
+  }
+
+
   const fullFile: Theme = {
-    prompt: theme.theme,
+    prompt: theme,
     cards: gameFile,
     activeDate: await getNextActiveDate()
   };
 
-  if (!fs.existsSync(path.join('../web/public/assets', theme.theme))) {
-    fs.mkdirSync(path.join('../web/public/assets', theme.theme));
+  if (!fs.existsSync(path.join('../web/public/assets', theme))) {
+    fs.mkdirSync(path.join('../web/public/assets', theme));
   }
-  fs.writeFileSync(`../web/public/assets/${theme.theme}/game_file.json`, JSON.stringify(fullFile));
-  await generateImages(theme.theme, gameFile);
+  fs.writeFileSync(`../web/public/assets/${theme}/game_file.json`, JSON.stringify(fullFile));
+  await generateImages(theme, gameFile);
   mergeIntoVaultConfig(fullFile);
   // clean temp
   const files = await fs.promises.readdir('temp');

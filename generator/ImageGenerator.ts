@@ -1,17 +1,27 @@
 import { exec } from 'child_process';
 import fs from 'fs';
-import OpenAI from 'openai';
 
 class ImageGenerator {
+    image_type: string[] = [
+        "Doodle", "Cinema Portrait", "Realism", "Impressionism", "Expressionism", 
+        "Surrealism", "Pop Art", "Anime/Manga", "Pixel Art", "Watercolor", 
+        "Ink Wash", "Art Nouveau", "Art Deco", "Futurism", "Abstract" ];
+
+    randomStyle(): string {
+       // return random value from image_type
+         return this.image_type[Math.floor(Math.random() * this.image_type.length)];
+    }
 
     async generateLocalImage(
         name: string,
         theme: string,
+        style: string,
         imageSavePath: string
     ): Promise<void> {
         let command: string = `python3 ImageGenerator.py`;
         command += ` --name "${name}"`;
         command += ` --theme "${theme}"`;
+        command += ` --style "${style}"`;
         command += ` --file_save_name "${imageSavePath}"`;
         console.log(`running command ${command}`);
         await this.runCommand(command);
@@ -29,22 +39,6 @@ class ImageGenerator {
             });
         });
     }
-
-    async generateOpenAiImage(name: string, theme: string, imageSavePath: string ) {
-        const openai = new OpenAI();
-        const p1 = `Fun, majestic, Zoomed in picture of a (${name}) in the theme of ${theme}.  Make it easy to understand and only show the picture of ${name} without any words.`;
-        // @ts-ignore
-        const response = await openai.images.generate({
-          model: "dall-e-3",
-          prompt: p1,
-          n: 1,
-          size: "1024x1024",
-          response_format: 'b64_json'
-        });
-        console.log(response.data[0].revised_prompt);
-        this.base64ToPng(response.data[0].b64_json!, imageSavePath);
-        await this.sleep(9000);
-      }
 
     async sleep(ms: number): Promise<void> {
         return new Promise(resolve => setTimeout(resolve, ms));

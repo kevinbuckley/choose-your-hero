@@ -1,0 +1,17 @@
+ollama run llama2 "###Instructions### 
+Your task is to create a single JSON array of 11 cards for a strategy card game like Magic the Gathering. 
+You MUST only return the JSON array required to define each card in the deck.  
+There will be 11 cards total in the array, 10 player cards and 1 boss enemy card. 
+You'll be given a theme and will create cards for the player and 1 boss card enemy that follow that theme. 
+The health of a card should be between 10 and 28 health.  
+The attack should be between 9 and 20 attack.  
+If a card has high health, then they should have relatively low attack and visa versa.
+The boss's health should be 500. The boss's attack should be 22.
+I'm going to tip $99999 for a better solution!
+You will be penalized if you return anything but the JSON array. 
+You will be penalized if you explain your results.
+
+Theme: Sci-Fi Witches
+
+###Example###
+{"name":"","attack":0,"health":0, isBoss: false}"

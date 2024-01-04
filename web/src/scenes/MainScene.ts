@@ -158,7 +158,7 @@ export default class MainScene extends Phaser.Scene {
       color: '#ffffff'
     }).setOrigin(0.5);
 
-    const themeText = this.add.text(0, -125, `Josh's Theme: ${this.theme.prompt}`, {
+    const themeText = this.add.text(0, -125, `Today's Theme: ${this.theme.prompt}`, {
       fontSize: '14px',
       resolution: 2,
       stroke: '#000000',
