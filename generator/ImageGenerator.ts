@@ -3,8 +3,9 @@ import fs from 'fs';
 
 class ImageGenerator {
     image_type: string[] = [
-        "Doodle", "Cinema Portrait", "Realism", "Impressionism", "Expressionism", 
-        "Surrealism", "Pop Art", "Anime/Manga", "Pixel Art", "Watercolor", 
+        "Minimalism", "Rococo", "Gothic", "Baroque", "Cubism", "Fauvism", 
+         "Doodle", "Cinema Portrait","Surrealism", "Pop Art", 
+         "Anime", "Pixel Art", "Watercolor", 
         "Ink Wash", "Art Nouveau", "Art Deco", "Futurism", "Abstract" ];
 
     randomStyle(): string {

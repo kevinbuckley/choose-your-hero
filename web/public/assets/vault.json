@@ -1,5 +1,359 @@
 [
     {
+        "prompt": "Superheroes of the Multiverse",
+        "cards": [
+            {
+                "name": "Apex",
+                "attack": 8,
+                "health": 34,
+                "isBoss": false
+            },
+            {
+                "name": "Blaze",
+                "attack": 11,
+                "health": 19,
+                "isBoss": false
+            },
+            {
+                "name": "Chaos",
+                "attack": 10,
+                "health": 46,
+                "isBoss": false
+            },
+            {
+                "name": "Darkness",
+                "attack": 8,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Eclipse",
+                "attack": 8,
+                "health": 33,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic",
+                "attack": 10,
+                "health": 38,
+                "isBoss": false
+            },
+            {
+                "name": "Heroic",
+                "attack": 8,
+                "health": 22,
+                "isBoss": false
+            },
+            {
+                "name": "Inferno",
+                "attack": 11,
+                "health": 36,
+                "isBoss": false
+            },
+            {
+                "name": "Nova",
+                "attack": 18,
+                "health": 850,
+                "isBoss": true
+            },
+            {
+                "name": "Quantum",
+                "attack": 8,
+                "health": 27,
+                "isBoss": false
+            },
+            {
+                "name": "Stellar",
+                "attack": 8,
+                "health": 42,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-11T05:00:00.000Z"
+    },
+    {
+        "prompt": "Rockstar Robot Rebellion",
+        "cards": [
+            {
+                "name": "Rockstar Robby",
+                "attack": 3,
+                "health": 6,
+                "isBoss": false
+            },
+            {
+                "name": "Metal Megaphone",
+                "attack": 3,
+                "health": 7,
+                "isBoss": false
+            },
+            {
+                "name": "Rebel Riffer",
+                "attack": 3,
+                "health": 9,
+                "isBoss": false
+            },
+            {
+                "name": "Robot Ripper",
+                "attack": 4,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Rockstar Rave",
+                "attack": 6,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Cybernetic Chaos",
+                "attack": 10,
+                "health": 300,
+                "isBoss": true
+            },
+            {
+                "name": "Robot Riot",
+                "attack": 3,
+                "health": 8,
+                "isBoss": false
+            },
+            {
+                "name": "Mecha Melody",
+                "attack": 3,
+                "health": 9,
+                "isBoss": false
+            },
+            {
+                "name": "Rockstar Rebellion",
+                "attack": 3,
+                "health": 11,
+                "isBoss": false
+            },
+            {
+                "name": "Robot Ruckus",
+                "attack": 6,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Cybernetic Uprising",
+                "attack": 5,
+                "health": 15,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-10T05:00:00.000Z"
+    },
+    {
+        "prompt": "Galactic Circus Showdown",
+        "cards": [
+            {
+                "name": "Astro the Clown",
+                "attack": 2,
+                "health": 5,
+                "isBoss": false
+            },
+            {
+                "name": "Bella the Acrobat",
+                "attack": 2,
+                "health": 5,
+                "isBoss": false
+            },
+            {
+                "name": "Chester the Strongman",
+                "attack": 4,
+                "health": 9,
+                "isBoss": false
+            },
+            {
+                "name": "Daisy the Aerialist",
+                "attack": 4,
+                "health": 5,
+                "isBoss": false
+            },
+            {
+                "name": "Finnley the Fire-Breathing Juggler",
+                "attack": 4,
+                "health": 11,
+                "isBoss": false
+            },
+            {
+                "name": "Glitter the Clown Princess",
+                "attack": 7,
+                "health": 8,
+                "isBoss": false
+            },
+            {
+                "name": "Hector the Hypnotist",
+                "attack": 8,
+                "health": 250,
+                "isBoss": true
+            },
+            {
+                "name": "Luna the Lasso-Wielding Aerialist",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Maddox the Magician",
+                "attack": 2,
+                "health": 5,
+                "isBoss": false
+            },
+            {
+                "name": "Nova the Nova Star",
+                "attack": 2,
+                "health": 5,
+                "isBoss": false
+            },
+            {
+                "name": "Ollie the Unicycle Rider",
+                "attack": 2,
+                "health": 8,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-09T05:00:00.000Z"
+    },
+    {
+        "prompt": "Space Age Superstars",
+        "cards": [
+            {
+                "name": "Astronaught 101",
+                "attack": 3,
+                "health": 6,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic Governor",
+                "attack": 3,
+                "health": 6,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Starlet",
+                "attack": 3,
+                "health": 6,
+                "isBoss": false
+            },
+            {
+                "name": "Robot Rebel Leader",
+                "attack": 6,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Alien Ambassador",
+                "attack": 3,
+                "health": 6,
+                "isBoss": false
+            },
+            {
+                "name": "Space Pirate Captain",
+                "attack": 8,
+                "health": 300,
+                "isBoss": true
+            },
+            {
+                "name": "Mega Destronaut",
+                "attack": 9,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Stellar Savior",
+                "attack": 3,
+                "health": 9,
+                "isBoss": false
+            },
+            {
+                "name": "Celestial Champion",
+                "attack": 3,
+                "health": 11,
+                "isBoss": false
+            },
+            {
+                "name": "Intergalactic Enforcer",
+                "attack": 3,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Astral Assassin",
+                "attack": 3,
+                "health": 12,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-08T05:00:00.000Z"
+    },
+    {
+        "prompt": "Galactic Pop Star Showdown",
+        "cards": [
+            {
+                "name": "Glitter Girl",
+                "attack": 9,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Starlight Serenader",
+                "attack": 9,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic Groover",
+                "attack": 9,
+                "health": 22,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Queen",
+                "attack": 10,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Intergalactic Icon",
+                "attack": 30,
+                "health": 900,
+                "isBoss": true
+            },
+            {
+                "name": "Galactic Gladiator",
+                "attack": 20,
+                "health": 30,
+                "isBoss": false
+            },
+            {
+                "name": "Celestial Singer",
+                "attack": 21,
+                "health": 28,
+                "isBoss": false
+            },
+            {
+                "name": "Alien Ambassador",
+                "attack": 23,
+                "health": 31,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic Guardian",
+                "attack": 14,
+                "health": 35,
+                "isBoss": false
+            },
+            {
+                "name": "Stellar Superstar",
+                "attack": 18,
+                "health": 34,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-07T05:00:00.000Z"
+    },
+    {
         "prompt": "Space Pirates of the Cosmos",
         "cards": [
             {
