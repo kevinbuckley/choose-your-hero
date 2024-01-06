@@ -22,10 +22,10 @@ class SimResult {
     return this.tooHard() == false && this.tooEasy() == false;
   }
   tooHard(): boolean {
-    return this.gamesWon / this.totalGames < 0.33;
+    return this.gamesWon / this.totalGames < 0.25;
   }
   tooEasy(): boolean {
-    return this.gamesWon / this.totalGames > 0.9;
+    return this.gamesWon / this.totalGames > 0.7;
   }
 }
 
@@ -111,8 +111,8 @@ async function mergeIntoVaultConfig(newGameFile: Theme) {
 }
 
 function getBossHealth() {
-  var min = 200;
-  var max = 900;
+  var min = 500;
+  var max = 950;
   var random = Math.floor(Math.random() * ((max - min) / 50 + 1) + min / 50) * 50;
   console.log(`boss health: ${random}`)
   return random;

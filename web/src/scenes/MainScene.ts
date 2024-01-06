@@ -71,7 +71,7 @@ export default class MainScene extends Phaser.Scene {
 
     this.load.image('chooseyourhero', `${baseURL}chooseyourhero.png`);
 
-    let request = new XMLHttpRequest();
+    const request = new XMLHttpRequest();
     request.open('GET', `${baseURL}assets/vault.json`, false);  // `false` makes the request synchronous
     request.send(null);
 
@@ -177,47 +177,41 @@ export default class MainScene extends Phaser.Scene {
   createTitleScreen() {
     this.titleScreen = this.add.container(this.centerX, 400).setVisible(true);
 
+    const drawRectWithBg: (width: number, height: number, yAdjustment: number, color:number) => Phaser.GameObjects.Graphics = (width, height, yAdjustment, color: number) => {
+      // Create a translucent background
+      const bg = this.add.graphics();
+      bg.fillStyle(color, 0.8); // 40% translucent black
+      bg.fillRect(-width / 2, -height / 2+yAdjustment, width, height); // Position relative to container
+      return bg;
+    };
+    
     // Create a translucent background
-    const bg = this.add.graphics();
-    bg.fillStyle(0x000000, 0.8); // 40% translucent black
-    const bgWidth = 350; // Adjust as needed
-    const bgHeight = 600; // Adjust as needed
-    bg.fillRect(-bgWidth / 2, -bgHeight / 2-45, bgWidth, bgHeight); // Position relative to container
+    const bg = drawRectWithBg(350, 600, -45, 0x000000);
     const sprite = this.add.sprite(0, -190, 'chooseyourhero').setOrigin(0.5);
     sprite.setScale(.4, .4);
 
-    const playGameText = this.add.text(0, 15, 'Play Game', {
+    const yellowText = {
       fontSize: '20px',
       resolution: 2,
       stroke: '#000000',
       strokeThickness: 5,
       align: 'center',
       color: 'yellow'
-    }).setOrigin(0.5)
-    .setInteractive({ useHandCursor: true });
+    };
 
-    const openVault = this.add.text(0, 65, 'Open Vault', {
-      fontSize: '20px',
-      resolution: 2,
-      stroke: '#000000',
-      strokeThickness: 5,
-      align: 'center',
-      color: 'yellow'
-    }).setOrigin(0.5)
+    const playGameText = this.add.text(0, 15, 'Play Game', yellowText)
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true });
+
+    const openVault = this.add.text(0, 65, 'Open Vault', yellowText)
+      .setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
         window.location.href = './vault.html';
       });
 
-
-    const learnMore = this.add.text(0, 115, 'Learn More', {
-      fontSize: '20px',
-      resolution: 2,
-      stroke: '#000000',
-      strokeThickness: 5,
-      align: 'center',
-      color: 'yellow'
-    }).setOrigin(0.5)
+    const learnMore = this.add.text(0, 115, 'Learn More', yellowText)
+      .setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
         window.location.href = 'https://github.com/kevinbuckley/choose-your-hero';
@@ -234,21 +228,10 @@ export default class MainScene extends Phaser.Scene {
     }).setOrigin(0.5)
 
 
-    // Create a translucent background
-    const bgEndGame = this.add.graphics().setVisible(false);
-    bgEndGame.fillStyle(0x205890, 1); 
-    const bgWidthEndGame = 320; // Adjust as needed
-    const bgHeightEndGame = 90; // Adjust as needed
-    bgEndGame.fillRect(-bgWidthEndGame / 2, -bgHeightEndGame / 2 + 190, bgWidthEndGame, bgHeightEndGame); // Position relative to container
-   
-     // Create a translucent background
-     const bgEndGame2 = this.add.graphics().setVisible(false);
-     bgEndGame2.fillStyle(0x000000, 1); 
-     const bgWidthEndGame2 = 315; // Adjust as needed
-     const bgHeightEndGame2 = 85; // Adjust as needed
-     bgEndGame2.fillRect(-bgWidthEndGame2 / 2, -bgHeightEndGame2 / 2 + 190, bgWidthEndGame2, bgHeightEndGame2); // Position relative to container
+    // Create a blue outline for endgame background
+    const bgEndGame = drawRectWithBg(320, 90, 190, 0x205890).setVisible(false);
+    const bgEndGame2 = drawRectWithBg(315, 85, 190, 0x000000).setVisible(false);
     
-
     // Add a click event listener
     playGameText.on('pointerdown', () => {
       this.toggleHomeScreen(false);
@@ -256,9 +239,7 @@ export default class MainScene extends Phaser.Scene {
     });
 
     // Add background and text to the container
-    this.titleScreen.add(bg);
-    this.titleScreen.add(bgEndGame);
-    this.titleScreen.add(bgEndGame2);
+    this.titleScreen.add([ bg, bgEndGame, bgEndGame2 ]);
     this.titleScreen.add(playGameText);
     this.titleScreen.add(sprite);
     this.titleScreen.add(this.endGameStatusText);
