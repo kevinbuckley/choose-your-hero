@@ -27,6 +27,7 @@ export default class MainScene extends Phaser.Scene {
   private chooseHero!: Phaser.GameObjects.Container;
   private titleScreen!: Phaser.GameObjects.Container;
   private endGameStatusText!: Phaser.GameObjects.Text;
+  private endGameStatusContainer!: Phaser.GameObjects.Container;
   private widthWithPadding: number = cardWidth + 15;
   private widthWithPaddingPlayed: number = (cardWidth * cardMultiplier) + 5;
   private turboMultipler: number = 1; // 1 in prod
@@ -108,7 +109,7 @@ export default class MainScene extends Phaser.Scene {
 
     const searchParams = new URLSearchParams(window.location.search);
     if(searchParams.has('theme')) {
-      this.titleScreen.setVisible(false);
+      this.toggleHomeScreen(false);
       this.startGame();
     }
   }
@@ -224,8 +225,8 @@ export default class MainScene extends Phaser.Scene {
       });
 
 
-    this.endGameStatusText = this.add.text(0, 165, '', {
-      fontSize: '16px',
+    this.endGameStatusText = this.add.text(0, 188, '', {
+      fontSize: '17px',
       resolution: 2,
       stroke: '#000000',
       strokeThickness: 5,
@@ -234,19 +235,45 @@ export default class MainScene extends Phaser.Scene {
     }).setOrigin(0.5)
 
 
+    // Create a translucent background
+    const bgEndGame = this.add.graphics().setVisible(false);
+    bgEndGame.fillStyle(0x205890, 1); 
+    const bgWidthEndGame = 320; // Adjust as needed
+    const bgHeightEndGame = 90; // Adjust as needed
+    bgEndGame.fillRect(-bgWidthEndGame / 2, -bgHeightEndGame / 2 + 190, bgWidthEndGame, bgHeightEndGame); // Position relative to container
+   
+     // Create a translucent background
+     const bgEndGame2 = this.add.graphics().setVisible(false);
+     bgEndGame2.fillStyle(0x000000, 1); 
+     const bgWidthEndGame2 = 315; // Adjust as needed
+     const bgHeightEndGame2 = 85; // Adjust as needed
+     bgEndGame2.fillRect(-bgWidthEndGame2 / 2, -bgHeightEndGame2 / 2 + 190, bgWidthEndGame2, bgHeightEndGame2); // Position relative to container
+    
+
     // Add a click event listener
     playGameText.on('pointerdown', () => {
-      this.titleScreen.setVisible(false);
+      this.toggleHomeScreen(false);
       this.startGame();
     });
 
     // Add background and text to the container
     this.titleScreen.add(bg);
+    this.titleScreen.add(bgEndGame);
+    this.titleScreen.add(bgEndGame2);
     this.titleScreen.add(playGameText);
     this.titleScreen.add(sprite);
     this.titleScreen.add(this.endGameStatusText);
     this.titleScreen.add(openVault);
     this.titleScreen.add(learnMore);
+  }
+
+  async toggleHomeScreen(visible: boolean) {
+    this.titleScreen.setVisible(visible);
+    this.titleScreen.each((child: Phaser.GameObjects.GameObject) => {
+        if(child instanceof Phaser.GameObjects.Graphics) {
+        child.setVisible(visible);
+      }
+    });
   }
 
   async handleCardAttack(card: Card): Promise<void> {
@@ -319,12 +346,12 @@ export default class MainScene extends Phaser.Scene {
     if (this.boss!.boss.isDead()) {
       txt =`You beat the boss!`;
     } else {
-      txt = `The boss escaped with ${this.boss!.boss.health} health!`;
+      txt = `Boss escaped with ${this.boss!.boss.health} health!`;
     }
    
-    this.endGameStatusText.setText(`${txt}\nClick Play Game to play again`);
+    this.endGameStatusText.setText(`${txt}\n\nClick Play Game to play again`);
 
-    this.titleScreen.setVisible(true);
+    this.toggleHomeScreen(true);
     this.boss?.setVisible(false);
     this.deck.forEach(card => card.setVisible(false)); // set discarded cards to invisible
   }
