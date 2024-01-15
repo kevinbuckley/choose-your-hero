@@ -4,4 +4,5 @@ node_modules
 web/public/assets/*.png
 web/public/assets/game_file.json
 generator/temp/*.png
+generator/imagegen
 .DS_Store

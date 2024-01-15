@@ -1,5 +1,167 @@
 [
     {
+        "prompt": "Galactic Pop Culture Showdown",
+        "cards": [
+            {
+                "name": "Zara the Zombie Queen",
+                "attack": 6,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic Glitter",
+                "attack": 6,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Captain Cosmic Starblazer",
+                "attack": 6,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Rogue Robot Riot",
+                "attack": 6,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic Gladiator",
+                "attack": 8,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Crusader",
+                "attack": 12,
+                "health": 27,
+                "isBoss": false
+            },
+            {
+                "name": "Intergalactic Invader",
+                "attack": 21,
+                "health": 600,
+                "isBoss": true
+            },
+            {
+                "name": "Galactic Goliath",
+                "attack": 15,
+                "health": 30,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-20T05:00:00.000Z"
+    },
+    {
+        "prompt": "Superheroes vs Time Traveling Robot Overlords",
+        "cards": [
+            {
+                "name": "The Flash",
+                "attack": 7,
+                "health": 19,
+                "isBoss": false
+            },
+            {
+                "name": "Wonder Woman",
+                "attack": 7,
+                "health": 33,
+                "isBoss": false
+            },
+            {
+                "name": "Iron Man",
+                "attack": 7,
+                "health": 28,
+                "isBoss": false
+            },
+            {
+                "name": "Captain America",
+                "attack": 9,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "Thor",
+                "attack": 20,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Black Widow",
+                "attack": 7,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Hulk",
+                "attack": 11,
+                "health": 29,
+                "isBoss": false
+            },
+            {
+                "name": "Loki",
+                "attack": 25,
+                "health": 700,
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2024-01-19T05:00:00.000Z"
+    },
+    {
+        "prompt": "Astro Adventurers",
+        "cards": [
+            {
+                "name": "Astral Explorer",
+                "attack": 7,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Gravity Wizard",
+                "attack": 7,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Alien Scout",
+                "attack": 8,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Defender",
+                "attack": 7,
+                "health": 29,
+                "isBoss": false
+            },
+            {
+                "name": "Nebula Nomad",
+                "attack": 7,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Starseeker",
+                "attack": 14,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic Guardian",
+                "attack": 20,
+                "health": 700,
+                "isBoss": true
+            },
+            {
+                "name": "Astral Behemoth",
+                "attack": 16,
+                "health": 28,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-18T05:00:00.000Z"
+    },
+    {
         "prompt": "Alien Game Show",
         "cards": [
             {

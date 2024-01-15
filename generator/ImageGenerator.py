@@ -13,8 +13,8 @@ class ImageGenerator:
         self.file_save_name = file_save_name
         self.style = style
         self.device = torch.device("mps")  # Metal device
-        self.pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", torch_dtype=torch.float32 , variant="fp16")
-        #self.pipe = AutoPipelineForText2Image.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float32 , variant="fp16")
+        self.pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", torch_dtype=torch.float16 , variant="fp16")
+        #self.pipe = AutoPipelineForText2Image.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16 , variant="fp16")
         self.pipe.to(self.device)
     def generate_image(self):
         
