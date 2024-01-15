@@ -29,7 +29,7 @@ export default class MainScene extends Phaser.Scene {
   private endGameStatusText!: Phaser.GameObjects.Text;
   private widthWithPadding: number = cardWidth + 15;
   private widthWithPaddingPlayed: number = (cardWidth * cardMultiplier) + 5;
-  private turboMultipler: number = 1; // 1 in prod
+  private turboMultipler: number = .01; // 1 in prod
     
   constructor() {
     super({ key: 'MainScene' });
@@ -187,8 +187,8 @@ export default class MainScene extends Phaser.Scene {
     
     // Create a translucent background
     const bg = drawRectWithBg(350, 600, -45, 0x000000);
-    const sprite = this.add.sprite(0, -190, 'chooseyourhero').setOrigin(0.5);
-    sprite.setScale(.4, .4);
+    const sprite = this.add.sprite(0, -220, 'chooseyourhero').setOrigin(0.5);
+    sprite.setScale(.3, .3);
 
     const yellowText = {
       fontSize: '20px',
@@ -198,34 +198,61 @@ export default class MainScene extends Phaser.Scene {
       align: 'center',
       color: 'yellow'
     };
-
-    const playGameText = this.add.text(0, 15, 'Play Game', yellowText)
-      .setOrigin(0.5)
-      .setInteractive({ useHandCursor: true });
-
-    const openVault = this.add.text(0, 65, 'Open Vault', yellowText)
-      .setOrigin(0.5)
-      .setInteractive({ useHandCursor: true })
-      .on('pointerdown', () => {
-        window.location.href = './vault.html';
-      });
-
-    const learnMore = this.add.text(0, 115, 'Learn More', yellowText)
-      .setOrigin(0.5)
-      .setInteractive({ useHandCursor: true })
-      .on('pointerdown', () => {
-        window.location.href = 'https://github.com/kevinbuckley/choose-your-hero';
-      });
-
-
-    this.endGameStatusText = this.add.text(0, 188, '', {
+    const whiteText = {
       fontSize: '17px',
       resolution: 2,
       stroke: '#000000',
       strokeThickness: 5,
       align: 'center',
       color: 'white'
-    }).setOrigin(0.5)
+    };
+
+    const titleMenu = this.add.container(0, -50).setVisible(true);
+
+    const playGameText = this.add.text(0, 0, 'Play Game', yellowText)
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true });
+
+    const openVault = this.add.text(0, 50, 'Open Vault', yellowText)
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        window.location.href = './vault.html';
+      });
+
+      const suggestContainer = this.add.container(0, -50).setVisible(true);
+      const suggestText = this.add.text(0, 0, 
+    `Please submit a Theme!  
+    It will go directly to 
+    Game Developer to be 
+    included in a future game!
+    Then check back daily to see 
+    if your Theme was used.
+
+    Good Luck!`, whiteText)
+        .setOrigin(0.5);
+      const suggestTextbox = this.add.graphics();
+      suggestContainer.add(suggestText);
+
+    const suggest = this.add.text(0, 100, 'Suggest Theme!', yellowText)
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        titleMenu.setVisible(false);
+        suggestContainer.setVisible(true);
+      });
+
+    const learnMore = this.add.text(0, 150, 'Learn More', yellowText)
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        window.location.href = 'https://github.com/kevinbuckley/choose-your-hero';
+      });
+
+    this.endGameStatusText = this.add.text(0, 220, '', whiteText).setOrigin(0.5)
+
+    
+
 
 
     // Create a blue outline for endgame background
@@ -239,13 +266,20 @@ export default class MainScene extends Phaser.Scene {
     });
 
     // Add background and text to the container
-    this.titleScreen.add([ bg, bgEndGame, bgEndGame2 ]);
-    this.titleScreen.add(playGameText);
+    this.titleScreen.add(bg);
     this.titleScreen.add(sprite);
-    this.titleScreen.add(this.endGameStatusText);
-    this.titleScreen.add(openVault);
-    this.titleScreen.add(learnMore);
+    this.titleScreen.add(titleMenu);
+    this.titleScreen.add(suggestContainer);
+
+    titleMenu.add([ bgEndGame, bgEndGame2 ]);
+    titleMenu.add(playGameText);
+    titleMenu.add(this.endGameStatusText);
+    titleMenu.add(openVault);
+    titleMenu.add(suggest);
+    titleMenu.add(learnMore);
   }
+
+
 
   async toggleHomeScreen(visible: boolean) {
     this.titleScreen.setVisible(visible);
