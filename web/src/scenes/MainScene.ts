@@ -184,10 +184,12 @@ export default class MainScene extends Phaser.Scene {
       bg.fillRect(-width / 2, -height / 2+yAdjustment, width, height); // Position relative to container
       return bg;
     };
+
+    const topAnchor = -65;
     
     // Create a translucent background
-    const bg = drawRectWithBg(350, 600, -45, 0x000000);
-    const sprite = this.add.sprite(0, -190, 'chooseyourhero').setOrigin(0.5);
+    const bg = drawRectWithBg(350, 650,topAnchor, 0x000000);
+    const sprite = this.add.sprite(0, topAnchor-160, 'chooseyourhero').setOrigin(0.5);
     sprite.setScale(.4, .4);
 
     const yellowText = {
@@ -199,18 +201,18 @@ export default class MainScene extends Phaser.Scene {
       color: 'yellow'
     };
 
-    const playGameText = this.add.text(0, 15, 'Play Game', yellowText)
+    const playGameText = this.add.text(0, -35, 'Play Game', yellowText)
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
 
-    const openVault = this.add.text(0, 65, 'Hall of Heroes', yellowText)
+    const openVault = this.add.text(0, 15, 'Hall of Heroes', yellowText)
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
         window.location.href = './vault.html';
       });
 
-    const learnMore = this.add.text(0, 115, 'Learn More', yellowText)
+    const learnMore = this.add.text(0, 65, 'View the Code', yellowText)
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
@@ -218,8 +220,9 @@ export default class MainScene extends Phaser.Scene {
       });
 
 
-    this.endGameStatusText = this.add.text(0, 188, `Card battler that creates
-a brand new game every day!
+    this.endGameStatusText = this.add.text(0, 178, `Choose Your Hero is a 
+card battler that creates a 
+brand new game every day!
 
 Visit the Hall of Heroes 
 for previous days' games!`, {
@@ -233,8 +236,8 @@ for previous days' games!`, {
 
 
     // Create a blue outline for endgame background
-    const bgEndGame = drawRectWithBg(320, 110, 190, 0x205890).setVisible(true);
-    const bgEndGame2 = drawRectWithBg(315, 105, 190, 0x000000).setVisible(true);
+    const bgEndGame = drawRectWithBg(320, 145, 180, 0x205890).setVisible(true);
+    const bgEndGame2 = drawRectWithBg(315, 140, 180, 0x000000).setVisible(true);
     
     // Add a click event listener
     playGameText.on('pointerdown', () => {
