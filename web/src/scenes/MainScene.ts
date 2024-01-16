@@ -29,7 +29,7 @@ export default class MainScene extends Phaser.Scene {
   private endGameStatusText!: Phaser.GameObjects.Text;
   private widthWithPadding: number = cardWidth + 15;
   private widthWithPaddingPlayed: number = (cardWidth * cardMultiplier) + 5;
-  private turboMultipler: number = 1; // 1 in prod
+  private turboMultipler: number = .01; // 1 in prod
     
   constructor() {
     super({ key: 'MainScene' });
@@ -203,7 +203,7 @@ export default class MainScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
 
-    const openVault = this.add.text(0, 65, 'Open Vault', yellowText)
+    const openVault = this.add.text(0, 65, 'Hall of Heroes', yellowText)
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
@@ -218,8 +218,12 @@ export default class MainScene extends Phaser.Scene {
       });
 
 
-    this.endGameStatusText = this.add.text(0, 188, '', {
-      fontSize: '17px',
+    this.endGameStatusText = this.add.text(0, 188, `Card battler that creates
+a brand new game every day!
+
+Visit the Hall of Heroes 
+for previous days' games!`, {
+      fontSize: '14px',
       resolution: 2,
       stroke: '#000000',
       strokeThickness: 5,
@@ -229,8 +233,8 @@ export default class MainScene extends Phaser.Scene {
 
 
     // Create a blue outline for endgame background
-    const bgEndGame = drawRectWithBg(320, 90, 190, 0x205890).setVisible(false);
-    const bgEndGame2 = drawRectWithBg(315, 85, 190, 0x000000).setVisible(false);
+    const bgEndGame = drawRectWithBg(320, 110, 190, 0x205890).setVisible(true);
+    const bgEndGame2 = drawRectWithBg(315, 105, 190, 0x000000).setVisible(true);
     
     // Add a click event listener
     playGameText.on('pointerdown', () => {
@@ -329,7 +333,10 @@ export default class MainScene extends Phaser.Scene {
       txt = `Boss escaped with ${this.boss!.boss.health} health!`;
     }
    
-    this.endGameStatusText.setText(`${txt}\n\nClick Play Game to play again`);
+    this.endGameStatusText.setText(`${txt}
+    
+Visit the Hall of Heroes 
+to play previous days' games!`);
 
     this.toggleHomeScreen(true);
     this.boss?.setVisible(false);
