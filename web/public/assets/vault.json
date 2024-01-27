@@ -1,5 +1,209 @@
 [
     {
+        "prompt": "Galactic Pop Stars",
+        "cards": [
+            {
+                "name": "Astra the Cosmic Singer",
+                "attack": 7,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Bella the Starlight Dancer",
+                "attack": 12,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmo the Galactic Pop Star",
+                "attack": 15,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Dash the Intergalactic DJ",
+                "attack": 9,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Echo the Cosmic Voice",
+                "attack": 7,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Frost the Icy Star",
+                "attack": 15,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Glitter the Stellar Pop Idol",
+                "attack": 11,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Harmony the Cosmic Melody",
+                "attack": 8,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Luna the Celestial Singer",
+                "attack": 23,
+                "health": 750,
+                "isBoss": true
+            },
+            {
+                "name": "Moonlight the Galactic Enigma",
+                "attack": 18,
+                "health": 30,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-28T05:00:00.000Z"
+    },
+    {
+        "prompt": "Astro Pop Adventures",
+        "cards": [
+            {
+                "name": "Galactic Guardian",
+                "attack": 8,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Starlight Sorceress",
+                "attack": 8,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Crusader",
+                "attack": 8,
+                "health": 31,
+                "isBoss": false
+            },
+            {
+                "name": "Astro Ace",
+                "attack": 8,
+                "health": 39,
+                "isBoss": false
+            },
+            {
+                "name": "Planetary Patrol",
+                "attack": 8,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Stellar Strike",
+                "attack": 8,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Intergalactic Invasion",
+                "attack": 12,
+                "health": 850,
+                "isBoss": true
+            },
+            {
+                "name": "Black Hole Bombardier",
+                "attack": 8,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Neutron Star Nemesis",
+                "attack": 8,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Quantum Quake Queen",
+                "attack": 8,
+                "health": 30,
+                "isBoss": false
+            },
+            {
+                "name": "Gravitational Glory",
+                "attack": 8,
+                "health": 42,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-27T05:00:00.000Z"
+    },
+    {
+        "prompt": "Space Superheroes Save the Universe",
+        "cards": [
+            {
+                "name": "Astral Avenger",
+                "attack": 6,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic Guardian",
+                "attack": 8,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Starlight Sorcerer",
+                "attack": 12,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Crusader",
+                "attack": 14,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Intergalactic Inferno",
+                "attack": 23,
+                "health": 650,
+                "isBoss": true
+            },
+            {
+                "name": "Stellar Strike",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Astro Adventurer",
+                "attack": 6,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Celestial Champion",
+                "attack": 10,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Universal Upholder",
+                "attack": 17,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Interdimensional Invader",
+                "attack": 10,
+                "health": 25,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-26T05:00:00.000Z"
+    },
+    {
         "prompt": "Galactic Pop Culture Showdown",
         "cards": [
             {

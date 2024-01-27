@@ -11,6 +11,9 @@ export default async function callModel(prompt: string): Promise<string> {
         content: prompt
       }
     ],
+    "options": {
+      "temperature": .5,
+    },
     "stream": false
   };
 
