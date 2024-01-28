@@ -12,7 +12,7 @@ export default async function callModel(prompt: string): Promise<string> {
       }
     ],
     "options": {
-      "temperature": .5,
+      "temperature": .3,
     },
     "stream": false
   };
