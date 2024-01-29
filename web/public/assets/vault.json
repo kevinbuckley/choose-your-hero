@@ -1,5 +1,257 @@
 [
     {
+        "prompt": "Celebrities as World Leaders",
+        "cards": [
+            {
+                "name": "Elon Musk",
+                "attack": 9,
+                "health": 35,
+                "isBoss": false
+            },
+            {
+                "name": "Jennifer Lawrence",
+                "attack": 10,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Leonardo DiCaprio",
+                "attack": 16,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Taylor Swift",
+                "attack": 13,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Kanye West",
+                "attack": 19,
+                "health": 29,
+                "isBoss": false
+            },
+            {
+                "name": "Angelina Jolie",
+                "attack": 25,
+                "health": 700,
+                "isBoss": true
+            },
+            {
+                "name": "Dwayne Johnson",
+                "attack": 13,
+                "health": 19,
+                "isBoss": false
+            },
+            {
+                "name": "Meryl Streep",
+                "attack": 9,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Joe Biden",
+                "attack": 8,
+                "health": 32,
+                "isBoss": false
+            },
+            {
+                "name": "Oprah Winfrey",
+                "attack": 9,
+                "health": 21,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-03T05:00:00.000Z"
+    },
+    {
+        "prompt": "Celebrities as Superheroes",
+        "cards": [
+            {
+                "name": "A-List Hero",
+                "attack": 7,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Superstar Savior",
+                "attack": 7,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Celebrity Crusader",
+                "attack": 13,
+                "health": 31,
+                "isBoss": false
+            },
+            {
+                "name": "Starlight Stalker",
+                "attack": 7,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Glamour Guardian",
+                "attack": 15,
+                "health": 27,
+                "isBoss": false
+            },
+            {
+                "name": "Famous Fighter",
+                "attack": 7,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Celebrity Crusher",
+                "attack": 27,
+                "health": 750,
+                "isBoss": true
+            },
+            {
+                "name": "Mega Movie Star",
+                "attack": 19,
+                "health": 33,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-02T05:00:00.000Z"
+    },
+    {
+        "prompt": "Astro Knights",
+        "cards": [
+            {
+                "name": "Galactic Guardian",
+                "attack": 6,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Stellar Sentinel",
+                "attack": 6,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Crusader",
+                "attack": 6,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Astral Assailant",
+                "attack": 6,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Interstellar Initiate",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Celestial Champion",
+                "attack": 8,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Galactic Gladiator",
+                "attack": 18,
+                "health": 600,
+                "isBoss": true
+            },
+            {
+                "name": "Astro Ace",
+                "attack": 15,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Commander",
+                "attack": 13,
+                "health": 22,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-01T05:00:00.000Z"
+    },
+    {
+        "prompt": "Galactic Circus of Superheroes",
+        "cards": [
+            {
+                "name": "Astro Boy",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Supergirl",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "The Flash",
+                "attack": 6,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Green Lantern",
+                "attack": 6,
+                "health": 14,
+                "isBoss": false
+            },
+            {
+                "name": "Captain Marvel",
+                "attack": 6,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Thor",
+                "attack": 16,
+                "health": 650,
+                "isBoss": true
+            },
+            {
+                "name": "Hulk",
+                "attack": 8,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Wonder Woman",
+                "attack": 8,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "Iron Man",
+                "attack": 9,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Black Widow",
+                "attack": 9,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Loki",
+                "attack": 11,
+                "health": 20,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-01-31T05:00:00.000Z"
+    },
+    {
         "prompt": "Galactic Rockstars",
         "cards": [
             {

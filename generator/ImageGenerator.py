@@ -19,7 +19,7 @@ class ImageGenerator:
     def generate_image(self):
         
         prompt = f'''
-        A centered single {self.style} picture of the character ({self.name}) from the movie [{self.theme}].
+        A centered single {self.style} picture of the character ({self.name}) in the theme of [{self.theme}].
         Extremely detailed eyes and face but whole body is visible and very realistic.
         Only {self.name}, nothing else in the picture.
         '''

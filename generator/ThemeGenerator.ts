@@ -9,18 +9,19 @@ class ThemeGenerator {
       while(themes.includes(theme)) {
 
       const prompt =  `###Instructions### 
-            Create a single theme for a fun, slightly edgy card game, using well-known pop culture franchises from the last 30 years as references (excluding zombies).
+            Create a single theme for a pop-culture card game.  The theme must be of 1 serious than AS another silly thing. 
+            For example, Mathemeticians as Pro Wrestlers.
             You must be creative and original and not copy an example theme.
             You MUST only return a theme name with under 5 words in it. 
             You MUST only return the name of the theme with no explanation. 
-            You will be penalized if you include wizards or pirates. 
+            You will be penalized if you include wizards or pirates or zombies. 
             You will be penalized if you return anything but the theme name.
             You will be penalized if you return a theme name that is more than 5 words.
 
             ### Response:\nOkay, here is a theme for a fun and slightly edgy card game:\n\n
 
             ###EXAMPLE###
-            Alien Gladiators Hosting a Galactic Game Show
+            Physists and Mathematicians as Pro Wrestlers
             Chrismas Ziggy Stardust
             Beauty and the Beast as ninjas
             Weightlifting My Little Ponies`;
