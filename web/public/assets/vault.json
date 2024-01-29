@@ -1,5 +1,137 @@
 [
     {
+        "prompt": "Scientists as Superheroes",
+        "cards": [
+            {
+                "name": "Dr. Emma Eureka",
+                "attack": 8,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Professor Pulsar",
+                "attack": 11,
+                "health": 27,
+                "isBoss": false
+            },
+            {
+                "name": "Dr. Nova Spire",
+                "attack": 12,
+                "health": 39,
+                "isBoss": false
+            },
+            {
+                "name": "The Inventor's Apprentice",
+                "attack": 8,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Dr. Helix Hex",
+                "attack": 8,
+                "health": 33,
+                "isBoss": false
+            },
+            {
+                "name": "The Mad Scientist",
+                "attack": 28,
+                "health": 800,
+                "isBoss": true
+            },
+            {
+                "name": "Dr. Quantum Quake",
+                "attack": 14,
+                "health": 40,
+                "isBoss": false
+            },
+            {
+                "name": "The Geneticist's Creation",
+                "attack": 8,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Dr. Cosmic Crusher",
+                "attack": 14,
+                "health": 38,
+                "isBoss": false
+            },
+            {
+                "name": "The Time Traveler's Assistant",
+                "attack": 8,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Dr. Galactic Guardian",
+                "attack": 10,
+                "health": 43,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-05T05:00:00.000Z"
+    },
+    {
+        "prompt": "Rockstars as Superheroes",
+        "cards": [
+            {
+                "name": "Ace of Rock",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Rockstar Hero",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Guitar God",
+                "attack": 9,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Vocal Vixen",
+                "attack": 6,
+                "health": 19,
+                "isBoss": false
+            },
+            {
+                "name": "Drums of Justice",
+                "attack": 6,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Keyboard Knight",
+                "attack": 6,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Saxophone Sentinel",
+                "attack": 6,
+                "health": 27,
+                "isBoss": false
+            },
+            {
+                "name": "Bass Brawler",
+                "attack": 12,
+                "health": 650,
+                "isBoss": true
+            },
+            {
+                "name": "Rockstar Ranger",
+                "attack": 7,
+                "health": 25,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-04T05:00:00.000Z"
+    },
+    {
         "prompt": "Celebrities as World Leaders",
         "cards": [
             {
