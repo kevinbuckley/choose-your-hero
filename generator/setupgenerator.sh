@@ -4,3 +4,6 @@ python3 -m venv imagegen
 source imagegen/bin/activate
 
 pip3 install -r requirements.txt --upgrade
+
+# start ollama
+# ollama run llama2
