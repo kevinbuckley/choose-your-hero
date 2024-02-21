@@ -1,5 +1,1031 @@
 [
     {
+        "prompt": "Celebrities as Political Leaders",
+        "cards": [
+            {
+                "name": "Oprah Winfrey",
+                "attack": 9,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Taylor Swift",
+                "attack": 9,
+                "health": 29,
+                "isBoss": false
+            },
+            {
+                "name": "LeBron James",
+                "attack": 9,
+                "health": 34,
+                "isBoss": false
+            },
+            {
+                "name": "Kanye West",
+                "attack": 18,
+                "health": 45,
+                "isBoss": false
+            },
+            {
+                "name": "Jennifer Lopez",
+                "attack": 9,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Dwayne Johnson",
+                "attack": 9,
+                "health": 42,
+                "isBoss": false
+            },
+            {
+                "name": "Beyoncé",
+                "attack": 20,
+                "health": 900,
+                "isBoss": true
+            },
+            {
+                "name": "Justin Bieber",
+                "attack": 9,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Rihanna",
+                "attack": 9,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "Kim Kardashian",
+                "attack": 9,
+                "health": 18,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-03-08T05:00:00.000Z"
+    },
+    {
+        "prompt": "Superheroes of Mental Health",
+        "cards": [
+            {
+                "name": "Mindful Marvel",
+                "attack": 8,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Mental Might",
+                "attack": 8,
+                "health": 38,
+                "isBoss": false
+            },
+            {
+                "name": "Emotional Eagle",
+                "attack": 11,
+                "health": 32,
+                "isBoss": false
+            },
+            {
+                "name": "Resilience Rocket",
+                "attack": 15,
+                "health": 43,
+                "isBoss": false
+            },
+            {
+                "name": "Mental Mastery",
+                "attack": 13,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "Psychic Powerhouse",
+                "attack": 18,
+                "health": 34,
+                "isBoss": false
+            },
+            {
+                "name": "Mental Health Hero",
+                "attack": 30,
+                "health": 850,
+                "isBoss": true
+            },
+            {
+                "name": "Anxiety Avenger",
+                "attack": 8,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Depression Demon",
+                "attack": 8,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "OCD Ogre",
+                "attack": 8,
+                "health": 35,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-03-07T05:00:00.000Z"
+    },
+    {
+        "prompt": "Comedians as Superheroes",
+        "cards": [
+            {
+                "name": "The Joker",
+                "attack": 23,
+                "health": 650,
+                "isBoss": true
+            },
+            {
+                "name": "Batman",
+                "attack": 9,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Robin",
+                "attack": 10,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Superman",
+                "attack": 17,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Wonder Woman",
+                "attack": 14,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "The Penguin",
+                "attack": 11,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Catwoman",
+                "attack": 10,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "The Riddler",
+                "attack": 9,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Two-Face",
+                "attack": 15,
+                "health": 19,
+                "isBoss": false
+            },
+            {
+                "name": "Harley Quinn",
+                "attack": 11,
+                "health": 19,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-03-06T05:00:00.000Z"
+    },
+    {
+        "prompt": "Comic Book Characters as Superheroes for Social Justice",
+        "cards": [
+            {
+                "name": "Avenger",
+                "attack": 8,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "JusticeWoman",
+                "attack": 8,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "PowerMan",
+                "attack": 8,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "WonderGirl",
+                "attack": 9,
+                "health": 22,
+                "isBoss": false
+            },
+            {
+                "name": "IronMan",
+                "attack": 19,
+                "health": 29,
+                "isBoss": false
+            },
+            {
+                "name": "CaptainAmerica",
+                "attack": 28,
+                "health": 800,
+                "isBoss": true
+            },
+            {
+                "name": "BlackWidow",
+                "attack": 11,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Hulk",
+                "attack": 18,
+                "health": 30,
+                "isBoss": false
+            },
+            {
+                "name": "Thor",
+                "attack": 11,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "SpiderMan",
+                "attack": 8,
+                "health": 16,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-03-05T05:00:00.000Z"
+    },
+    {
+        "prompt": "Celebrity Mental Health Advocates",
+        "cards": [
+            {
+                "name": "Oprah Winfrey",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Dwayne Johnson",
+                "attack": 6,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Kanye West",
+                "attack": 6,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Lady Gaga",
+                "attack": 6,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Jennifer Lawrence",
+                "attack": 7,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Miley Cyrus",
+                "attack": 7,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Taylor Swift",
+                "attack": 7,
+                "health": 29,
+                "isBoss": false
+            },
+            {
+                "name": "Kim Kardashian",
+                "attack": 12,
+                "health": 27,
+                "isBoss": false
+            },
+            {
+                "name": "Beyoncé",
+                "attack": 15,
+                "health": 650,
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2024-03-04T05:00:00.000Z"
+    },
+    {
+        "prompt": "Celebrity Chefs as Spy Agents",
+        "cards": [
+            {
+                "name": "Chef Bernard",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Chef Francois",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Spy Chef",
+                "attack": 10,
+                "health": 650,
+                "isBoss": true
+            },
+            {
+                "name": "Celebrity Chef",
+                "attack": 6,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Kitchen Spy",
+                "attack": 6,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Famous Chef",
+                "attack": 6,
+                "health": 19,
+                "isBoss": false
+            },
+            {
+                "name": "Culinary Mastermind",
+                "attack": 6,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Gourmet Spy",
+                "attack": 6,
+                "health": 26,
+                "isBoss": false
+            },
+            {
+                "name": "International Chef",
+                "attack": 10,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Supreme Chef",
+                "attack": 7,
+                "health": 21,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-03-03T05:00:00.000Z"
+    },
+    {
+        "prompt": "Celebrities as Historical Figures",
+        "cards": [
+            {
+                "name": "Elon Musk",
+                "attack": 8,
+                "health": 34,
+                "isBoss": false
+            },
+            {
+                "name": "Steve Jobs",
+                "attack": 8,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Abraham Lincoln",
+                "attack": 8,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Albert Einstein",
+                "attack": 8,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Marie Curie",
+                "attack": 10,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Leonardo da Vinci",
+                "attack": 13,
+                "health": 33,
+                "isBoss": false
+            },
+            {
+                "name": "Nelson Mandela",
+                "attack": 30,
+                "health": 850,
+                "isBoss": true
+            },
+            {
+                "name": "Mahatma Gandhi",
+                "attack": 19,
+                "health": 30,
+                "isBoss": false
+            },
+            {
+                "name": "Martin Luther King Jr.",
+                "attack": 20,
+                "health": 28,
+                "isBoss": false
+            },
+            {
+                "name": "Rosa Parks",
+                "attack": 17,
+                "health": 32,
+                "isBoss": false
+            },
+            {
+                "name": "Harriet Tubman",
+                "attack": 15,
+                "health": 35,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-03-02T05:00:00.000Z"
+    },
+    {
+        "prompt": "Superheroes of Mythology",
+        "cards": [
+            {
+                "name": "Athena",
+                "attack": 8,
+                "health": 39,
+                "isBoss": false
+            },
+            {
+                "name": "Hercules",
+                "attack": 8,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Persephone",
+                "attack": 8,
+                "health": 33,
+                "isBoss": false
+            },
+            {
+                "name": "Minerva",
+                "attack": 8,
+                "health": 34,
+                "isBoss": false
+            },
+            {
+                "name": "Artemis",
+                "attack": 8,
+                "health": 27,
+                "isBoss": false
+            },
+            {
+                "name": "Ares",
+                "attack": 8,
+                "health": 34,
+                "isBoss": false
+            },
+            {
+                "name": "Hades",
+                "attack": 15,
+                "health": 850,
+                "isBoss": true
+            },
+            {
+                "name": "Poseidon",
+                "attack": 8,
+                "health": 37,
+                "isBoss": false
+            },
+            {
+                "name": "Hera",
+                "attack": 8,
+                "health": 30,
+                "isBoss": false
+            },
+            {
+                "name": "Demeter",
+                "attack": 8,
+                "health": 39,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-03-01T05:00:00.000Z"
+    },
+    {
+        "prompt": "Celebrity Chefs as World Leaders",
+        "cards": [
+            {
+                "name": "Chef Gordon Ramsay",
+                "attack": 5,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Chef Jamie Oliver",
+                "attack": 5,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Chef Bobby Flay",
+                "attack": 5,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "President Gordon Ramsay",
+                "attack": 5,
+                "health": 500,
+                "isBoss": true
+            },
+            {
+                "name": "Vice President Jamie Oliver",
+                "attack": 5,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Minister of Defense Bobby Flay",
+                "attack": 5,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Senator Ramsay",
+                "attack": 5,
+                "health": 11,
+                "isBoss": false
+            },
+            {
+                "name": "Advisor Oliver",
+                "attack": 5,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Envoy Flay",
+                "attack": 5,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Ambassador Ramsay",
+                "attack": 5,
+                "health": 10,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-29T05:00:00.000Z"
+    },
+    {
+        "prompt": "Rock Stars as Superheroes",
+        "cards": [
+            {
+                "name": "Rockstar Riot",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Guitar Guardian",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Drum Dynamo",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Keyboard Crusader",
+                "attack": 6,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Vocal Vigilante",
+                "attack": 6,
+                "health": 19,
+                "isBoss": false
+            },
+            {
+                "name": "Bass Brawler",
+                "attack": 16,
+                "health": 650,
+                "isBoss": true
+            },
+            {
+                "name": "Lead Guitar Legend",
+                "attack": 6,
+                "health": 28,
+                "isBoss": false
+            },
+            {
+                "name": "Drums of Doom",
+                "attack": 10,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Rhythm Rampager",
+                "attack": 8,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Melody Menace",
+                "attack": 10,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Chord Champion",
+                "attack": 10,
+                "health": 22,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-28T05:00:00.000Z"
+    },
+    {
+        "prompt": "Celebrities as Social Justice Warriors",
+        "cards": [
+            {
+                "name": "Rihanna",
+                "attack": 8,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Taylor Swift",
+                "attack": 8,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Kanye West",
+                "attack": 9,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Beyoncé",
+                "attack": 13,
+                "health": 30,
+                "isBoss": false
+            },
+            {
+                "name": "Jay-Z",
+                "attack": 12,
+                "health": 29,
+                "isBoss": false
+            },
+            {
+                "name": "Lady Gaga",
+                "attack": 16,
+                "health": 36,
+                "isBoss": false
+            },
+            {
+                "name": "Justin Bieber",
+                "attack": 8,
+                "health": 33,
+                "isBoss": false
+            },
+            {
+                "name": "Kim Kardashian",
+                "attack": 9,
+                "health": 22,
+                "isBoss": false
+            },
+            {
+                "name": "Donald Trump",
+                "attack": 28,
+                "health": 800,
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2024-02-27T05:00:00.000Z"
+    },
+    {
+        "prompt": "Celebrity Chefs as Spies",
+        "cards": [
+            {
+                "name": "Chef Pierre",
+                "attack": 5,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Chef Emma",
+                "attack": 5,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Spy Chef",
+                "attack": 10,
+                "health": 500,
+                "isBoss": true
+            },
+            {
+                "name": "Chef James",
+                "attack": 5,
+                "health": 10,
+                "isBoss": false
+            },
+            {
+                "name": "Chef Lisa",
+                "attack": 6,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Chef Mark",
+                "attack": 5,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Chef Rachel",
+                "attack": 8,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Chef Robert",
+                "attack": 11,
+                "health": 20,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-26T05:00:00.000Z"
+    },
+    {
+        "prompt": "Astrophysicists as Superheroes",
+        "cards": [
+            {
+                "name": "Galactic Guardian",
+                "attack": 8,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Stellar Savior",
+                "attack": 8,
+                "health": 20,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Crusader",
+                "attack": 8,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Astrophysicist",
+                "attack": 8,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Quantum Quake",
+                "attack": 10,
+                "health": 800,
+                "isBoss": true
+            },
+            {
+                "name": "Gravitational Gauntlet",
+                "attack": 8,
+                "health": 31,
+                "isBoss": false
+            },
+            {
+                "name": "Celestial Crusher",
+                "attack": 8,
+                "health": 25,
+                "isBoss": false
+            },
+            {
+                "name": "Intergalactic Initiate",
+                "attack": 8,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Stellar Sentinel",
+                "attack": 8,
+                "health": 16,
+                "isBoss": false
+            },
+            {
+                "name": "Cosmic Cavalry",
+                "attack": 8,
+                "health": 26,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-25T05:00:00.000Z"
+    },
+    {
+        "prompt": "Celebrity Social Justice Warriors",
+        "cards": [
+            {
+                "name": "Oprah Winfrey",
+                "attack": 6,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "LeBron James",
+                "attack": 6,
+                "health": 12,
+                "isBoss": false
+            },
+            {
+                "name": "Meryl Streep",
+                "attack": 6,
+                "health": 13,
+                "isBoss": false
+            },
+            {
+                "name": "Lin-Manuel Miranda",
+                "attack": 6,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Chimamanda Ngozi Adichie",
+                "attack": 6,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Ruth Bader Ginsburg",
+                "attack": 6,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "J.K. Rowling",
+                "attack": 6,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Malala Yousafzai",
+                "attack": 8,
+                "health": 600,
+                "isBoss": true
+            }
+        ],
+        "activeDate": "2024-02-24T05:00:00.000Z"
+    },
+    {
+        "prompt": "Musicians as Superheroes",
+        "cards": [
+            {
+                "name": "Rockstar",
+                "attack": 9,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Guitar Hero",
+                "attack": 10,
+                "health": 30,
+                "isBoss": false
+            },
+            {
+                "name": "Drums of Fury",
+                "attack": 15,
+                "health": 24,
+                "isBoss": false
+            },
+            {
+                "name": "Piano Prodigy",
+                "attack": 9,
+                "health": 33,
+                "isBoss": false
+            },
+            {
+                "name": "Vocal Vixen",
+                "attack": 9,
+                "health": 28,
+                "isBoss": false
+            },
+            {
+                "name": "Keyboard Warrior",
+                "attack": 9,
+                "health": 32,
+                "isBoss": false
+            },
+            {
+                "name": "Saxophone Savior",
+                "attack": 13,
+                "health": 21,
+                "isBoss": false
+            },
+            {
+                "name": "Trumpet Titan",
+                "attack": 20,
+                "health": 950,
+                "isBoss": true
+            },
+            {
+                "name": "Ukelele Ubermensch",
+                "attack": 11,
+                "health": 25,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-22T05:00:00.000Z"
+    },
+    {
+        "prompt": "Politicians as Superheroes",
+        "cards": [
+            {
+                "name": "Mayor McCheer",
+                "attack": 7,
+                "health": 17,
+                "isBoss": false
+            },
+            {
+                "name": "Congresswoman Crusader",
+                "attack": 14,
+                "health": 27,
+                "isBoss": false
+            },
+            {
+                "name": "Senator Shield",
+                "attack": 20,
+                "health": 36,
+                "isBoss": false
+            },
+            {
+                "name": "Governor Grit",
+                "attack": 15,
+                "health": 30,
+                "isBoss": false
+            },
+            {
+                "name": "Presidential Powerhouse",
+                "attack": 27,
+                "health": 750,
+                "isBoss": true
+            },
+            {
+                "name": "Vice President Vigilante",
+                "attack": 9,
+                "health": 18,
+                "isBoss": false
+            },
+            {
+                "name": "Secretary of State Savior",
+                "attack": 7,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Ambassador Avenger",
+                "attack": 9,
+                "health": 15,
+                "isBoss": false
+            },
+            {
+                "name": "Chief of Staff Champion",
+                "attack": 7,
+                "health": 23,
+                "isBoss": false
+            },
+            {
+                "name": "Advisor Assister",
+                "attack": 7,
+                "health": 15,
+                "isBoss": false
+            }
+        ],
+        "activeDate": "2024-02-21T05:00:00.000Z"
+    },
+    {
         "prompt": "Scientists as Superheroes",
         "cards": [
             {
