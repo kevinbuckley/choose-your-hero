@@ -61,7 +61,13 @@ export default class MainScene extends Phaser.Scene {
       const activeDate = new Date(t.activeDate);
       return activeDate.getTime() <= today.getTime();
     });
-
+    const oneDay = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+    const activeDate = new Date(filteredThemes[0].activeDate!);  
+    if (today.getTime() - activeDate.getTime() > oneDay) {
+      const idx = Math.max(0, Math.floor(Math.random() * filteredThemes.length)-1);
+      return filteredThemes[idx]
+    }
+  
     return filteredThemes[0];
   }
 
