@@ -4,7 +4,7 @@ import axios from 'axios';
 export default async function callModel(prompt: string): Promise<string> {
   
   const data = {
-    model: 'llama2',
+    model: 'llama3',
     messages: [
       {
         role: 'user',
