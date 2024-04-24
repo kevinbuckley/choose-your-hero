@@ -77,7 +77,7 @@ async function cropAndCopy(inputPath: string, name: string, theme: string) {
   const dimensions: sharp.Region = { width: 354, height: 512, left: 79, top: 0 };
 
   await sharp(inputPath)
-    .extract(dimensions) // Crop dimensions
+    //.extract(dimensions) // Crop dimensions
     .resize(180, 260) // Resize
     .toFile(outputPath)
     .then(() => console.log(`${name} cropped`));
@@ -122,8 +122,7 @@ async function main() {
   const themes = JSON.parse(await readFile(jsonVaultLocation, 'utf8')) as Theme[];
   const themesStr = themes.map(t => t.prompt);
   const themeGenerator = new ThemeGenerator();
-  const theme = await themeGenerator.generateTheme(themesStr)
-
+  const theme = await themeGenerator.generateTheme(themesStr);
   console.log(`THEME: [${theme}]`);
   //await regenSomeImages(theme, ["The Immortal Emperor"]); return;
   const mechanics = new MechanicsGenerator();

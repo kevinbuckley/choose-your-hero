@@ -3,32 +3,59 @@ import runmModel from './LocalLLM'
 
 class ThemeGenerator {
 
+  checkCommonWords(themes: string[], newTheme: string) {
+    // Split the sentences into words
+    let words1 = newTheme.toLowerCase().split(' ');
+    let set1 = new Set(words1);
+      
+    for(let theme in themes) {
+      let words2 = theme.toLowerCase().split(' ');
+      let set2 = new Set(words2);
+
+      // Count the common words
+      let commonWords = 0;
+      for (let word of set1) {
+          if (set2.has(word)) {
+              commonWords++;
+          }
+      }
+
+      // Return true if at least 2 words are the same
+      if(commonWords >= 2) {
+        console.log(`theme ${theme} matched ${newTheme}`)
+        return true;
+      }
+    }
+    return false;
+  }
+
+
   async generateTheme(themes: string[]): Promise<string> {
     
     let theme = themes[0];
-      while(themes.includes(theme)) {
+    while(this.checkCommonWords(themes, theme)) {
 
-      const prompt =  `###Instructions### 
-            Create a single theme for a pop-culture card game.  The theme must be of 1 serious than AS another silly thing. 
-            For example, Mathemeticians as Pro Wrestlers.
+      const prompt =  `###Instructions###  
+            Create a single funny theme for a pop-culture card game.  The theme must be of 1 serious, well known thing AS another silly thing.
+            The theme is funny because a person would never expect the serious thing to be the silly thing. 
             You must be creative and original and not copy an example theme.
-            You MUST only return a theme name with under 5 words in it. 
+            You MUST only return a theme name with under 6 words in it. 
             You MUST only return the name of the theme with no explanation. 
-            You will be penalized if you include wizards or pirates or zombies. 
+            You will be penalized if you include wizards, pirates, zombies, or nazis. 
             You will be penalized if you return anything but the theme name.
             You will be penalized if you return a theme name that is more than 5 words.
-
-            ### Response:\nOkay, here is a theme for a fun and slightly edgy card game:\n\n
-
+            You will be penalized if you return the theme ${theme}
+    
             ###EXAMPLE###
-            Physists and Mathematicians as Pro Wrestlers
-            Chrismas Ziggy Stardust
             Beauty and the Beast as ninjas
-            Weightlifting My Little Ponies`;
+            Scientists as Pro Wrestlers
+            Celebrities as Superheroes
+            Historical Figures as Baristas`;
 
       theme = await runmModel(prompt);
       theme = theme?.split('\n').pop() ?? '';
       theme = theme.replace(/[^a-zA-Z ]/g, '');
+      console.log("Trying theme: " + theme);
     }
     return theme.replace(/"/g, '');
   }
