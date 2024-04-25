@@ -3,10 +3,10 @@ import fs from 'fs';
 
 class ImageGenerator {
     image_type: string[] = [
-        "Minimalism", "Rococo", "Gothic", "Baroque", "Cubism", "Fauvism", 
+        "Realistic", "Minimalism", "Rococo", "Fauvism", 
          "Doodle", "Cinema Portrait","Surrealism", "Pop Art", 
-         "Anime", "Pixel Art", "Watercolor", 
-        "Ink Wash", "Art Nouveau", "Art Deco", "Futurism", "Abstract" ];
+         "Anime", "Watercolor", 
+         "Art Nouveau", "Art Deco", "Futurism" ];
 
     randomStyle(): string {
        // return random value from image_type
